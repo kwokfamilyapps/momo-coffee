@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>697 首程控股 — 2026-07-13 即日價格變動</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans HK', sans-serif;
+    background: #0a1628;
+    color: #e0e8f0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #0d1f3c, #162d50);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+    border: 1px solid #1e3a5f;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #64b5f6;
+    margin-bottom: 6px;
+  }
+  .header .date {
+    font-size: 15px;
+    color: #7898b8;
+    margin-bottom: 12px;
+  }
+  .header .prev-close {
+    font-size: 14px;
+    color: #90a8c0;
+  }
+  .header .prev-close span {
+    color: #e0e8f0;
+    font-weight: 600;
+  }
+  .summary-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: #0f1e38;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #1a2f4a;
+  }
+  .card .label {
+    font-size: 12px;
+    color: #7898b8;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card .value {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .card .value.low { color: #ef5350; }
+  .card .value.high { color: #66bb6a; }
+  .card .value.current { color: #ffa726; }
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #64b5f6;
+    margin-bottom: 12px;
+    padding-left: 4px;
+    border-left: 3px solid #64b5f6;
+    padding-left: 10px;
+  }
+  .table-wrap {
+    background: #0d1a30;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1a2f4a;
+    margin-bottom: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: #132544;
+    color: #7898b8;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #1a2f4a;
+  }
+  tbody td {
+    padding: 14px;
+    border-bottom: 1px solid #14243c;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #112240; }
+  .price {
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .price.down { color: #ef5350; }
+  .price.up { color: #66bb6a; }
+  .change-down { color: #ef5350; font-weight: 600; }
+  .change-up { color: #66bb6a; font-weight: 600; }
+  .vol { color: #90a8c0; font-family: 'Courier New', monospace; }
+  .time-cell { color: #90a8c0; font-size: 13px; }
+  .footer {
+    text-align: center;
+    color: #4a6a8a;
+    font-size: 12px;
+    padding: 20px 0;
+  }
+  @media (max-width: 500px) {
+    .summary-cards { grid-template-columns: 1fr; }
+    body { padding: 12px; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📊 697 首程控股</h1>
+    <div class="date">2026年7月13日（星期一）— 即日價格變動</div>
+    <div class="prev-close">前收市價：<span>$1.50</span></div>
+  </div>
+
+  <div class="summary-cards">
+    <div class="card">
+      <div class="label">日內最高</div>
+      <div class="value high">$1.47</div>
+    </div>
+    <div class="card">
+      <div class="label">日內最低</div>
+      <div class="value low">$1.42</div>
+    </div>
+    <div class="card">
+      <div class="label">最新價格</div>
+      <div class="value current">$1.45</div>
+    </div>
+  </div>
+
+  <div class="section-title">⏱️ 今日價格變動記錄</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>時間</th>
+          <th>價格</th>
+          <th>變動</th>
+          <th>成交股數</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-cell">10:11</td>
+          <td class="price down">$1.47</td>
+          <td class="change-down">⬇ $0.05 (-3.3%)</td>
+          <td class="vol">6,510,000</td>
+        </tr>
+        <tr>
+          <td class="time-cell">15:01</td>
+          <td class="price down">$1.42</td>
+          <td class="change-down">⬇ $0.05 (-3.3%)</td>
+          <td class="vol">44,886,400</td>
+        </tr>
+        <tr>
+          <td class="time-cell">15:40</td>
+          <td class="price down">$1.45</td>
+          <td class="change-down">⬇ $0.05 (-3.3%)</td>
+          <td class="vol">51,390,400</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">📈 走勢摘要</div>
+  <div class="table-wrap" style="padding:16px;">
+    <div style="font-size:14px; line-height:1.8;">
+      <p>• 開市即跌穿 $1.50 關口，報 $1.47（↓$0.05）</p>
+      <p>• 午後進一步受壓，低見 $1.42，成交急增</p>
+      <p>• 尾市反彈至 $1.45，全日累計跌 $0.05（-3.3%）</p>
+      <p>• 全日總成交：約 102,786,800 股</p>
+      <p>• 股價全日喺 $1.42 – $1.47 區間波動</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    由 無虛 (mo mo) 自動監測生成 — 僅供參考，並非投資建議
+  </div>
+</div>
+</body>
+</html>
