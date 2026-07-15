@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>香港銀行定期存款利率比較 2026年7月</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Noto Sans HK", "Microsoft JhengHei", "PingFang HK", sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 2.4rem; margin: 1.2rem 0 0.5rem; color: #0d47a1; text-align: center; }
+  h2 { font-size: 1.8rem; margin: 1.5rem 0 0.8rem; padding-bottom: 6px; border-bottom: 3px solid #1565c0; }
+  h3 { font-size: 1.5rem; margin: 1.2rem 0 0.6rem; color: #333; }
+  .subtitle { text-align: center; font-size: 1.3rem; color: #666; margin-bottom: 1.5rem; }
+  .date-badge {
+    display: inline-block;
+    background: #0d47a1;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .section-new h2 { border-bottom-color: #1565c0; }
+  .section-new h2::before { content: "🆕 "; }
+  .section-existing h2 { border-bottom-color: #616161; }
+  .section-existing h2::before { content: "📂 "; }
+  
+  .summary-box {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border: 2px solid #1565c0;
+    border-radius: 14px;
+    padding: 20px 25px;
+    margin: 1rem 0 1.5rem;
+    font-size: 1.25rem;
+  }
+  .summary-box h3 { color: #0d47a1; margin-top: 0; }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 10px 0;
+  }
+  .summary-item {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 16px;
+    border-left: 5px solid #1565c0;
+  }
+  .summary-item .rate { font-size: 1.8rem; font-weight: bold; color: #0d47a1; }
+  .summary-item .bank { font-weight: bold; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  th {
+    background: #1565c0;
+    color: white;
+    font-weight: bold;
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 10px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.05rem;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: #f0f4ff; }
+  .rate-high { color: #c62828; font-weight: bold; font-size: 1.15rem; }
+  .rate-mid { color: #e65100; font-weight: bold; }
+  .rate-best { 
+    background: #ffebee !important; 
+    color: #b71c1c; 
+    font-weight: bold; 
+    font-size: 1.25rem; 
+  }
+  .rate-best td { background: #ffebee; color: #b71c1c; font-weight: bold; }
+  .bank-name { text-align: left; font-weight: bold; padding-left: 12px; }
+  .bank-tag {
+    display: inline-block;
+    background: #1565c0;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+  }
+  .bank-tag-virtual { background: #00897b; }
+  .bank-tag-top { background: #f9a825; color: #333; }
+  
+  .existing-table th { background: #616161; }
+  .existing-table .rate-best td { background: #eeeeee; }
+
+  .interest-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .interest-box h3 { color: #0d47a1; margin-top: 0; }
+  .interest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .interest-card {
+    background: #e8eaf6;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .interest-card .tenor { font-size: 1rem; color: #555; }
+  .interest-card .amount { font-size: 1.6rem; font-weight: bold; color: #0d47a1; }
+  .interest-card .detail { font-size: 0.9rem; color: #777; margin-top: 4px; }
+  .interest-card.usd { background: #fff3e0; }
+  .interest-card.usd .amount { color: #e65100; }
+
+  .top5-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .top5-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .top5-card {
+    border-radius: 10px;
+    padding: 14px 18px;
+    position: relative;
+  }
+  .top5-card .rank {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+  }
+  .rank-1 { background: #d4af37; }
+  .rank-2 { background: #a0a0a0; }
+  .rank-3 { background: #cd7f32; }
+  .rank-4 { background: #1565c0; }
+  .rank-5 { background: #616161; }
+  .top5-card .bank-name { font-size: 1.3rem; font-weight: bold; padding-left: 30px; }
+  .top5-card .rate-detail { font-size: 1.1rem; margin-top: 4px; }
+
+  .footer {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #999;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+  }
+  .disclaimer {
+    background: #fff8e1;
+    border: 1px solid #ffd54f;
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    color: #555;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 768px) {
+    body { padding: 12px; font-size: 1rem; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+    th, td { font-size: 0.95rem; padding: 8px 5px; white-space: nowrap; }
+    .summary-box { font-size: 1.05rem; }
+    .interest-card .amount { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🏦 香港銀行定期存款利率比較</h1>
+<p class="subtitle">📅 資料更新：<span class="date-badge">2026年7月15日</span></p>
+<p style="text-align:center;font-size:1.15rem;color:#555;">💰 以 HK$100,000 計算各期利息收入</p>
+
+<!-- ========== 重點摘要 ========== -->
+<div class="summary-box">
+  <h3>🔥 重點摘要</h3>
+  <div class="summary-grid">
+    <div class="summary-item">
+      <div>港元 12個月最高</div>
+      <div class="rate">3.10%</div>
+      <div class="bank">天星銀行（虛擬）• 無門檻</div>
+    </div>
+    <div class="summary-item">
+      <div>港元 6個月最高</div>
+      <div class="rate">3.05%</div>
+      <div class="bank">富邦銀行 / 南洋商業銀行</div>
+    </div>
+    <div class="summary-item">
+      <div>美元 3個月最高</div>
+      <div class="rate">4.00%</div>
+      <div class="bank">富邦銀行（最低 USD 65,000）</div>
+    </div>
+    <div class="summary-item">
+      <div>美元 12個月最高</div>
+      <div class="rate">3.90%</div>
+      <div class="bank">富邦銀行 / 大眾銀行</div>
+    </div>
+    <div class="summary-item">
+      <div>虛擬銀行之選</div>
+      <div class="rate">3.10%</div>
+      <div class="bank">天星銀行（港元一年期）</div>
+    </div>
+    <div class="summary-item">
+      <div>美元零門檻之選</div>
+      <div class="rate">3.90%</div>
+      <div class="bank">富融銀行（6個月）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!--  🆕 新資金優惠利率 -->
+<!-- ============================================ -->
+<div class="section-new">
+<h2>港元 HKD 新資金優惠利率</h2>
+<h3>傳統銀行</h3>
+<table>
+  <tr>
+    <th>銀行</th>
+    <th>1個月</th>
+    <th>3個月</th>
+    <th>6個月</th>
+    <th>12個月</th>
+    <th>最低存款</th>
+  </tr>
+  <tr>
+    <td class="bank-name">滙豐銀行 卓越理財</td>
+    <td>—</td>
+    <td>2.30%</td>
+    <td>2.10%</td>
+    <td>—</td>
+    <td>HK$10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">滙豐銀行 One</td>
+    <td>—</td>
+    <td>2.30%</td>
+    <td>2.10%</td>
+    <td>—</td>
+    <td>HK$10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">中國銀行（香港）</td>
+    <td>—</td>
+    <td>2.40%</td>
+    <td>2.40%</td>
+    <td>—</td>
+    <td>HK$10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">渣打銀行</td>
+    <td>—</td>
+    <td>2.40%</td>
+    <td>2.40%</td>
+    <td class="rate-high">3.00%</td>
+    <td>HK$10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">恒生銀行</td>
+    <td>—</td>
+    <td>2.40%</td>
+    <td>2.40%</td>
+    <td>—</td>
+    <td>HK$10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">東亞銀行</td>
+    <td>—</td>
+    <td>2.65%</td>
+    <td>2.65%</td>
+    <td>2.65%</td>
+    <td>HK$10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">中信銀行（國際）</td>
+    <td>1.90%</td>
+    <td>2.70%</td>
+    <td>2.80%</td>
+    <td class="rate-high">2.90%</td>
+    <td>HK$10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">工商銀行（亞洲）</td>
+    <td>1.70%</td>
+    <td class="rate-high">2.90%</td>
+    <td>2.65%</td>
+    <td>2.65%</td>
+    <td>HK$3,000,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">上海商業銀行</td>
+    <td>2.18%</td>
+    <td>2.78%</td>
+    <td>2.83%</td>
+    <td>2.88%</td>
+    <td>HK$1,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">南洋商業銀行</td>
+    <td class="rate-high">2.50%</td>
+    <td>2.85%</td>
+    <td class="rate-best">3.05%</td>
+    <td class="rate-best">3.05%</td>
+    <td>HK$100,000</td>
+  </tr>
+  <tr class="rate-best">
+    <td class="bank-name">🏆 富邦銀行</td>
+    <td class="rate-high">2.45%</td>
+    <td class="rate-high">2.90%</td>
+    <td class="rate-best">3.05%</td>
+    <td class="rate-best">3.05%</td>
+    <td>HK$500,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">大眾銀行（香港）</td>
+    <td>2.30%</td>
+    <td>2.70%</td>
+    <td>2.70%</td>
+    <td class="rate-high">3.00%</td>
+    <td>≥HK$500,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">招商永隆銀行</td>
+    <td>1.15%</td>
+    <td>2.00%</td>
+    <td>2.00%</td>
+    <td>2.00%</td>
+    <td>HK$500,000</td>
+  </tr>
+</table>
+
+<h3>虛擬銀行（無門檻 / 低門檻）</h3>
+<table>
+  <tr>
+    <th>銀行</th>
+    <th>7日</th>
+    <th>1個月</th>
+    <th>3個月</th>
+    <th>6個月</th>
+    <th>12個月</th>
+    <th>最低存款</th>
+  </tr>
+  <tr>
+    <td class="bank-name">富融銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>1.00%</td>
+    <td class="rate-high">1.60%</td>
+    <td class="rate-high">2.70%</td>
+    <td class="rate-best">3.00%</td>
+    <td>2.90%</td>
+    <td>無</td>
+  </tr>
+  <tr>
+    <td class="bank-name">天星銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>0.01%</td>
+    <td>1.50%</td>
+    <td>2.55%</td>
+    <td>2.85%</td>
+    <td class="rate-best">3.10%</td>
+    <td>無</td>
+  </tr>
+  <tr class="rate-best">
+    <td class="bank-name">匯立銀行 GoSave 2.0 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td class="rate-high">2.80%</td>
+    <td class="rate-high">2.95%</td>
+    <td class="rate-high">2.95%</td>
+    <td>HK$10</td>
+  </tr>
+  <tr>
+    <td class="bank-name">Mox 銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>—</td>
+    <td>—</td>
+    <td>2.55%</td>
+    <td>2.60%</td>
+    <td>2.90%</td>
+    <td>HK$1</td>
+  </tr>
+  <tr>
+    <td class="bank-name">眾安銀行 ZA Bank <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>0.10%</td>
+    <td>0.10%</td>
+    <td>0.51%</td>
+    <td>1.61%</td>
+    <td>2.01%</td>
+    <td>HK$1</td>
+  </tr>
+  <tr>
+    <td class="bank-name">理慧銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>0.25%</td>
+    <td>1.20%</td>
+    <td>2.70%</td>
+    <td>2.60%</td>
+    <td>2.70%</td>
+    <td>≥HK$50,000</td>
+  </tr>
+</table>
+</div>
+
+<!-- ============================================ -->
+<!--  🆕 美元新資金 -->
+<!-- ============================================ -->
+<div class="section-new">
+<h2>美元 USD 新資金優惠利率</h2>
+<p style="font-size:1.05rem;color:#555;">匯率參考：1 USD ≈ 7.80 HKD，HK$100,000 ≈ USD 12,800</p>
+
+<h3>傳統銀行</h3>
+<table>
+  <tr>
+    <th>銀行</th>
+    <th>1個月</th>
+    <th>3個月</th>
+    <th>6個月</th>
+    <th>12個月</th>
+    <th>最低存款</th>
+  </tr>
+  <tr>
+    <td class="bank-name">滙豐銀行 卓越理財</td>
+    <td>3.30%</td>
+    <td>3.30%</td>
+    <td>3.20%</td>
+    <td>—</td>
+    <td>USD 2,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">中國銀行（香港）</td>
+    <td>3.30%</td>
+    <td>3.30%</td>
+    <td>3.10%</td>
+    <td>2.90%</td>
+    <td>USD 1,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">渣打銀行</td>
+    <td>3.30%</td>
+    <td>3.30%</td>
+    <td>3.30%</td>
+    <td>3.30%</td>
+    <td>USD 2,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">恒生銀行</td>
+    <td>—</td>
+    <td>3.40%</td>
+    <td>3.40%</td>
+    <td>—</td>
+    <td>USD 2,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">星展銀行</td>
+    <td>3.00%</td>
+    <td>3.45%</td>
+    <td>3.45%</td>
+    <td>3.45%</td>
+    <td>USD 6,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">東亞銀行</td>
+    <td>3.00%</td>
+    <td>3.60%</td>
+    <td>3.60%</td>
+    <td>3.35%</td>
+    <td>USD 1,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">上海商業銀行</td>
+    <td>2.98%</td>
+    <td>3.48%</td>
+    <td>3.53%</td>
+    <td>3.53%</td>
+    <td>USD 10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">南洋商業銀行</td>
+    <td>3.50%</td>
+    <td>3.70%</td>
+    <td class="rate-high">3.85%</td>
+    <td class="rate-high">3.85%</td>
+    <td>USD 13,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">工銀亞洲</td>
+    <td>3.30%</td>
+    <td>3.70%</td>
+    <td>3.70%</td>
+    <td>3.70%</td>
+    <td>USD 100,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">建行亞洲</td>
+    <td>3.60%</td>
+    <td>3.65%</td>
+    <td>3.65%</td>
+    <td>3.50%</td>
+    <td>USD 10,000</td>
+  </tr>
+  <tr>
+    <td class="bank-name">大眾銀行（香港）</td>
+    <td>3.55%</td>
+    <td>3.70%</td>
+    <td>3.70%</td>
+    <td class="rate-best">3.90%</td>
+    <td>USD 10,000</td>
+  </tr>
+  <tr class="rate-best">
+    <td class="bank-name">🏆 富邦銀行</td>
+    <td class="rate-best">3.75%</td>
+    <td class="rate-best">4.00%</td>
+    <td class="rate-best">3.90%</td>
+    <td class="rate-best">3.90%</td>
+    <td>USD 65,000</td>
+  </tr>
+</table>
+
+<h3>虛擬銀行</h3>
+<table>
+  <tr>
+    <th>銀行</th>
+    <th>1個月</th>
+    <th>3個月</th>
+    <th>6個月</th>
+    <th>12個月</th>
+    <th>最低存款</th>
+  </tr>
+  <tr>
+    <td class="bank-name">富融銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>3.00%</td>
+    <td class="rate-high">3.80%</td>
+    <td class="rate-best">3.90%</td>
+    <td class="rate-high">3.80%</td>
+    <td>無</td>
+  </tr>
+  <tr>
+    <td class="bank-name">Mox 銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td class="rate-best">3.20%</td>
+    <td class="rate-high">3.80%</td>
+    <td>3.45%</td>
+    <td>3.30%</td>
+    <td>USD 1</td>
+  </tr>
+  <tr>
+    <td class="bank-name">天星銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></td>
+    <td>2.80%</td>
+    <td>3.55%</td>
+    <td>3.70%</td>
+    <td class="rate-high">3.80%</td>
+    <td>無</td>
+  </tr>
+</table>
+</div>
+
+<!-- ============================================ -->
+<!--  📂 現有資金利率 -->
+<!-- ============================================ -->
+<div class="section-existing">
+<h2>現有資金利率（標準牌價／非推廣利率）</h2>
+<p style="font-size:1.05rem;color:#555;">⚠️ 以下為各銀行標準牌價利率，唔係新資金優惠。傳統銀行牌價通常遠低於推廣利率；虛擬銀行新舊資金利率差別唔大。</p>
+
+<table class="existing-table">
+  <tr>
+    <th>銀行（港元）</th>
+    <th>3個月</th>
+    <th>6個月</th>
+    <th>12個月</th>
+  </tr>
+  <tr>
+    <td class="bank-name">渣打銀行（標準牌價）</td>
+    <td>0.125%</td>
+    <td>0.125%</td>
+    <td>0.15%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">滙豐銀行（標準牌價）</td>
+    <td>約 0.10%</td>
+    <td>約 0.10%</td>
+    <td>約 0.10%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">中銀香港（標準牌價）</td>
+    <td>約 0.10%</td>
+    <td>約 0.10%</td>
+    <td>約 0.15%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">富融銀行（新舊同價）</td>
+    <td>2.70%</td>
+    <td>3.00%</td>
+    <td>2.90%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">天星銀行（新舊同價）</td>
+    <td>2.55%</td>
+    <td>2.85%</td>
+    <td>3.10%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">Mox 銀行（新舊同價）</td>
+    <td>2.55%</td>
+    <td>2.60%</td>
+    <td>2.90%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">匯立銀行 GoSave 2.0</td>
+    <td>2.80%</td>
+    <td>2.95%</td>
+    <td>2.95%</td>
+  </tr>
+</table>
+
+<table class="existing-table">
+  <tr>
+    <th>銀行（美元）</th>
+    <th>3個月</th>
+    <th>6個月</th>
+    <th>12個月</th>
+  </tr>
+  <tr>
+    <td class="bank-name">渣打銀行（標準牌價）</td>
+    <td>0.525%</td>
+    <td>0.55%</td>
+    <td>0.60%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">富融銀行（新舊同價）</td>
+    <td>3.80%</td>
+    <td>3.90%</td>
+    <td>3.80%</td>
+  </tr>
+  <tr>
+    <td class="bank-name">Mox 銀行（新舊同價）</td>
+    <td>3.80%</td>
+    <td>3.45%</td>
+    <td>3.30%</td>
+  </tr>
+    <tr>
+    <td class="bank-name">天星銀行（新舊同價）</td>
+    <td>3.55%</td>
+    <td>3.70%</td>
+    <td>3.80%</td>
+  </tr>
+</table>
+</div>
+
+<!-- ============================================ -->
+<!--  💰 HK$100,000 利息計算 -->
+<!-- ============================================ -->
+<h2>💰 HK$100,000 利息收入計算</h2>
+<p style="font-size:1.1rem;color:#555;">以 HK$100,000 本金，揀各存期最高利率計算（美元按 7.80 匯率折算 ≈ USD 12,800）</p>
+
+<h3>🇭🇰 港元 HKD</h3>
+<div class="interest-box">
+  <div class="interest-grid">
+    <div class="interest-card">
+      <div class="tenor">1個月 @ 2.50%</div>
+      <div class="amount">HK$208</div>
+      <div class="detail">南洋商業銀行</div>
+    </div>
+    <div class="interest-card">
+      <div class="tenor">3個月 @ 2.90%</div>
+      <div class="amount">HK$725</div>
+      <div class="detail">富邦銀行 / 工銀亞洲</div>
+    </div>
+    <div class="interest-card">
+      <div class="tenor">6個月 @ 3.05%</div>
+      <div class="amount">HK$1,525</div>
+      <div class="detail">富邦銀行 / 南洋商業銀行</div>
+    </div>
+    <div class="interest-card">
+      <div class="tenor">12個月 @ 3.10%</div>
+      <div class="amount">HK$3,100</div>
+      <div class="detail">天星銀行（虛擬）</div>
+    </div>
+  </div>
+</div>
+
+<h3>🇺🇸 美元 USD（HK$100,000 ≈ USD 12,800）</h3>
+<div class="interest-box">
+  <div class="interest-grid">
+    <div class="interest-card usd">
+      <div class="tenor">1個月 @ 3.75%</div>
+      <div class="amount">HK$320</div>
+      <div class="detail">富邦銀行 • USD 40 → HK$312<br><small>（最低存額須 USD 65,000）</small></div>
+    </div>
+    <div class="interest-card usd">
+      <div class="tenor">3個月 @ 3.80%</div>
+      <div class="amount">HK$380</div>
+      <div class="detail">富融銀行（無門檻）<br>USD 12,800 × 3.80% ÷ 4 = USD 122</div>
+    </div>
+    <div class="interest-card usd">
+      <div class="tenor">6個月 @ 3.90%</div>
+      <div class="amount">HK$770</div>
+      <div class="detail">富融銀行（無門檻）<br>USD 12,800 × 3.90% ÷ 2 = USD 250</div>
+    </div>
+    <div class="interest-card usd">
+      <div class="tenor">12個月 @ 3.80%</div>
+      <div class="amount">HK$1,517</div>
+      <div class="detail">天星銀行 / 富融銀行<br>USD 12,800 × 3.80% = USD 486</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!--  🏆 TOP 5 排行榜 -->
+<!-- ============================================ -->
+<h2>🏆 TOP 5 銀行排行榜（12個月為基準）</h2>
+
+<h3>🇭🇰 港元新資金 12個月</h3>
+<div class="top5-box">
+  <div class="top5-grid">
+    <div class="top5-card" style="background:#fff8e1;border:2px solid #d4af37;">
+      <div class="rank rank-1">1</div>
+      <div class="bank-name">天星銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 3.10% — 無最低存款，HK$1 起存</div>
+    </div>
+    <div class="top5-card" style="background:#f5f5f5;border:2px solid #a0a0a0;">
+      <div class="rank rank-2">2</div>
+      <div class="bank-name">富邦銀行</div>
+      <div class="rate-detail">💰 3.05% — 最低 HK$500,000</div>
+    </div>
+    <div class="top5-card" style="background:#fbe9e7;border:2px solid #cd7f32;">
+      <div class="rank rank-3">3</div>
+      <div class="bank-name">南洋商業銀行</div>
+      <div class="rate-detail">💰 3.05% — 最低 HK$100,000</div>
+    </div>
+    <div class="top5-card" style="background:#e3f2fd;border:2px solid #1565c0;">
+      <div class="rank rank-4">4</div>
+      <div class="bank-name">匯立銀行 GoSave 2.0 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 2.95% — 最低 HK$10</div>
+    </div>
+    <div class="top5-card" style="background:#eeeeee;border:2px solid #616161;">
+      <div class="rank rank-5">5</div>
+      <div class="bank-name">渣打銀行 / 中信銀行</div>
+      <div class="rate-detail">💰 3.00% / 2.90% — 最低 HK$10,000</div>
+    </div>
+  </div>
+</div>
+
+<h3>🇺🇸 美元新資金 12個月</h3>
+<div class="top5-box">
+  <div class="top5-grid">
+    <div class="top5-card" style="background:#fff8e1;border:2px solid #d4af37;">
+      <div class="rank rank-1">1</div>
+      <div class="bank-name">富邦銀行</div>
+      <div class="rate-detail">💰 3.90% — 最低 USD 65,000</div>
+    </div>
+    <div class="top5-card" style="background:#f5f5f5;border:2px solid #a0a0a0;">
+      <div class="rank rank-2">2</div>
+      <div class="bank-name">大眾銀行（香港）</div>
+      <div class="rate-detail">💰 3.90% — 最低 USD 10,000（性價比之選）</div>
+    </div>
+    <div class="top5-card" style="background:#fbe9e7;border:2px solid #cd7f32;">
+      <div class="rank rank-3">3</div>
+      <div class="bank-name">南洋商業銀行</div>
+      <div class="rate-detail">💰 3.85% — 最低 USD 13,000</div>
+    </div>
+    <div class="top5-card" style="background:#e3f2fd;border:2px solid #1565c0;">
+      <div class="rank rank-4">4</div>
+      <div class="bank-name">富融銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 3.80% — 無最低存款（零門檻之選）</div>
+    </div>
+    <div class="top5-card" style="background:#eeeeee;border:2px solid #616161;">
+      <div class="rank rank-5">5</div>
+      <div class="bank-name">天星銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 3.80% — 無最低存款</div>
+    </div>
+  </div>
+</div>
+
+<h3>📂 現有資金 12個月（唔使新資金）</h3>
+<div class="top5-box">
+  <div class="top5-grid">
+    <div class="top5-card" style="background:#fff8e1;border:2px solid #d4af37;">
+      <div class="rank rank-1">1</div>
+      <div class="bank-name">天星銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 港元 3.10% / 美元 3.80% — 新舊同價</div>
+    </div>
+    <div class="top5-card" style="background:#f5f5f5;border:2px solid #a0a0a0;">
+      <div class="rank rank-2">2</div>
+      <div class="bank-name">富融銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 港元 2.90% / 美元 3.80% — 新舊同價</div>
+    </div>
+    <div class="top5-card" style="background:#fbe9e7;border:2px solid #cd7f32;">
+      <div class="rank rank-3">3</div>
+      <div class="bank-name">匯立銀行 GoSave 2.0 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 港元 2.95% — 最低 HK$10</div>
+    </div>
+    <div class="top5-card" style="background:#e3f2fd;border:2px solid #1565c0;">
+      <div class="rank rank-4">4</div>
+      <div class="bank-name">Mox 銀行 <span class="bank-tag bank-tag-virtual">虛擬</span></div>
+      <div class="rate-detail">💰 港元 2.90% / 美元 3.30% — 新舊同價</div>
+    </div>
+    <div class="top5-card" style="background:#eeeeee;border:2px solid #616161;">
+      <div class="rank rank-5">5</div>
+      <div class="bank-name">渣打銀行（牌價）</div>
+      <div class="rate-detail">💰 港元 0.15% / 美元 0.60% — 標準牌價</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!--  💡 專家建議 -->
+<!-- ============================================ -->
+<h2>💡 專家建議</h2>
+<div class="disclaimer">
+  <ul style="margin-left:20px;line-height:1.8;font-size:1.15rem;">
+    <li><strong>短期閒置資金（1-3個月）</strong>：富融銀行港元3個月 2.70%，無門檻；美元3個月富融 3.80%</li>
+    <li><strong>中期儲蓄（6個月）</strong>：富邦銀行港元 3.05%（需 HK$50萬）或富融銀行港元 3.00%（無門檻）；美元6個月富融 3.90%</li>
+    <li><strong>長期鎖定（12個月）</strong>：天星銀行港元 3.10%（無門檻）；美元富邦/大眾 3.90%</li>
+    <li><strong>追求靈活</strong>：考慮 StashAway 熊金寶（3.7% p.a.，無鎖定期，隨時提款）</li>
+    <li><strong>大額資金（≥USD 65,000）</strong>：富邦銀行美元3個月 4.00%，為全城最高</li>
+    <li><strong>注意</strong>：美元定存要考慮匯兌成本（約0.2%-0.4%），如果本身有美元就最抵</li>
+  </ul>
+</div>
+
+<div class="footer">
+  <p>📊 資料來源：StashAway、MoneySmart、MoneyHK101、各銀行官網</p>
+  <p>📅 資料更新：2026年7月15日</p>
+  <p>⚠️ 利率會隨市場變動，以上資料僅供參考，請以各銀行最新公佈為準</p>
+  <p style="margin-top:8px;">由 無虛 (mo mo) 生成 — 分享版本</p>
+</div>
+
+</body>
+</html>
