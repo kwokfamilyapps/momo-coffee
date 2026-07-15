@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+<title>CCASS 697 首程控股 — 券商持倉分析 2026/07/14</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'Noto Sans SC', sans-serif;
+  background: #0f0f1a;
+  color: #e0e0e0;
+  padding: 20px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+.container { max-width: 800px; margin: 0 auto; }
+h1 { font-size: 2.4rem; color: #ffd700; margin-bottom: 8px; }
+h2 { font-size: 1.8rem; color: #ffd700; margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #333; }
+h3 { font-size: 1.4rem; color: #88ccff; margin: 20px 0 12px; }
+.badge {
+  display: inline-block;
+  background: #1e3a5f;
+  color: #88ccff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.stat-card {
+  background: #1a1a2e;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+}
+.stat-card .label { font-size: 0.9rem; color: #888; }
+.stat-card .value { font-size: 1.6rem; font-weight: bold; color: #ffd700; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 1.0rem;
+}
+th, td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #2a2a3e;
+}
+th { background: #1a1a2e; color: #88ccff; font-weight: 600; }
+tr:hover { background: #1e1e32; }
+.up { color: #4ade80; }
+.down { color: #f87171; }
+.change-bar {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.change-bar.up { background: rgba(74,222,128,0.15); color: #4ade80; }
+.change-bar.down { background: rgba(248,113,113,0.15); color: #f87171; }
+.top-holders { margin: 24px 0; }
+.changes-list { margin: 16px 0; }
+.change-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #1a1a2e;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+.change-item .name { flex: 1; }
+.change-item .change { font-weight: bold; font-size: 1.1rem; }
+.alert-box {
+  background: rgba(248,113,113,0.1);
+  border-left: 4px solid #f87171;
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin: 16px 0;
+  font-size: 1.1rem;
+}
+.alert-box.warning { border-left-color: #fbbf24; background: rgba(251,191,36,0.08); }
+.alert-box.info { border-left-color: #60a5fa; background: rgba(96,165,250,0.08); }
+.net-flow {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background: #1a1a2e;
+  border-radius: 12px;
+  margin: 16px 0;
+}
+.net-flow .up, .net-flow .down { text-align: center; }
+.net-flow .amount { font-size: 1.8rem; font-weight: bold; }
+.net-flow .label { font-size: 0.85rem; color: #888; }
+.footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #333;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+}
+@media (max-width: 600px) {
+  body { padding: 12px; font-size: 1.0rem; }
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+  .summary-grid { grid-template-columns: 1fr; }
+  .net-flow { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="badge">🌐 分享版 · CCASS 券商持倉分析</div>
+<h1>📊 697 首程控股<br>CCASS 券商持倉分析</h1>
+<p style="font-size:1.0rem; color:#888; margin-bottom:20px;">📅 數據日期：2026年7月14日（星期二）｜ 比較基準：7月13日</p>
+
+<!-- 總覽 -->
+<div class="summary-grid">
+  <div class="stat-card">
+    <div class="label">參與券商總數</div>
+    <div class="value">287</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">總持倉</div>
+    <div class="value">72.23億股</div>
+  </div>
+</div>
+
+<!-- 資金流向 -->
+<h2>💰 資金流向總覽</h2>
+<div class="net-flow">
+  <div class="up">
+    <div class="label">📈 增持總額</div>
+    <div class="amount">+1,195萬股</div>
+    <div style="font-size:0.85rem; color:#888;">Top 10 增持券商合計</div>
+  </div>
+  <div class="down">
+    <div class="label">📉 減持總額</div>
+    <div class="amount">-1,242萬股</div>
+    <div style="font-size:0.85rem; color:#888;">Top 10 減持券商合計</div>
+  </div>
+</div>
+
+<!-- 異常變動 -->
+<h2>🚨 異常變動關注</h2>
+
+<div class="alert-box">
+  <strong>🔴 匯豐銀行大手減持 604 萬股</strong><br>
+  C00019 香港上海匯豐銀行有限公司由 395,747,851 → 389,710,251 股<br>
+  係今日最大單一變動，減幅 -1.5%。可能係客戶搬倉。
+</div>
+
+<div class="alert-box warning">
+  <strong>⚠️ 花旗銀行減持 248 萬股</strong><br>
+  C00010 花旗銀行由 82,771,347 → 80,287,697 股，減幅 -3.0%。
+</div>
+
+<div class="alert-box warning">
+  <strong>⚠️ UBS 減持 175 萬股</strong><br>
+  B01161 UBS SECURITIES HONG KONG 由 600,642,028 → 598,890,028 股。
+</div>
+
+<div class="alert-box info">
+  <strong>🟢 中證登內部調倉？</strong><br>
+  A00003（中國証券登記結算有限責任公司）增持 +294 萬股<br>
+  A00004（同一機構另一個編號）減持 -164 萬股<br>
+  合共淨增持 +130 萬股，可能係內部帳戶重新分配。
+</div>
+
+<div class="alert-box info">
+  <strong>🟢 盈透證券（IB）增持 246 萬股</strong><br>
+  B01590 盈透證券香港有限公司由 20,045,025 → 22,501,025 股，增幅 +12.3%。
+</div>
+
+<div class="alert-box info">
+  <strong>🟢 摩根士丹利增持 71%</strong><br>
+  B01274 MORGAN STANLEY HONG KONG 由 440,800 → 752,800 股<br>
+  雖然絕對值唔大（+31萬股），但增幅達 71%，值得留意。
+</div>
+
+<!-- 十大增持 -->
+<h2>📈 十大增持券商</h2>
+<div class="changes-list">
+  <div class="change-item">
+    <span class="name">A00003 中國証券登記結算有限責任公司</span>
+    <span class="change up">+2,936,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01590 盈透證券香港有限公司</span>
+    <span class="change up">+2,456,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01955 富途證券國際(香港)有限公司</span>
+    <span class="change up">+1,196,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01228 中信証券經紀(香港)有限公司</span>
+    <span class="change up">+1,020,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">C00033 中國銀行(香港)有限公司</span>
+    <span class="change up">+584,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B02142 老虎證券(香港)環球有限公司</span>
+    <span class="change up">+516,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">C00039 渣打銀行(香港)有限公司</span>
+    <span class="change up">+406,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01901 招銀國際證券有限公司</span>
+    <span class="change up">+332,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01668 耀才證券國際(香港)有限公司</span>
+    <span class="change up">+320,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01274 MORGAN STANLEY HONG KONG</span>
+    <span class="change up">+312,000</span>
+  </div>
+</div>
+
+<!-- 十大減持 -->
+<h2>📉 十大減持券商</h2>
+<div class="changes-list">
+  <div class="change-item">
+    <span class="name">C00019 香港上海匯豐銀行有限公司</span>
+    <span class="change down">-6,037,600</span>
+  </div>
+  <div class="change-item">
+    <span class="name">C00010 花旗銀行</span>
+    <span class="change down">-2,483,650</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01161 UBS SECURITIES HONG KONG</span>
+    <span class="change down">-1,752,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">A00004 中國証券登記結算有限責任公司</span>
+    <span class="change down">-1,636,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01842 交銀國際證券有限公司</span>
+    <span class="change down">-170,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01183 創興證券有限公司</span>
+    <span class="change down">-150,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01224 MLFE LTD</span>
+    <span class="change down">-82,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01130 中銀國際證券有限公司</span>
+    <span class="change down">-52,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B01555 ABN AMRO CLEARING HONG KONG</span>
+    <span class="change down">-34,000</span>
+  </div>
+  <div class="change-item">
+    <span class="name">B02159 盈立證券有限公司</span>
+    <span class="change down">-26,000</span>
+  </div>
+</div>
+
+<!-- 十大持倉 -->
+<h2>🏆 十大持倉券商</h2>
+<table>
+  <thead>
+    <tr><th>#</th><th>券商</th><th style="text-align:right;">持倉量</th><th style="text-align:right;">佔比</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>A00003 中國証券登記結算</td><td style="text-align:right;">940,823,423</td><td style="text-align:right;">13.0%</td></tr>
+    <tr><td>2</td><td>B01829 華泰金融控股</td><td style="text-align:right;">881,955,584</td><td style="text-align:right;">12.2%</td></tr>
+    <tr><td>3</td><td>A00004 中國証券登記結算</td><td style="text-align:right;">803,486,469</td><td style="text-align:right;">11.1%</td></tr>
+    <tr><td>4</td><td>C00033 中國銀行(香港)</td><td style="text-align:right;">618,489,059</td><td style="text-align:right;">8.6%</td></tr>
+    <tr><td>5</td><td>B01161 UBS SECURITIES HK</td><td style="text-align:right;">598,890,028</td><td style="text-align:right;">8.3%</td></tr>
+    <tr><td>6</td><td>C00019 匯豐銀行</td><td style="text-align:right;">389,710,251</td><td style="text-align:right;">5.4%</td></tr>
+    <tr><td>7</td><td>B01228 中信証券經紀</td><td style="text-align:right;">377,502,210</td><td style="text-align:right;">5.2%</td></tr>
+    <tr><td>8</td><td>B01962 中信建投(國際)</td><td style="text-align:right;">329,509,520</td><td style="text-align:right;">4.6%</td></tr>
+    <tr><td>9</td><td>C00039 渣打銀行</td><td style="text-align:right;">319,631,163</td><td style="text-align:right;">4.4%</td></tr>
+    <tr><td>10</td><td>B01130 中銀國際證券</td><td style="text-align:right;">276,671,757</td><td style="text-align:right;">3.8%</td></tr>
+  </tbody>
+</table>
+
+<!-- 散户 vs 機構 -->
+<h2>📊 券商類型分佈</h2>
+<table>
+  <thead>
+    <tr><th>類別</th><th style="text-align:right;">持倉量</th><th style="text-align:right;">佔比</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>🏦 銀行託管</td><td style="text-align:right;">~27.5億股</td><td style="text-align:right;">~38%</td></tr>
+    <tr><td>🏢 券商/經紀</td><td style="text-align:right;">~44.7億股</td><td style="text-align:right;">~62%</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size:0.9rem; color:#888; margin-top:8px;">
+* 銀行託管：匯豐、中銀、渣打、花旗、招行、交行等<br>
+* 券商經紀：華泰、UBS、中信、中證登、富途、盈透、老虎等
+</p>
+
+<!-- 摘要 -->
+<h2>📝 今日摘要</h2>
+<ul style="margin-left:20px; line-height:2.0;">
+  <li><strong>總體走勢：</strong>今日 Top 10 增持合共 +1,195 萬股，Top 10 減持合共 -1,242 萬股，呈輕微淨流出約 -47 萬股。</li>
+  <li><strong>最大亮點：</strong>盈透證券（IB）大幅增持 +246 萬股（+12.3%），富途增持 +120 萬股，老虎證券增持 +52 萬股，反映散戶/互聯網券商渠道持續吸納。</li>
+  <li><strong>機構動向：</strong>匯豐銀行託管倉位減少 604 萬股、花旗減少 248 萬股、UBS 減少 175 萬股，可能涉及機構投資者調倉或轉經紀。</li>
+  <li><strong>摩根士丹利：</strong>持倉由 44 萬股升至 75 萬股，增幅 71%，雖然絕對值細，但方向值得留意。</li>
+</ul>
+
+<div class="footer">
+  🌐 分享版本 · 由 無虛 (mo mo) 自動生成<br>
+  數據來源：香港交易所 CCASS 中央結算系統 (SDW)<br>
+  數據日期：2026年7月14日（T-1）<br>
+  ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿<br>
+  免責聲明：本報告僅供參考，不構成任何投資建議。
+</div>
+
+</div>
+</body>
+</html>
