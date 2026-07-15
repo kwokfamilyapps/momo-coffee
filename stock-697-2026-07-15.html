@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>697 首程控股 — 即時股價波動報告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'Segoe UI', Arial, sans-serif; background: #0a1628; color: #e0e6f0; min-height: 100vh; padding: 20px; }
+.container { max-width: 600px; margin: 0 auto; }
+h1 { font-size: 28px; color: #4fc3f7; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+h1 small { font-size: 16px; color: #8899b0; font-weight: normal; }
+.date { color: #8899b0; font-size: 14px; margin-bottom: 24px; }
+.alert-card { background: linear-gradient(135deg, #0d1f3c, #162d50); border-radius: 16px; padding: 24px; margin-bottom: 16px; border: 1px solid rgba(79, 195, 247, 0.15); }
+.price-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+.price { font-size: 48px; font-weight: bold; color: #fff; }
+.price .currency { font-size: 20px; color: #8899b0; }
+.change { font-size: 22px; font-weight: 600; }
+.change.up { color: #4caf50; }
+.change.down { color: #f44336; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.detail-item { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 12px; }
+.detail-item .label { font-size: 11px; color: #8899b0; text-transform: uppercase; letter-spacing: 0.5px; }
+.detail-item .value { font-size: 18px; font-weight: 600; color: #e0e6f0; margin-top: 4px; }
+.section-title { font-size: 18px; color: #4fc3f7; margin: 24px 0 12px 0; padding-bottom: 8px; border-bottom: 1px solid rgba(79, 195, 247, 0.15); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: rgba(79, 195, 247, 0.1); color: #4fc3f7; padding: 10px 8px; text-align: left; font-weight: 500; }
+td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+tr:last-child td { border-bottom: none; }
+.up { color: #4caf50; }
+.down { color: #f44336; }
+.volume { color: #8899b0; font-size: 12px; }
+.footer { text-align: center; color: #556; font-size: 11px; margin-top: 32px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+.tag { display: inline-block; background: rgba(79, 195, 247, 0.15); color: #4fc3f7; font-size: 11px; padding: 2px 8px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📈 首程控股 <small>697.HK</small></h1>
+  <div class="date">2026-07-15 • 即時股價監控</div>
+
+  <div class="alert-card">
+    <div class="price-row">
+      <div class="price"><span class="currency">$</span>1.64</div>
+      <div class="change up">⬆ +$0.06 <span style="font-size:14px;color:#8899b0">(+3.80%)</span></div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="label">更新時間</div>
+        <div class="value" style="font-size:15px;">14:01:37</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">今日範圍</div>
+        <div class="value" style="font-size:15px;">$1.57 — $1.64</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">變動</div>
+        <div class="value change up" style="font-size:15px;">+$0.06</div>
+      </div>
+      <div class="detail-item">
+        <div class="label">資料來源</div>
+        <div class="value" style="font-size:13px;">Yahoo Finance</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">📊 近期價格走勢</div>
+  <table>
+    <tr><th>時間</th><th>價格</th><th>變幅</th><th class="volume">成交量</th></tr>
+    <tr>
+      <td style="font-weight:500; color:#4fc3f7;">14:01:37</td>
+      <td style="font-weight:600; color:#fff;">$1.64</td>
+      <td class="up">⬆ +$0.06</td>
+      <td class="volume">-</td>
+    </tr>
+    <tr>
+      <td style="color:#8899b0;">10:11:29</td>
+      <td style="font-weight:600;">$1.47</td>
+      <td class="down">⬇ -0.05</td>
+      <td class="volume">6,510,000</td>
+    </tr>
+    <tr>
+      <td style="color:#8899b0;">15:01:44</td>
+      <td style="font-weight:600;">$1.42</td>
+      <td class="down">⬇ -0.05</td>
+      <td class="volume">44,886,400</td>
+    </tr>
+    <tr>
+      <td style="color:#8899b0;">15:40:28</td>
+      <td style="font-weight:600;">$1.45</td>
+      <td class="down">⬇ -0.05</td>
+      <td class="volume">51,390,400</td>
+    </tr>
+    <tr>
+      <td style="color:#8899b0;">15:50:24</td>
+      <td style="font-weight:600;">$1.45</td>
+      <td class="down">⬇ -0.05</td>
+      <td class="volume">52,750,400</td>
+    </tr>
+    <tr>
+      <td style="color:#8899b0;">16:01:30</td>
+      <td style="font-weight:600;">$1.44</td>
+      <td class="down">⬇ -0.06</td>
+      <td class="volume">54,292,400</td>
+    </tr>
+    <tr>
+      <td style="color:#8899b0;">16:20:25</td>
+      <td style="font-weight:600;">$1.49</td>
+      <td class="up">⬆ +0.05</td>
+      <td class="volume">66,314,400</td>
+    </tr>
+  </table>
+
+  <div class="section-title">⚠️ 監控設定</div>
+  <div style="background:rgba(255,255,255,0.03); border-radius:12px; padding:16px; font-size:13px; color:#8899b0; line-height:1.6;">
+    • 觸發條件：價格變動 ≥ ±$0.05<br>
+    • 監控時段：港股交易時段 (09:30-16:00 HKT)<br>
+    • 數據來源：Yahoo Finance History API<br>
+    • 自動通知：Hermes cron job (每分鐘掃描)
+  </div>
+
+  <div class="footer">
+    由 無虛 (mo mo) 自動生成 • 分享版本<br>
+    資料僅供參考，不構成投資建議
+  </div>
+</div>
+</body>
+</html>
