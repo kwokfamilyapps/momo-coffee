@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>697 首程控股 — 日報 2026-07-15</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: -apple-system, 'Segoe UI', 'Noto Sans HK', sans-serif;
+  padding: 24px;
+  min-height: 100vh;
+}
+.container { max-width: 800px; margin: 0 auto; }
+.header {
+  text-align: center;
+  padding: 32px 0 24px;
+  border-bottom: 2px solid #1e293b;
+  margin-bottom: 32px;
+}
+.header h1 { font-size: 2.4rem; font-weight: 700; color: #fbbf24; margin-bottom: 4px; }
+.header .subtitle { font-size: 1.2rem; color: #94a3b8; }
+.header .badge { display: inline-block; background: #1e293b; color: #fbbf24; padding: 4px 16px; border-radius: 20px; font-size: 0.9rem; margin-top: 8px; }
+.price-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.price-card {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+.price-card .label { font-size: 1.0rem; color: #64748b; margin-bottom: 8px; }
+.price-card .value { font-size: 2.2rem; font-weight: 700; }
+.price-card .value.up { color: #4ade80; }
+.price-card .value.down { color: #f87171; }
+.price-card .value.neutral { color: #e2e8f0; }
+.price-card .meta { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+.card-wide {
+  grid-column: 1 / -1;
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 20px;
+}
+.change-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #334155;
+}
+.change-row:last-child { border-bottom: none; }
+.change-row .label { font-size: 1.1rem; color: #94a3b8; }
+.change-row .value { font-size: 1.4rem; font-weight: 600; }
+.change-row .value.positive { color: #4ade80; }
+.change-row .value.negative { color: #f87171; }
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fbbf24;
+  margin: 32px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.alert-box {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.alert-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #334155;
+}
+.alert-item:last-child { border-bottom: none; }
+.alert-item .time { font-size: 1.1rem; color: #94a3b8; font-family: monospace; }
+.alert-item .price-tag { font-size: 1.4rem; font-weight: 700; }
+.alert-item .price-tag.up { color: #4ade80; }
+.alert-item .price-tag.down { color: #f87171; }
+.alert-item .change-tag {
+  font-size: 1.0rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.alert-item .change-tag.up { background: rgba(74,222,128,0.15); color: #4ade80; }
+.alert-item .change-tag.down { background: rgba(248,113,113,0.15); color: #f87171; }
+.alert-item .vol-tag { font-size: 0.9rem; color: #64748b; }
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 1.2rem;
+}
+.empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.0rem;
+}
+.mini-table th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 2px solid #334155;
+  color: #94a3b8;
+  font-weight: 500;
+}
+.mini-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #1e293b;
+}
+.hour-row { color: #e2e8f0; }
+.hour-row.up { color: #4ade80; }
+.hour-row.down { color: #f87171; }
+.hour-row.flat { color: #94a3b8; }
+.footer {
+  text-align: center;
+  padding: 32px 0;
+  color: #475569;
+  font-size: 0.85rem;
+  border-top: 1px solid #1e293b;
+  margin-top: 32px;
+}
+@media (max-width: 600px) {
+  .price-grid { grid-template-columns: 1fr 1fr; }
+  .price-card .value { font-size: 1.8rem; }
+  body { padding: 16px; }
+  .header h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="badge">🔒 私人版 · 每日分析</div>
+  <h1>697 首程控股</h1>
+  <div class="subtitle">2026年7月15日（星期三）全日回顧</div>
+</div>
+
+<div class="price-grid">
+  <div class="price-card">
+    <div class="label">開市</div>
+    <div class="value neutral">1.58</div>
+    <div class="meta">09:02</div>
+  </div>
+  <div class="price-card">
+    <div class="label">最高</div>
+    <div class="value up">1.66</div>
+    <div class="meta">16:10 / 16:40</div>
+  </div>
+  <div class="price-card">
+    <div class="label">最低</div>
+    <div class="value down">1.57</div>
+    <div class="meta">09:50</div>
+  </div>
+  <div class="price-card">
+    <div class="label">收市</div>
+    <div class="value up">1.66</div>
+    <div class="meta">16:50</div>
+  </div>
+  <div class="price-card">
+    <div class="label">前收市</div>
+    <div class="value neutral">1.58</div>
+    <div class="meta">7月14日</div>
+  </div>
+  <div class="price-card">
+    <div class="label">變動</div>
+    <div class="value up">+0.08</div>
+    <div class="meta">+5.06%</div>
+  </div>
+</div>
+
+<div class="card-wide">
+  <div class="section-title">📊 全日價格走勢</div>
+  <table class="mini-table">
+    <thead>
+      <tr><th>時間</th><th>價格</th><th>方向</th><th>成交量</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hour-row"><td>09:02</td><td>1.58</td><td>— 開市</td><td>41,618K</td></tr>
+      <tr class="hour-row"><td>09:50</td><td>1.60</td><td class="up">▲ +0.02</td><td>—</td></tr>
+      <tr class="hour-row"><td>10:01</td><td>1.61</td><td class="up">▲ +0.01</td><td>—</td></tr>
+      <tr class="hour-row"><td>10:20</td><td>1.60</td><td class="down">▼ -0.01</td><td>—</td></tr>
+      <tr class="hour-row"><td>10:30</td><td>1.59</td><td class="down">▼ -0.01</td><td>—</td></tr>
+      <tr class="hour-row"><td>10:50</td><td>1.61</td><td class="up">▲ +0.02</td><td>—</td></tr>
+      <tr class="hour-row"><td>11:00-11:50</td><td>1.60-1.61</td><td class="flat">— 橫行</td><td>—</td></tr>
+      <tr class="hour-row"><td>12:00-13:10</td><td>1.59</td><td class="down">▼ -0.02</td><td>1,068K</td></tr>
+      <tr class="hour-row"><td>13:20</td><td>1.60</td><td class="up">▲ +0.01</td><td>—</td></tr>
+      <tr class="hour-row up"><td><strong>13:30</strong></td><td><strong>1.63</strong></td><td><strong>▲ +0.03</strong></td><td>—</td></tr>
+      <tr class="hour-row up"><td><strong>14:01</strong></td><td><strong>1.64</strong></td><td><strong>▲ +0.01</strong></td><td>—</td></tr>
+      <tr class="hour-row"><td>14:20</td><td>1.63</td><td class="down">▼ -0.01</td><td>—</td></tr>
+      <tr class="hour-row up"><td>14:40</td><td>1.64</td><td class="up">▲ +0.01</td><td>—</td></tr>
+      <tr class="hour-row up"><td><strong>15:01</strong></td><td><strong>1.65</strong></td><td><strong>▲ +0.01</strong></td><td>—</td></tr>
+      <tr class="hour-row"><td>15:50</td><td>1.65</td><td class="flat">—</td><td>—</td></tr>
+      <tr class="hour-row up"><td><strong>16:10</strong></td><td><strong>1.66</strong></td><td><strong>▲ +0.01</strong></td><td>162K</td></tr>
+      <tr class="hour-row"><td>16:40-16:50</td><td>1.66</td><td class="flat">— 收市</td><td>1,364K</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section-title">🚨 ±$0.05 價格警報</div>
+<div class="alert-box">
+  <div class="alert-item">
+    <span class="time">14:01:37</span>
+    <span>
+      <span class="price-tag up">$1.64</span>
+      <span class="change-tag up">+0.06 ▲</span>
+    </span>
+    <span class="vol-tag">由 $1.58 觸發</span>
+  </div>
+</div>
+
+<div class="section-title">📋 全日摘要</div>
+<div class="card-wide">
+  <div class="change-row">
+    <span class="label">波幅範圍</span>
+    <span class="value positive">$1.57 — $1.66（$0.09）</span>
+  </div>
+  <div class="change-row">
+    <span class="label">平均價格（估算）</span>
+    <span class="value neutral">≈ $1.61</span>
+  </div>
+  <div class="change-row">
+    <span class="label">走勢方向</span>
+    <span class="value positive">⬆ 單邊上升</span>
+  </div>
+  <div class="change-row">
+    <span class="label">±$0.05 警報次數</span>
+    <span class="value neutral">1 次</span>
+  </div>
+  <div class="change-row">
+    <span class="label">開市競價成交</span>
+    <span class="value neutral">≈ 41,618,000 股</span>
+  </div>
+  <div class="change-row">
+    <span class="label">相比前日（$1.58）</span>
+    <span class="value positive">+$0.08（+5.06%）</span>
+  </div>
+</div>
+
+<div class="section-title">📝 分析備註</div>
+<div class="card-wide" style="font-size:1.1rem; line-height:1.7; color:#cbd5e1;">
+  <p>• 昨日（7月15日）697 全日走勢強勁，由開市價 $1.58 一路攀升至收市 $1.66，**升幅達 5.06%**。</p>
+  <p>• 早段（09:02-09:40）橫行於 $1.58，09:50 開始發力上試 $1.60。</p>
+  <p>• 中午前後（10:00-13:00）喺 $1.59-$1.61 區間整固，13:30 突破 $1.63，觸發全日唯一 ±$0.05 警報。</p>
+  <p>• 午後持續強勢，14:01 見 $1.64，15:01 見 $1.65，最終以全日高位 $1.66 收市。</p>
+  <p>• 全日低位 $1.57 只出現喺早段（09:50），之後再冇見過更低價位。</p>
+  <p>• 開市競價成交 41.6M 股，顯示開市已有大量資金進場。</p>
+  <p style="color: #fbbf24; margin-top:12px;"><strong>💡 總結：</strong>697 昨日走勢強勁，全日單邊向上，波幅 $0.09，係近期少有嘅強勢表現。</p>
+</div>
+
+<div class="footer">
+  🔒 私人版本 · 由 無虛 (mo mo) 自動生成<br>
+  數據來源：Yahoo Finance (yfinance) · 2026-07-16 09:00 HKT
+</div>
+
+</div>
+</body>
+</html>
