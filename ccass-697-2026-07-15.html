@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+<title>CCASS 697 首程控股 — 券商持倉分析 2026/07/15</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'Noto Sans SC', sans-serif;
+  background: #0f0f1a;
+  color: #e0e0e0;
+  padding: 16px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+.container { max-width: 880px; margin: 0 auto; }
+h1 { font-size: 2.2rem; color: #ffd700; margin-bottom: 4px; }
+.subtitle { font-size: 1.0rem; color: #888; margin-bottom: 20px; }
+h2 { font-size: 1.6rem; color: #ffd700; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #333; }
+h3 { font-size: 1.3rem; color: #88ccff; margin: 16px 0 10px; }
+.summary-box {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.summary-item {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+.summary-item .label { font-size: 0.9rem; color: #888; }
+.summary-item .value { font-size: 1.5rem; font-weight: 700; color: #fff; }
+.summary-item .value.gold { color: #ffd700; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 1.05rem; }
+th { text-align: left; padding: 8px 10px; background: #1a1a2e; color: #88ccff; font-size: 0.9rem; font-weight: 600; }
+td { padding: 8px 10px; border-bottom: 1px solid #222; }
+tr:hover { background: #1a1a2e; }
+.num { text-align: right; font-family: 'Menlo', 'Consolas', monospace; }
+.name { }
+.up { color: #00ff88; text-align: right; font-family: 'Menlo', 'Consolas', monospace; font-weight: 700; }
+.down { color: #ff4466; text-align: right; font-family: 'Menlo', 'Consolas', monospace; font-weight: 700; }
+.footer { margin-top: 30px; padding: 16px; background: #111; border-radius: 8px; font-size: 0.85rem; color: #666; text-align: center; }
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.tag-private { background: #ffd700; color: #000; }
+.tag-share { background: #00aaff; color: #000; }
+.section { margin: 20px 0; }
+.insight {
+  background: #1a1a2e;
+  border-left: 4px solid #ffd700;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 8px 8px 0;
+}
+.insight.warn { border-left-color: #ff4466; }
+.insight.ok { border-left-color: #00ff88; }
+@media (max-width: 600px) {
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+  body { font-size: 1.05rem; padding: 10px; }
+  table { font-size: 0.9rem; }
+  .summary-item .value { font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<p><span class="tag tag-share">🌐 分享版</span></p>
+
+<h1>📊 697 首程控股</h1>
+<p class="subtitle">📅 CCASS 券商持倉分析 — 2026/07/15</p>
+
+<div class="summary-box">
+  <div class="summary-item">
+    <div class="label">券商總數</div>
+    <div class="value gold">286</div>
+  </div>
+  <div class="summary-item">
+    <div class="label">總持倉</div>
+    <div class="value">7,223,411,853</div>
+  </div>
+  <div class="summary-item">
+    <div class="label">有變動</div>
+    <div class="value">78</div>
+  </div>
+</div>
+
+<div class="section">
+<h2>🏆 十大持倉券商</h2>
+<table>
+<tr><th>#</th><th>代碼</th><th>券商</th><th>持倉</th></tr>
+<tr><td>1</td><td>A00003</td><td class="name">中國証券登記結算有限責任公司</td><td class="num">944,971,423</td></tr>
+<tr><td>2</td><td>B01829</td><td class="name">華泰金融控股(香港)有限公司</td><td class="num">881,937,584</td></tr>
+<tr><td>3</td><td>A00004</td><td class="name">中國証券登記結算有限責任公司</td><td class="num">803,204,469</td></tr>
+<tr><td>4</td><td>C00033</td><td class="name">中國銀行(香港)有限公司</td><td class="num">615,360,659</td></tr>
+<tr><td>5</td><td>B01161</td><td class="name">UBS SECURITIES HONG KONG LTD</td><td class="num">548,346,028</td></tr>
+<tr><td>6</td><td>C00019</td><td class="name">香港上海匯豐銀行有限公司</td><td class="num">434,444,251</td></tr>
+<tr><td>7</td><td>B01228</td><td class="name">中信証券經紀(香港)有限公司</td><td class="num">387,002,210</td></tr>
+<tr><td>8</td><td>B01962</td><td class="name">中信建投(國際)証券有限公司</td><td class="num">329,509,520</td></tr>
+<tr><td>9</td><td>C00039</td><td class="name">渣打銀行(香港)有限公司</td><td class="num">319,818,763</td></tr>
+<tr><td>10</td><td>B01130</td><td class="name">中銀國際證券有限公司</td><td class="num">285,447,757</td></tr>
+
+</table>
+</div>
+
+<div class="section">
+<h2>📊 今日變動（7/14 → 7/15）</h2>
+
+<h3>🟢 增持 Top 5</h3>
+<table>
+<tr><th>增持</th><th>券商</th><th>代碼</th></tr>
+<tr><td class="up">+44,734,000</td><td class="name">香港上海匯豐銀行有限公司</td><td>C00019</td></tr>
+<tr><td class="up">+9,500,000</td><td class="name">中信証券經紀(香港)有限公司</td><td>B01228</td></tr>
+<tr><td class="up">+8,776,000</td><td class="name">中銀國際證券有限公司</td><td>B01130</td></tr>
+<tr><td class="up">+4,148,000</td><td class="name">中國証券登記結算有限責任公司</td><td>A00003</td></tr>
+<tr><td class="up">+780,000</td><td class="name">ABN AMRO CLEARING HONG KONG LTD</td><td>B01555</td></tr>
+
+</table>
+
+<h3>🔴 減持 Top 5</h3>
+<table>
+<tr><th>減持</th><th>券商</th><th>代碼</th></tr>
+<tr><td class="down">-50,544,000</td><td class="name">UBS SECURITIES HONG KONG LTD</td><td>B01161</td></tr>
+<tr><td class="down">-7,648,429</td><td class="name">花旗銀行</td><td>C00010</td></tr>
+<tr><td class="down">-3,128,400</td><td class="name">中國銀行(香港)有限公司</td><td>C00033</td></tr>
+<tr><td class="down">-2,630,000</td><td class="name">盈透證券香港有限公司</td><td>B01590</td></tr>
+<tr><td class="down">-2,270,000</td><td class="name">富途證券國際(香港)有限公司</td><td>B01955</td></tr>
+<tr><td class="down">-831,572</td><td class="name">法國巴黎銀行</td><td>C00093</td></tr>
+
+</table>
+</div>
+
+<div class="section">
+<h2>📈 3日累計變動（7/13 → 7/15）</h2>
+
+<h3>🟢 3日增持 Top 5</h3>
+<table>
+<tr><th>累計增持</th><th>券商</th><th>代碼</th></tr>
+<tr><td class="up">+38,696,400</td><td class="name">香港上海匯豐銀行有限公司</td><td>C00019</td></tr>
+<tr><td class="up">+10,520,000</td><td class="name">中信証券經紀(香港)有限公司</td><td>B01228</td></tr>
+<tr><td class="up">+8,724,000</td><td class="name">中銀國際證券有限公司</td><td>B01130</td></tr>
+<tr><td class="up">+7,084,000</td><td class="name">中國証券登記結算有限責任公司</td><td>A00003</td></tr>
+<tr><td class="up">+746,000</td><td class="name">ABN AMRO CLEARING HONG KONG LTD</td><td>B01555</td></tr>
+
+</table>
+
+<h3>🔴 3日減持 Top 5</h3>
+<table>
+<tr><th>累計減持</th><th>券商</th><th>代碼</th></tr>
+<tr><td class="down">-52,296,000</td><td class="name">UBS SECURITIES HONG KONG LTD</td><td>B01161</td></tr>
+<tr><td class="down">-10,132,079</td><td class="name">花旗銀行</td><td>C00010</td></tr>
+<tr><td class="down">-2,544,400</td><td class="name">中國銀行(香港)有限公司</td><td>C00033</td></tr>
+<tr><td class="down">-1,918,000</td><td class="name">中國証券登記結算有限責任公司</td><td>A00004</td></tr>
+<tr><td class="down">-1,074,000</td><td class="name">富途證券國際(香港)有限公司</td><td>B01955</td></tr>
+<tr><td class="down">-599,972</td><td class="name">法國巴黎銀行</td><td>C00093</td></tr>
+
+</table>
+</div>
+
+<div class="section">
+<h2>🔍 重點觀察</h2>
+
+<div class="insight ok">
+<strong>🟢 匯豐銀行</strong> 今日大手增持 <strong>+4,473 萬股</strong>，3日累計增持 <strong>+3,870 萬股</strong>，係近期最大買家。
+</div>
+
+<div class="insight warn">
+<strong>🔴 UBS</strong> 今日減持 <strong>-5,054 萬股</strong>，3日累計減持 <strong>-5,230 萬股</strong>，係近期最大沽家。資金可能正轉移至匯豐。
+</div>
+
+<div class="insight warn">
+<strong>🔴 花旗銀行</strong> 今日減持 <strong>-765 萬股</strong>，3日累計減持 <strong>-1,013 萬股</strong>，持續流出。
+</div>
+
+<div class="insight ok">
+<strong>🟢 中信証券</strong> 今日增持 <strong>+950 萬股</strong>，3日累計 <strong>+1,052 萬股</strong>。<strong>中銀國際</strong> 今日增持 <strong>+878 萬股</strong>，3日累計 <strong>+872 萬股</strong>。
+</div>
+
+<div class="insight ok">
+<strong>🟢 中登（A00003）</strong> 今日增持 <strong>+415 萬股</strong>，3日累計 <strong>+708 萬股</strong>，北水持續流入。
+</div>
+
+</div>
+
+<div class="footer">
+由 無虛 (mo mo) 生成 · 2026/07/15 · 分享版本
+</div>
+</div>
+</body>
+</html>
