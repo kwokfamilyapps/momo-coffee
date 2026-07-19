@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>嫲嫲 App — 搬去 Render 教學</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans TC","PingFang HK","Microsoft JhengHei",sans-serif;background:#1a1a2e;color:#f0e6d3;padding:24px;line-height:1.9;font-size:26px}
+h1{font-size:36px;color:#c9a84c;margin-bottom:6px;text-align:center}
+h2{font-size:32px;color:#c9a84c;margin:32px 0 16px;border-left:6px solid #c9a84c;padding-left:16px}
+h3{font-size:28px;color:#f0e6d3;margin:20px 0 12px}
+p,li{font-size:26px;margin:10px 0}
+ol,ul{padding-left:36px}
+li{margin:8px 0}
+strong{color:#ffd9a9}
+.step{background:rgba(255,255,255,.05);border-radius:12px;padding:16px;margin:12px 0;border:1px solid rgba(201,168,76,.2)}
+.step .num{display:inline-block;background:#c9a84c;color:#1a1a2e;width:36px;height:36px;border-radius:50%;text-align:center;line-height:36px;font-size:22px;font-weight:700;margin-right:10px}
+.code{background:rgba(0,0,0,.4);border-radius:8px;padding:12px 16px;font-size:22px;margin:8px 0;overflow-x:auto}
+.ok{color:#2ecc71;font-weight:700}
+.box{background:rgba(201,168,76,.1);border-radius:12px;padding:16px;margin:12px 0;border-left:4px solid #c9a84c}
+</style>
+</head>
+<body>
+
+<h1>👵 嫲嫲 App 搬去 Render</h1>
+<p style="font-size:22px;color:#a09080;margin-bottom:20px">免費 • Non-stop • 約 10 分鐘搞掂</p>
+
+<h2>你嘅任務：去 Render 㩒掣</h2>
+
+<div class="step">
+<span class="num">1</span>
+<strong>開 Render 帳戶</strong><br>
+去 <strong>render.com</strong> → 㩒 <strong>「Get Started」</strong><br>
+㩒 <strong>「Continue with GitHub」</strong>（用你 GitHub 帳號登入就得）
+</div>
+
+<div class="step">
+<span class="num">2</span>
+<strong>New Web Service</strong><br>
+登入後 → Dashboard → 㩒 <strong>「New +」</strong> → <strong>「Web Service」</strong>
+</div>
+
+<div class="step">
+<span class="num">3</span>
+<strong>Connect Repository</strong><br>
+揀 <strong>「grandma-app-render」</strong>（我已經 push 好 code 上去）<br>
+如果冇出現 → 㩒 「Configure GitHub」 → 揀呢個 repo
+</div>
+
+<div class="step">
+<span class="num">4</span>
+<strong>Settings（直接㩒 Deploy）</strong><br>
+Name：<code>grandma-app</code>（自動 fill）<br>
+Region：揀 <strong>Hong Kong 🏠</strong>（如有）or Singapore<br>
+Branch：<code>main</code><br>
+Runtime：<strong>Python 3</strong><br>
+Build Command：<code>pip install -r requirements.txt</code>（自動 fill）<br>
+Start Command：<code>gunicorn app:app</code>（自動 fill）<br>
+Plan：揀 <strong>Free</strong> ✅
+</div>
+
+<div class="step">
+<span class="num">5</span>
+<strong>Set 環境變數（重要！）</strong><br>
+㩒 <strong>「Advanced」</strong> → 加呢 4 個：
+<div class="code">
+NOTION_TOKEN = 你的 Notion API Key<br>
+NOTION_APPOINTMENTS_DB = 39a20468-a48b-812f-a0ff-f3bb9299431f<br>
+NOTION_DOCTORS_DB = 39a20468-a48b-8103-8b75-e69aa6828d3b<br>
+NOTION_MEDICATIONS_DB = 39a20468-a48b-8154-b965-e68232e1c652
+</div>
+</div>
+
+<div class="step">
+<span class="num">6</span>
+<strong>㩒 Deploy 🚀</strong><br>
+等幾分鐘，會 show 「<span class="ok">Live</span>」 同俾個 URL 你。<br>
+例如：<code>https://grandma-app.onrender.com</code>
+</div>
+
+</div>
+
+<h2>之後我幫你做嘅</h2>
+<div class="box">
+<strong>你 deploy 完俾個 URL 我</strong>，我即刻 set：
+<ul>
+<li>✅ Cron job 每 14 分鐘 ping 你個 app → 永遠唔會 sleep</li>
+<li>✅ Verify 全部 API endpoint 正常</li>
+<li>✅ 以後你開嫲嫲 app 就用呢個新網址</li>
+</ul>
+</div>
+
+<h2>🔗 已準備好嘅 GitHub Repo</h2>
+<div class="code">https://github.com/kwokfamilyapps/grandma-app-render</div>
+<p>入面已經有晒：app.py、index.html、requirements.txt、icons</p>
+
+</body>
+</html>
