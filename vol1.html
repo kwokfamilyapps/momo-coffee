@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☕ 香港手沖咖啡店推介 Vol.1</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 19px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #faf7f2;
+    color: #2c2c2c;
+    line-height: 1.7;
+    padding: 0 0 60px 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #3d2b1f, #6b4226);
+    color: #fff;
+    padding: 36px 20px 28px;
+    text-align: center;
+  }
+  .header h1 { font-size: 2rem; font-weight: 800; letter-spacing: 1px; }
+  .header .sub { font-size: 0.95rem; opacity: .8; margin-top: 6px; }
+  .header .date { font-size: 0.8rem; opacity: .6; margin-top: 4px; }
+  .container { max-width: 640px; margin: 0 auto; padding: 16px; }
+  .intro {
+    background: #fff3e0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    font-size: 0.95rem;
+    border-left: 4px solid #a6633c;
+    color: #5a3e2b;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #3d2b1f;
+    margin: 28px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #d4a373;
+  }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    border-left: 4px solid #d4a373;
+    position: relative;
+  }
+  .card.verified { border-left-color: #c0392b; background: #fef9f5; }
+  .card .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    background: #c0392b;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .card h3 { font-size: 1.2rem; font-weight: 700; color: #3d2b1f; margin-bottom: 4px; }
+  .card .location { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+  .card .location span { color: #a6633c; }
+  .card .desc { font-size: 0.92rem; color: #555; line-height: 1.6; }
+  .card .tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .card .tags span {
+    font-size: 0.75rem;
+    background: #f0ebe4;
+    color: #6b4226;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .pick {
+    background: linear-gradient(135deg, #3d2b1f, #6b4226);
+    color: #fff;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .pick h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; color: #ffd9a9; }
+  .pick .location { font-size: 0.85rem; opacity: .7; margin-bottom: 8px; }
+  .pick .desc { font-size: 0.92rem; opacity: .9; line-height: 1.6; }
+  .pick .tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .pick .tags span {
+    font-size: 0.75rem;
+    background: rgba(255,255,255,.15);
+    color: #ffd9a9;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .footer {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.75rem;
+    padding: 30px 16px 10px;
+  }
+  .footer a { color: #a6633c; text-decoration: none; }
+  .legend {
+    display: flex;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: #888;
+    margin: 12px 0;
+  }
+  .legend .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 4px; }
+  .legend .dot.red { background: #c0392b; }
+  .legend .dot.brown { background: #d4a373; }
+  .tip-box {
+    background: #e8f0ec;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 0.9rem;
+    color: #2d5a3d;
+    border-left: 4px solid #2d5a3d;
+  }
+  .vol-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px 0;
+    font-size: 0.85rem;
+  }
+  .vol-nav a {
+    color: #a6633c;
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: #f0ebe4;
+    font-weight: 600;
+  }
+  .vol-nav a:hover { background: #d4a373; color: #fff; }
+  .vol-nav .active { background: #d4a373; color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>☕ 香港手沖咖啡店推介</h1>
+  <div class="sub">Vol.1 — Ming & Friends 精選 • 2026年7月</div>
+  <div class="date">今期 6 間 • 全部經 fact check 確認 ✅</div>
+</div>
+
+<div class="container">
+
+<div class="vol-nav">
+  <span class="active">← Vol.1</span>
+  <a href="vol2.html">Vol.2 →</a>
+</div>
+
+<div class="intro">
+  <strong>☕ 編者的話：</strong>
+  今期為你精選 6 間值得一試嘅手沖咖啡店，港九新界都有，
+  全部已逐間查證地址、營業狀況、有手沖咖啡。<br><br>
+  <strong>✅ 紅色標記</strong> = Ming 親身試過推薦
+  ｜每期 6 間，唔會 overload 😊
+</div>
+
+<div class="legend">
+  <span><span class="dot red"></span> Ming 親身推薦</span>
+  <span><span class="dot brown"></span> 編輯推介</span>
+</div>
+
+<!-- ===== CARD 1: Another Shot! ===== -->
+<div class="section-title">🏆 今期編輯之選</div>
+
+<div class="pick">
+  <h3>☕ Another Shot! Coffee Bar</h3>
+  <div class="location">📍 九龍灣宏照道19號 金利豐國際中心地下</div>
+  <div class="desc">
+    九龍灣搵手沖嘅不二之選！澳洲風格精品咖啡，multi-roasters 輪換唔同烘焙廠豆，
+    每次去都有新驚喜。咖啡師專業，環境舒服，適合同朋友慢慢嘆。
+  </div>
+  <div class="tags">
+    <span>🔥 Ming 推薦</span>
+    <span>九龍灣</span>
+    <span>澳洲風格</span>
+    <span>Multi-roasters</span>
+  </div>
+</div>
+
+<!-- ===== CARD 2: Kurasu ===== -->
+<div class="card">
+  <h3>Kurasu — 京都過江龍</h3>
+  <div class="location">📍 <span>尖沙咀</span> 美麗華廣場2期地下 G65號舖</div>
+  <div class="desc">
+   京都精品咖啡匠人品牌，亞洲第八間分店！咖啡豆每週由京都總店烘焙直送，
+   手沖同冷泡都出色。抹茶 Latte Espresso 分層效果超靚，
+   焦糖布甸配雪糕必試。木系簡約風，打卡一流。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>京都品牌</span><span>尖沙咀</span><span>打卡</span>
+  </div>
+</div>
+
+<!-- ===== CARD 3: On The Hill ===== -->
+<div class="card">
+  <h3>On The Hill Coffee Bar — 監倉嘆啡</h3>
+  <div class="location">📍 <span>中環</span> 大館 E倉（前監倉）</div>
+  <div class="desc">
+   藏身百年古蹟監倉！兩旁囚室打通做空間，漸變綠色玻璃長吧台仿效山河形狀。
+   日間主打 fruity 咖啡豆，夜晚變酒吧有咖啡雞尾酒。
+   全港獨一無二嘅監倉咖啡體驗。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>古蹟</span><span>中環</span><span>大館</span><span>打卡</span>
+  </div>
+</div>
+
+<!-- ===== CARD 4: # Coffee ===== -->
+<div class="card">
+  <h3># Coffee — 拉花世界亞軍</h3>
+  <div class="location">📍 <span>西營盤</span> 高街</div>
+  <div class="desc">
+   店主係 Coffee Fest Latte Art World Championship 世界亞軍！
+   主打精品手沖同意式，拉花絕對係大師級水準。
+   簡約工業風，手繪斑馬牆係 signature。啡迷必去。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>拉花冠軍</span><span>西營盤</span><span>工業風</span>
+  </div>
+</div>
+
+<!-- ===== CARD 5: Sumi Coffee ===== -->
+<div class="card">
+  <h3>Sumi Coffee — 2026最新人氣小店</h3>
+  <div class="location">📍 <span>深水埗</span> 福榮街188號1號舖</div>
+  <div class="desc">
+   2026年6月新開嘅日系小清新 Cafe！機啡同手沖都有，咖啡豆款式選擇不少。
+   Coconut Americano 同 Orange Americano 夏天飲超清爽。
+   朝早 7:30am 就開門，早餐首選。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>深水埗</span><span>2026新店</span><span>早餐</span>
+  </div>
+</div>
+
+<!-- ===== CARD 6: Kachimushi ===== -->
+<div class="card">
+  <h3>Kachimushi — 日式庭院Cafe</h3>
+  <div class="location">📍 <span>元朗</span> 錦田永隆圍77號地舖 / <span>西貢</span> 市場街35號地舖</div>
+  <div class="desc">
+   全白小屋 + 榻榻米座位 + 日式庭院，彷彿置身日本。
+   提供 Espresso & 手沖，咖啡豆自家直火烘焙。
+   香港少見嘅 Dutch baby pancake 係必試！兩個地點任揀。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>日式</span><span>榻榻米</span><span>元朗</span><span>西貢</span>
+  </div>
+</div>
+
+<div class="tip-box">
+  💡 <strong>溫馨提示：</strong> 以上資料已逐間查證（2026年7月），
+  地址及有手沖咖啡均已確認。營業時間可能有變，去之前建議 check 社交媒體。<br><br>
+  <strong>📝 下期待查證：</strong> Relax B&M（大埔）、CoHee 3.0（科學園）、
+  Root Cafe（九龍城）、Kactus Koffee（佐敦）、Blue Bottle（太古）、
+  Hazel & Hershey（中環）、Fineprint（中環）、Gokan Lounge（上環）、
+  Sonne CAD（大坑）— 以上已 fact check 確認，下期再揀 6 間介紹。<br><br>
+  如果你試到正嘅手沖咖啡店，記得話俾我知！😊
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  📋 由 無虛 (mo mo) 為 Ming 每週整理 — 全部經 fact check 確認<br>
+  <span style="font-size:0.7rem;">分享版本 — 歡迎轉發俾朋友 ☕</span>
+</div>
+
+</body>
+</html>
