@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=3.0">
+<title>📋 每週知識整理 — 2026-07-19</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans TC","PingFang HK","Microsoft JhengHei",sans-serif;background:#1a1a2e;color:#f0e6d3;padding:24px;line-height:1.9;font-size:26px}
+h1{font-size:36px;color:#c9a84c;margin-bottom:6px;text-align:center}
+.sub{font-size:22px;color:#a09080;text-align:center;margin-bottom:24px}
+h2{font-size:32px;color:#c9a84c;margin:32px 0 16px;border-left:6px solid #c9a84c;padding-left:16px}
+h3{font-size:28px;color:#f0e6d3;margin:24px 0 12px}
+p{font-size:26px;margin:12px 0}
+ul,ol{padding-left:36px;margin:12px 0}
+li{font-size:26px;margin:8px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:24px}
+th,td{border:1px solid rgba(240,230,211,.25);padding:10px 14px;text-align:left}
+th{background:rgba(201,168,76,.2);color:#c9a84c;font-weight:700}
+td{color:#f0e6d3}
+.highlight{background:rgba(201,168,76,.1);border-radius:12px;padding:16px 20px;margin:16px 0}
+.tag{display:inline-block;background:rgba(201,168,76,.2);color:#c9a84c;padding:4px 14px;border-radius:20px;font-size:20px;margin:4px}
+.footer{text-align:center;color:#666;font-size:20px;margin-top:40px;padding-top:20px;border-top:1px solid rgba(240,230,211,.1)}
+strong{color:#ffd9a9}
+code{background:rgba(0,0,0,.4);padding:3px 8px;border-radius:6px;font-size:24px}
+</style>
+</head>
+<body>
+
+<h1>📋 每週知識整理</h1>
+<div class="sub">由 無虛 (mo mo) 自動整理 • 2026年7月19日</div>
+
+<!-- ====================== -->
+<h2>📊 697 首程控股 — 本週股價回顧</h2>
+
+<h3>本週走勢（7月13日 至 7月18日）</h3>
+<table>
+<tr><th>指標</th><th>數值</th></tr>
+<tr><td>週開市</td><td><strong>$1.48</strong></td></tr>
+<tr><td>週收市</td><td><strong>$1.60</strong></td></tr>
+<tr><td>本週最高</td><td><strong>$1.70</strong>（7月16日 週四）</td></tr>
+<tr><td>本週最低</td><td><strong>$1.45</strong>（7月14日 週二）</td></tr>
+<tr><td>變動</td><td><strong>⬆ +$0.12 (+8.11%)</strong></td></tr>
+<tr><td>總成交</td><td><strong>約 1.71 億股</strong></td></tr>
+<tr><td>波幅</td><td><strong>$0.25</strong></td></tr>
+<tr><td>±$0.05 警報</td><td><strong>3 次</strong>（全部上升）</td></tr>
+</table>
+
+<h3>走勢概要</h3>
+<ul>
+<li><strong>週一（7/13）：</strong> 開市 $1.48，全日平穩。盤中最低跌至 $1.42，下午反彈至 $1.49，收市回升。</li>
+<li><strong>週二（7/14）：</strong> 急跌至 $1.45 後強勢反彈收 $1.58，單日波幅顯著。</li>
+<li><strong>週三（7/15）：</strong> 繼續衝上 $1.66，成交活躍。</li>
+<li><strong>週四（7/16）：</strong> 見頂 $1.70，創本週高位。</li>
+<li><strong>週五（7/17）：</strong> 回吐至 $1.65，全星期只錄得上升警報，冇下跌訊號，走勢偏強。</li>
+<li><strong>週六（7/18）：</strong> 收市 $1.60，全日平穩。</li>
+</ul>
+
+<h3>本週重點</h3>
+<ol>
+<li>±$0.05 即時價格警報 v6 已上線 — 改用 yfinance history() 強制 refresh，解決 stale data bug</li>
+<li>逐筆價格變化記錄（每 10 秒）— 697_tick_tracker.py 每 10 秒 poll 一次</li>
+<li>CCASS 券商持倉分析 — 每日自動 scrape HKEX CCASS 數據</li>
+<li>每分鐘 K 線記錄 — 每小時收集 1 分鐘數據用於策略模擬</li>
+<li>13 個 cron job ERROR 已排查修復</li>
+<li>Algo Trader 計劃書已交付 — 等待 Ming 揀選策略方向</li>
+</ol>
+
+<!-- ====================== -->
+<h2>🌿 沉香知識</h2>
+
+<h3>汶萊沉香特色</h3>
+<ul>
+<li><strong>產地特點：</strong> 汶萊位於婆羅洲島北部，熱帶雨林氣候，出產嘅沉香以高油脂、蜜香濃郁著稱</li>
+<li><strong>香韻：</strong> 甜涼韻突出，帶有獨特嘅藥香底韻，層次豐富</li>
+<li><strong>市場定位：</strong> 汶萊沉香被譽為「星洲系沉香」上品，價格介乎印尼沉香與越南沉香之間</li>
+<li><strong>手串行情：</strong> 優質汶萊沉香手串市價約 <strong>$3,000 - $15,000 HKD</strong></li>
+</ul>
+
+<h3>奇楠（Qinan）— 沉香中的極品</h3>
+<p><strong>奇楠四大鑑別特徵：</strong></p>
+<table>
+<tr><th>特徵</th><th>說明</th></tr>
+<tr><td><strong>質感</strong></td><td>油份極高，軟糯如蜜蠟，刀切有「黏刀」感</td></tr>
+<tr><td><strong>入口鑑別</strong></td><td>放舌尖會有辛麻感，然後回甘 — 最經典嘅鑑別法</td></tr>
+<tr><td><strong>密度</strong></td><td>極高油脂含量令其密度大於水，多數會沉水</td></tr>
+<tr><td><strong>香韻層次</strong></td><td>頭香、本香、尾香三層分明，花香、果香、蜜香、涼氣交替</td></tr>
+</table>
+
+<h3>品香技巧</h3>
+<ol>
+<li><strong>選香：</strong> 初學者建議從汶萊沉香或印尼加里曼丹入手（性價比高）</li>
+<li><strong>工具：</strong> 品香爐、香碳、香灰、銀葉/雲母片</li>
+<li><strong>步驟：</strong>
+  <ul>
+  <li>🔥 燒碳：香碳燒透至表面灰白（約 5-10 分鐘）</li>
+  <li>🏔️ 埋碳：喺香灰中開孔，放入燒好嘅香碳</li>
+  <li>📐 置香：銀葉放喺碳上，沉香片擱在銀葉上（隔火薰香）</li>
+  <li>👃 品香：鼻湊近爐口約 10cm，緩緩深呼吸，感受香味變化</li>
+  </ul>
+</li>
+<li><strong>注意：</strong> 勿直接焚燒沉香（會破壞香味層次）</li>
+</ol>
+
+<div class="highlight">
+<strong>⚠️ 市場陷阱提醒：</strong> 市面上充斥用高壓注油、化學浸泡方式偽造嘅「奇楠」。真正野生奇楠每年全球產量可能只得幾公斤。
+</div>
+
+<!-- ====================== -->
+<h2>📱 系統改善</h2>
+<ul>
+<li><strong>DeepSeek v4-flash</strong> 設為 default primary model — 解決 429 Rate Limit</li>
+<li><strong>Windows Startup 自動 Launch Gateway</strong> — reboot 後自動啟動</li>
+<li><strong>每日 08:00 Session 刷新提醒</strong> — 避免 context 過大</li>
+<li><strong>記憶容量升級</strong> — 由 2200 提升至 4000 字</li>
+<li><strong>ComfyUI Florence-2 本地 Vision</strong> — 無限次免費使用</li>
+</ul>
+
+<!-- ====================== -->
+<h2>📋 下週待辦</h2>
+<ul>
+<li>⬜ 697 持續監控 ±$0.05 波動</li>
+<li>⬜ Ming 揀選 Algo Trader 策略方向後開始寫 Backtest code</li>
+<li>⬜ 跟進 UE5 觀光列車遊戲方向</li>
+<li>⬜ 香港銀行定存利率 7 月調查報告</li>
+</ul>
+
+<div class="footer">
+由 無虛 (mo mo) 自動生成 · 分享版本<br>
+2026年7月19日
+</div>
+
+</body>
+</html>
