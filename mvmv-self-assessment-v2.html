@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mvmv 自我評核報告 v2 — 4 Layer 深度修正方案</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans TC","PingFang HK","Microsoft JhengHei",sans-serif;background:#1a1a2e;color:#f0e6d3;padding:24px;line-height:1.9;font-size:26px}
+h1{font-size:36px;color:#c9a84c;margin-bottom:6px;text-align:center}
+.sub{font-size:22px;color:#a09080;text-align:center;margin-bottom:24px}
+h2{font-size:32px;color:#c9a84c;margin:32px 0 16px;border-left:6px solid #c9a84c;padding-left:16px}
+h3{font-size:28px;color:#f0e6d3;margin:24px 0 12px}
+h4{font-size:26px;color:#c9a84c;margin:16px 0 8px}
+p{font-size:26px;margin:12px 0}
+ul,ol{padding-left:36px;margin:12px 0}
+li{font-size:26px;margin:8px 0}
+strong{color:#ffd9a9}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:24px}
+th,td{border:1px solid rgba(240,230,211,.25);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:rgba(201,168,76,.2);color:#c9a84c}
+td{color:#f0e6d3}
+.box{background:rgba(201,168,76,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #c9a84c}
+.box-red{background:rgba(231,76,60,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #e74c3c}
+.box-green{background:rgba(46,204,113,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #2ecc71}
+.footer{text-align:center;color:#666;font-size:20px;margin-top:40px;padding-top:20px;border-top:1px solid rgba(240,230,211,.1)}
+code{background:rgba(0,0,0,.4);padding:3px 8px;border-radius:6px;font-size:24px}
+.bad{color:#e74c3c}
+.good{color:#2ecc71}
+</style>
+</head>
+<body>
+
+<h1>📋 Mvmv 自我評核報告 v2</h1>
+<div class="sub">4 Layer 深度修正 • 2026年7月19日</div>
+
+<!-- ============================================ -->
+<h2>✅ 已完成嘅修正</h2>
+
+<p>根據 Ming 嘅批准，已執行以下改動：</p>
+
+<table>
+<tr><th>Layer</th><th>改動</th><th>改前</th><th>改後</th></tr>
+<tr>
+<td><strong>Layer 1: SOUL.md</strong></td>
+<td>加入 STOP Protocol + 禁止回覆模式 + Profile 分析框架</td>
+<td>冇強制 self-check 機制</td>
+<td class="good">每次回應前 5 步強制檢查</td>
+</tr>
+<tr>
+<td><strong>Layer 2: Personality</strong></td>
+<td>改為 technical</td>
+<td><code>''</code>（留空）</td>
+<td class="good"><code>technical</code>（精準詳細）</td>
+</tr>
+<tr>
+<td><strong>Layer 2: Reasoning Effort</strong></td>
+<td>改為 high</td>
+<td><code>medium</code></td>
+<td class="good"><code>high</code>（深度思考）</td>
+</tr>
+<tr>
+<td><strong>Layer 4: Clarify Tool</strong></td>
+<td>保持 enable</td>
+<td>enabled</td>
+<td class="good">enabled（Ming 指令保留）</td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<h2>🔍 Profile B — 深度分析</h2>
+
+<p><strong>方案：</strong>開第二個 profile（如 <code>ming-work</code>），同 default profile 分開。</p>
+
+<h3>分析維度</h3>
+
+<table>
+<tr><th style="width:25%">維度</th><th>分析</th></tr>
+
+<tr>
+<td><strong>操作者</strong><br><small>邊個負責做？</small></td>
+<td>
+<strong>第一次 setup：mvmv 做。</strong> 我可以用 terminal 行：<br>
+<code>hermes profile create ming-work --clone</code><br>
+然後改新 profile 嘅 SOUL.md 同 config。<br><br>
+<strong>日常切換：</strong>要分兩種情況：<br>
+<ul>
+<li><span class="bad">❌ mvmv 自動 detect context 後 auto-switch</span> — 理想但 <strong>不可行</strong>，因為 <code>hermes profile use</code> 只會影響未來新 session，唔可以 mid-session 切換</li>
+<li><span class="good">✅ Ming 決定幾時轉</span> — 現實可行，但 Ming 要記住打 command</li>
+<li><span class="good">✅ mvmv 喺 Telegram 提議：「我建議轉去 work profile，你想唔想？」</span> — 然後 Ming 決定</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td><strong>切換方法</strong><br><small>點樣切換？</small></td>
+<td>
+<strong>方法：</strong><code>hermes profile use ming-work</code><br><br>
+<strong>生效時機：</strong>只對 <strong>新開嘅 session</strong> 生效。<br>
+現有對話唔會受影響，要打 <code>/reset</code> 先 load 新 profile。<br><br>
+<strong>影響：</strong>每次 switch 都會中斷當前對話（lost context）。<br>
+唔似 personality 咁可以即時轉。
+</td>
+</tr>
+
+<tr>
+<td><strong>副作用</strong><br><small>會唔會 lost context？</small></td>
+<td>
+<strong>會。</strong> 每次 profile switch 都需要 <code>/reset</code> 先生效。即係：<br>
+<ol>
+<li>Ming 打完一輪 analysis 對話 → 想轉去 gaming mode → 要 <code>/reset</code></li>
+<li>之前嘅對話 context 冇晒 → 如果之後要返轉頭，要 <code>hermes profile use default</code> 再 <code>/reset</code></li>
+<li>兩個 profile 之間嘅 memory 唔互通</li>
+</ol>
+<strong>風險：</strong>如果 Ming 喺 analysis mode 做緊一半，突然想問 gaming 嘢，switch 會 lost 晒 analysis context。
+</td>
+</tr>
+
+<tr>
+<td><strong>維護成本</strong><br><small>set 完之後要做咩？</small></td>
+<td>
+<strong>一次性：</strong>
+<ul>
+<li>mvmv 可以 5 分鐘內創建 + clone + 改 SOUL.md</li>
+<li>唔需要 Ming 做任何嘢</li>
+</ul>
+<strong>營運中：</strong>
+<ul>
+<li>如果改 SOUL.md / skills，要同步落兩個 profile</li>
+<li>skills keep 喺 global 嘅 <code>~/.hermes/skills/</code>，兩個 profile 共用，唔使 duplicate</li>
+<li>但 memory 係獨立嘅 — 一個 profile 學到嘅嘢，另一個唔知</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td><strong>Rollback 難度</strong><br><small>改錯點還原？</small></td>
+<td>
+<strong>低風險。</strong> Profile create 只係 clone，唔會 delete 舊嘅 default。<br>
+<code>hermes profile delete ming-work</code> 就還原到 original state。<br>
+唔影響 default profile 嘅任何設定。
+</td>
+</tr>
+</table>
+
+<h3>結論：Profile B</h3>
+<div class="box">
+<strong>可行，但代價係 context isolation：</strong><br>
+每次切換 lost 對話 context，實際使用體驗會打折扣。<br>
+如果 Ming 主要做「長時間同一類型任務」（例如週末全日分析 stock），profile switch 嘅 cost 就低。<br>
+如果 Ming 成日轉換話題（分析 → gaming → 咖啡），profile switch 嘅 cost 就高。<br><br>
+<strong>建議：</strong>先靠 personality + SOUL.md 改善行為。如果 run 落發現唔夠，先考慮開第二個 profile。
+</div>
+
+<!-- ============================================ -->
+<h2>🔍 Profile C — 深度分析</h2>
+
+<p><strong>方案：</strong>開 3 個 profiles（work / casual / game），各自獨立。</p>
+
+<h3>分析維度</h3>
+
+<table>
+<tr><th style="width:25%">維度</th><th>分析</th></tr>
+
+<tr>
+<td><strong>操作者</strong><br><small>邊個負責？</small></td>
+<td>
+<strong>Setup：mvmv 做。</strong> 逐個 create、clone、改 SOUL.md、set personality。<br><br>
+<strong>日常管理：</strong>呢度係我 v1 報告 <span class="bad">「管理麻煩」</span> 嘅地方 — 我當時冇講清楚。<br><br>
+<strong>「麻煩」嘅具體意思：</strong>
+<ul>
+<li><strong>對 Ming：</strong>佢要記住 3 個 profile 名，每次轉話題要諗「而家用緊邊個？」</li>
+<li><strong>對 mvmv：</strong>我要 detect 當前 context 係 work / casual / game，提議轉 profile（但轉咗會 lost context）</li>
+<li><strong>對同步：</strong>修改 SOUL.md 時要改 3 次（如果每個 profile 嘅 SOUL.md 有差異）</li>
+<li><strong>對 cron job：</strong>cron job 預設行 default profile，如果 work profile 有獨立 cron，要分開 set</li>
+</ul>
+<strong>vs Profile B：</strong>3 profiles 嘅邊際成本比 2 profiles 高，但唔係線性 — 多一個 profile 多一倍同步功夫。
+</td>
+</tr>
+
+<tr>
+<td><strong>切換方法</strong><br><small>點樣喺 3 個之間轉？</small></td>
+<td>
+同 Profile B — <code>hermes profile use &lt;name&gt;</code> + <code>/reset</code>。<br><br>
+3 個 profile 嘅問題：<br>
+<ul>
+<li>Ming 要記住 3 個名（default / ming-work / ming-casual / ming-game）</li>
+<li>如果要 Quick switch，可以 set alias：<code>hermes profile alias w</code> → work profile</li>
+<li>但都係要 <code>/reset</code> → lost context</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td><strong>副作用</strong><br><small>3 profiles 嘅特定風險</small></td>
+<td>
+<ol>
+<li><strong>Memory 碎片化：</strong>每個 profile 有獨立 memory。Ming 喺 casual profile 講過「我鍾意飲手沖咖啡」，work profile 唔會知道。</li>
+<li><strong>Session 混亂：</strong>開咗 3 個 Telegram session 喺 3 個 profiles，Ming 可能混淆邊個打緊邊個</li>
+<li><strong>Skills 版本 drift：</strong>如果 update 咗某個 skill，3 個 profiles 都需要 reload /reset</li>
+</ol>
+</td>
+</tr>
+
+<tr>
+<td><strong>維護成本</strong><br><small>（具體數字）</small></td>
+<td>
+<table>
+<tr><th>項目</th><th>時間</th><th>頻率</th></tr>
+<tr><td>創建 3 個 profiles</td><td>約 10 分鐘（mvmv 做）</td><td>一次性</td></tr>
+<tr><td>每個 profile 自訂 SOUL.md</td><td>約 5 分鐘（mvmv 做）</td><td>一次性</td></tr>
+<tr><td>同步 SOUL.md 修改</td><td>約 2 分鐘 × 3</td><td>每次修改時</td></tr>
+<tr><td>日常切換 context lost</td><td>每次 /reset</td><td>每次轉話題</td></tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td><strong>Rollback</strong></td>
+<td>
+<code>hermes profile delete &lt;name&gt;</code> 逐個刪。唔影響 default profile。<br>
+但如果用咗一排，memory 入面有重要資料，delete profile = delete memory。要 backup 先。
+</td>
+</tr>
+</table>
+
+<h3>結論：Profile C</h3>
+<div class="box-red">
+<strong>目前唔建議。</strong> 原因順序：<br>
+<ol>
+<li><strong>#1 最大問題：Context isolation</strong> — 每次 switch lost 對話，實際使用體驗差</li>
+<li><strong>#2 Memory fragmentation</strong> — profiles 之間唔 share knowledge，Ming 要重複講同一啲嘢</li>
+<li><strong>#3 維護 overhead</strong> — 每個 profile 要獨立 maintain SOUL.md</li>
+<li><strong>#4 對 Ming 嘅 cognitive load</strong> — 要記住 3 個 profile 嘅狀態</li>
+</ol>
+<strong>除非 Hermes Agent 將來 support mid-session profile switching 或者 profile merge，否則 3 profiles 嘅成本高過收益。</strong>
+</div>
+
+<!-- ============================================ -->
+<h2>📊 最終建議方案</h2>
+
+<table>
+<tr><th>Priority</th><th>改啲咩</th><th>Status</th><th>邊個做</th></tr>
+<tr><td><strong>P0 ✅ 已做</strong></td><td>SOUL.md + personality technical + reasoning_effort high</td><td class="good">done</td><td>mvmv</td></tr>
+<tr><td><strong>P1</strong></td><td>觀察新 settings run 幾日，睇下有冇改善</td><td>⏳ 進行中</td><td>Ming + mvmv</td></tr>
+<tr><td><strong>P2</strong></td><td>如果 P1 唔夠 → 考慮 Profile B（多一個 work profile）</td><td>待決定</td><td>Ming 決定</td></tr>
+<tr><td><strong>P3</strong></td><td>Profile C（3 profiles）</td><td class="bad">❌ 目前唔建議</td><td>—</td></tr>
+</table>
+
+<div class="box-green">
+<strong>總結：</strong><br>
+<ul>
+<li>SOUL.md + personality 改咗之後，我嘅 default 行為應該有明顯改善</li>
+<li>Clarify tool keep enable — 你話「每樣問Ming是否這樣？防止mvmv亂咁做決定」，我明白呢個係 safety net</li>
+<li>如果 run 一排發現仲係懶，先考慮 Profile B</li>
+<li>Profile C 嘅成本（context lost + memory fragmentation）> 收益，暫時唔建議</li>
+<li><strong>「管理麻煩」嗰句我認錯</strong> — 應該係「對 Ming 嚟講增加咗 cognitive load，要記 3 個 profile 狀態；對 mvmv 嚟講要 triple maintain SOUL.md」</li>
+</ul>
+</div>
+
+<div class="footer">
+由 無虛 (mo mo) 撰寫 • 自我評核報告 v2 • 2026年7月19日<br>
+已應用 STOP Protocol + Profile 分析框架 • 非 lazy mode 版本 😎
+</div>
+
+</body>
+</html>
