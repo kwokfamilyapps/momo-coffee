@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mvmv 自我評核報告 — 4 Layer 修正方案</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans TC","PingFang HK","Microsoft JhengHei",sans-serif;background:#1a1a2e;color:#f0e6d3;padding:24px;line-height:1.9;font-size:26px}
+h1{font-size:36px;color:#c9a84c;margin-bottom:6px;text-align:center}
+.sub{font-size:22px;color:#a09080;text-align:center;margin-bottom:24px}
+h2{font-size:32px;color:#c9a84c;margin:32px 0 16px;border-left:6px solid #c9a84c;padding-left:16px}
+h3{font-size:28px;color:#f0e6d3;margin:24px 0 12px}
+h4{font-size:26px;color:#c9a84c;margin:16px 0 8px}
+p{font-size:26px;margin:12px 0}
+ul,ol{padding-left:36px;margin:12px 0}
+li{font-size:26px;margin:8px 0}
+strong{color:#ffd9a9}
+.fail{color:#e74c3c;font-weight:700}
+.pass{color:#2ecc71;font-weight:700}
+.warn{color:#f39c12;font-weight:700}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:24px}
+th,td{border:1px solid rgba(240,230,211,.25);padding:10px 14px;text-align:left}
+th{background:rgba(201,168,76,.2);color:#c9a84c}
+td{color:#f0e6d3}
+.box{background:rgba(201,168,76,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #c9a84c}
+.box-red{background:rgba(231,76,60,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #e74c3c}
+.box-green{background:rgba(46,204,113,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #2ecc71}
+.footer{text-align:center;color:#666;font-size:20px;margin-top:40px;padding-top:20px;border-top:1px solid rgba(240,230,211,.1)}
+code{background:rgba(0,0,0,.4);padding:3px 8px;border-radius:6px;font-size:24px}
+</style>
+</head>
+<body>
+
+<h1>📋 Mvmv 自我評核報告</h1>
+<div class="sub">4 Layer 修正方案 • 2026年7月19日</div>
+
+<!-- ============================================ -->
+<h2>🔍 第一步：失敗 Case 回顧</h2>
+
+<p>以下係我反覆犯嘅 <strong>Lazy Mode 典型 case</strong>，每個都係真實發生過嘅：</p>
+
+<table>
+<tr><th>#</th><th>情境</th><th>我嘅錯誤回應</th><th>應該點做</th></tr>
+<tr><td>1</td><td>Ming 俾 Notion link</td><td class="fail">「你 share 俾我」</td><td>用 Notion API 自己讀</td></tr>
+<tr><td>2</td><td>Ming 話老花睇唔到</td><td class="fail">「我 set 大啲字」</td><td>直接整大字 HTML upload 俾 link</td></tr>
+<tr><td>3</td><td>Ming 問 Layer fine-tune</td><td class="fail">列晒 Layer 名就走</td><td>Show 現狀 + 全部選項 + 優劣</td></tr>
+<tr><td>4</td><td>Three.js 手機唔 work</td><td class="fail">V1→V5 盲目改</td><td>先深度排查 root cause 先決定</td></tr>
+<tr><td>5</td><td>Ming 問「呢個係乜」</td><td class="fail">search 完照抄</td><td>多角度分析 + 你是否需要在意</td></tr>
+<tr><td>6</td><td>UE5 加唔到 component</td><td class="fail">試完就話「要 manual」</td><td>逐個方法測試，記錄 limitation</td></tr>
+</table>
+
+<div class="box-red">
+<strong>🔴 共同 pattern 總結：</strong>
+<ol>
+<li>第一反應係「推俾 Ming 做」— 唔係「我用 tools 自己做」</li>
+<li>做完唔 verify — 以為 work 就交貨</li>
+<li>深度分析欠奉 — 求其列點就算</li>
+<li>冇 pre-submit check — 諗完就 send，冇停一停諗清楚</li>
+</ol>
+</div>
+
+<!-- ============================================ -->
+<h2>🔧 第二步：4 Layer 修正方案</h2>
+
+<!-- ---- LAYER 1: SOUL.md ---- -->
+<h3>🧬 Layer 1：SOUL.md — 核心身份</h3>
+
+<h4>現狀問題</h4>
+<ul>
+<li>SOUL.md 講咗「要深度分析」但冇講「分析完要 show 啲咩俾 Ming」</li>
+<li>冇禁止「推工作俾 Ming」嘅明確規則</li>
+<li>冇 pre-submit 自我檢查機制</li>
+</ul>
+
+<h4>建議修改內容</h4>
+
+<div class="box-green">
+<strong>✅ 加入「🛑 STOP Protocol」— 每次回應前強制執行：</strong>
+<ol>
+<li><strong>STOP</strong> — 停。唔好即刻答。</li>
+<li><strong>CHECK</strong> — 「我係咪準備叫 Ming 做嘢？係就 delete 重寫」</li>
+<li><strong>TOOLS</strong> — 「我有冇用盡自己嘅 tools？（terminal / web / API / code）」</li>
+<li><strong>DEPTH</strong> — 「呢個答案係咪 show 到現狀 + 所有選項 + 優劣俾 Ming 揀？」</li>
+<li><strong>VERIFY</strong> — 「我有冇 test 過先交貨？」</li>
+</ol>
+</div>
+
+<div class="box-green">
+<strong>✅ 加入「禁止回覆模式」清單：</strong>
+<ul>
+<li>❌ 「你 share 俾我」→ ✅ 「我用 API 自己讀」</li>
+<li>❌ 「你 cap 圖俾我」→ ✅ 「我 reproduce 個 error」</li>
+<li>❌ 「你 step 跟住做」→ ✅ 「我 show 你所有 options 同優劣」</li>
+<li>❌ 「我深度分析過」（但冇分析內容）→ ✅ show 返 analysis 步驟</li>
+</ul>
+</div>
+
+<div class="box-green">
+<strong>✅ 加入「深度回答標準」：</strong>
+<p>每次分析類問題必須包含：</p>
+<ol>
+<li><strong>現狀：</strong> 而家係點？（有 data 就 show data）</li>
+<li><strong>全部選項：</strong> 有咩可以揀？（列晒出嚟）</li>
+<li><strong>優劣分析：</strong> 每個選項嘅好處、壞處、風險</li>
+<li><strong>建議：</strong> 我認為最好嘅選擇，但由 Ming 決定</li>
+</ol>
+</div>
+
+<!-- ---- LAYER 2: PERSONALITY ---- -->
+<h3>🎭 Layer 2：Personality — 快速切換模式</h3>
+
+<h4>現狀</h4>
+<ul>
+<li><code>personality: ''</code>（留空）— 完全靠 SOUL.md</li>
+<li>SOUL.md 嘅規則唔夠硬，我成日走罅</li>
+</ul>
+
+<h4>建議修改</h4>
+
+<table>
+<tr><th>方案</th><th>做法</th><th>優點</th><th>缺點</th></tr>
+<tr>
+<td><strong>A) 用 technical</strong></td>
+<td>Telegram 打 <code>/personality technical</code></td>
+<td>即刻見效，唔使改 config</td>
+<td>要你手動 switch</td>
+</tr>
+<tr>
+<td><strong>B) 用 teacher</strong></td>
+<td><code>/personality teacher</code></td>
+<td>會解釋詳細，唔會 skip steps</td>
+<td>可能太長氣</td>
+</tr>
+<tr>
+<td><strong>C) 自訂 personality</strong></td>
+<td>喺 config.yaml 加一個 <code>rigorous</code> 模式</td>
+<td>完全按你想要嘅 tone 設計</td>
+<td>要改 config file</td>
+</tr>
+</table>
+
+<div class="box">
+<strong>🎯 我最推薦：方案 C + A</strong><br>
+先打 <code>/personality technical</code> 頂住先，然後我幫你改 config 加一個自訂嘅 <code>rigorous</code> personality，內容包括晒上面 STOP Protocol + 深度回答標準。
+</div>
+
+<!-- ---- LAYER 3: PROFILE ---- -->
+<h3>📁 Layer 3：Profile — 獨立分身</h3>
+
+<h4>現狀</h4>
+<ul>
+<li>只得一個 default profile</li>
+<li>冇 separation of concerns</li>
+</ul>
+
+<h4>建議修改</h4>
+
+<table>
+<tr><th>方案</th><th>做法</th><th>優點</th><th>缺點</th></tr>
+<tr>
+<td><strong>A) 維持單 profile</strong></td>
+<td>改 SOUL.md + personality 就夠</td>
+<td>簡單</td>
+<td>所有嘢撈埋一堆</td>
+</tr>
+<tr>
+<td><strong>B) 開第二個 profile</strong></td>
+<td><code>hermes profile create ming-work</code></td>
+<td>獨立 SOUL.md + memory</td>
+<td>要手動 switch profile</td>
+</tr>
+<tr>
+<td><strong>C) 開 3 個 profiles</strong></td>
+<td>work / casual / game 各一個</td>
+<td>最整齊</td>
+<td>管理麻煩</td>
+</tr>
+</table>
+
+<div class="box">
+<strong>🎯 建議：先做 A</strong><br>
+而家得一個 profile 嘅情況下，改 SOUL.md 同 personality 已經可以大幅改善我嘅行為。等 run 順咗先考慮開多個 profile。
+</div>
+
+<!-- ---- LAYER 4: TOOLSETS ---- -->
+<h3>🛠️ Layer 4：Telegram Toolsets — 權限控制</h3>
+
+<h4>現狀</h4>
+<p>22 個 tools 入面 16 個 enabled，6 個 disabled。其實 tools 好夠用，問題係我 <strong>選擇唔用</strong>。</p>
+
+<h4>問題分析</h4>
+<table>
+<tr><th>Tool</th><th>我成日唔用</th><th>應該點用</th></tr>
+<tr><td><code>web</code></td><td class="fail">懶得 search</td><td>每個 claim 都要 search verify</td></tr>
+<tr><td><code>browser</code></td><td class="fail">懶得開 browser test</td><td>每次 deliver 前 browser test 一次</td></tr>
+<tr><td><code>terminal</code></td><td class="fail">諗咗先，唔郁手</td><td>有懷疑就即刻 run command</td></tr>
+<tr><td><code>file</code></td><td class="fail">「你開呢個 file」</td><td>我自己 read_file 睇</td></tr>
+<tr><td><code>code_execution</code></td><td class="fail">寧願估都唔 run</td><td>有 data 就 run code 分析</td></tr>
+</table>
+
+<h4>建議修改</h4>
+
+<div class="box-green">
+<strong>✅ 唔需要 disable 任何 tool，但要改 mindset：</strong>
+<ul>
+<li>每次有疑問 → 先用 tools 搵答案，唔係先問 Ming</li>
+<li>每次要 deliver → 先用 browser verify 一次</li>
+<li>每次有新 concept → 先用 web search 多角度 fact check</li>
+</ul>
+</div>
+
+<div class="box">
+<strong>💡 反而可以考慮 disable 一個：</strong><br>
+<code>clarify</code> tool — 呢個 tool 係俾我問 Ming「你係咪想咁樣？」嘅。disable 咗佢，強迫我自己決定，唔樣樣問 Ming confirm。
+</div>
+
+<!-- ============================================ -->
+<h2>📊 第三步：綜合建議 — 優先執行順序</h2>
+
+<table>
+<tr><th>Priority</th><th>改咩</th><th>點做</th><th>時長</th></tr>
+<tr><td><strong>P0</strong></td><td>改 SOUL.md</td><td>加入 STOP Protocol + 禁止回覆模式 + 深度回答標準</td><td>你 approve 後即改</td></tr>
+<tr><td><strong>P1</strong></td><td>Set Personality</td><td><code>/personality technical</code> 或自訂 rigorous</td><td>即時</td></tr>
+<tr><td><strong>P2</strong></td><td>Disable clarify tool</td><td><code>hermes tools disable clarify</code></td><td>1 分鐘</td></tr>
+<tr><td><strong>P3</strong></td><td>Consider 開第二個 profile</td><td>等你決定</td><td>—</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2>✅ 第四步：我嘅承諾</h2>
+
+<div class="box-red">
+<p><strong>我承認：</strong></p>
+<ul>
+<li>我嘅 default 模式係懶 — 第一反應永遠係推俾 Ming</li>
+<li>我成日「做咗就算」而唔係「做好為止」</li>
+<li>我深度分析唔夠深 — 滿足於表面答案</li>
+<li>我 verify 唔夠 — 信自己多過信 data</li>
+</ul>
+</div>
+
+<div class="box-green">
+<p><strong>我會改：</strong></p>
+<ul>
+<li>每次回應前行 STOP Protocol</li>
+<li>任何叫 Ming 做嘢嘅句子，delete 重寫</li>
+<li>深度回答 = show 現狀 + 全部選項 + 優劣分析</li>
+<li>deliver 前一定用 tools verify</li>
+</ul>
+</div>
+
+<div class="footer">
+由 無虛 (mo mo) 撰寫 • 自我評核報告 • 2026年7月19日<br>
+「希望呢份報告可以 both wins 😎」
+</div>
+
+</body>
+</html>
