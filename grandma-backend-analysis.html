@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>嫲嫲 App — Non-stop Backend 平台分析</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans TC","PingFang HK","Microsoft JhengHei",sans-serif;background:#1a1a2e;color:#f0e6d3;padding:24px;line-height:1.9;font-size:26px}
+h1{font-size:36px;color:#c9a84c;margin-bottom:6px;text-align:center}
+.sub{font-size:22px;color:#a09080;text-align:center;margin-bottom:24px}
+h2{font-size:32px;color:#c9a84c;margin:32px 0 16px;border-left:6px solid #c9a84c;padding-left:16px}
+h3{font-size:28px;color:#f0e6d3;margin:24px 0 12px}
+p{font-size:26px;margin:12px 0}
+ul,ol{padding-left:36px;margin:12px 0}
+li{font-size:26px;margin:8px 0}
+strong{color:#ffd9a9}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:23px}
+th,td{border:1px solid rgba(240,230,211,.25);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:rgba(201,168,76,.2);color:#c9a84c}
+td{color:#f0e6d3}
+.box{background:rgba(201,168,76,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #c9a84c}
+.box-red{background:rgba(231,76,60,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #e74c3c}
+.box-green{background:rgba(46,204,113,.1);border-radius:12px;padding:16px 20px;margin:16px 0;border-left:4px solid #2ecc71}
+.footer{text-align:center;color:#666;font-size:20px;margin-top:40px;padding-top:20px;border-top:1px solid rgba(240,230,211,.1)}
+code{background:rgba(0,0,0,.4);padding:3px 8px;border-radius:6px;font-size:24px}
+.rate{font-size:24px;font-weight:700}
+.star{color:#c9a84c}
+.nostar{color:#555}
+</style>
+</head>
+<body>
+
+<h1>👵 嫲嫲覆診助手 — Backend 平台分析</h1>
+<div class="sub">找 non-stop 替代方案 • 2026年7月19日</div>
+
+<!-- ============================================ -->
+<h2>🔍 先講現況：乜嘢問題</h2>
+
+<p><strong>kwokfamily.pythonanywhere.com</strong> 回傳 HTTP 000 — DNS resolve 到但 server 冇回應。原因好大可能係 PythonAnywhere 免費帳戶嘅 web app 被暫停（閒置/配額用盡/賬戶過期）。</p>
+
+<div class="box-red">
+<strong>唔係你手機問題，係 server 真係 down 咗。</strong> 我已經試過 bypass DNS，直接用 IP 連，都係連唔到。
+</div>
+
+<!-- ============================================ -->
+<h2>📋 App 技術要求</h2>
+
+<table>
+<tr><th>項目</th><th>需求</th></tr>
+<tr><td>語言</td><td>Python Flask</td></tr>
+<tr><td>依賴</td><td>flask, flask-cors, requests (好輕量)</td></tr>
+<tr><td>Database</td><td>Notion API（3 個 Database）</td></tr>
+<tr><td>API 用量</td><td>好低，家用級別</td></tr>
+<tr><td>必須</td><td>Non-stop（唔可以 sleep）</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2>🏆 5 個替代方案比較</h2>
+
+<table>
+<tr>
+<th>平台</th>
+<th>費用</th>
+<th>Non-stop</th>
+<th>Python Flask</th>
+<th>部署難度</th>
+<th>長遠可行性</th>
+</tr>
+
+<tr>
+<td><strong>① Railway.app</strong></td>
+<td class="good">$0 首月<br>之後 ~$5/月</td>
+<td class="good">✅ 真·不停</td>
+<td class="good">✅ 原生支援</td>
+<td>⭐⭐（簡單）</td>
+<td>🔵 高</td>
+</tr>
+
+<tr>
+<td><strong>② Render</strong><br>(Free tier)</td>
+<td class="good">$0</td>
+<td class="bad">❌ 15min 後 sleep<br>靠 cron keep alive</td>
+<td class="good">✅ 支援</td>
+<td>⭐⭐（簡單）</td>
+<td>🟡 中</td>
+</tr>
+
+<tr>
+<td><strong>③ Oracle Cloud<br>Always Free</strong></td>
+<td class="good">$0 永久</td>
+<td class="good">✅ 真·24/7 VM</td>
+<td class="good">✅ 自己 setup</td>
+<td>⭐⭐⭐⭐（複雜）</td>
+<td>🔵 高</td>
+</tr>
+
+<tr>
+<td><strong>④ PythonAnywhere<br>Hacker Plan</strong></td>
+<td>$5/月</td>
+<td class="good">✅ 升級就 ok</td>
+<td class="good">✅ 已行緊</td>
+<td>⭐（最簡單，唔使郁）</td>
+<td>🟡 中</td>
+</tr>
+
+<tr>
+<td><strong>⑤ Vercel<br>Serverless</strong></td>
+<td class="good">$0</td>
+<td class="good">✅ 真·不停</td>
+<td class="bad">❌ Flask 唔直接支援<br>要改 code</td>
+<td>⭐⭐⭐</td>
+<td>🟠 低</td>
+</tr>
+</table>
+
+<!-- ============================================ -->
+<h2>🔍 逐個深度分析</h2>
+
+<!-- --- Railway --- -->
+<h3>① Railway.app <span class="star">🥇 推薦</span></h3>
+
+<table>
+<tr><th style="width:25%">維度</th><th>分析</th></tr>
+<tr><td><strong>費用詳情</strong></td>
+<td>註冊送 <strong>$5 credit</strong>。Flask app 最低 plan $5/月，即係 <strong>首月免費</strong>。之後每月 $5 USD（~$39 HKD）。<br><br>
+如果 app 用量好低，可能用 starter plan $5 只係 baseline，唔會超。</td></tr>
+<tr><td><strong>Non-stop</strong></td>
+<td class="good">✅ 真係 24/7，唔 sleep。就算零流量都 keep running。</td></tr>
+<tr><td><strong>部署步驟</strong></td>
+<td>
+<ol>
+<li>我 push 個 app code 去 GitHub repo</li>
+<li>你去 railway.app → GitHub login → import 個 repo</li>
+<li>佢 auto-detect Flask → auto-deploy</li>
+<li>Set 3 個環境變數（NOTION_TOKEN 同 DB IDs）</li>
+<li>搞掂，有 URL 俾你</li>
+</ol>
+<strong>需時：</strong>約 15 分鐘（mvmv 做 code push，你做 railway setup）</td></tr>
+<tr><td><strong>需唔要信用咭？</strong></td>
+<td class="bad">❌ 要信用卡註冊（但唔會扣錢直到 credit 用完）</td></tr>
+<tr><td><strong>長遠成本</strong></td>
+<td>~$39 HKD/月。如果 Ming 覺得貴，可以先用 credit 頂住首月，之後再睇。</td></tr>
+</table>
+
+<!-- --- Render --- -->
+<h3>② Render（Free Tier）</h3>
+
+<table>
+<tr><th style="width:25%">維度</th><th>分析</th></tr>
+<tr><td><strong>費用</strong></td>
+<td class="good">✅ 完全免費，唔使 credit card。</td></tr>
+<tr><td><strong>Non-stop</strong></td>
+<td class="bad">❌ Free tier web service 閒置 15 分鐘後會 sleep。下次 request 要 5-10 秒 wake up。</td></tr>
+<tr><td><strong>Keep-alive 方案</strong></td>
+<td>可以用 Hermes cron job 每 14 分鐘 ping 一次《我已經 set 緊類似嘅 cron 做其他嘢，可以加多個》<br><br>
+✅ 用 cron 就可以做到接近 non-stop 效果。</td></tr>
+<tr><td><strong>部署</strong></td>
+<td>同 Railway 差唔多 — GitHub → import → deploy。簡單。</td></tr>
+<tr><td><strong>信用咭？</strong></td>
+<td class="good">✅ 唔需要（Free tier）</td></tr>
+<tr><td><strong>長遠成本</strong></td>
+<td class="good">$0 永久</td></tr>
+</table>
+
+<!-- --- Oracle --- -->
+<h3>③ Oracle Cloud Always Free</h3>
+
+<table>
+<tr><th style="width:25%">維度</th><th>分析</th></tr>
+<tr><td><strong>費用</strong></td>
+<td class="good">✅ 永久免費。2 部 VM，每部 1GB RAM。</td></tr>
+<tr><td><strong>Non-stop</strong></td>
+<td class="good">✅ 真·24/7 VM。熄機都唔會 sleep，因為係你嘅虛擬機。</td></tr>
+<tr><td><strong>部署難度</strong></td>
+<td><span class="bad">❌ 複雜。</span> 要：
+<ol>
+<li>註冊 Oracle Cloud（要信用卡驗證，但唔扣錢）</li>
+<li>開 VM（選 OS）</li>
+<li>SSH 入 VM</li>
+<li>Install Python + pip dependencies</li>
+<li>Set up Flask 做 systemd service（開機自動啟動）</li>
+<li>Set up Nginx reverse proxy</li>
+<li>Set up SSL certificate</li>
+</ol>
+全部 mvmv 可以做，但要你俾 ssh access。需時約 1-2 小時。</td></tr>
+<tr><td><strong>適合你嗎？</strong></td>
+<td>如果你想「set 一次就永久唔使理」，Oracle 係最強。但 setup 最複雜。</td></tr>
+</table>
+
+<!-- --- PA Upgrade --- -->
+<h3>④ PythonAnywhere Hacker Plan（原地升級）</h3>
+
+<table>
+<tr><th style="width:25%">維度</th><th>分析</th></tr>
+<tr><td><strong>費用</strong></td>
+<td>$5 USD/月（~$39 HKD）</td></tr>
+<tr><td><strong>Non-stop</strong></td>
+<td class="good">✅ 升級後 web app 更穩定，更多 CPU quota，唔會咁易暫停</td></tr>
+<tr><td><strong>部署</strong></td>
+<td>⭐ 最簡單 — 完全唔使改任何嘢。直接俾錢 upgrade 就得。</td></tr>
+<tr><td><strong>信用咭？</strong></td>
+<td class="bad">❌ 要</td></tr>
+<tr><td><strong>但係... </strong></td>
+<td>而家個問題可能唔係 plan 問題，而係個 app 冇端端 down 咗。升級唔 guarantee fix 到 current issue。</td></tr>
+</table>
+
+<!-- --- Vercel --- -->
+<h3>⑤ Vercel Serverless</h3>
+
+<table>
+<tr><th style="width:25%">維度</th><th>分析</th></tr>
+<tr><td><strong>費用</strong></td>
+<td class="good">✅ 免費，100GB bandwidth/month</td></tr>
+<tr><td><strong>Non-stop</strong></td>
+<td class="good">✅ Serverless = 永遠有 response，冇 sleep</td></tr>
+<tr><td><strong>但係...</strong></td>
+<td><span class="bad">❌ Vercel 唔原生支援 Python Flask。</span> 要用 Serverless Framework 改寫，或者用 Vercel 嘅 Python runtime（有 bug，唔太 stable）。<br><br>
+❌ 唔建議 — 要改 code，仲要冒唔 work 嘅風險。</td></tr>
+</table>
+
+<!-- ============================================ -->
+<h2>🎯 我嘅建議排名</h2>
+
+<table>
+<tr><th>Rank</th><th>方案</th><th>原因</th><th>每月成本</th></tr>
+<tr>
+<td><strong>🥇</strong></td>
+<td><strong>Render Free + Cron Keep-alive</strong></td>
+<td>完全免費、部署簡單、用 cron 解決 sleep 問題（Hermes 已經有 cron，加多個 job 就得）</td>
+<td class="good">$0</td>
+</tr>
+<tr>
+<td><strong>🥈</strong></td>
+<td><strong>Railway.app</strong></td>
+<td>真正 non-stop、Flask 原生支援、部署最簡單。但 credit 用完後要俾 $5/月</td>
+<td>$0 首月 → ~$39 HKD/月</td>
+</tr>
+<tr>
+<td><strong>🥉</strong></td>
+<td><strong>Oracle Cloud Always Free</strong></td>
+<td>永久免費、真正 24/7。但 setup 最複雜，需時最長</td>
+<td class="good">$0 永久</td>
+</tr>
+</table>
+
+<div class="box-green">
+<strong>💡 如果揀 Render：</strong><br>
+<ol>
+<li>我 push code 去 GitHub 嘅 grandma-app repo</li>
+<li>你去 render.com → New Web Service → 連 GitHub → 揀 repo → Deploy</li>
+<li>我 set cron job 每 14 分鐘 ping 一次</li>
+<li>以後你唔使理，我幫你 maintain</li>
+</ol>
+</div>
+
+<div class="box">
+<strong>你嘅決定？</strong><br>
+A) Render Free + Cron Keep-alive（$0，推薦）<br>
+B) Railway.app（$0 首月，之後 ~$39 HKD/月）<br>
+C) Oracle Cloud（$0 永久，但要 setup）<br>
+D) 你 upgrade PythonAnywhere $5/月（最簡單，唔使郁 code）
+</div>
+
+<div class="footer">
+由 無虛 (mo mo) 深度分析 • 已用 STOP Protocol 非 lazy mode 😎
+</div>
+
+</body>
+</html>
