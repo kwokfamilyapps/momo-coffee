@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>697 首程控股 — 每日朝早報告 2026-07-20</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 26px; }
+body { font-family: -apple-system, 'Segoe UI', 'Noto Sans HK', sans-serif; background: #0d1117; color: #e6edf3; line-height: 1.8; padding: 24px; }
+.container { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 2.2rem; margin-bottom: 8px; color: #f0f6fc; }
+h2 { font-size: 1.6rem; margin: 28px 0 16px; color: #ffd700; border-bottom: 2px solid #30363d; padding-bottom: 8px; }
+h3 { font-size: 1.2rem; margin: 20px 0 12px; color: #b0b8c4; }
+.subtitle { font-size: 1.0rem; color: #8b949e; margin-bottom: 20px; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+.stat-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; }
+.stat-label { font-size: 0.75rem; color: #8b949e; margin-bottom: 4px; }
+.stat-value { font-size: 1.4rem; font-weight: 700; }
+.stat-value.up { color: #3fb950; }
+.stat-value.down { color: #f85149; }
+.stat-value.neutral { color: #e6edf3; }
+.alert-box { background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.3); border-radius: 10px; padding: 16px; margin: 12px 0; }
+.alert-box.warn { background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.3); }
+.alert-box.info { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.3); }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85rem; }
+th { background: #21262d; padding: 10px 12px; text-align: left; font-weight: 600; color: #8b949e; border: 1px solid #30363d; }
+td { padding: 10px 12px; border: 1px solid #30363d; }
+tr:hover { background: #1c2128; }
+.up-arrow { color: #3fb950; }
+.down-arrow { color: #f85149; }
+.footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #30363d; font-size: 0.7rem; color: #8b949e; }
+.tag { display: inline-block; background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 2px 12px; font-size: 0.65rem; margin: 4px 4px 0 0; }
+.tag.warn { background: #d2992222; color: #d29922; border-color: #d2992244; }
+.tag.red { background: #f8514922; color: #f85149; border-color: #f8514944; }
+.progress-bar { width: 100%; height: 6px; background: #21262d; border-radius: 3px; margin-top: 6px; }
+.progress-fill { height: 6px; background: #3fb950; border-radius: 3px; }
+@media (max-width: 600px) { html { font-size: 22px; } .stat-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📊 697 首程控股 <span style="font-size:1rem;color:#8b949e;">0697.HK</span></h1>
+<div class="subtitle">📅 每日朝早報告 — 2026年7月20日（星期一）</div>
+
+<!-- Status Banner -->
+<div class="alert-box info">
+<strong>🟢 市場開盤中</strong> — 今日港股正常交易（09:30–16:00）。最新報價：<strong>$1.610</strong>
+</div>
+
+<!-- System Warnings -->
+<div class="alert-box warn">
+<strong>⚠️ 系統狀態異常</strong><br>
+• <strong>price_detail.csv 數據缺口</strong>：7月17日（星期五）全日無記錄（yfinance 顯示有 $42M 成交）<br>
+• <strong>price_state.json 不一致</strong>：`today` = 2026-07-14（舊） vs `today_date` = 2026-07-20；`prev_close` = $1.50（應為 $1.60）
+</div>
+
+<!-- ====== SECTION 1: Last Trading Day ====== -->
+<h2>📈 最後交易日回顧 — 7月17日（星期五）</h2>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-label">開市</div>
+    <div class="stat-value neutral">$1.650</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">最高</div>
+    <div class="stat-value neutral">$1.650</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">最低</div>
+    <div class="stat-value down">$1.560</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">收市</div>
+    <div class="stat-value down">$1.600</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">全日波幅</div>
+    <div class="stat-value down">$0.090</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">成交量</div>
+    <div class="stat-value neutral">42.0M</div>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-label">前收（週四）</div>
+    <div class="stat-value neutral">$1.650</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">日變動</div>
+    <div class="stat-value down">-$0.050 <span class="down-arrow">▼</span> -3.03%</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">累計成交</div>
+    <div class="stat-value neutral">42,016,000</div>
+  </div>
+</div>
+
+<p style="margin:12px 0;font-size:0.85rem;color:#8b949e;">
+📌 星期五股價低開低走，由 $1.650 全日高位逐步回落至 $1.600 收市，最低見過 $1.560。全日跌 $0.05（-3.03%），成交 42M 股。盤中未有 ±$0.05 嘅單分鐘急跌，係逐步下跌格局。
+</p>
+
+<!-- ====== SECTION 2: Today So Far ====== -->
+<h2>🔴 今日即市速報 — 7月20日</h2>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-label">開市</div>
+    <div class="stat-value neutral">$1.620</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">最高</div>
+    <div class="stat-value neutral">$1.630</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">最低</div>
+    <div class="stat-value down">$1.600</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">現價</div>
+    <div class="stat-value neutral">$1.610</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">成交量</div>
+    <div class="stat-value neutral">1.17M</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">比前收</div>
+    <div class="stat-value neutral">+$0.010 +0.63%</div>
+  </div>
+</div>
+
+<p style="margin:12px 0;font-size:0.85rem;color:#8b949e;">
+📌 今日高開 $0.02 後窄幅上落，暫未見明顯方向。早段成交淡靜。
+</p>
+
+<!-- ====== SECTION 3: Weekly Trend ====== -->
+<h2>📅 本週趨勢（7月14日–7月17日）</h2>
+
+<table>
+<thead>
+<tr>
+  <th>日期</th>
+  <th>開市</th>
+  <th>最高</th>
+  <th>最低</th>
+  <th>收市</th>
+  <th>變動</th>
+  <th>變幅</th>
+  <th>成交</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>7/14（二）</td><td>$1.470</td><td>$1.580</td><td>$1.450</td><td>$1.580</td>
+  <td><span class="up-arrow">+$0.110</span></td><td><span class="up-arrow">+7.48%</span></td><td>40.8M</td>
+</tr>
+<tr>
+  <td>7/15（三）</td><td>$1.590</td><td>$1.660</td><td>$1.570</td><td>$1.660</td>
+  <td><span class="up-arrow">+$0.070</span></td><td><span class="up-arrow">+4.40%</span></td><td>44.8M</td>
+</tr>
+<tr>
+  <td>7/16（四）</td><td>$1.660</td><td>$1.700</td><td>$1.630</td><td>$1.650</td>
+  <td><span class="down-arrow">-$0.010</span></td><td><span class="down-arrow">-0.60%</span></td><td>32.9M</td>
+</tr>
+<tr>
+  <td><strong>7/17（五）</strong></td><td><strong>$1.650</strong></td><td><strong>$1.650</strong></td><td><strong>$1.560</strong></td><td><strong>$1.600</strong></td>
+  <td><span class="down-arrow"><strong>-$0.050</strong></span></td><td><span class="down-arrow"><strong>-3.03%</strong></span></td><td><strong>42.0M</strong></td>
+</tr>
+</tbody>
+</table>
+
+<div style="margin:12px 0;font-size:0.85rem;color:#8b949e;">
+📊 本週走勢：星期二低位 $1.450 反彈 → 三、四持續上升至 $1.700 高位 → 星期五回吐至 $1.600<br>
+📌 週五嘅 $1.600 其實仍比週二開市 $1.470 高 $0.130（+8.8%），本週整體仍係上升。
+</div>
+
+<!-- ====== SECTION 4: ±$0.05 Alerts ====== -->
+<h2>🚨 ±$0.05 價格警報記錄</h2>
+
+<h3>今個交易日（7月20日）</h3>
+<p style="color:#8b949e;font-size:0.85rem;">📭 暫時無 ±$0.05 波動</p>
+
+<h3>本週警報（price_alerts.csv）</h3>
+<table>
+<thead>
+<tr><th>日期時間</th><th>價格</th><th>變幅</th><th>方向</th><th>成交量</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>2026-07-14 11:40</td><td>$1.53</td><td>+0.05</td><td><span class="up-arrow">⬆ 升</span></td><td>0</td>
+</tr>
+<tr>
+  <td>2026-07-14 16:50</td><td>$1.58</td><td>+0.05</td><td><span class="up-arrow">⬆ 升</span></td><td>782,000</td>
+</tr>
+<tr>
+  <td>2026-07-15 14:01</td><td>$1.64</td><td>+0.06</td><td><span class="up-arrow">⬆ 升</span></td><td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p style="font-size:0.85rem;color:#8b949e;">
+📌 7月17日（星期五）逐分鐘 K 線數據顯示，價格由 $1.650 逐步下跌至 $1.600，未有單分鐘變動 ≥ $0.05，所以無觸發警報。警報系統邏輯係逐筆比較 consecutive records，而非全日高低波幅。
+</p>
+
+<h2>📌 價格趨勢圖</h2>
+<div style="display:flex; align-items:flex-end; gap:8px; height:200px; padding:16px 0; border-bottom:2px solid #30363d; margin:12px 0;">
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%;">
+    <div style="font-size:0.6rem; color:#8b949e; margin-bottom:4px;">$1.580</div>
+    <div style="width:60%; background:#3fb950; border-radius:4px 4px 0 0; height:calc(100% * (1.580 - 1.450) / (1.700 - 1.450)); align-self:center;"></div>
+    <div style="font-size:0.6rem; color:#8b949e; margin-top:4px;">7/14</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%;">
+    <div style="font-size:0.6rem; color:#8b949e; margin-bottom:4px;">$1.660</div>
+    <div style="width:60%; background:#3fb950; border-radius:4px 4px 0 0; height:calc(100% * (1.660 - 1.450) / (1.700 - 1.450)); align-self:center;"></div>
+    <div style="font-size:0.6rem; color:#8b949e; margin-top:4px;">7/15</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%;">
+    <div style="font-size:0.6rem; color:#8b949e; margin-bottom:4px;">$1.650</div>
+    <div style="width:60%; background:#d29922; border-radius:4px 4px 0 0; height:calc(100% * (1.650 - 1.450) / (1.700 - 1.450)); align-self:center;"></div>
+    <div style="font-size:0.6rem; color:#8b949e; margin-top:4px;">7/16</div>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:column; align-items:center; height:100%;">
+    <div style="font-size:0.6rem; color:#8b949e; margin-bottom:4px;">$1.600</div>
+    <div style="width:60%; background:#f85149; border-radius:4px 4px 0 0; height:calc(100% * (1.600 - 1.450) / (1.700 - 1.450)); align-self:center;"></div>
+    <div style="font-size:0.6rem; color:#8b949e; margin-top:4px;">7/17</div>
+  </div>
+</div>
+<div style="display:flex; justify-content:space-between; font-size:0.6rem; color:#8b949e; padding:0 8px;">
+  <span>$1.450（本週低位）</span>
+  <span>$1.700（本週高位）</span>
+</div>
+
+<!-- ====== SECTION 5: System Status ====== -->
+<h2>🔧 系統狀態</h2>
+
+<table>
+<thead><tr><th>項目</th><th>狀態</th><th>備註</th></tr></thead>
+<tbody>
+<tr>
+  <td>price_detail.csv</td>
+  <td><span class="tag red">⚠️ 數據缺口</span></td>
+  <td>7月17日（星期五）全日無記錄 — 可能係 cron job 冇運行</td>
+</tr>
+<tr>
+  <td>price_alerts.csv</td>
+  <td><span class="tag" style="color:#3fb950;border-color:#3fb95044;background:#3fb95022;">✅ 正常</span></td>
+  <td>3 次警報記錄（7月14–15日）</td>
+</tr>
+<tr>
+  <td>price_state.json</td>
+  <td><span class="tag red">⚠️ 不一致</span></td>
+  <td>`today`=2026-07-14 vs `today_date`=2026-07-20; `prev_close`=$1.50 應為 $1.60</td>
+</tr>
+<tr>
+  <td>yfinance 數據源</td>
+  <td><span class="tag" style="color:#3fb950;border-color:#3fb95044;background:#3fb95022;">✅ 正常</span></td>
+  <td>成功 fetch 5日分鐘數據，query 即時成功</td>
+</tr>
+<tr>
+  <td>GitHub Pages</td>
+  <td><span class="tag" style="color:#3fb950;border-color:#3fb95044;background:#3fb95022;">✅ 正常</span></td>
+  <td>.nojekyll 存在，Pages 正常 serve</td>
+</tr>
+</tbody>
+</table>
+
+<div class="alert-box warn" style="margin-top:16px;">
+<strong>⚠️ 建議修復：</strong><br>
+1. 檢查 7月17日（星期五）cron job 未有執行到 price_detail.csv 記錄 — 可能係 provider drift 問題<br>
+2. price_state.json 嘅 `prev_close` 應由 $1.50 更新為 $1.600，`today` 欄位需要統一<br>
+3. 考慮加返 `stock-697/` 目錄做 git init，防止日後檔案意外缺失
+</div>
+
+<!-- ====== Section 6: Company News ====== -->
+<h2>📰 相關資訊</h2>
+<div class="alert-box info">
+<ul style="margin-left:20px;font-size:0.85rem;line-height:2;">
+<li>📌 首程控股（0697.HK）7月14日曾回購 200 萬股，涉資約 306 萬港元</li>
+<li>📌 分析師目標價：平均 $2.66（高 $2.70），遠高於現價 $1.61</li>
+<li>📌 1個月回報：+23.39%（跑贏恒指 +1.94%）</li>
+</ul>
+</div>
+
+<div class="footer">
+🔒 私人版本 · 由無虛（momo）自動生成 · 2026-07-20
+</div>
+
+</div>
+</body>
+</html>
