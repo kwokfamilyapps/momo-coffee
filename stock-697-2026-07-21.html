@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>697 首程控股 — 2026-07-21 即日價格報告</title>
+<style>
+  html { font-size: 32px; }
+  @media (max-width: 600px) { html { font-size: 26px; } }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #0a1628;
+    color: #e0e8f0;
+    line-height: 2.0;
+    padding: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  .header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #0d1f3c 0%, #162a4a 50%, #0d1f3c 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header h1 { font-size: 2.2rem; font-weight: 700; color: #60a5fa; letter-spacing: 0.05em; position: relative; }
+  .header .ticker { color: #94a3b8; font-size: 1rem; font-weight: 400; display: block; margin-top: 0.3rem; }
+  .header .date { color: #94a3b8; font-size: 1rem; margin-top: 0.5rem; }
+  .alert-banner {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.05));
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .alert-icon { font-size: 2.5rem; }
+  .alert-text { flex: 1; }
+  .alert-text .time { color: #94a3b8; font-size: 0.85rem; }
+  .alert-text .price-change { font-size: 1.6rem; font-weight: 700; color: #fbbf24; }
+  .alert-text .price-change .up { color: #34d399; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, #0f2341 0%, #0d1f3c 100%);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+  .stat-card .label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; }
+  .stat-card .value { font-size: 1.8rem; font-weight: 700; color: #e0e8f0; margin-top: 0.3rem; }
+  .stat-card .value.up { color: #34d399; }
+  .stat-card .value.down { color: #f87171; }
+  .stat-card .value.range { color: #fbbf24; }
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #60a5fa;
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+  }
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(59, 130, 246, 0.12);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+  th {
+    background: #0f2341;
+    color: #60a5fa;
+    padding: 0.8rem 0.6rem;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+  td {
+    padding: 0.6rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.06);
+  }
+  tr:hover td { background: rgba(59, 130, 246, 0.06); }
+  .price-up { color: #34d399; }
+  .price-down { color: #f87171; }
+  .price-flat { color: #94a3b8; }
+  .footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #475569;
+    font-size: 0.7rem;
+    border-top: 1px solid rgba(59, 130, 246, 0.08);
+    margin-top: 2rem;
+  }
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    .header h1 { font-size: 1.6rem; }
+    .stat-card .value { font-size: 1.4rem; }
+    table { font-size: 0.7rem; }
+    th, td { padding: 0.5rem 0.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 697 首程控股</h1>
+  <span class="ticker">0697.HK</span>
+  <div class="date">即日價格報告 — 2026 年 7 月 21 日 (星期二)</div>
+</div>
+
+<div class="alert-banner">
+  <div class="alert-icon">🚨</div>
+  <div class="alert-text">
+    <div class="time">最新警報：2026-07-21 15:31</div>
+    <div class="price-change">
+      價格：<strong>$1.67</strong>
+      <span class="up">⬆ 升 $0.06</span>
+    </div>
+    <div style="font-size:0.85rem; color:#94a3b8; margin-top:0.3rem;">
+      今日範圍：$1.59 – $1.67（波幅 $0.08）
+    </div>
+  </div>
+</div>
+
+<h2 class="section-title">📈 全日統計</h2>
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="label">開市價</div>
+    <div class="value">$1.61</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">最新價</div>
+    <div class="value up">$1.67</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">最高</div>
+    <div class="value up">$1.67</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">最低</div>
+    <div class="value">$1.59</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">全日波幅</div>
+    <div class="value range">$0.08</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">變動 (開→收)</div>
+    <div class="value up">+$0.06</div>
+  </div>
+</div>
+
+<h2 class="section-title">⏱️ 逐筆價格記錄</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>時間</th>
+  <th>價格</th>
+  <th>較開市</th>
+  <th>日高</th>
+  <th>日低</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>09:08</td><td class="price-flat">$1.61</td><td class="price-flat">—</td><td>$1.61</td><td>$1.61</td></tr>
+<tr><td>09:21</td><td class="price-flat">$1.61</td><td class="price-flat">—</td><td>$1.61</td><td>$1.61</td></tr>
+<tr><td>09:31</td><td class="price-flat">$1.61</td><td class="price-flat">—</td><td>$1.61</td><td>$1.61</td></tr>
+<tr><td>09:40</td><td class="price-flat">$1.61</td><td class="price-flat">—</td><td>$1.61</td><td>$1.61</td></tr>
+<tr><td>09:50</td><td class="price-down">$1.60</td><td class="price-down">-$0.01</td><td>$1.62</td><td>$1.60</td></tr>
+<tr><td>10:02</td><td class="price-up">$1.61</td><td class="price-flat">—</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>10:11</td><td class="price-flat">$1.61</td><td class="price-flat">—</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>10:20</td><td class="price-down">$1.60</td><td class="price-down">-$0.01</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>10:30</td><td class="price-down">$1.59</td><td class="price-down">-$0.02</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>10:40</td><td class="price-up">$1.61</td><td class="price-flat">—</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>10:50</td><td class="price-flat">$1.61</td><td class="price-flat">—</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>11:01</td><td class="price-up">$1.62</td><td class="price-up">+$0.01</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>11:10</td><td class="price-down">$1.61</td><td class="price-flat">—</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>11:20</td><td class="price-flat">$1.61</td><td class="price-flat">—</td><td>$1.62</td><td>$1.59</td></tr>
+<tr><td>11:30</td><td class="price-up">$1.63</td><td class="price-up">+$0.02</td><td>$1.63</td><td>$1.59</td></tr>
+<tr><td>11:40</td><td class="price-up">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>11:50</td><td class="price-down">$1.63</td><td class="price-up">+$0.02</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>12:02</td><td class="price-up">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>12:10</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>12:20</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>12:30</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>12:40</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>12:50</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>13:01</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>13:10</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>13:20</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.64</td><td>$1.59</td></tr>
+<tr><td>13:30</td><td class="price-down">$1.63</td><td class="price-up">+$0.02</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>13:40</td><td class="price-flat">$1.63</td><td class="price-up">+$0.02</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>13:50</td><td class="price-flat">$1.63</td><td class="price-up">+$0.02</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>14:01</td><td class="price-up">$1.64</td><td class="price-up">+$0.03</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>14:10</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>14:20</td><td class="price-up">$1.65</td><td class="price-up">+$0.04</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>14:31</td><td class="price-down">$1.64</td><td class="price-up">+$0.03</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>14:40</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>14:50</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>15:01</td><td class="price-flat">$1.64</td><td class="price-up">+$0.03</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>15:10</td><td class="price-up">$1.65</td><td class="price-up">+$0.04</td><td>$1.65</td><td>$1.59</td></tr>
+<tr><td>15:20</td><td class="price-up">$1.66</td><td class="price-up">+$0.05</td><td>$1.66</td><td>$1.59</td></tr>
+<tr><td>15:31</td><td class="price-up">$1.67</td><td class="price-up">+$0.06</td><td>$1.67</td><td>$1.59</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="footer">
+  📊 697 首程控股（0697.HK）— 即日價格報告<br>
+  由 無虛 (mo mo) 自動生成 · 2026-07-21 15:31 HKT<br>
+  數據來源：Yahoo Finance (yfinance)<br>
+  免責聲明：以上數據僅供參考，不構成任何投資建議。
+</div>
+
+</body>
+</html>
