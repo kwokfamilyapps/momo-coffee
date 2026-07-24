@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📸 相片 GPS 抽出器 → CSV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 22px; line-height: 1.8; }
+  body { font-family: -apple-system, "Noto Sans HK", sans-serif; background: #f0e8d8; color: #1a1a16; padding: 1rem; max-width: 600px; margin: 0 auto; }
+  h1 { font-size: 1.2rem; color: #1a3a1a; border-left: 5px solid #2e7d32; padding-left: 0.7rem; margin-bottom: 0.3rem; }
+  .sub { font-size: 0.55rem; color: #666; margin-bottom: 1rem; padding-left: 1rem; }
+  .drop-zone { background: #fff8f0; border: 3px dashed #4a8a4a; border-radius: 16px; padding: 2rem 1rem; text-align: center; cursor: pointer; margin: 0.8rem 0; transition: all 0.3s; }
+  .drop-zone:hover, .drop-zone.dragover { background: #e8f5e9; border-color: #2e7d32; }
+  .drop-zone .icon { font-size: 2.5rem; }
+  .drop-zone .text { font-size: 0.7rem; color: #555; margin-top: 0.3rem; }
+  .drop-zone .hint { font-size: 0.5rem; color: #999; margin-top: 0.2rem; }
+  .status { font-size: 0.6rem; color: #2e7d32; margin: 0.3rem 0; min-height: 1.2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.55rem; margin: 0.5rem 0; display: none; }
+  th, td { padding: 0.2rem 0.3rem; border-bottom: 1px solid #d0c8b8; text-align: left; word-break: break-all; }
+  th { background: #2e7d32; color: #fff; font-weight: 600; }
+  .btn { display: inline-block; padding: 0.6rem 1.2rem; border: none; border-radius: 10px; font-size: 0.7rem; font-weight: 600; cursor: pointer; margin: 0.3rem 0; }
+  .btn-green { background: #2e7d32; color: #fff; }
+  .btn-green:hover { background: #1b5e20; }
+  .btn-orange { background: #c96442; color: #fff; }
+  .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.5rem 0; display: none; }
+  .preview { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 8px; padding: 0.5rem; font-size: 0.5rem; max-height: 200px; overflow-y: auto; margin: 0.5rem 0; display: none; white-space: pre-wrap; }
+  .step { display: flex; align-items: center; gap: 0.5rem; background: #e8f5e9; border-radius: 8px; padding: 0.5rem 0.7rem; margin: 0.4rem 0; font-size: 0.6rem; }
+  .step .num { background: #2e7d32; color: #fff; width: 1.3rem; height: 1.3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.65rem; flex-shrink: 0; }
+  .footer { margin-top: 1.5rem; padding-top: 0.8rem; border-top: 1px solid #d0c8b8; font-size: 0.5rem; color: #888; text-align: center; }
+  .hidden { display: none; }
+  #csvOutput { width: 100%; min-height: 100px; font-size: 0.5rem; font-family: monospace; padding: 0.3rem; border: 1px solid #d0c8b8; border-radius: 6px; background: #1a1a16; color: #c0e8c0; display: none; }
+</style>
+</head>
+<body>
+
+<h1>📸 相片 GPS 抽出器</h1>
+<div class="sub">Drag & Drop 相片 → 自動出 CSV → 俾 Gemini</div>
+
+<div class="step"><span class="num">1</span> 將相片由電腦拖入下面灰色格</div>
+<div class="step"><span class="num">2</span> 檢查抽出嘅 GPS 坐標</div>
+<div class="step"><span class="num">3</span> Download CSV → Upload 上 Gemini → 叫佢出報告 🚀</div>
+
+<div class="drop-zone" id="dropZone">
+  <div class="icon">📱</div>
+  <div class="text">拖放相片到呢度</div>
+  <div class="hint">支援 HEIC / JPG / PNG<br>GPS 數據只喺你部電腦處理，唔會上載去任何伺服器</div>
+  <input type="file" id="fileInput" accept="image/*" multiple style="display:none">
+</div>
+
+<div class="status" id="status"></div>
+
+<div id="resultArea" class="hidden">
+  <div class="btn-group" id="btnGroup">
+    <button class="btn btn-green" onclick="downloadCSV()">📥 Download CSV</button>
+    <button class="btn btn-orange" onclick="copyCSV()">📋 Copy CSV</button>
+  </div>
+  <div class="preview" id="preview"></div>
+  <textarea id="csvOutput" readonly></textarea>
+</div>
+
+<div id="geminiPrompt" class="hidden" style="margin-top:1rem;">
+  <div class="sub" style="padding-left:0;">👇 下一步：將 CSV Upload 上 Gemini，用呢段 Prompt：</div>
+  <div style="background:#1a1a16;color:#c0e8c0;padding:0.6rem;border-radius:6px;font-size:0.5rem;line-height:1.6;white-space:pre-wrap;" id="promptText"></div>
+  <button class="btn btn-green" onclick="copyPrompt()" style="margin-top:0.3rem;">📋 Copy Prompt</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/lite.umd.js"></script>
+<script>
+let allData = [];
+let csvString = '';
+
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const status = document.getElementById('status');
+const resultArea = document.getElementById('resultArea');
+const btnGroup = document.getElementById('btnGroup');
+const preview = document.getElementById('preview');
+const csvOutput = document.getElementById('csvOutput');
+const geminiPrompt = document.getElementById('geminiPrompt');
+const promptText = document.getElementById('promptText');
+
+dropZone.addEventListener('click', () => fileInput.click());
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+async function handleFiles(files) {
+  allData = [];
+  status.textContent = `⏳ 處理 ${files.length} 張相...`;
+  
+  for (const file of files) {
+    try {
+      const exif = await exifr.parse(file, ['DateTimeOriginal', 'GPSLatitude', 'GPSLongitude', 'GPSAltitude', 'Make', 'Model']);
+      if (exif && exif.latitude && exif.longitude) {
+        allData.push({
+          filename: file.name,
+          datetime: exif.DateTimeOriginal || '',
+          lat: exif.latitude.toFixed(6),
+          lon: exif.longitude.toFixed(6),
+          altitude: exif.GPSAltitude ? exif.GPSAltitude.toFixed(1) : '',
+        });
+      } else {
+        status.textContent += `\n⚠️ ${file.name}: 冇 GPS 數據`;
+      }
+    } catch(e) {
+      status.textContent += `\n❌ ${file.name}: 讀取錯誤`;
+    }
+  }
+
+  if (allData.length === 0) {
+    status.textContent = '❌ 冇相片成功讀取到 GPS 數據';
+    return;
+  }
+
+  // Group by location (3 decimal places)
+  const groups = {};
+  allData.forEach(p => {
+    const key = `${round(p.lat,3)},${round(p.lon,3)}`;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(p);
+  });
+
+  // Assign CP names
+  let cpIdx = 1;
+  const groupKeys = Object.keys(groups).sort();
+  groupKeys.forEach(key => {
+    groups[key].forEach(p => p.group = `CP${cpIdx}`);
+    cpIdx++;
+  });
+
+  // Build CSV
+  const header = 'filename,datetime,lat,lon,altitude,group';
+  const rows = allData.map(p => `${p.filename},${p.datetime},${p.lat},${p.lon},${p.altitude},${p.group}`);
+  csvString = [header, ...rows].join('\n');
+  
+  // Show results
+  resultArea.classList.remove('hidden');
+  btnGroup.style.display = 'flex';
+  csvOutput.style.display = 'block';
+  csvOutput.value = csvString;
+  
+  preview.style.display = 'block';
+  preview.innerHTML = `<strong>📊 結果：</strong>${allData.length} 張相，${Object.keys(groups).length} 個 CheckPoint<br>` +
+    Object.entries(groups).map(([key, ps]) => `📍 ${ps[0].group}: ${key} → ${ps.length} 張`).join('<br>');
+  
+  status.textContent = `✅ 完成！${allData.length} 張相，${Object.keys(groups).length} 個 CheckPoint`;
+
+  // Generate Gemini prompt
+  const totalPhotos = allData.length;
+  const totalCP = Object.keys(groups).length;
+  const alts = allData.filter(p => p.altitude).map(p => parseFloat(p.altitude));
+  const altRange = alts.length ? `${Math.min(...alts)}-${Math.max(...alts)}m` : 'N/A';
+  
+  promptText.textContent = `我 upload 咗一個 CSV 檔案，係山徑巡查相片嘅 GPS 數據。
+
+📊 基本資料：
+- 日期：（請自行填寫）
+- 總相片：${totalPhotos} 張
+- CheckPoints：${totalCP} 個
+- 海拔範圍：${altRange}
+- 拍攝工具：（請自行填寫）
+
+請幫我生成一份手機-friendly HTML 報告：
+1️⃣ 統計摘要卡片
+2️⃣ Leaflet.js 互動地圖（OpenStreetMap）
+   - 每個 CP 用 circleMarker，大細 = 相片數 × 1.5
+   - 顏色：少=🟢綠 中=🟠橙 多=🔴紅
+   - 綠色虛線連接所有 CP
+   - 㩒 marker 彈出 CP 資料
+3️⃣ 每個 CP 詳細列表
+4️⃣ Summary Table
+
+風格：暖色背景 #f0e8d8，綠色為主
+直接俾完整 HTML code，唔好 cut 任何部分`;
+  
+  geminiPrompt.classList.remove('hidden');
+}
+
+function round(num, decimals) {
+  return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
+}
+
+function downloadCSV() {
+  const blob = new Blob(['\ufeff' + csvString], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'gps_data.csv';
+  a.click();
+}
+
+function copyCSV() {
+  navigator.clipboard.writeText(csvString).then(() => {
+    status.textContent = '✅ CSV 已複製！';
+  });
+}
+
+function copyPrompt() {
+  navigator.clipboard.writeText(promptText.textContent).then(() => {
+    status.textContent = '✅ Prompt 已複製！';
+  });
+}
+</script>
+
+<div class="footer">
+完全喺你部 browser 處理 · 相片唔會上載去任何伺服器 ✅<br>
+由 無虛 (mo mo) 設計 · 義工自給自足版 🚀
+</div>
+
+</body>
+</html>
