@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>行動計劃：將 72 張山徑水道相片匯入巡查 App</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 20px; line-height: 1.9; }
+  @media (max-width: 600px) { html { font-size: 18px; } }
+  body {
+    font-family: -apple-system, "Noto Sans HK", "PingFang HK", "Microsoft JhengHei", sans-serif;
+    background: #f0e8d8; color: #1a1a16; padding: 1.5rem 1rem;
+    max-width: 720px; margin: 0 auto;
+  }
+  h1 { font-family: Georgia, "Noto Serif HK", serif; font-size: 1.6rem; color: #1a3a1a; border-left: 5px solid #4a8a4a; padding-left: 0.8rem; margin-bottom: 0.3rem; }
+  .sub { font-size: 0.7rem; color: #666; margin-bottom: 1.5rem; padding-left: 1rem; }
+  h2 { font-family: Georgia, serif; font-size: 1.15rem; color: #2a5a2a; margin-top: 2rem; border-bottom: 2px solid #d0c8b8; padding-bottom: 0.2rem; }
+  h3 { font-size: 0.9rem; color: #3a6a3a; margin-top: 1.2rem; }
+  .card { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 10px; padding: 0.8rem 1rem; margin: 0.8rem 0; }
+  .warn { background: #fff0e0; border-left: 4px solid #c96442; padding: 0.6rem 0.8rem; border-radius: 0 8px 8px 0; font-size: 0.75rem; margin: 0.8rem 0; }
+  .good { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.6rem 0.8rem; border-radius: 0 8px 8px 0; font-size: 0.75rem; margin: 0.8rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.75rem; margin: 0.8rem 0; }
+  th, td { padding: 0.4rem 0.5rem; border-bottom: 1px solid #d0c8b8; text-align: left; }
+  th { background: #2a4a2a; color: #e0e8d8; font-weight: 600; }
+  tr:nth-child(even) { background: #f8f4ec; }
+  .tag { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 4px; font-size: 0.65rem; }
+  .tag-g { background: #c0e8c0; color: #1a3a1a; }
+  .tag-b { background: #c0d0e8; color: #1a2a4a; }
+  .tag-o { background: #e8d0c0; color: #4a2a1a; }
+  ol, ul { font-size: 0.8rem; padding-left: 1.2rem; }
+  li { margin-bottom: 0.4rem; }
+  .footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #d0c8b8; font-size: 0.65rem; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>🗺️ 行動計劃</h1>
+<div class="sub">將 72 張山徑水道相片匯入巡查 App · Action Plan v1.0</div>
+
+<div class="card" style="text-align:center;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;">
+    <div><div style="font-size:1.6rem;font-weight:700;color:#2a6a3a;">72</div><div style="font-size:0.6rem;color:#888;">總相片數</div></div>
+    <div><div style="font-size:1.6rem;font-weight:700;color:#2a6a3a;">10</div><div style="font-size:0.6rem;color:#888;">GPS CheckPoints</div></div>
+    <div><div style="font-size:1.6rem;font-weight:700;color:#c96442;">~44</div><div style="font-size:0.6rem;color:#888;">預計 Records</div></div>
+  </div>
+</div>
+
+<!-- ===== 1. BACKGROUND ===== -->
+<h2>1. 📋 背景</h2>
+<p style="font-size:0.8rem;">
+2026年7月23日，朋友沿馬鞍山郊遊徑拍攝咗 <strong>72 張相片</strong>（iPhone 12 Pro Max），涵蓋三類記錄：
+</p>
+<table>
+  <tr><th>類別</th><th>相片數</th><th>Folder 名</th></tr>
+  <tr><td><span class="tag tag-g">🏔️ 郊遊徑水道</span></td><td>18</td><td>馬鞍山郊遊徑沿途每條水道相片</td></tr>
+  <tr><td><span class="tag tag-b">💧 清理水道前後</span></td><td>24</td><td>清理水道前後對比相片</td></tr>
+  <tr><td><span class="tag tag-o">📋 山徑巡查</span></td><td>30</td><td>2026-07-23 山徑巡查</td></tr>
+</table>
+<p style="font-size:0.8rem;">
+全部相片有精確 GPS 坐標（誤差 <5m）及拍攝時間，集中喺 10 個 CheckPoints 沿馬鞍山郊遊徑（海拔 292-423m）。
+</p>
+
+<!-- ===== 2. THE PROBLEM ===== -->
+<h2>2. ⚠️ 要解決嘅問題</h2>
+
+<h3>2.1 山徑巡查 App 限制</h3>
+<table>
+  <tr><th>限制</th><th>詳情</th></tr>
+  <tr><td>每條 record 最多 3 張相</td><td>Firestore document 上限 1MB，base64 3 張 JPEG 已 ~600KB</td></tr>
+  <tr><td>相片太大</td><td>iPhone HEIC 每張 ~4MB → 需 resize 做 JPEG 1024px</td></tr>
+  <tr><td>必需欄位</td><td>activityType, trail, issues, solution, recorder 等</td></tr>
+</table>
+
+<h3>2.2 現狀：7/10 CP 超標</h3>
+<table>
+  <tr><th>CP</th><th>坐標</th><th>總相</th><th>需分幾組</th><th>問題</th></tr>
+  <tr><td>CP1</td><td>22.397, 114.249</td><td>19</td><td>7 組</td><td>🚨 嚴重超標</td></tr>
+  <tr><td>CP2</td><td>22.395, 114.250</td><td>18</td><td>6 組</td><td>🚨 嚴重超標</td></tr>
+  <tr><td>CP3</td><td>22.398, 114.248</td><td>12</td><td>4 組</td><td>⚠️ 超標</td></tr>
+  <tr><td>CP4</td><td>22.399, 114.248</td><td>7</td><td>3 組</td><td>⚠️ 超標</td></tr>
+  <tr><td>CP5</td><td>22.396, 114.247</td><td>5</td><td>2 組</td><td>⚠️ 超標</td></tr>
+  <tr><td>CP6</td><td>22.400, 114.247</td><td>4</td><td>2 組</td><td>⚠️ 超標</td></tr>
+  <tr><td>CP7</td><td>22.395, 114.251</td><td>3</td><td>1 組</td><td>✅ 夠位</td></tr>
+  <tr><td>CP8</td><td>22.396, 114.250</td><td>2</td><td>1 組</td><td>✅ 夠位</td></tr>
+  <tr><td>CP9</td><td>22.398, 114.249</td><td>1</td><td>1 組</td><td>✅ 夠位</td></tr>
+  <tr><td>CP10</td><td>22.399, 114.247</td><td>1</td><td>1 組</td><td>✅ 夠位</td></tr>
+</table>
+
+<!-- ===== 3. PROPOSED SOLUTION ===== -->
+<h2>3. 💡 建議方案：Folder + 時間每 3 張一組</h2>
+
+<p style="font-size:0.8rem;">
+<strong>規則：</strong>
+<ol>
+  <li>先按來源 Folder 分開（郊遊徑 / 清理水道 / 山徑巡查）</li>
+  <li>每個 Folder 內，相同 GPS CheckPoint 嘅相按時間排序</li>
+  <li>每 3 張斬一組，獨立成一條 record</li>
+  <li>每條 record 用該組第一張相嘅 GPS 坐標</li>
+  <li>每條 record 帶 3 張 resize 後嘅 base64 相片</li>
+</ol>
+</p>
+
+<div class="good">
+<strong>✅ 預計結果：~44 條 records</strong><br>
+郊遊徑水道 18張 → ~10 records<br>
+清理水道 24張 → ~16 records<br>
+山徑巡查 30張 → ~18 records
+</div>
+
+<h3>3.1 每條 Record 嘅資料結構</h3>
+<table>
+  <tr><th>欄位</th><th>值</th><th>來源</th></tr>
+  <tr><td><code>activityType</code></td><td><strong>trail</strong> 或 <strong>water</strong></td><td>按 Folder 判斷<br>清理水道→water；其餘→trail</td></tr>
+  <tr><td><code>trail</code></td><td>「馬鞍山郊遊徑」</td><td>固定值</td></tr>
+  <tr><td><code>date</code></td><td>2026-07-23</td><td>EXIF DateTime</td></tr>
+  <tr><td><code>gps</code></td><td>{ lat, lng }</td><td>EXIF GPS（第 1 張相）</td></tr>
+  <tr><td><code>photosData</code></td><td>3 張 base64 JPEG</td><td>HEIC → JPEG 1024px</td></tr>
+  <tr><td><code>createdAt</code></td><td>第 1 張相嘅時間</td><td>EXIF DateTime</td></tr>
+  <tr><td><code>issues</code></td><td>[]（留空）</td><td>等你 login 後 fill</td></tr>
+  <tr><td><code>solution</code></td><td>""（留空）</td><td>等你 login 後 fill</td></tr>
+  <tr><td><code>recorder</code></td><td>「朋友分享」</td><td>統一名稱</td></tr>
+  <tr><td><code>note</code></td><td>「朋友 2026-07-23 拍攝」</td><td>自動填入</td></tr>
+  <tr><td><code>photoKeys</code></td><td>[]（留空）</td><td>相存 photosData，唔用 key</td></tr>
+</table>
+
+<!-- ===== 4. IMPORT PROCESS ===== -->
+<h2>4. 🔧 執行步驟</h2>
+
+<ol style="font-size:0.8rem;">
+  <li><strong>下載 72 張 HEIC</strong> — 經 Google Drive API download</li>
+  <li><strong>讀取 EXIF</strong> — 抽出 DateTime + GPS + 海拔</li>
+  <li><strong>Resize 相片</strong> — HEIC → JPEG 1024px 長邊，quality 80%，~100-200KB each</li>
+  <li><strong>分組</strong> — 按 Folder → 按 CheckPoint → 按時間每 3 張一組</li>
+  <li><strong>建立 Firestore records</strong> — 用 <code>db.collection('records').add()</code></li>
+  <li><strong>插入相片</strong> — 用 <code>db.collection('records').doc(id).update({ photosData })</code></li>
+  <li><strong>匯出 log</strong> — 列出每條 record 嘅 ID、坐標、相片數</li>
+</ol>
+
+<h3>4.1 Technical Details</h3>
+<table>
+  <tr><th>項目</th><th>做法</th></tr>
+  <tr><td>HEIC 處理</td><td>pillow-heif library → PIL Image</td></tr>
+  <tr><td>Resize</td><td>max 1024px（長邊）, JPEG quality 80</td></tr>
+  <tr><td>Firestore Auth</td><td>用 API key（同 app_firebase.html 一樣嘅 config）</td></tr>
+  <tr><td>Upload 方法</td><td>逐條 record add() → 再 update photosData</td></tr>
+  <tr><td>GPS 儲存</td><td>{ lat: 22.397, lng: 114.249 }</td></tr>
+  <tr><td>時間格式</td><td>Firestore Timestamp（由 EXIF datetime 轉）</td></tr>
+</table>
+
+<!-- ===== 5. RISK ASSESSMENT ===== -->
+<h2>5. ⚡ 風險評估</h2>
+
+<table>
+  <tr><th>風險</th><th>機會率</th><th>影響</th><th>緩解措施</th></tr>
+  <tr>
+    <td>Firestore quota 超標<br>（Spark 免費 plan）</td>
+    <td>🟡 中</td>
+    <td>寫入失敗</td>
+    <td>Spark plan 每日 20K writes，44 records × 2 ops = 88 writes，完全夠用 ✅</td>
+  </tr>
+  <tr>
+    <td>相片 base64 太大</td>
+    <td>🟢 低</td>
+    <td>Firestore 1MB 限制</td>
+    <td>JPEG 1024px × 3 = ~600KB < 1MB ✅</td>
+  </tr>
+  <tr>
+    <td>重複 import</td>
+    <td>🟡 中</td>
+    <td>Duplicate records</td>
+    <td>Import 前 check 該坐標 + 日期是否已有 record；寫 log 俾你 review</td>
+  </tr>
+  <tr>
+    <td>Missing fields 搞亂 App</td>
+    <td>🟢 低</td>
+    <td>App 顯示異常</td>
+    <td>所有必需 field 都有 default 值；留空嘅 issues/solution 唔會影響顯示</td>
+  </tr>
+  <tr>
+    <td>GPS 坐標偏差</td>
+    <td>🟢 低</td>
+    <td>位置唔準</td>
+    <td>EXIF GPS error <5m，同一 CP 嘅相共享坐標</td>
+  </tr>
+</table>
+
+<!-- ===== 6. AFTER IMPORT ===== -->
+<h2>6. 📝 Import 後你需要做嘅嘢</h2>
+
+<p style="font-size:0.8rem;">
+Import 完成後，你用 admin 登入山徑巡查 App，會見到 ~44 條新 records：</p>
+<ol style="font-size:0.8rem;">
+  <li><strong>Check List 頁</strong> — 所有 records 會按時間排列顯示</li>
+  <li>㩒入每條 record → <strong>Edit</strong> → 填返：</li>
+  <ul>
+    <li>⚠️ <strong>問題類型</strong>（落葉堆積／淤塞／損毀…）</li>
+    <li>🔧 <strong>建議處理方法</strong>（疏通／維修／觀察…）</li>
+    <li>📝 可以加備註</li>
+  </ul>
+  <li>如果有啲組別嘅相你想重新分配（eg 清理前後要分開兩條 record）→ 可以 delete 再開</li>
+  <li><strong>留意：</strong> 清理水道 Folder 嗰啲，你 edit 時可以改 activityType 做「水道」</li>
+</ol>
+
+<!-- ===== 7. ROLLBACK ===== -->
+<h2>7. ↩️ 萬一唔對路 — Rollback</h2>
+<div class="warn">
+<strong>Rollback 方法：</strong> 登入 App Admin panel → 㩒「🗑️ 清除所有記錄」。之後我會重新分組再 import。<br><br>
+不過留意：清除會 delete 晒 App 入面嘅所有 records（包括你之前自己入嗰啲）。如果你之前有重要 records，我可以入去 Firestore 直接 delete 只係 import 嗰批 records（用 note =「朋友 2026-07-23 拍攝」做識別）。
+</div>
+
+<!-- ===== 8. IMPLEMENTATION PLAN ===== -->
+<h2>8. 🚀 執行時間線</h2>
+<table>
+  <tr><th>Phase</th><th>內容</th><th>需時</th></tr>
+  <tr><td>Phase 1</td><td>寫 import script + dry run（show 每條 record 嘅資料）</td><td>~30 min</td></tr>
+  <tr><td>Phase 2</td><td>你 review dry run result → confirm / 修改分組邏輯</td><td>你決定</td></tr>
+  <tr><td>Phase 3</td><td>正式 import 44 records + 132 張相入 Firestore</td><td>~5-10 min</td></tr>
+  <tr><td>Phase 4</td><td>你 login App check records → 逐條 fill issues/solution</td><td>你決定</td></tr>
+</table>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+行動計劃由 無虛 (mo mo) 撰寫 · 2026-07-24<br>
+可自由轉載俾 Google Gemini 參考製作 Google Cloud 版本
+</div>
+
+</body>
+</html>
