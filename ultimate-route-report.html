@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>終極版 · 相片 → 路線報告生成器</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; line-height: 1.8; }
+  @media (max-width:600px){html{font-size:16px}}
+  body {
+    font-family: -apple-system, "Noto Sans HK", "PingFang HK", sans-serif;
+    background: #f0e8d8; color: #1a1a16; padding: 0.5rem; max-width: 640px; margin: 0 auto;
+  }
+  h1 { font-family: Georgia, serif; font-size: 1.2rem; color: #1a3a1a; border-left: 5px solid #2e7d32; padding-left: 0.7rem; margin-bottom: 0.2rem; }
+  .sub { font-size: 0.5rem; color: #666; margin-bottom: 0.6rem; padding-left: 1rem; }
+
+  /* Drop Zone */
+  .dz { background: #fff8f0; border: 3px dashed #4a8a4a; border-radius: 14px; padding: 1.5rem 1rem; text-align: center; cursor: pointer; transition: all .3s; margin-bottom: 0.6rem; }
+  .dz:hover, .dz.dragover { background: #e8f5e9; border-color: #2e7d32; }
+  .dz .icon { font-size: 2rem; }
+  .dz .t { font-size: 0.6rem; color: #555; }
+  .dz .h { font-size: 0.45rem; color: #999; margin-top: 0.15rem; }
+
+  /* Steps */
+  .steps { display: flex; gap: 0.3rem; margin-bottom: 0.6rem; }
+  .step { flex: 1; background: #e8f5e9; border-radius: 6px; padding: 0.3rem; text-align: center; font-size: 0.45rem; color: #2a5a2a; }
+  .step .n { background: #2e7d32; color: #fff; width: 1rem; height: 1rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.5rem; margin-right: 0.2rem; }
+  .step.active { background: #2e7d32; color: #fff; }
+  .step.active .n { background: #fff; color: #2e7d32; }
+  .step.done { background: #c8e6c9; }
+
+  /* Progress */
+  .pb { height: 3px; background: #e0d8c8; border-radius: 2px; margin: 0.3rem 0; overflow: hidden; display: none; }
+  .pb .f { height: 100%; background: #2e7d32; width: 0%; transition: width .3s; }
+  .status { font-size: 0.5rem; color: #333; min-height: 1rem; margin-bottom: 0.4rem; }
+
+  /* Config Panel */
+  .config { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 10px; padding: 0.6rem; margin: 0.4rem 0; display: none; }
+  .config label { font-size: 0.5rem; font-weight: 600; color: #2a5a2a; display: block; margin-top: 0.3rem; }
+  .config input, .config textarea { width: 100%; padding: 0.3rem 0.5rem; border: 1px solid #d0c8b8; border-radius: 6px; font-size: 0.55rem; background: #faf5ed; margin-top: 0.1rem; }
+  .config textarea { min-height: 2rem; resize: vertical; font-family: inherit; }
+  .config .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+
+  /* Buttons */
+  .btn { display: inline-block; padding: 0.5rem 1rem; border: none; border-radius: 8px; font-size: 0.6rem; font-weight: 600; cursor: pointer; margin: 0.15rem; }
+  .btn-p { background: #2e7d32; color: #fff; }
+  .btn-p:hover { background: #1b5e20; }
+  .btn-s { background: #c96442; color: #fff; }
+  .btn-o { background: #8a7a6a; color: #fff; }
+  .actions { display: flex; gap: 0.3rem; flex-wrap: wrap; margin: 0.4rem 0; display: none; }
+
+  /* Preview */
+  .preview { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 8px; padding: 0.4rem; font-size: 0.45rem; max-height: 120px; overflow-y: auto; margin: 0.4rem 0; display: none; white-space: pre-wrap; }
+
+  /* Footer */
+  .ft { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid #d0c8b8; font-size: 0.45rem; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>🗺️ 終極路線報告生成器</h1>
+<div class="sub">相片 → 完整 HTML 路線報告 · 唔用 Gemini · 唔用 API</div>
+
+<div class="steps">
+  <div class="step" id="s1"><span class="n">1</span> 拖入相片</div>
+  <div class="step" id="s2"><span class="n">2</span> 設定</div>
+  <div class="step" id="s3"><span class="n">3</span> 下載報告</div>
+</div>
+
+<div class="dz" id="dz">
+  <div class="icon">📸</div>
+  <div class="t" id="dzText">拖放相片到呢度<br><span style="font-size:0.45rem;color:#888;">或㩒呢度選擇 · 支援 HEIC/JPG/PNG</span></div>
+  <input type="file" id="fi" accept=".heic,.HEIC,.heif,.HEIF,.jpg,.JPG,.jpeg,.JPEG,.png,.PNG,image/*" multiple style="display:none">
+</div>
+
+<div class="pb" id="pb"><div class="f" id="pf"></div></div>
+<div class="status" id="status">👆 拖相片入嚟開始</div>
+
+<div class="config" id="config">
+  <div class="row">
+    <div><label>📅 日期</label><input type="date" id="reportDate"></div>
+    <div><label>🗺️ 路線名稱</label><input type="text" id="routeName" placeholder="eg 馬鞍山郊遊徑"></div>
+  </div>
+  <label>📝 報告描述（可選）</label>
+  <textarea id="reportDesc" placeholder="今次巡查嘅簡短描述..."></textarea>
+  <div style="margin-top:0.4rem;display:flex;gap:0.3rem;">
+    <button class="btn btn-p" onclick="generateReport()">🚀 生成報告</button>
+    <button class="btn btn-o" onclick="resetAll()">🔄 重新開始</button>
+  </div>
+</div>
+
+<div class="actions" id="actions">
+  <button class="btn btn-p" onclick="downloadHTML()">📥 Download HTML 報告</button>
+  <button class="btn btn-s" onclick="downloadCSV()">📥 Download CSV</button>
+  <button class="btn btn-o" onclick="copyHTML()">📋 Copy HTML</button>
+</div>
+
+<div class="preview" id="preview"></div>
+<div class="status" id="status2" style="font-size:0.5rem;color:#888;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/lite.umd.js"></script>
+<script>
+let allData = [], csvStr = '', htmlReport = '', totalFiles = 0;
+
+const dz = document.getElementById('dz'), fi = document.getElementById('fi');
+const status = document.getElementById('status'), status2 = document.getElementById('status2');
+const pb = document.getElementById('pb'), pf = document.getElementById('pf');
+const config = document.getElementById('config'), actions = document.getElementById('actions');
+const preview = document.getElementById('preview');
+
+dz.addEventListener('click', () => fi.click());
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('dragover'); processFiles(Array.from(e.dataTransfer.files)); });
+fi.addEventListener('change', e => processFiles(Array.from(e.target.files)));
+
+// Auto-set today's date
+document.getElementById('reportDate').value = new Date().toISOString().slice(0,10);
+
+async function processFiles(files) {
+  allData = []; config.style.display = 'none'; actions.style.display = 'none'; preview.style.display = 'none';
+  document.getElementById('s1').classList.add('active');
+
+  const imgs = files.filter(f => { const n = f.name.toLowerCase(); return n.endsWith('.heic')||n.endsWith('.heif')||n.endsWith('.jpg')||n.endsWith('.jpeg')||n.endsWith('.png'); });
+  totalFiles = imgs.length;
+  if (!totalFiles) { status.textContent = '❌ 冇相片檔案'; return; }
+
+  status.textContent = `⏳ 讀取 ${totalFiles} 張相嘅 GPS...`;
+  pb.style.display = 'block'; pf.style.width = '0%';
+  document.getElementById('dzText').textContent = `處理中 ${totalFiles} 張...`;
+
+  let noGps = 0, errs = 0;
+  for (let i = 0; i < totalFiles; i++) {
+    pf.style.width = Math.round((i/totalFiles)*100)+'%';
+    status.textContent = `⏳ ${i+1}/${totalFiles}: ${imgs[i].name}`;
+    try {
+      const ex = await exifr.parse(imgs[i], {pick:['DateTimeOriginal','latitude','longitude','GPSAltitude']});
+      if (ex && ex.latitude && ex.longitude) {
+        allData.push({filename:imgs[i].name, datetime:ex.DateTimeOriginal||'',
+          lat:Number(ex.latitude).toFixed(6), lon:Number(ex.longitude).toFixed(6),
+          altitude:ex.GPSAltitude?Number(ex.GPSAltitude).toFixed(1):''});
+      } else { noGps++; }
+    } catch(e) { errs++; }
+  }
+  pf.style.width = '100%';
+
+  if (!allData.length) { status.textContent = `❌ 全部冇 GPS`; pb.style.display='none'; document.getElementById('s1').classList.remove('active'); return; }
+
+  document.getElementById('s1').classList.remove('active'); document.getElementById('s1').classList.add('done');
+  document.getElementById('s2').classList.add('active');
+  status.textContent = `✅ ${allData.length}/${totalFiles} 張有 GPS · ${noGps}張冇GPS · ${errs}張錯誤`;
+  config.style.display = 'block';
+}
+
+function generateReport() {
+  document.getElementById('s2').classList.remove('active'); document.getElementById('s2').classList.add('done');
+  document.getElementById('s3').classList.add('active');
+
+  // Group by GPS
+  const groups = {};
+  allData.forEach(p => { const k = `${r3(p.lat)},${r3(p.lon)}`; if(!groups[k]) groups[k]=[]; groups[k].push(p); });
+  const gKeys = Object.keys(groups).sort();
+  gKeys.forEach((k,i) => {
+    groups[k].sort((a,b)=>a.datetime.localeCompare(b.datetime));
+    groups[k].forEach(p => p.group = `CP${i+1}`);
+  });
+
+  // Stats
+  const alts = allData.filter(p=>p.altitude).map(p=>parseFloat(p.altitude));
+  const aMin = alts.length?Math.min(...alts).toFixed(0):'?';
+  const aMax = alts.length?Math.max(...alts).toFixed(0):'?';
+  const dates = [...new Set(allData.filter(p=>p.datetime).map(p=>p.datetime.slice(0,10)))].filter(Boolean);
+  const dateStr = document.getElementById('reportDate').value || (dates.length?dates[0]:'?');
+  const times = allData.filter(p=>p.datetime).map(p=>p.datetime).sort();
+  const tMin = times.length?times[0].slice(11,16):'?';
+  const tMax = times.length?times[times.length-1].slice(11,16):'?';
+  const route = document.getElementById('routeName').value || '山徑路線';
+  const desc = document.getElementById('reportDesc').value || '';
+
+  const cpData = gKeys.map((k,i) => {
+    const ps = groups[k]; const [lat,lon] = k.split(',').map(Number);
+    const aa = ps.filter(p=>p.altitude).map(p=>parseFloat(p.altitude));
+    const as = aa.length?`${Math.min(...aa).toFixed(0)}-${Math.max(...aa).toFixed(0)}m`:'?';
+    const t1 = ps[0].datetime.slice(11,16);
+    const t2 = ps.length>1?ps[ps.length-1].datetime.slice(11,16):t1;
+    return {id:`CP${i+1}`,lat,lon,n:ps.length,alt:as,time:`${t1}${t2!==t1?'-'+t2:''}`,files:ps.map(p=>p.filename)};
+  });
+
+  // CP descriptions (editable)
+  const cpDescHtml = cpData.map((c,i)=>{
+    const dflt = c.n>=10?'🔴 重點位置，需要跟進':c.n>=5?'🟠 中等密度，觀察':c.n>=3?'🟢 常規位置':'🔵 單點記錄';
+    return `<div style="background:#fff8f0;border:1px solid #d0c8b8;border-radius:8px;padding:0.4rem 0.6rem;margin-bottom:0.3rem">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-weight:700;color:#1b5e20;font-size:0.7rem">${c.id}</span>
+<span style="font-size:0.45rem;color:#888;background:#e8f5e9;padding:0.05rem 0.4rem;border-radius:3px">${c.lat.toFixed(3)}, ${c.lon.toFixed(3)}</span></div>
+<div style="font-size:0.55rem;color:#555;margin-top:0.1rem">
+📸 ${c.n} 張 · 🕐 ${c.time} · 🏔️ ${c.alt}</div>
+<div style="font-size:0.5rem;color:#888;margin-top:0.1rem">${dflt}</div>
+</div>`;
+  }).join('');
+
+  // Build HTML
+  htmlReport = `<!DOCTYPE html>
+<html lang="zh-HK">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>${route} · 路線報告 ${dateStr}</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:20px;line-height:1.8}
+@media(max-width:600px){html{font-size:17px}}
+body{font-family:-apple-system,"Noto Sans HK",sans-serif;background:#f0e8d8;color:#1a1a16;padding:0 0 2rem 0}
+header{background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;padding:1rem;text-align:center}
+header h1{font-size:1.1rem;margin-bottom:0.1rem}
+header p{font-size:0.5rem;opacity:.85}
+.c{max-width:680px;margin:0 auto;padding:0.8rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0.4rem;margin:0.6rem 0}
+.card{background:#fff8f0;border-radius:8px;padding:0.5rem;text-align:center;border:1px solid #d0c8b8}
+.card .n{font-size:1.2rem;font-weight:700;color:#2e7d32}
+.card .l{font-size:0.45rem;color:#888}
+#map{height:300px;border-radius:8px}
+.mw{background:#fff8f0;padding:0.3rem;border-radius:10px;border:1px solid #d0c8b8;margin:0.5rem 0}
+h2{font-size:0.8rem;color:#1b5e20;margin:1rem 0 0.4rem 0;border-bottom:2px solid #c0b8a8;padding-bottom:0.2rem}
+.desc{background:#fff8f0;border-left:4px solid #c96442;padding:0.4rem 0.6rem;border-radius:0 6px 6px 0;font-size:0.55rem;margin:0.5rem 0;white-space:pre-wrap}
+table{width:100%;border-collapse:collapse;font-size:0.55rem;margin:0.5rem 0}
+th,td{padding:0.2rem 0.35rem;border-bottom:1px solid #d0c8b8;text-align:left;font-size:0.5rem}
+th{background:#2e7d32;color:#fff;font-weight:600;font-size:0.5rem}
+tr:nth-child(even){background:#f8f4ec}
+.ft{text-align:center;font-size:0.45rem;color:#888;margin-top:1rem;padding-top:0.5rem;border-top:1px solid #d0c8b8}
+.cp-grid{display:flex;flex-direction:column;gap:0.3rem}
+</style></head>
+<body>
+<header><h1>🗺️ ${route}</h1><p>${dateStr} · ${allData.length} 張相 · ${gKeys.length} 個 CheckPoint</p></header>
+<div class="c">
+<div class="cards">
+<div class="card"><div class="n">${allData.length}</div><div class="l">📸 總相片</div></div>
+<div class="card"><div class="n">${gKeys.length}</div><div class="l">📍 CheckPoint</div></div>
+<div class="card"><div class="n">${aMin}-${aMax}m</div><div class="l">🏔️ 海拔範圍</div></div>
+</div>
+<div class="cards" style="grid-template-columns:repeat(3,1fr)">
+<div class="card"><div class="n" style="font-size:0.9rem">${tMin}-${tMax}</div><div class="l">🕐 時段</div></div>
+<div class="card"><div class="n" style="font-size:0.7rem">${dateStr}</div><div class="l">📅 日期</div></div>
+<div class="card"><div class="n" style="font-size:0.7rem">${route}</div><div class="l">🗺️ 路線</div></div>
+</div>
+${desc?`<div class="desc">${desc}</div>`:''}
+<h2>📍 路線地圖</h2>
+<div class="mw"><div id="map"><\/div></div>
+<h2>📌 CheckPoint 列表</h2>
+<div class="cp-grid">
+${cpData.map(c => `
+<div style="background:#fff8f0;border:1px solid #d0c8b8;border-radius:8px;padding:0.4rem 0.6rem">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font-weight:700;color:#1b5e20;font-size:0.65rem">${c.id}</span>
+<span style="font-size:0.45rem;color:#888;background:#e8f5e9;padding:0.05rem 0.4rem;border-radius:3px">${c.lat.toFixed(3)}, ${c.lon.toFixed(3)}</span></div>
+<div style="font-size:0.5rem;color:#555;margin-top:0.1rem">📸 ${c.n} 張 · 🕐 ${c.time} · 🏔️ ${c.alt}</div>
+<div style="font-size:0.45rem;color:#888;margin-top:0.05rem;word-break:break-all">${c.files.join(', ')}</div>
+</div>`).join('')}
+<\/div>
+<h2>📊 統計總表</h2>
+<table><tr><th>CP</th><th>坐標</th><th>相片</th><th>時間</th><th>海拔</th></tr>
+${cpData.map(c=>`<tr><td>${c.id}</td><td>${c.lat.toFixed(3)}, ${c.lon.toFixed(3)}</td><td>${c.n}</td><td>${c.time}</td><td>${c.alt}</td></tr>`).join('')}
+<\/table>
+<div class="ft">由相片 GPS 數據自動生成 · 終極路線報告 v1.0</div>
+<\/div>
+<script>
+const cps = ${JSON.stringify(cpData)};
+const map = L.map('map').setView([${cpData[0].lat}, ${cpData[0].lon}], 15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OSM'}).addTo(map);
+L.polyline(cps.map(c=>[c.lat,c.lon]),{color:'#2e7d32',weight:3,opacity:0.7,dashArray:'6,6'}).addTo(map);
+cps.forEach(c=>{
+  const sz=Math.max(5,Math.min(26,c.n*1.2));
+  const col=c.n>=12?'#d44':c.n>=5?'#e82':'#4a4';
+  L.circleMarker([c.lat,c.lon],{radius:sz,fillColor:col,color:'#fff',weight:2,fillOpacity:0.8})
+    .addTo(map).bindPopup('<b>'+c.id+'</b><br>'+c.n+'張相片<br>'+c.alt+'<br>🕐 '+c.time);
+});
+map.fitBounds(cps.map(c=>[c.lat,c.lon]),{padding:[30,30]});<\/script>
+</body></html>`;
+
+  // CSV
+  csvStr = 'filename,datetime,lat,lon,altitude,group\n' +
+    allData.map(p => `"${p.filename}","${p.datetime}",${p.lat},${p.lon},${p.altitude},${p.group}`).join('\n');
+
+  // Show actions
+  actions.style.display = 'flex';
+  preview.style.display = 'block';
+  preview.innerHTML = `✅ <strong>報告已生成！</strong><br>📸 ${allData.length} 張相 · 📍 ${gKeys.length} 個 CP<br>🗺️ 路線：${route} · 📅 ${dateStr}`;
+  status.textContent = `✅ 完成！Download HTML 報告`;
+  status2.textContent = '💡 HTML 報告可以用 browser 直接開，亦可以 Share 俾人';
+}
+
+function r3(n) { return Math.round(parseFloat(n)*1000)/1000; }
+
+function downloadHTML() {
+  if (!htmlReport) return;
+  const b = new Blob([htmlReport], {type:'text/html;charset=utf-8;'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(b);
+  a.download = `route-report-${document.getElementById('reportDate').value||'today'}.html`;
+  a.click(); URL.revokeObjectURL(a.href);
+  status.textContent = '✅ HTML 已下載！';
+}
+
+function downloadCSV() {
+  if (!csvStr) return;
+  const b = new Blob(['\ufeff'+csvStr], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(b);
+  a.download = 'gps-data.csv'; a.click(); URL.revokeObjectURL(a.href);
+  status.textContent = '✅ CSV 已下載！';
+}
+
+function copyHTML() {
+  if (!htmlReport) return;
+  navigator.clipboard.writeText(htmlReport).then(() => status.textContent='✅ HTML 已複製！');
+}
+
+function resetAll() {
+  allData=[]; csvStr=''; htmlReport=''; totalFiles=0;
+  config.style.display='none'; actions.style.display='none'; preview.style.display='none';
+  pb.style.display='none'; pf.style.width='0%';
+  document.getElementById('dzText').innerHTML='拖放相片到呢度<br><span style="font-size:0.45rem;color:#888;">或㩒呢度選擇 · 支援 HEIC/JPG/PNG</span>';
+  status.textContent='👆 拖相片入嚟開始'; status2.textContent='';
+  fi.value='';
+  document.querySelectorAll('.step').forEach(s=>{s.classList.remove('active','done');});
+}
+</script>
+<div class="ft">
+終極版 v1.0 · 完全喺 browser 處理 · 零成本 🚀<br>
+由 無虛 (mo mo) 設計
+</div>
+</body>
+</html>
