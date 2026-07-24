@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AI 混搭工作流：用手機相 + Gemini 自動製作巡查報告</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 20px; line-height: 1.9; }
+  @media (max-width: 600px) { html { font-size: 18px; } }
+  body {
+    font-family: -apple-system, "Noto Sans HK", "PingFang HK", "Microsoft JhengHei", sans-serif;
+    background: #f0e8d8; color: #1a1a16; padding: 1.5rem 1rem;
+    max-width: 700px; margin: 0 auto;
+  }
+  h1 { font-family: Georgia, "Noto Serif HK", serif; font-size: 1.5rem; color: #1a3a1a; border-left: 5px solid #4a8a4a; padding-left: 0.8rem; margin-bottom: 0.3rem; }
+  .sub { font-size: 0.7rem; color: #666; margin-bottom: 1.5rem; padding-left: 1rem; }
+  h2 { font-family: Georgia, serif; font-size: 1.1rem; color: #2a5a2a; margin-top: 1.8rem; border-bottom: 2px solid #d0c8b8; padding-bottom: 0.2rem; }
+  h3 { font-size: 0.85rem; color: #3a6a3a; margin-top: 1rem; }
+  .card { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 10px; padding: 0.8rem 1rem; margin: 0.8rem 0; }
+  .warn { background: #fff0e0; border-left: 4px solid #c96442; padding: 0.6rem 0.8rem; border-radius: 0 8px 8px 0; font-size: 0.75rem; margin: 0.8rem 0; }
+  .good { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.6rem 0.8rem; border-radius: 0 8px 8px 0; font-size: 0.75rem; margin: 0.8rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.75rem; margin: 0.8rem 0; }
+  th, td { padding: 0.4rem 0.5rem; border-bottom: 1px solid #d0c8b8; text-align: left; vertical-align: top; }
+  th { background: #2a4a2a; color: #e0e8d8; font-weight: 600; }
+  tr:nth-child(even) { background: #f8f4ec; }
+  .step { display: flex; gap: 0.6rem; margin-bottom: 1rem; align-items: flex-start; }
+  .step-num { background: #2a6a3a; color: #fff; width: 1.6rem; height: 1.6rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+  .step-content { font-size: 0.8rem; flex: 1; }
+  .step-content strong { color: #2a5a2a; }
+  .tag { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 4px; font-size: 0.65rem; margin: 0.1rem; }
+  .tag-green { background: #c0e8c0; color: #1a3a1a; }
+  .tag-blue { background: #c0d0e8; color: #1a2a4a; }
+  .tag-orange { background: #e8d0c0; color: #4a2a1a; }
+  .tag-purple { background: #d0c0e8; color: #2a1a4a; }
+  .flow { display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; justify-content: center; margin: 1rem 0; }
+  .flow-box { background: #fff8f0; border: 2px solid #4a8a4a; border-radius: 8px; padding: 0.5rem 0.8rem; text-align: center; font-size: 0.7rem; min-width: 80px; }
+  .flow-arrow { font-size: 1.2rem; color: #4a8a4a; }
+  ol, ul { font-size: 0.8rem; padding-left: 1.2rem; }
+  li { margin-bottom: 0.3rem; }
+  .code { background: #1a1a16; color: #c0e8c0; padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.7rem; font-family: monospace; }
+  .footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #d0c8b8; font-size: 0.65rem; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>🤖 AI 混搭工作流</h1>
+<div class="sub">用手機相 + Gemini 自動製作巡查報告 · for 義工朋友（冇 mvmv 都得）</div>
+
+<div class="flow">
+  <div class="flow-box">📸 iPhone 影相<br><small>GPS embedded</small></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box">🗂️ Google Drive<br><small>儲存相片</small></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box">🔧 Colab<br><small>抽 EXIF → CSV</small></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box">🤖 Gemini<br><small>生成 HTML 報告</small></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-box">☁️ Google Cloud<br><small>放上網睇</small></div>
+</div>
+
+<!-- ===== THE PROBLEM ===== -->
+<h2>1. ❓ 問題：義工冇 mvmv 點算？</h2>
+<p style="font-size:0.8rem;">
+你嘅義工朋友都有 iPhone，行山會影相（GPS 坐標自動 embedded），但佢哋：
+<ul>
+  <li>❌ 冇 mvmv / Hermes Agent 幫手抽 EXIF 數據</li>
+  <li>❌ Gemini 不能 direct access Google Drive（privacy 限制）</li>
+  <li>❌ Gemini 每次 upload 只處理到 ~10 張相</li>
+  <li>❌ 唔識寫 code / 用 API 抽 GPS</li>
+</ul>
+</p>
+
+<!-- ===== SOLUTION OVERVIEW ===== -->
+<h2>2. 💡 解決方案：三個免費工具串聯</h2>
+
+<table>
+  <tr><th>Step</th><th>工具</th><th>收費</th><th>做咩</th></tr>
+  <tr>
+    <td>1</td><td><strong>Google Colab</strong></td><td>🆓 免費</td>
+    <td>用 Python 讀 Google Drive 相片 → 抽 GPS + 日期 → 輸出 CSV</td>
+  </tr>
+  <tr>
+    <td>2</td><td><strong>Google Gemini</strong></td><td>🆓 免費</td>
+    <td>食 CSV 數據 → 生成 HTML 報告（地圖 + 統計）</td>
+  </tr>
+  <tr>
+    <td>3</td><td><strong>Google Cloud Storage</strong></td><td>🆓 免費 5GB</td>
+    <td>Host HTML 做靜態網站，分享 link 俾人睇</td>
+  </tr>
+</table>
+
+<div class="good">
+<strong>✅ 關鍵：</strong> Gemini 食唔到 Google Drive，但食到 CSV（文字格式）。<br>
+所以中間加一個 Colab notebook 做「數據轉換」，將相片 GPS 抽出來變做 CSV。
+</div>
+
+<!-- ===== STEP BY STEP ===== -->
+<h2>3. 📋 義工操作步驟（圖文教學版）</h2>
+
+<h3>📍 Phase A：行山影相</h3>
+<div class="step">
+  <div class="step-num">A</div>
+  <div class="step-content">
+    <strong>用 iPhone 沿山徑影相</strong><br>
+    ✅ 確保 Location Services 開咗（GPS 會自動寫入相片）<br>
+    ✅ 同一位置可以影多張（前後對比）<br>
+    ✅ 影完相 auto backup 上 Google Drive / Google Photos
+  </div>
+</div>
+
+<h3>🔧 Phase B：用 Colab 抽數據（呢步最關鍵）</h3>
+<div class="step">
+  <div class="step-num">B1</div>
+  <div class="step-content">
+    <strong>開 Colab Notebook</strong><br>
+    㩒呢條 link（我準備好嘅 template）→ <strong>File → Save a copy to Drive</strong><br>
+    🔗 <code style="font-size:0.7rem;">https://colab.research.google.com/drive/1xxx-template</code>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">B2</div>
+  <div class="step-content">
+    <strong>Mount Google Drive</strong><br>
+    㩒第一個 Play ▶️ 按鈕 → 授權 Google Drive 連接<br>
+    Colab 就可以直接讀你 Google Drive 嘅相片
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">B3</div>
+  <div class="step-content">
+    <strong>指定 Folder 位置</strong><br>
+    改一個變數：<span class="code">folder_path = "/content/drive/My Drive/山徑相片/2026-07-23"</span><br>
+    就係你放相嘅 Google Drive 路徑
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">B4</div>
+  <div class="step-content">
+    <strong>Run 全部 Cells ▶️</strong><br>
+    Colab 會自動：<br>
+    ✅ 安裝 pillow-heif（讀 HEIC）<br>
+    ✅ 逐張相抽 EXIF（GPS + 日期 + 海拔）<br>
+    ✅ 按坐標分組（同一地點嘅相 group 埋）<br>
+    ✅ 輸出 <strong>CSV 檔案</strong> → 自動 save 返落 Google Drive
+  </div>
+</div>
+
+<div class="card" style="font-size:0.75rem;">
+<strong>📄 CSV 內容範例：</strong><br><br>
+<code>
+filename,datetime,lat,lon,altitude,group<br>
+IMG_1765.HEIC,2026-07-23 10:27:00,22.400197,114.246644,309,CP1<br>
+IMG_1768.HEIC,2026-07-23 10:52:51,22.398025,114.248436,359,CP2<br>
+...
+</code>
+</div>
+
+<h3>🤖 Phase C：Gemini 生成報告</h3>
+<div class="step">
+  <div class="step-num">C1</div>
+  <div class="step-content">
+    <strong>開 Gemini → Upload CSV</strong><br>
+    去 <strong>https://gemini.google.com</strong> → Upload 個 CSV 檔案上去
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">C2</div>
+  <div class="step-content">
+    <strong>Copy & Paste 呢個 Prompt：</strong><br>
+    <div class="card" style="margin:0.3rem 0;font-size:0.7rem;background:#e8e0d0;">
+「我 upload 咗一個 CSV 檔案，係山徑巡查相片嘅 GPS 數據。<br>
+每張相有：檔名、日期時間、緯度、經度、海拔、CheckPoint 編號。<br><br>
+請幫我：<br>
+1. 分析總共有幾多張相、幾個 CheckPoint、海拔範圍<br>
+2. 按 CheckPoint 統計每點有幾多張相<br>
+3. 生成一份 HTML 報告，要包含：<br>
+　• 統計摘要卡片<br>
+　• 用 Leaflet.js 嘅互動地圖，顯示所有 CheckPoint<br>
+　• 路線用綠色虛線連接所有 CP<br>
+　• 每個 CP 用圓形 marker，大細代表相片數量<br>
+　• 一個 summary table<br>
+4. 用香港繁體中文，手機 friendly<br>
+5. 直接俾 HTML code 我」
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">C3</div>
+  <div class="step-content">
+    <strong>Copy HTML → Save 做 .html 檔案</strong><br>
+    Gemini 會輸出完整 HTML → 複製 → 貼上記事本 → Save 做 <span class="code">report.html</span>
+  </div>
+</div>
+
+<h3>☁️ Phase D：放上 Google Cloud 免費網站</h3>
+<div class="step">
+  <div class="step-num">D1</div>
+  <div class="step-content">
+    <strong>開 Google Cloud Storage</strong><br>
+    去 <strong>https://console.cloud.google.com</strong> → 開一個新 Project<br>
+    （第一次用有 $300 免費額度，但純 hosting 係免費）
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">D2</div>
+  <div class="step-content">
+    <strong>開一個 Public Bucket</strong><br>
+    Cloud Storage → Create Bucket → 改個全球唯一名<br>
+    eg <span class="code">mos-trail-report-2026</span>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">D3</div>
+  <div class="step-content">
+    <strong>Upload HTML + Enable 靜態網站</strong><br>
+    Upload <span class="code">report.html</span> → Permission set Public →<br>
+    Bucket 設定 → Static Website → 指定 index.html<br>
+    🔗 你會得到一條 link：<br>
+    <span class="code">https://storage.googleapis.com/mos-trail-report-2026/report.html</span>
+  </div>
+</div>
+
+<div class="good">
+<strong>✅ 完成！可以將條 link 分享俾朋友睇！</strong>
+</div>
+
+<!-- ===== WHAT I CAN PREPARE ===== -->
+<h2>4. 🎁 我可以幫你準備嘅嘢</h2>
+
+<table>
+  <tr><th>Item</th><th>內容</th><th>點用</th></tr>
+  <tr>
+    <td><strong>📓 Colab Notebook Template</strong></td>
+    <td>一鍵 run 嘅 Python notebook<br>
+    已包：mount Drive → 讀 HEIC → 抽 EXIF → 分組 → 出 CSV</td>
+    <td>Share 俾義工朋友<br>佢哋只要改 Folder path + Run</td>
+  </tr>
+  <tr>
+    <td><strong>🤖 Gemini Prompt Template</strong></td>
+    <td>一份 copy-paste prompt<br>
+    叫 Gemini 生成 HTML 報告 + Leaflet 地圖</td>
+    <td>義工朋友直接貼落 Gemini 用</td>
+  </tr>
+  <tr>
+    <td><strong>📄 Sample CSV</strong></td>
+    <td>用你今日 72 張相造咗嘅 sample<br>
+    示範 CSV 格式係點</td>
+    <td>俾義工朋友睇完成品係點</td>
+  </tr>
+</table>
+
+<!-- ===== PROS & CONS ===== -->
+<h2>5. ⚖️ 呢個方案嘅好處同限制</h2>
+
+<table>
+  <tr><th style="width:30%;">維度</th><th>分析</th></tr>
+  <tr>
+    <td>💰 <strong>成本</strong></td>
+    <td>🟢 全部免費 — Colab（免費 GPU）、Gemini（免費 tier）、Cloud Storage（5GB 免費）</td>
+  </tr>
+  <tr>
+    <td>🎯 <strong>易用度</strong></td>
+    <td>🟡 中等 — Colab 要㩒幾個制，但唔使寫 code；Cloud Storage 要一次性 setup</td>
+  </tr>
+  <tr>
+    <td>📸 <strong>相片數量</strong></td>
+    <td>🟢 冇限制 — Colab 一次過處理晒所有 HEIC，Gemini 只食 CSV（文字檔，唔受限）</td>
+  </tr>
+  <tr>
+    <td>🌍 <strong>GPS 準確度</strong></td>
+    <td>🟢 精確 — HEIC EXIF 直接抽取 iPhone GPS（誤差 <5m）</td>
+  </tr>
+  <tr>
+    <td>🗺️ <strong>地圖質素</strong></td>
+    <td>🟡 視乎 Gemini prompt 寫得好唔好 — 可能要試幾次先有理想效果</td>
+  </tr>
+  <tr>
+    <td>🔄 <strong>重複用</strong></td>
+    <td>🟢 可以 — 每次行山後，改 Folder path → Run Colab → 新 CSV → Gemini → 新報告</td>
+  </tr>
+  <tr>
+    <td>🔧 <strong>前期設定</strong></td>
+    <td>🟡 要 setup 一次：Colab Notebook + Cloud Storage Bucket，之後義工只係用</td>
+  </tr>
+</table>
+
+<!-- ===== ALTERNATIVES ===== -->
+<h2>6. 🔄 其他可能性（俾你參考）</h2>
+
+<div class="card" style="font-size:0.8rem;">
+<strong>方案 B：只用手機 + Gemini App（最簡單）</strong><br>
+唔用 Colab，直接喺 Gemini App Upload 幾張相 → 叫佢分析 GPS 坐標 → 但每次只可 10 張，逐組 copy 坐標好煩。<br>
+適合：<strong>少於 10 張相</strong> 嘅報告<br><br>
+
+<strong>方案 C：開發一個簡單 PWA（一勞永逸）</strong><br>
+做一個簡單嘅網頁 App：Upload HEIC → 自動抽 GPS → 出 CSV → 一鍵下載。<br>
+義工連 Colab 都唔使開，直接 browser 搞掂。<br>
+適合：<strong>經常要行山記錄</strong> 嘅團隊<br>
+⚠️ 但要我開發 + hosting
+</div>
+
+<!-- ===== NEXT STEP ===== -->
+<h2>7. 🚀 下一步 — 你想我點做？</h2>
+
+<p style="font-size:0.8rem;">
+我可以而即刻幫你準備：
+</p>
+
+<table>
+  <tr><th>Option</th><th>做咩</th><th>需時</th></tr>
+  <tr>
+    <td><strong>A. 寫 Colab Notebook 📓</strong></td>
+    <td>整一個完整嘅 Google Colab notebook template<br>
+    義工只要改 Folder path → Run → 出 CSV</td>
+    <td>~30 min</td>
+  </tr>
+  <tr>
+    <td><strong>B. 製作 Sample CSV + Prompt 📄</strong></td>
+    <td>用你今日 72 張相造一個 sample CSV<br>
+    連埋 Gemini prompt template 俾你</td>
+    <td>~10 min</td>
+  </tr>
+  <tr>
+    <td><strong>C. 兩個都做 ✅</strong></td>
+    <td>Colab Notebook + Sample CSV + Prompt<br>
+    一次過 prepare 晒</td>
+    <td>~40 min</td>
+  </tr>
+  <tr>
+    <td><strong>D. 直接開發 PWA 🌐</strong></td>
+    <td>做一個 browser App Upload 相 → 自動出 CSV<br>
+    義工連 Colab 都唔使開</td>
+    <td>~2-3 hr</td>
+  </tr>
+</table>
+
+<div class="warn">
+<strong>💡 我嘅建議：</strong> 揀 Option C 先 — Colab Notebook + Sample CSV + Prompt Template。<br>
+Colab 係「一次 setup 無限次用」，義工朋友用 Google account 就得，唔使裝任何嘢。<br>
+如果你覺得好用，之後先決定要唔要做 PWA。
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+行動計劃由 無虛 (mo mo) 撰寫 · 2026-07-24<br> 
+目的：設計一個義工朋友（冇 mvmv）都可以用嘅 AI 報告 workflow<br>
+工具：Google Colab 🆓 + Gemini 🆓 + Google Cloud Storage 🆓
+</div>
+
+</body>
+</html>
