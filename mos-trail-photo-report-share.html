@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>馬鞍山郊遊徑 · 山徑水道巡查相片分析報告</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; }
+  @media (max-width: 600px) { html { font-size: 15px; } }
+  body {
+    font-family: -apple-system, "Noto Sans HK", "PingFang HK", "Microsoft JhengHei", sans-serif;
+    background: #f0e8d8;
+    color: #1a1a16;
+    line-height: 1.9;
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  h1 { font-family: Georgia, "Noto Serif HK", serif; font-size: 2rem; color: #2a4a2a; margin-bottom: 0.3rem; border-left: 5px solid #4a8a4a; padding-left: 1rem; }
+  .subtitle { font-size: 0.9rem; color: #666; margin-bottom: 2rem; padding-left: 1rem; }
+  h2 { font-family: Georgia, serif; font-size: 1.4rem; color: #3a6a3a; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid #c0b8a8; padding-bottom: 0.3rem; }
+  h3 { font-size: 1.1rem; color: #4a7a4a; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .card {
+    background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 12px; padding: 1.2rem;
+    text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .card .num { font-size: 2.2rem; font-weight: 700; color: #2a6a3a; }
+  .card .label { font-size: 0.8rem; color: #888; margin-top: 0.2rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+  th, td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid #d0c8b8; }
+  th { background: #2a4a2a; color: #e0e8d8; font-weight: 600; white-space: nowrap; }
+  tr:nth-child(even) { background: #f8f4ec; }
+  tr:hover { background: #e8e0d0; }
+  .tag { display: inline-block; padding: 0.05rem 0.4rem; border-radius: 4px; font-size: 0.7rem; margin: 0.1rem; }
+  .tag-stream { background: #c0e8c0; color: #1a3a1a; }
+  .tag-water { background: #c0d0e8; color: #1a2a4a; }
+  .tag-patrol { background: #e8d0c0; color: #4a2a1a; }
+  .timeline { margin: 1.5rem 0; }
+  .tl-item { display: flex; align-items: flex-start; margin-bottom: 0.5rem; }
+  .tl-time { width: 5rem; font-weight: 700; color: #4a6a4a; font-size: 0.85rem; flex-shrink: 0; }
+  .tl-bar { width: 2px; background: #4a8a4a; margin: 0 0.8rem; align-self: stretch; min-height: 1.5rem; }
+  .tl-content { font-size: 0.85rem; color: #333; }
+  .tl-content small { color: #888; }
+  .cp-card {
+    background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+  }
+  .cp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .cp-coords { font-family: monospace; font-size: 0.85rem; color: #666; }
+  .cp-count { font-size: 1.3rem; font-weight: 700; color: #2a6a3a; }
+  .cp-folders { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.3rem; }
+  .note { background: #e8e0d0; border-left: 4px solid #8a7a6a; padding: 0.8rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.85rem; margin: 1rem 0; }
+  .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #d0c8b8; font-size: 0.75rem; color: #888; text-align: center; }
+  .map-container { width: 100%; height: 500px; border-radius: 12px; border: 1px solid #d0c8b8; margin: 1.5rem 0; }
+  a { color: #2a6a4a; }
+  @media print {
+    body { background: #fff; }
+    .card, .cp-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🏔️ 馬鞍山郊遊徑</h1>
+<div class="subtitle">山徑・水道巡查相片分析報告 · 2026年7月23日</div>
+
+<div class="summary-cards">
+  <div class="card"><div class="num">72</div><div class="label">總相片數</div></div>
+  <div class="card"><div class="num">72</div><div class="label">有 GPS 坐標</div></div>
+  <div class="card"><div class="num">10</div><div class="label">GPS CheckPoints</div></div>
+  <div class="card"><div class="num">2.5h</div><div class="label">拍攝時段</div></div>
+  <div class="card"><div class="num">292-423m</div><div class="label">海拔範圍</div></div>
+  <div class="card"><div class="num">1</div><div class="label">拍攝日期</div></div>
+</div>
+
+<h2>📁 相片來源</h2>
+<table>
+  <tr><th>類別</th><th>數量</th><th>標記</th></tr>
+  <tr><td>郊遊徑水道記錄</td><td>18</td><td><span class="tag tag-stream">🏔️ 郊遊徑水道</span></td></tr>
+  <tr><td>清理水道前後對比</td><td>24</td><td><span class="tag tag-water">💧 清理水道</span></td></tr>
+  <tr><td>山徑巡查記錄</td><td>30</td><td><span class="tag tag-patrol">📋 山徑巡查</span></td></tr>
+</table>
+
+<h2>🕐 拍攝時間線</h2>
+<div class="timeline">
+  <div class="tl-item"><div class="tl-time">10:27</div><div class="tl-bar"></div><div class="tl-content">CP6 出發（292-309m）<small> · 3類記錄均有</small></div></div>
+  <div class="tl-item"><div class="tl-time">10:32</div><div class="tl-bar"></div><div class="tl-content">CP4 · 郊遊徑水道記錄開始</div></div>
+  <div class="tl-item"><div class="tl-time">10:39-10:52</div><div class="tl-bar"></div><div class="tl-content">CP3 密集記錄（12張）· 3類同時記錄</div></div>
+  <div class="tl-item"><div class="tl-time">11:00-11:21</div><div class="tl-bar"></div><div class="tl-content">🔥 CP1 · 全日最密集（19張）</div></div>
+  <div class="tl-item"><div class="tl-time">11:47-11:48</div><div class="tl-bar"></div><div class="tl-content">CP5 · 最高點（414-415m）</div></div>
+  <div class="tl-item"><div class="tl-time">12:20-12:38</div><div class="tl-bar"></div><div class="tl-content">🔥 CP2 · 清理水道重點（18張）</div></div>
+  <div class="tl-item"><div class="tl-time">12:53</div><div class="tl-bar"></div><div class="tl-content">CP7 · 最後紀錄</div></div>
+</div>
+
+<h2>📍 GPS CheckPoints 詳細</h2>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP1 🔥 最多相</strong><br><span class="cp-coords">22.397°N, 114.249°E</span></span>
+    <span class="cp-count">19 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 371-380m · 時間 11:00-11:21</div>
+  <div class="cp-folders">
+    <span class="tag tag-stream">郊遊徑水道 4張</span>
+    <span class="tag tag-water">清理水道 4張</span>
+    <span class="tag tag-patrol">山徑巡查 11張</span>
+  </div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP2 🔥 清理水道重點</strong><br><span class="cp-coords">22.395°N, 114.250°E</span></span>
+    <span class="cp-count">18 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 387-423m · 時間 12:20-12:38</div>
+  <div class="cp-folders">
+    <span class="tag tag-stream">郊遊徑水道 4張</span>
+    <span class="tag tag-water">清理水道 10張 🔥</span>
+    <span class="tag tag-patrol">山徑巡查 4張</span>
+  </div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP3</strong><br><span class="cp-coords">22.398°N, 114.248°E</span></span>
+    <span class="cp-count">12 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 332-366m · 時間 10:39-10:52</div>
+  <div class="cp-folders">
+    <span class="tag tag-stream">郊遊徑水道 4張</span>
+    <span class="tag tag-water">清理水道 3張</span>
+    <span class="tag tag-patrol">山徑巡查 5張</span>
+  </div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP4</strong><br><span class="cp-coords">22.399°N, 114.248°E</span></span>
+    <span class="cp-count">7 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 328-368m · 時間 10:32-10:39</div>
+  <div class="cp-folders">
+    <span class="tag tag-stream">郊遊徑水道 3張</span>
+    <span class="tag tag-water">清理水道 3張</span>
+    <span class="tag tag-patrol">山徑巡查 1張</span>
+  </div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP5</strong><br><span class="cp-coords">22.396°N, 114.247°E</span></span>
+    <span class="cp-count">5 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 414-415m 🏔️ 最高點 · 時間 11:47-11:48</div>
+  <div class="cp-folders"><span class="tag tag-patrol">山徑巡查 5張</span></div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP6</strong><br><span class="cp-coords">22.400°N, 114.247°E</span></span>
+    <span class="cp-count">4 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 292-309m · 時間 10:27</div>
+  <div class="cp-folders">
+    <span class="tag tag-stream">郊遊徑水道 1張</span>
+    <span class="tag tag-water">清理水道 2張</span>
+    <span class="tag tag-patrol">山徑巡查 1張</span>
+  </div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP7</strong><br><span class="cp-coords">22.395°N, 114.251°E</span></span>
+    <span class="cp-count">3 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 392-393m · 時間 12:53</div>
+  <div class="cp-folders">
+    <span class="tag tag-stream">郊遊徑水道 1張</span>
+    <span class="tag tag-water">清理水道 2張</span>
+  </div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP8</strong><br><span class="cp-coords">22.396°N, 114.250°E</span></span>
+    <span class="cp-count">2 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 392m · 時間 12:21</div>
+  <div class="cp-folders"><span class="tag tag-patrol">山徑巡查 2張</span></div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP9</strong><br><span class="cp-coords">22.398°N, 114.249°E</span></span>
+    <span class="cp-count">1 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 394m · 時間 10:59</div>
+  <div class="cp-folders"><span class="tag tag-stream">郊遊徑水道 1張</span></div>
+</div>
+
+<div class="cp-card">
+  <div class="cp-header">
+    <span><strong>CP10</strong><br><span class="cp-coords">22.399°N, 114.247°E</span></span>
+    <span class="cp-count">1 張</span>
+  </div>
+  <div style="font-size:0.85rem;color:#666;">海拔 323m · 時間 10:33</div>
+  <div class="cp-folders"><span class="tag tag-patrol">山徑巡查 1張</span></div>
+</div>
+
+<h2>🔄 跨類別重叠位置</h2>
+<table>
+  <tr><th>CheckPoint</th><th>坐標</th><th style="text-align:center;">🏔️ 郊遊徑</th><th style="text-align:center;">💧 清理水道</th><th style="text-align:center;">📋 巡查</th><th style="text-align:center;">總計</th></tr>
+  <tr><td><strong>CP1</strong></td><td>22.397, 114.249</td><td style="text-align:center;">4</td><td style="text-align:center;">4</td><td style="text-align:center;">11</td><td style="text-align:center;"><strong>19</strong></td></tr>
+  <tr><td><strong>CP2</strong></td><td>22.395, 114.250</td><td style="text-align:center;">4</td><td style="text-align:center;">10</td><td style="text-align:center;">4</td><td style="text-align:center;"><strong>18</strong></td></tr>
+  <tr><td><strong>CP3</strong></td><td>22.398, 114.248</td><td style="text-align:center;">4</td><td style="text-align:center;">3</td><td style="text-align:center;">5</td><td style="text-align:center;"><strong>12</strong></td></tr>
+  <tr><td><strong>CP4</strong></td><td>22.399, 114.248</td><td style="text-align:center;">3</td><td style="text-align:center;">3</td><td style="text-align:center;">1</td><td style="text-align:center;"><strong>7</strong></td></tr>
+  <tr><td><strong>CP6</strong></td><td>22.400, 114.247</td><td style="text-align:center;">1</td><td style="text-align:center;">2</td><td style="text-align:center;">1</td><td style="text-align:center;"><strong>4</strong></td></tr>
+</table>
+
+<h2>🗺️ 路線地圖</h2>
+<div class="map-container" id="map"></div>
+
+<div class="note">
+  <strong>📌 技術備註</strong><br>
+  所有相片均為 iPhone 12 Pro Max 拍攝，EXIF 數據完整，包含 GPS 坐標及海拔高度。<br>
+  路線以三種虛／實線分別顯示「郊遊徑水道記錄」「清理水道前後對比」「山徑巡查記錄」三條路徑。<br>
+  圓圈大小代表該 CheckPoint 嘅相片數量。
+</div>
+
+<div class="footer">
+  由 無虛 (mo mo) 生成 · 報告日期 2026-07-24<br>
+  資料來源：Google Drive 共享資料夾 · 分享版本
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const cps = [
+  { id:"CP6", lat:22.400, lng:114.247, time:"10:27", alt:"292-309m", total:4, 
+    f:[{n:"郊遊徑水道",c:1},{n:"清理水道",c:2},{n:"山徑巡查",c:1}] },
+  { id:"CP4", lat:22.399, lng:114.248, time:"10:32-10:39", alt:"328-368m", total:7,
+    f:[{n:"郊遊徑水道",c:3},{n:"清理水道",c:3},{n:"山徑巡查",c:1}] },
+  { id:"CP10",lat:22.399, lng:114.247, time:"10:33", alt:"323m", total:1,
+    f:[{n:"山徑巡查",c:1}] },
+  { id:"CP3", lat:22.398, lng:114.248, time:"10:39-10:52", alt:"332-366m", total:12,
+    f:[{n:"郊遊徑水道",c:4},{n:"清理水道",c:3},{n:"山徑巡查",c:5}] },
+  { id:"CP9", lat:22.398, lng:114.249, time:"10:59", alt:"394m", total:1,
+    f:[{n:"郊遊徑水道",c:1}] },
+  { id:"CP1", lat:22.397, lng:114.249, time:"11:00-11:21", alt:"371-380m", total:19,
+    f:[{n:"郊遊徑水道",c:4},{n:"清理水道",c:4},{n:"山徑巡查",c:11}] },
+  { id:"CP5", lat:22.396, lng:114.247, time:"11:47-11:48", alt:"414-415m", total:5,
+    f:[{n:"山徑巡查",c:5}] },
+  { id:"CP2", lat:22.395, lng:114.250, time:"12:20-12:38", alt:"387-423m", total:18,
+    f:[{n:"郊遊徑水道",c:4},{n:"清理水道",c:10},{n:"山徑巡查",c:4}] },
+  { id:"CP8", lat:22.396, lng:114.250, time:"12:21", alt:"392m", total:2,
+    f:[{n:"山徑巡查",c:2}] },
+  { id:"CP7", lat:22.395, lng:114.251, time:"12:53", alt:"392-393m", total:3,
+    f:[{n:"郊遊徑水道",c:1},{n:"清理水道",c:2}] }
+];
+cps.sort((a,b)=>a.time.localeCompare(b.time));
+
+const map = L.map('map').setView([22.397,114.249],16);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap',maxZoom:19}).addTo(map);
+L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenTopoMap',maxZoom:17,opacity:0.4}).addTo(map);
+
+const routes = {
+  "郊遊徑水道":{color:"#4a8a4a",weight:4,opacity:0.8,dash:null},
+  "清理水道":{color:"#3a6a9a",weight:4,opacity:0.8,dash:"10,6"},
+  "山徑巡查":{color:"#9a6a3a",weight:4,opacity:0.8,dash:"4,4"}
+};
+const pts = {"郊遊徑水道":[],"清理水道":[],"山徑巡查":[]};
+cps.forEach(c=>{c.f.forEach(f=>{for(let i=0;i<f.c;i++){if(pts[f.n])pts[f.n].push([c.lat,c.lng])}})});
+Object.entries(routes).forEach(([n,s])=>{
+  const p=pts[n];
+  if(p.length>1)L.polyline(p,{color:s.color,weight:s.weight,opacity:s.opacity,dashArray:s.dash}).addTo(map).bindPopup(`<b>${n}</b><br>${p.length}張`);
+});
+const clr=["#d44","#e82","#4a4","#4ae","#84e","#e4a","#4aa","#a84","#888","#666"];
+cps.forEach((c,i)=>{
+  const sz=Math.max(8,Math.min(28,c.total*1.2));
+  const fh=c.f.map(f=>`<span style="display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.75rem;background:${routes[f.n]?routes[f.n].color+'22':'#888'};color:${routes[f.n]?routes[f.n].color:'#888'};margin:0.1rem;">${f.n} ${f.c}張</span>`).join('');
+  L.circleMarker([c.lat,c.lng],{radius:sz,fillColor:clr[i%clr.length],color:"#fff",weight:2,fillOpacity:0.8})
+    .addTo(map)
+    .bindPopup(`<div style="font-family:sans-serif;min-width:160px;"><b>${c.id}</b><br><span style="font-size:0.8rem;color:#666;">${c.lat.toFixed(3)}°N, ${c.lng.toFixed(3)}°E<br>${c.time} · ${c.alt}</span><br><b>${c.total}張</b><br>${fh}</div>`)
+    .bindTooltip(`${c.id} (${c.total}張)`,{direction:'top'});
+});
+L.control({position:'bottomleft'}).onAdd=function(){
+  const d=L.DomUtil.create('div');
+  d.style.background='#fff8f0';d.style.padding='0.5rem 0.8rem';d.style.borderRadius='8px';d.style.border='1px solid #d0c8b8';d.style.fontSize='0.8rem';d.style.fontFamily='sans-serif';
+  d.innerHTML=`<b>路線</b><br><span style="display:inline-block;width:20px;height:3px;background:#4a8a4a;margin-right:0.3rem;"></span>郊遊徑水道<br><span style="display:inline-block;width:20px;border-top:3px dashed #3a6a9a;margin-right:0.3rem;"></span>清理水道<br><span style="display:inline-block;width:20px;border-top:3px dotted #9a6a3a;margin-right:0.3rem;"></span>山徑巡查<br><span style="font-size:0.7rem;color:#888;">⊙大小=相片數</span>`;
+  return d;
+}.addTo(map);
+map.fitBounds(cps.map(c=>[c.lat,c.lng]),{padding:[40,40]});
+</script>
+</body>
+</html>
