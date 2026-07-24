@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📋 路線報告操作手冊 · 義工用</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; line-height: 1.9; }
+  @media (max-width: 600px) { html { font-size: 16px; } }
+  body {
+    font-family: -apple-system, "Noto Sans HK", "PingFang HK", sans-serif;
+    background: #f0e8d8; color: #1a1a16; max-width: 600px; margin: 0 auto; padding: 1rem;
+  }
+  h1 { font-size: 1.3rem; color: #1a3a1a; border-left: 5px solid #2e7d32; padding-left: 0.7rem; margin-bottom: 0.3rem; }
+  .sub { font-size: 0.55rem; color: #666; margin-bottom: 1rem; padding-left: 1rem; }
+  
+  .step { display: flex; gap: 0.6rem; margin-bottom: 1rem; align-items: flex-start; }
+  .num { background: #2e7d32; color: #fff; width: 1.6rem; height: 1.6rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .content { flex: 1; }
+  .content h3 { font-size: 0.75rem; color: #1b5e20; margin-bottom: 0.2rem; }
+  .content p, .content li { font-size: 0.6rem; color: #333; line-height: 1.7; }
+  .content ul { padding-left: 1rem; margin: 0.2rem 0; }
+  
+  .box { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 8px; padding: 0.5rem 0.6rem; margin: 0.3rem 0; }
+  .box-green { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.4rem 0.6rem; border-radius: 0 6px 6px 0; margin: 0.4rem 0; font-size: 0.55rem; }
+  .box-orange { background: #fff0e0; border-left: 4px solid #c96442; padding: 0.4rem 0.6rem; border-radius: 0 6px 6px 0; margin: 0.4rem 0; font-size: 0.55rem; }
+  
+  .link-box { background: #1a1a16; color: #c0e8c0; padding: 0.5rem; border-radius: 6px; font-size: 0.5rem; word-break: break-all; margin: 0.2rem 0; font-family: monospace; }
+  .link-blue { background: #e8f0ff; color: #1a4a7a; padding: 0.3rem 0.5rem; border-radius: 4px; font-size: 0.55rem; word-break: break-all; }
+  
+  hr { border: none; border-top: 1px dashed #d0c8b8; margin: 1.2rem 0; }
+  .tip { font-size: 0.5rem; color: #888; }
+  .footer { text-align: center; font-size: 0.45rem; color: #888; margin-top: 1.5rem; padding-top: 0.8rem; border-top: 1px solid #d0c8b8; }
+</style>
+</head>
+<body>
+
+<h1>📋 路線報告操作手冊</h1>
+<div class="sub">義工朋友跟住做 · 唔使裝軟件 · 全部免費</div>
+
+<!-- ===== WHAT YOU NEED ===== -->
+<div class="box-green">
+<strong>你需要：</strong>
+① 行山相片（iPhone 開定位影） · ② Google 帳戶（Gmail） · ③ 約 5 分鐘
+</div>
+
+<!-- ===== STEP 1 ===== -->
+<div class="step">
+  <div class="num">1</div>
+  <div class="content">
+    <h3>開工具網頁</h3>
+    <p>用手機或電腦 browser 㩒呢條 link：</p>
+    <div class="link-box">https://kwokfamilyapps.github.io/momo-coffee/ultimate-route-report.html</div>
+    <p class="tip">📌 唔使裝 App，唔使登記，就咁 open 就得</p>
+  </div>
+</div>
+
+<!-- ===== STEP 2 ===== -->
+<div class="step">
+  <div class="num">2</div>
+  <div class="content">
+    <h3>拖入相片</h3>
+    <p>㩒中間灰色格，揀你嘅行山相（HEIC/JPG 都得）</p>
+    <p>或者直接將相片由電腦資料夾拖入去</p>
+    <div class="box-green" style="font-size:0.55rem;">
+    ✅ 可以一次過揀 100 張都得<br>
+    ✅ 相片唔會 upload 去任何 server，只係你部電腦處理
+    </div>
+    <p>等一陣，見到出 <strong>「✅ XX張有 GPS」</strong></p>
+  </div>
+</div>
+
+<!-- ===== STEP 3 ===== -->
+<div class="step">
+  <div class="num">3</div>
+  <div class="content">
+    <h3>填資料 + 生成報告</h3>
+    <p>填寫：</p>
+    <ul>
+      <li><strong>日期</strong> — 自動係今日，可以改</li>
+      <li><strong>路線名稱</strong> — eg「馬鞍山郊遊徑」、「梅窩古道」</li>
+      <li><strong>描述</strong>（可選）— 加句簡單描述</li>
+    </ul>
+    <p>然後㩒 🚀 <strong>「生成報告」</strong></p>
+    <p>見到 ✅ 報告已生成 → 㩒 <strong>📥 Download HTML 報告</strong></p>
+    <div class="box-orange">
+    ⚠️ 手機用家：Download 後可能要去「檔案管理」搵返個 .html 檔
+    </div>
+  </div>
+</div>
+
+<!-- ===== STEP 4 ===== -->
+<div class="step">
+  <div class="num">4</div>
+  <div class="content">
+    <h3>上載到 Google Drive</h3>
+    <p>將 download 嘅 <strong>.html 檔案</strong> upload 上 Google Drive：</p>
+    <p><strong>手機：</strong>開 Google Drive App → 右下角 + → 上載 → 揀個 .html 檔</p>
+    <p><strong>電腦：</strong>開 drive.google.com → 左上角 + → 檔案上載 → 揀個 .html 檔</p>
+    <p>Upload 完右鍵個檔 → <strong>「共用」</strong> → 設定做：</p>
+    <div class="box" style="text-align:center;font-size:0.6rem;">
+    🔗 <strong>「任何知道連結嘅人都可以檢視」</strong>
+    </div>
+    <p>㩒「複製連結」</p>
+  </div>
+</div>
+
+<!-- ===== STEP 5 ===== -->
+<div class="step">
+  <div class="num">5</div>
+  <div class="content">
+    <h3>轉做公開網頁 Link</h3>
+    <p>去 <strong>https://htmlpreview.github.io/</strong></p>
+    <p>將你 Google Drive 嘅 link 貼入去 → 㩒 <strong>Preview</strong></p>
+    <div class="box" style="text-align:center;font-size:0.55rem;">
+    📋 <strong>正確顯示到報告地圖？</strong> ✅ 就得啦<br>
+    ❌ 空白？ Check 下 Google Drive 共用設定係咪「任何人可以檢視」
+    </div>
+  </div>
+</div>
+
+<!-- ===== STEP 6 ===== -->
+<div class="step">
+  <div class="num">6</div>
+  <div class="content">
+    <h3>分享俾朋友 🎉</h3>
+    <p>Copy browser 上面條 link，Send 俾朋友就得！</p>
+    <div class="link-box" style="font-size:0.5rem;">https://htmlpreview.github.io/?https://drive.google.com/.../report.html</div>
+    <p class="tip">📌 朋友㩒入去就睇到有地圖、CheckPoint、統計嘅完整報告</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- ===== QUICK REFERENCE ===== -->
+<h2 style="font-size:0.8rem;color:#1a3a1a;margin:0.5rem 0;">📌 速查表</h2>
+
+<div class="box" style="font-size:0.55rem;">
+<table style="width:100%;border-collapse:collapse;font-size:0.55rem;">
+  <tr><th style="text-align:left;padding:0.2rem;border-bottom:1px solid #d0c8b8;">步驟</th><th style="text-align:left;padding:0.2rem;border-bottom:1px solid #d0c8b8;">㩒邊度</th></tr>
+  <tr><td style="padding:0.2rem;">1. 開工具</td><td style="padding:0.2rem;">https://kwokfamilyapps.github.io/momo-coffee/ultimate-route-report.html</td></tr>
+  <tr><td style="padding:0.2rem;">2. 拖相</td><td style="padding:0.2rem;">㩒灰色格 → 揀相</td></tr>
+  <tr><td style="padding:0.2rem;">3. 填資料</td><td style="padding:0.2rem;">日期 + 路線名 → 㩒「生成報告」</td></tr>
+  <tr><td style="padding:0.2rem;">4. Download</td><td style="padding:0.2rem;">㩒「Download HTML 報告」</td></tr>
+  <tr><td style="padding:0.2rem;">5. Upload Drive</td><td style="padding:0.2rem;">Google Drive → 共用 → 任何人檢視</td></tr>
+  <tr><td style="padding:0.2rem;">6. htmlpreview</td><td style="padding:0.2rem;">貼 link → Preview → Copy 條 link → Send 朋友</td></tr>
+</table>
+</div>
+
+<!-- ===== TIPS ===== -->
+<div class="box-orange" style="font-size:0.5rem;">
+<strong>💡 常見問題：</strong><br>
+• <strong>相有 GPS 嗎？</strong> iPhone 開定位影相就有，唔使額外設定<br>
+• <strong>一次可以幾多張？</strong> 1-100 張都得，愈多張 CheckPoint 愈準<br>
+• <strong>HTML 點開？</strong> Download 後雙擊就開到（手機要揀 browser 開啟）<br>
+• <strong>朋友睇唔到？</strong> Check Google Drive 共用係咪「任何人」
+</div>
+
+<!-- ===== OUTPUT ===== -->
+<h2 style="font-size:0.8rem;color:#1a3a1a;margin:0.5rem 0;">📊 出到嘅報告係咁</h2>
+
+<div class="box-green" style="text-align:center;font-size:0.6rem;">
+✅ 統計卡片（總相數、CP數、海拔）<br>
+✅ Leaflet 互動地圖（㩒 marker 有資料）<br>
+✅ 路線虛線連接所有 CheckPoint<br>
+✅ 每個 CP 詳細列表<br>
+✅ Summary Table
+</div>
+
+<div class="footer">
+由 無虛 (mo mo) 設計 · v1.0 · 義工朋友操作手冊 🗺️
+</div>
+
+</body>
+</html>
