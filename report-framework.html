@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🗺️ 山徑報告生成框框 — 義工朋友用</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 20px; line-height: 1.9; }
+  @media (max-width: 600px) { html { font-size: 18px; } }
+  body {
+    font-family: -apple-system, "Noto Sans HK", "PingFang HK", "Microsoft JhengHei", sans-serif;
+    background: #f0e8d8; color: #1a1a16; padding: 1rem; max-width: 680px; margin: 0 auto;
+  }
+  h1 { font-family: Georgia, serif; font-size: 1.4rem; color: #1a3a1a; border-left: 5px solid #4a8a4a; padding-left: 0.8rem; margin: 0.5rem 0; }
+  .sub { font-size: 0.65rem; color: #666; margin-bottom: 1rem; padding-left: 1rem; }
+  h2 { font-size: 1rem; color: #2a5a2a; margin-top: 1.5rem; border-bottom: 2px solid #d0c8b8; padding-bottom: 0.2rem; display: flex; align-items: center; gap: 0.3rem; }
+  h2 .step { background: #2a6a3a; color: #fff; font-size: 0.7rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+  h3 { font-size: 0.8rem; color: #3a6a3a; margin-top: 1rem; }
+  .card { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 10px; padding: 0.8rem; margin: 0.6rem 0; }
+  .warn { background: #fff0e0; border-left: 4px solid #c96442; padding: 0.5rem 0.7rem; border-radius: 0 8px 8px 0; font-size: 0.7rem; margin: 0.6rem 0; }
+  .good { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.5rem 0.7rem; border-radius: 0 8px 8px 0; font-size: 0.7rem; margin: 0.6rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.7rem; margin: 0.6rem 0; }
+  th, td { padding: 0.3rem 0.4rem; border-bottom: 1px solid #d0c8b8; text-align: left; }
+  th { background: #2a4a2a; color: #e0e8d8; font-weight: 600; }
+  .code-box { background: #1a1a16; color: #c0e8c0; padding: 0.7rem; border-radius: 6px; font-size: 0.6rem; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.5; margin: 0.4rem 0; }
+  .placeholder { background: #fff3cd; color: #856404; padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.65rem; font-family: monospace; }
+  .footer { margin-top: 2rem; padding-top: 0.8rem; border-top: 1px solid #d0c8b8; font-size: 0.6rem; color: #888; text-align: center; }
+  .template-box { border: 2px dashed #4a8a4a; background: #f5efe0; border-radius: 10px; padding: 0.8rem; margin: 0.6rem 0; }
+</style>
+</head>
+<body>
+
+<h1>🗺️ 山徑報告生成框框</h1>
+<div class="sub">義工朋友用 · 只需改 <span class="placeholder">{黃色字}</span> 就得</div>
+
+<div class="good" style="font-size:0.7rem;">
+<strong>用法好簡單：</strong><br>
+Step 1 → Step 2 → Step 3 → ✅ 出到報告 link<br>
+每次只需要改 <span class="placeholder">{呢啲黃色字}</span> 嘅內容
+</div>
+
+<!-- ===== STEP 1 ===== -->
+<h2><span class="step">1</span> 📸 準備數據</h2>
+
+<div class="card" style="font-size:0.7rem;">
+<strong>每個 CheckPoint 嘅相整理成 CSV，格式係咁：</strong>
+</div>
+
+<div class="code-box">filename,datetime,lat,lon,altitude,group
+IMG_1765.HEIC,2026-07-23 10:27:00,22.400197,114.246644,309,CP1
+IMG_1768.HEIC,2026-07-23 10:52:51,22.398025,114.248436,359,CP1
+IMG_1774.HEIC,2026-07-23 12:20:15,22.395411,114.249533,423,CP2</div>
+
+<div class="card" style="font-size:0.65rem;">
+<strong>點樣得到呢個 CSV？有兩個方法：</strong><br>
+<b>方法 A：</b>用 Colab Notebook（自動抽 GPS，見下面）<br>
+<b>方法 B：</b>自己用 Excel 打（如果知坐標）
+</div>
+
+<!-- ===== COLAB MINI ===== -->
+<div class="card" style="font-size:0.65rem;border-left:3px solid #2e7d32;">
+<strong>📓 Colab Notebook（Copy & Paste 去 colab.research.google.com）：</strong><br>
+<div class="code-box" style="font-size:0.55rem;">
+# @title 1. 安裝 HEIC 支援
+!pip install pillow-heif -q
+
+# @title 2. Mount Google Drive
+from google.colab import drive
+drive.mount('/content/drive')
+
+# @title 3. ✏️ 改呢行 — 你放相嘅路徑
+FOLDER_PATH = <span style="background:#fff3cd;color:#856404;">"/content/drive/My Drive/山徑相片/2026-07-23"</span>
+
+# @title 4. Run 抽 GPS → CSV
+import os, csv; from PIL import Image; from pillow_heif import register_heif_opener; register_heif_opener()
+from collections import defaultdict
+def dms_to_dd(d, r): return round(float(d[0])+float(d[1])/60+float(d[2])/3600, 6) if d and len(d)>2 else None
+
+results = []
+for r, d, fs in os.walk(FOLDER_PATH):
+    for f in sorted(fs):
+        if not f.lower().endswith(('.heic','.jpg','.jpeg')): continue
+        try:
+            img = Image.open(os.path.join(r,f)); ex = img.getexif(); dt = ex.get(306,"")
+            lat=lon=alt=None
+            if 34853 in ex:
+                g = ex.get_ifd(34853)
+                if g.get(2) and g.get(4): lat=dms_to_dd(g[2],g.get(1,b'N')); lon=dms_to_dd(g[4],g.get(3,b'E'))
+                if g.get(6): alt=round(float(g[6]),1)
+            if lat and lon: results.append({'filename':f,'datetime':dt[:19],'lat':lat,'lon':lon,'altitude':alt or '','group':''})
+        except: pass
+
+groups = defaultdict(list)
+for p in results: groups[(round(p['lat'],3),round(p['lon'],3))].append(p)
+for i,(c,ps) in enumerate(sorted(groups.items()),1):
+    for p in ps: p['group']=f'CP{i}'
+
+out = os.path.dirname(FOLDER_PATH)+"/gps_data.csv"
+with open(out,'w',newline='',encoding='utf-8-sig') as f:
+    w=csv.DictWriter(f,fieldnames=['filename','datetime','lat','lon','altitude','group']); w.writeheader(); w.writerows(results)
+print(f"✅ Done! {len(results)} photos, {len(groups)} CPs → {out}")
+</div>
+</div>
+
+<!-- ===== STEP 2 ===== -->
+<h2><span class="step">2</span> 🤖 將 CSV + Prompt 俾 Gemini</h2>
+
+<div class="template-box">
+<h3 style="margin-top:0;">📋 Prompt Template（Copy 晒，改 <span class="placeholder">{黃色字}</span>）</h3>
+<div class="code-box" style="font-size:0.55rem;">
+我 upload 咗一個 CSV 檔案，係 <span class="placeholder">{馬鞍山郊遊徑}</span> 嘅巡查相片 GPS 數據。
+
+📊 基本資料：
+- 日期：<span class="placeholder">{2026年7月23日}</span>
+- 總相片：<span class="placeholder">{XX}</span> 張
+- CheckPoints：<span class="placeholder">{X}</span> 個
+- 海拔範圍：<span class="placeholder">{XXX-XXX}</span> 米
+- 拍攝工具：<span class="placeholder">{iPhone 12 Pro Max}</span>
+
+🗺️ 請幫我生成一份完整 HTML 報告，手機 friendly：
+
+1. 統計摘要卡片（總相數、CP數、海拔、日期）
+2. Leaflet.js 互動地圖，用 OpenStreetMap tiles：
+   - 每個 CP 一個 circleMarker，半徑 = 相片數 × <span class="placeholder">{1.5}</span>
+   - 顏色：少相=🟢綠色，中相=🟠橙色，多相=🔴紅色
+   - 㩒 marker 彈出 CP 編號 + 相片數 + 海拔
+   - 用 <span class="placeholder">{綠色虛線}</span> 連接所有 CP 做路線
+   - 地圖 fit 晒所有標記
+3. 每個 CP 詳細卡：編號、坐標、相片數、海拔、時間範圍
+4. Summary Table
+
+額外要求：
+- <span class="placeholder">{（可以加其他要求，例如：顏色主題、加時間線等）}</span>
+
+風格：溫暖自然色系，背景 #f0e8d8，綠色為主。
+直接俾完整 HTML code。
+</div>
+</div>
+
+<div class="card" style="font-size:0.7rem;">
+<strong>操作步驟：</strong><br>
+1️⃣ 開 <strong>https://gemini.google.com</strong><br>
+2️⃣ 右上角 Upload CSV 文件（㩒 + → Upload）<br>
+3️⃣ Copy 上面 Prompt → Paste 落去<br>
+4️⃣ 改晒 <span class="placeholder">{黃色字}</span> 嘅內容<br>
+5️⃣ Enter → Gemini 會輸出 HTML<br>
+6️⃣ Copy HTML → 貼上記事本 → Save 做 <span class="placeholder">{report-20260723}</span>.html
+</div>
+
+<!-- ===== STEP 3 ===== -->
+<h2><span class="step">3</span> ☁️ 放上網俾人睇</h2>
+
+<div class="card" style="font-size:0.7rem;">
+<strong>最簡單方法（唔使 setup，即時有）：</strong><br><br>
+<b>Option A：htmlpreview（最快）</b><br>
+1. Upload 個 HTML 上 Google Drive<br>
+2. Right Click → Share → Anyone with link<br>
+3. Copy link → Paste 落：<br>
+<strong>https://htmlpreview.github.io/?</strong> + 你條 Google Drive link<br>
+㩒 Enter 就睇到 ✅<br><br>
+
+<b>Option B：Google Cloud Storage（要 setup 一次）</b><br>
+1. 去 console.cloud.google.com → Cloud Storage<br>
+2. Upload HTML → Permissions → allUsers → Storage Object Viewer<br>
+3. 得到 link：<br>
+<strong>https://storage.googleapis.com/</strong><span class="placeholder">{bucket-name}</span>/<span class="placeholder">{report-20260723}</span>.html
+</div>
+
+<hr style="margin:1.5rem 0;border:none;border-top:2px dashed #4a8a4a;">
+
+<!-- ===== SUMMARY ===== -->
+<h2>📦 框框總結：每次只需改 6 樣嘢</h2>
+
+<table>
+  <tr><th style="width:5%;">#</th><th style="width:25%;">改咩</th><th>位置</th></tr>
+  <tr><td>1</td><td>📂 Folder 路徑</td><td>Colab Notebook 第 3 格</td></tr>
+  <tr><td>2</td><td>📍 地點名</td><td>Gemini Prompt 第一句</td></tr>
+  <tr><td>3</td><td>📅 日期</td><td>Gemini Prompt</td></tr>
+  <tr><td>4</td><td>📸 相片總數</td><td>Gemini Prompt</td></tr>
+  <tr><td>5</td><td>📏 海拔範圍</td><td>Gemini Prompt</td></tr>
+  <tr><td>6</td><td>🎨 特別要求</td><td>Gemini Prompt 最底</td></tr>
+</table>
+
+<div class="good" style="font-size:0.75rem;">
+<strong>✅ 義工朋友只需要識 3 樣嘢：</strong><br>
+1️⃣ 改 Folder 路徑 + Run Colab（1 分鐘）<br>
+2️⃣ 改 6 個 <span class="placeholder">{黃色字}</span> + Paste 俾 Gemini（2 分鐘）<br>
+3️⃣ Copy HTML → Upload → 出 Link（1 分鐘）<br><br>
+<strong>總計：~5 分鐘就出一份專業報告 🚀</strong>
+</div>
+
+<div class="warn" style="font-size:0.7rem;">
+<strong>💡 進階 Tips：</strong><br>
+• 如果同一條路線行幾次，可以叫 Gemini 將新舊數據 merge 做「對比報告」<br>
+• 如果想加「清理前後對比」描述，喺 CSV 加多個 column "status"（before/after）<br>
+• 如果 Gemini 出嘅 map 唔靚，叫佢「用多啲顏色/加大啲 marker/加多啲資料」<br>
+• 可以叫 Gemini 加「路線海拔圖」（用 Chart.js）— 但呢個要睇佢生唔生成到
+</div>
+
+<!-- ===== SAMPLE ===== -->
+<div class="card" style="font-size:0.7rem;border-left:3px solid #c96442;">
+<strong>🎯 下一步：</strong> 你想我而家用今日 72 張相嘅 sample CSV，行一次個框架，俾你睇下成品效果？<br>
+即係：我將 CSV + filled prompt 模擬 Gemini 生成一份 HTML 報告，你睇下質素接唔接受？
+</div>
+
+<div class="footer">
+由 無虛 (mo mo) 設計 · 2026-07-24<br>
+框架版本 v1.0 — 義工朋友只需改 <span class="placeholder">{黃色字}</span> 就出到報告 🗺️
+</div>
+
+</body>
+</html>
