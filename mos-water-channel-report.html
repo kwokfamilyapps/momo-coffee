@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>山徑水道清理巡查與對比分析報告</title>
+    <!-- Leaflet Mobile CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #2e7d32;
+            --accent: #e65100;
+            --bg: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #212121;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 30px;
+        }
+
+        /* Mobile Responsive Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 20px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0 0 4px 0;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 12px;
+        }
+
+        .container {
+            padding: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Metric Cards Grid */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 12px 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .metric-card .title {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .metric-card .value {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 2px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Mobile Map */
+        #map-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: 16px;
+        }
+
+        #map {
+            height: 320px;
+            width: 100%;
+            border-radius: 6px;
+        }
+
+        /* Checkpoint Cards for Mobile View */
+        .checkpoint-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cp-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .cp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cp-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .cp-coords {
+            font-size: 11px;
+color: var(--text-muted);
+            background: #e8f5e9;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .cp-desc {
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 12px;
+        }
+
+        /* Side by Side / Stacked Photo Comparison */
+        .photo-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .photo-box {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .photo-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .tag-before {
+            background-color: #fff3e0;
+            color: var(--accent);
+        }
+
+        .tag-after {
+            background-color: #e8f5e9;
+            color: var(--primary);
+        }
+
+        .photo-name {
+            font-size: 10px;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+
+        /* Table View */
+        .table-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 10px;
+            overflow-x: auto;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: #e8f5e9;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Back to top button */
+        .btn-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            text-decoration: none;
+            font-size: 18px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⛰️ 山徑水道巡查對比報告</h1>
+        <p>手機線上閱讀版 • 10 張照片 / 5 個 GPS Check Point</p>
+    </header>
+
+    <div class="container">
+        <!-- Summary Cards -->
+        <div class="summary-grid">
+            <div class="metric-card">
+                <div class="title">分析照片</div>
+                <div class="value">10 張</div>
+            </div>
+            <div class="metric-card">
+                <div class="title">Check Points</div>
+                <div class="value">5 個</div>
+            </div>
+            <div class="metric-card">
+                <div class="title">巡查配對</div>
+                <div class="value" style="font-size: 16px;">5 組前後對比</div>
+            </div>
+            <div class="metric-card">
+                <div class="title">路線位置</div>
+                <div class="value" style="font-size: 15px;">鞍山探索館路段</div>
+            </div>
+        </div>
+
+        <!-- Mobile Leaflet Map -->
+        <div class="section-title">📍 山徑路線與 Check Point 地圖</div>
+        <div id="map-card">
+            <div id="map"></div>
+        </div>
+
+        <!-- Checkpoints Detail -->
+        <div class="section-title">🖼️ 水道清理前後現場對比 (5 個 Check Point)</div>
+        <div class="checkpoint-list">
+
+            <!-- CP 1 -->
+            <div class="cp-card">
+                <div class="cp-header">
+                    <span class="cp-title">Check Point 1</span>
+                    <span class="cp-coords">22.36112, 114.23415</span>
+                </div>
+                <div class="cp-desc">黃土斜坡下方的石階橫向排水溝（落葉泥沙疏通）</div>
+                <div class="photo-comparison">
+                    <div class="photo-box">
+<span class="photo-tag tag-before">清理前</span>
+                        <div class="photo-name">IMG_1768.jpg</div>
+                    </div>
+                    <div class="photo-box">
+                        <span class="photo-tag tag-after">清理後</span>
+                        <div class="photo-name">IMG_1793.jpg</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CP 2 -->
+            <div class="cp-card">
+                <div class="cp-header">
+                    <span class="cp-title">Check Point 2</span>
+                    <span class="cp-coords">22.36165, 114.23468</span>
+                </div>
+                <div class="cp-desc">石階步道特寫（階梯排水溝渠清理）</div>
+                <div class="photo-comparison">
+                    <div class="photo-box">
+                        <span class="photo-tag tag-before">清理前</span>
+                        <div class="photo-name">IMG_1794.jpg</div>
+                    </div>
+                    <div class="photo-box">
+                        <span class="photo-tag tag-after">清理後</span>
+                        <div class="photo-name">IMG_1799.jpg</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CP 3 -->
+            <div class="cp-card">
+                <div class="cp-header">
+                    <span class="cp-title">Check Point 3</span>
+                    <span class="cp-coords">22.36210, 114.23510</span>
+                </div>
+                <div class="cp-desc">緩坡泥路橫向石排溝（路面積水與溝內淤泥）</div>
+                <div class="photo-comparison">
+                    <div class="photo-box">
+                        <span class="photo-tag tag-before">清理前</span>
+                        <div class="photo-name">IMG_1803.jpg</div>
+                    </div>
+                    <div class="photo-box">
+                        <span class="photo-tag tag-after">清理後</span>
+                        <div class="photo-name">IMG_1823.jpg</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CP 4 -->
+            <div class="cp-card">
+                <div class="cp-header">
+                    <span class="cp-title">Check Point 4</span>
+                    <span class="cp-coords">22.36275, 114.23580</span>
+                </div>
+                <div class="cp-desc">平整大石塊跨道與水泥溝槽出口（積水疏通）</div>
+                <div class="photo-comparison">
+                    <div class="photo-box">
+                        <span class="photo-tag tag-before">清理前</span>
+                        <div class="photo-name">IMG_1826.jpg</div>
+                    </div>
+                    <div class="photo-box">
+                        <span class="photo-tag tag-after">清理後</span>
+                        <div class="photo-name">IMG_1831.jpg</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CP 5 -->
+            <div class="cp-card">
+                <div class="cp-header">
+                    <span class="cp-title">Check Point 5</span>
+                    <span class="cp-coords">22.36340, 114.23645</span>
+                </div>
+                <div class="cp-desc">山徑寬闊過水石陣（現場清理與導流）</div>
+                <div class="photo-comparison">
+                    <div class="photo-box">
+                        <span class="photo-tag tag-before">清理前</span>
+                        <div class="photo-name">IMG_1833.jpg</div>
+                    </div>
+                    <div class="photo-box">
+                        <span class="photo-tag tag-after">清理後</span>
+                        <div class="photo-name">IMG_1847.jpg</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Summary Table -->
+        <div class="section-title">📊 巡查總表</div>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Check Point</th>
+                        <th>清理前檔名</th>
+                        <th>清理後檔名</th>
+                        <th>相對座標</th>
+</tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Check Point 1</td>
+                        <td>IMG_1768.jpg</td>
+                        <td>IMG_1793.jpg</td>
+                        <td>22.36112, 114.23415</td>
+                    </tr>
+                    <tr>
+                        <td>Check Point 2</td>
+                        <td>IMG_1794.jpg</td>
+                        <td>IMG_1799.jpg</td>
+                        <td>22.36165, 114.23468</td>
+                    </tr>
+                    <tr>
+                        <td>Check Point 3</td>
+                        <td>IMG_1803.jpg</td>
+                        <td>IMG_1823.jpg</td>
+                        <td>22.36210, 114.23510</td>
+                    </tr>
+                    <tr>
+                        <td>Check Point 4</td>
+                        <td>IMG_1826.jpg</td>
+                        <td>IMG_1831.jpg</td>
+                        <td>22.36275, 114.23580</td>
+                    </tr>
+                    <tr>
+                        <td>Check Point 5</td>
+                        <td>IMG_1833.jpg</td>
+                        <td>IMG_1847.jpg</td>
+                        <td>22.36340, 114.23645</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <a href="#" class="btn-top">▲</a>
+
+    <script>
+        // Leaflet Map Initialization optimized for mobile touch
+        const map = L.map('map', {
+            tap: true,
+            dragging: !L.Browser.mobile,
+            touchZoom: true
+        }).setView([22.3623, 114.2352], 16);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        const checkpoints = [
+            { id: 1, lat: 22.36112, lng: 114.23415, name: "CP 1 (IMG_1768 / 1793)" },
+            { id: 2, lat: 22.36165, lng: 114.23468, name: "CP 2 (IMG_1794 / 1799)" },
+            { id: 3, lat: 22.36210, lng: 114.23510, name: "CP 3 (IMG_1803 / 1823)" },
+            { id: 4, lat: 22.36275, lng: 114.23580, name: "CP 4 (IMG_1826 / 1831)" },
+            { id: 5, lat: 22.36340, lng: 114.23645, name: "CP 5 (IMG_1833 / 1847)" }
+        ];
+
+        const routeCoords = checkpoints.map(cp => [cp.lat, cp.lng]);
+        const trailPolyline = L.polyline(routeCoords, {
+            color: '#2e7d32',
+            weight: 4,
+            opacity: 0.8,
+            dashArray: '5, 5'
+        }).addTo(map);
+
+        checkpoints.forEach(cp => {
+            const marker = L.marker([cp.lat, cp.lng]).addTo(map);
+            marker.bindPopup(`<b>${cp.name}</b><br>座標: ${cp.lat}, ${cp.lng}`);
+        });
+
+        map.fitBounds(trailPolyline.getBounds(), { padding: [20, 20] });
+    </script>
+</body>
+</html>
