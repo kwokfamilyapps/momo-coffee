@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>義工專用 · 一鍵報告系統</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 20px; line-height: 1.9; }
+  @media (max-width: 600px) { html { font-size: 17px; } }
+  body {
+    font-family: -apple-system, "Noto Sans HK", "PingFang HK", "Microsoft JhengHei", sans-serif;
+    background: #f0e8d8; color: #1a1a16; padding: 1rem; max-width: 640px; margin: 0 auto;
+  }
+  h1 { font-family: Georgia, serif; font-size: 1.3rem; color: #1a3a1a; border-left: 5px solid #2e7d32; padding-left: 0.8rem; margin: 0.5rem 0 0.2rem 0; }
+  .sub { font-size: 0.6rem; color: #666; margin-bottom: 1rem; padding-left: 1rem; }
+  .flow { display: flex; align-items: center; justify-content: center; gap: 0.3rem; flex-wrap: wrap; margin: 1rem 0; }
+  .step-box { background: #fff8f0; border: 2px solid #4a8a4a; border-radius: 10px; padding: 0.5rem 0.7rem; text-align: center; min-width: 70px; }
+  .step-box .icon { font-size: 1.2rem; }
+  .step-box .label { font-size: 0.5rem; color: #555; }
+  .arrow { font-size: 1.2rem; color: #4a8a4a; }
+  h2 { font-size: 0.9rem; color: #1b5e20; margin-top: 1.2rem; border-bottom: 2px solid #d0c8b8; padding-bottom: 0.2rem; }
+  .card { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 10px; padding: 0.7rem; margin: 0.5rem 0; }
+  .good { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.5rem 0.7rem; border-radius: 0 8px 8px 0; font-size: 0.65rem; margin: 0.5rem 0; }
+  .code-box { background: #1a1a16; color: #c0e8c0; padding: 0.6rem; border-radius: 6px; font-size: 0.55rem; font-family: 'Courier New', monospace; white-space: pre-wrap; line-height: 1.5; margin: 0.4rem 0; }
+  .placeholder { background: #fff3cd; color: #856404; padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.6rem; font-family: monospace; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.6rem; margin: 0.5rem 0; }
+  th, td { padding: 0.25rem 0.4rem; border-bottom: 1px solid #d0c8b8; text-align: left; }
+  th { background: #2e7d32; color: #fff; font-weight: 600; }
+  .big-btn { display: block; background: #2e7d32; color: #fff; text-align: center; padding: 0.8rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.85rem; margin: 0.8rem 0; }
+  .big-btn:hover { background: #1b5e20; }
+  .footer { margin-top: 1.5rem; padding-top: 0.8rem; border-top: 1px solid #d0c8b8; font-size: 0.55rem; color: #888; text-align: center; }
+  ol { font-size: 0.7rem; padding-left: 1.2rem; }
+  li { margin-bottom: 0.3rem; }
+</style>
+</head>
+<body>
+
+<h1>📁 Share Folder → 自動出報告</h1>
+<div class="sub">義工只需 Share Google Drive link · 三個步驟搞掂</div>
+
+<div class="flow">
+  <div class="step-box"><div class="icon">📸</div><div class="label">行山影相<br>Folder 名 = 路線名</div></div>
+  <div class="arrow">→</div>
+  <div class="step-box"><div class="icon">🔗</div><div class="label">Share folder<br>俾義工隊長</div></div>
+  <div class="arrow">→</div>
+  <div class="step-box"><div class="icon">🤖</div><div class="label">Gemini<br>出 HTML 報告</div></div>
+</div>
+
+<!-- ===== HOW IT WORKS ===== -->
+<h2>📂 檔案結構（義工只需咁樣放）</h2>
+
+<div class="code-box">Google Drive 嘅 Shared Folder 📁
+ └── 📁 <span class="placeholder">馬鞍山郊遊徑</span>        ← Folder 名 = 路線名
+      ├── 📁 <span class="placeholder">清理水道前後</span>   ← Subfolder 分類（可選）
+      │    ├── IMG_1768.HEIC
+      │    ├── IMG_1774.HEIC
+      │    └── ...
+      └── 📁 <span class="placeholder">山徑巡查</span>
+           ├── IMG_1785.HEIC
+           └── ...</div>
+
+<div class="good">
+<strong>✅ 義工只需要：</strong><br>
+1. 行山影相（GPS auto embedded）<br>
+2. 將相放入 Google Drive folder<br>
+3. Folder 名改做路線名 eg「馬鞍山郊遊徑」<br>
+4. Right-click → Share → Anyone with link → Copy link<br>
+5. 將條 link 俾義工隊長（或者直接俾 Gemini）
+</div>
+
+<!-- ===== OPTION 1: COLLAB ===== -->
+<h2>🛠️ 方案 A：隊長用 Colab 做（最簡單自動化）</h2>
+
+<p style="font-size:0.65rem;">
+隊長收到義工嘅 Share link 後，用 Colab Notebook 一鍵處理：
+</p>
+
+<a class="big-btn" href="#" onclick="alert('呢個連結係假設嘅 Colab Notebook link\n實際用時我會俾一條真正嘅 Colab link 你\n\nOne-click 版 Colab 嘅好處：\n- 貼 Share link → 自動 scan folder\n- 自動抽 GPS → 自動分 CheckPoint\n- 5 分鐘出 CSV')">📓 一鍵 Colab Notebook（製作中）</a>
+
+<div class="card" style="font-size:0.65rem;">
+<strong>One-click Colab 會自動做晒：</strong><br>
+✅ 貼 Share link → 自動解析 Folder ID<br>
+✅ Mount Google Drive → 讀相片<br>
+✅ 認 Folder 名做路線名（「馬鞍山郊遊徑」）<br>
+✅ 認 Subfolder 名做分類（「清理水道前後」「山徑巡查」）<br>
+✅ 抽 EXIF GPS + 日期 + 海拔<br>
+✅ 按坐標分 CheckPoint<br>
+✅ 輸出 CSV（內置路線名 + 分類資料）<br>
+✅ CSV 自動 save 返落 Google Drive
+</div>
+
+<!-- ===== OPTION 2: JUST USE ME ===== -->
+<h2>🤝 方案 B：義工 Share 俾 Ming → Mvmv 幫手</h2>
+
+<p style="font-size:0.65rem;">
+如果義工朋友覺得 Colab 都係複雜，最簡單嘅方法：
+</p>
+
+<table>
+  <tr><th style="width:10%;">Step</th><th>義工做</th><th>你做</th></tr>
+  <tr><td>1</td><td>行山影相 → Upload Google Drive</td><td>—</td></tr>
+  <tr><td>2</td><td>Share folder link 俾你（Telegram）</td><td>收到 link</td></tr>
+  <tr><td>3</td><td>—</td><td>Mvmv 讀 folder → 抽 GPS → 出 CSV</td></tr>
+  <tr><td>4</td><td>—</td><td>CSV + Gemini Prompt → 俾 Gemini</td></tr>
+  <tr><td>5</td><td>收到 HTML link ✅</td><td>Upload HTML → Share link</td></tr>
+</table>
+
+<div class="good" style="font-size:0.65rem;">
+<strong>好處：</strong> 義工完全唔使學任何新嘢，淨係 Share folder link 就得。<br>
+<strong>而且：</strong> 我呢邊用 tools download + 抽 EXIF，唔使你嘅 Gemini tokens，慳返啲 quota。
+</div>
+
+<!-- ===== COMPARISON ===== -->
+<h2>⚖️ 三個方案比較</h2>
+
+<table>
+  <tr><th>方案</th><th>義工要做嘅</th><th>技術需求</th><th>速度</th><th>成本</th></tr>
+  <tr>
+    <td><strong>A: One-click Colab</strong></td>
+    <td>Share link + 開 Colab + Run</td>
+    <td>🟡 極低（㩒制就得）</td>
+    <td>🟢 快</td>
+    <td>🆓 免費</td>
+  </tr>
+  <tr>
+    <td><strong>B: 搵 Ming/mvmv</strong></td>
+    <td>Share link 就得</td>
+    <td>🟢 零</td>
+    <td>🟢 快</td>
+    <td>🟡 用 mvmv tokens</td>
+  </tr>
+  <tr>
+    <td><strong>C: Gemini Direct</strong></td>
+    <td>逐張 Upload 相</td>
+    <td>🟢 低</td>
+    <td>🔴 慢（每次10張）</td>
+    <td>🆓 免費</td>
+  </tr>
+</table>
+
+<!-- ===== GEMINI PROMPT SIMPLIFIED ===== -->
+<h2>📋 Gemini Prompt（義工隊長版）</h2>
+
+<p style="font-size:0.6rem;">
+收到 CSV 後，Copy 呢段 Prompt + Upload CSV 俾 Gemini：
+</p>
+
+<div class="code-box">我 upload 咗一個 CSV 檔案，係 <span class="placeholder">{路線名}</span> 嘅巡查 GPS 數據。
+
+請幫我生成一份手機-friendly HTML 報告，要包括：
+1️⃣ 統計摘要：總相數、CheckPoint 數、海拔範圍
+2️⃣ Leaflet 地圖：每個 CP 用圓形 marker，大細 = 相片數
+   - 用綠色虛線連接所有 CP
+   - 㩒 marker 彈出 CP 資料
+3️⃣ 每個 CP 詳細列表
+4️⃣ Summary Table
+
+風格：暖色背景 #f0e8d8，綠色為主
+直接俾完整 HTML code</div>
+
+<!-- ===== NEXT ===== -->
+<h2>🚀 你想點行？</h2>
+
+<div class="card" style="font-size:0.7rem;">
+有幾個方向可以揀：<br><br>
+<strong>1️⃣</strong> 我整好個 <strong>One-click Colab Notebook</strong>（真正嘅 .ipynb file），義工隊長 Share 俾隊友就得<br>
+<strong>2️⃣</strong> 以後你 friend Share folder link 俾你 → 我幫你抽 GPS 出 CSV → 你俾 Gemini 出報告<br>
+<strong>3️⃣</strong> 兩個都要 — Colab 俾義工自己搞，你做 backup
+</div>
+
+<div class="footer">
+框架設計：無虛 (mo mo) · 2026-07-24 · v2.0 Simplified<br>
+概念：Folder 名 = 路線名 · Share link = 出報告
+</div>
+
+</body>
+</html>
