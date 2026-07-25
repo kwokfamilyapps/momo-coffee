@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Vision Tools 深度分析 — 幫 mvmv 睇到畫面</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; line-height: 1.8; }
+  @media (max-width:600px){html{font-size:15px}}
+  body {
+    font-family: -apple-system, "Noto Sans HK", sans-serif;
+    background: #f0e8d8; color: #1a1a16; max-width: 720px; margin: 0 auto; padding: 1rem;
+  }
+  h1 { font-size: 1.3rem; color: #1a3a1a; border-left: 5px solid #2e7d32; padding-left: 0.7rem; margin-bottom: 0.3rem; }
+  h2 { font-size: 1rem; color: #1b5e20; margin: 1rem 0 0.5rem 0; border-bottom: 2px solid #c0b8a8; padding-bottom: 0.2rem; }
+  h3 { font-size: 0.8rem; color: #2a5a2a; margin: 0.5rem 0 0.2rem 0; }
+  .card { background: #fff8f0; border: 1px solid #d0c8b8; border-radius: 8px; padding: 0.5rem; margin: 0.4rem 0; }
+  .tag { display: inline-block; padding: 0.05rem 0.3rem; border-radius: 3px; font-size: 0.45rem; font-weight: 600; margin-right: 0.2rem; }
+  .g { background: #c8e6c9; color: #1b5e20; }
+  .y { background: #fff0e0; color: #c96442; }
+  .r { background: #ffcdd2; color: #b71c1c; }
+  .b { background: #bbdefb; color: #0d47a1; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.55rem; margin: 0.4rem 0; }
+  th, td { padding: 0.2rem 0.35rem; border-bottom: 1px solid #d0c8b8; text-align: left; }
+  th { background: #2e7d32; color: #fff; font-weight: 600; }
+  tr:nth-child(even) { background: #f8f4ec; }
+  .rec { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 0.4rem 0.6rem; border-radius: 0 6px 6px 0; margin: 0.5rem 0; font-size: 0.55rem; }
+  .ft { text-align: center; font-size: 0.45rem; color: #888; margin-top: 1.5rem; padding-top: 0.8rem; border-top: 1px solid #d0c8b8; }
+</style>
+</head>
+<body>
+
+<h1>🔍 AI Vision Tools 深度分析</h1>
+<p style="font-size:0.5rem;color:#666;margin-bottom:0.6rem;">幫 mvmv 睇到 Chrome 畫面 · 已考慮你部機嘅環境 (RTX5060 · Win10 · Killer Wi-Fi)</p>
+
+<!-- ===== CATEGORY 1: SCREEN CAPTURE ===== -->
+<h2>📸 1. Vision Capture（畫面擷取）</h2>
+<table>
+<tr><th>工具</th><th>狀態</th><th>詳情</th><th>成本</th></tr>
+<tr>
+  <td><strong>PIL ImageGrab</strong></td>
+  <td><span class="tag g">✅ WORK</span></td>
+  <td>已成功 capture 2560x1600。有 pil_capture.py script</td>
+  <td>免費，已安裝</td>
+</tr>
+<tr>
+  <td><strong>MSS (mss)</strong></td>
+  <td><span class="tag y">⚠️ 未裝</span></td>
+  <td>比 PIL 更快，支援多monitor。可 pip install mss</td>
+  <td>免費</td>
+</tr>
+<tr>
+  <td><strong>Windows API (win32gui)</strong></td>
+  <td><span class="tag g">✅ WORK</span></td>
+  <td>可列舉所有視窗。已確認 Chrome HWND: 460988</td>
+  <td>免費，Windows 內建</td>
+</tr>
+<tr>
+  <td><strong>Chrome CDP Screenshot</strong></td>
+  <td><span class="tag y">⚠️ 可行</span></td>
+  <td>可 capture browser 內部畫面，已有 websockets library</td>
+  <td>免費</td>
+</tr>
+</table>
+
+<h2>🧠 2. Vision Model（視覺模型）</h2>
+<table>
+<tr><th>模型</th><th>狀態</th><th>詳情</th><th>VRAM</th></tr>
+<tr>
+  <td><strong>Florence-2</strong></td>
+  <td><span class="tag b">✅ 已裝</span></td>
+  <td>Microsoft caption model。port 5050，RTX5060。但只係 caption 唔係 VLM，答唔到問題</td>
+  <td>~2GB</td>
+</tr>
+<tr>
+  <td><strong>Qwen2-VL 7B</strong></td>
+  <td><span class="tag y">⚠️ 可裝</span></td>
+  <td>阿里巴巴出品，支援中文+英文。可以問「呢頁嘅 DNS 係咩？」會真係答到。RTX5060 8GB 夠 run</td>
+  <td>~4GB</td>
+</tr>
+<tr>
+  <td><strong>LLaVA-NeXT 7B</strong></td>
+  <td><span class="tag y">⚠️ 可裝</span></td>
+  <td>開源 vision-language model。capture screenshot → send 俾 model → 問問題 → 佢答</td>
+  <td>~4GB</td>
+</tr>
+<tr>
+  <td><strong>Gemini 2.0 Flash</strong></td>
+  <td><span class="tag g">✅ Free API</span></td>
+  <td>1500 req/day 免費。可以分析 screenshot。但相要上雲</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td><strong>DeepSeek-V4-Flash</strong></td>
+  <td><span class="tag r">❌ 唔支援</span></td>
+  <td>純文字 model，唔支援 vision。所以 vision_analyze 一直 fail</td>
+  <td>—</td>
+</tr>
+</table>
+
+<h2>📝 3. Vision Analysis（文字提取 + 分析）</h2>
+<table>
+<tr><th>工具</th><th>狀態</th><th>詳情</th></tr>
+<tr>
+  <td><strong>Windows OCR API</strong></td>
+  <td><span class="tag g">✅ 可用</span></td>
+  <td>Windows 10+ 內建 OCR，免安裝。可用 PowerShell 調用，支援中文</td>
+</tr>
+<tr>
+  <td><strong>Tesseract OCR</strong></td>
+  <td><span class="tag b">✅ 已裝</span></td>
+  <td>C:\Program Files\Tesseract-OCR，但要加中文 language pack</td>
+</tr>
+<tr>
+  <td><strong>EasyOCR</strong></td>
+  <td><span class="tag y">⚠️ 可裝</span></td>
+  <td>PyTorch-based，支援中文。可用 GPU 加速</td>
+</tr>
+<tr>
+  <td><strong>OCR.space API</strong></td>
+  <td><span class="tag g">✅ Free Key</span></td>
+  <td>免費 API，key=helloworld。25000 req/month</td>
+</tr>
+</table>
+
+<h2>🖱️ 4. Vision Control（畫面控制 + Click）</h2>
+<table>
+<tr><th>工具</th><th>狀態</th><th>詳情</th></tr>
+<tr>
+  <td><strong>Chrome CDP</strong></td>
+  <td><span class="tag g">✅ 可行</span></td>
+  <td>直接控制 Chrome：click、navigate、extract text。已有 websockets 15.0.1 library。唔需要睇 screen</td>
+</tr>
+<tr>
+  <td><strong>PyAutoGUI</strong></td>
+  <td><span class="tag y">⚠️ 可裝</span></td>
+  <td>直接控制 mouse/keyboard。可以 bypass cua-driver 嘅 Chrome 限制</td>
+</tr>
+<tr>
+  <td><strong>Selenium WebDriver</strong></td>
+  <td><span class="tag y">⚠️ 可裝</span></td>
+  <td>全功能 browser automation，可以獨立控制 Chrome</td>
+</tr>
+</table>
+
+<h2>🌐 5. 免費 Search Engine 替代方案</h2>
+<table>
+<tr><th>搜索引擎</th><th>curl 支援</th><th>備註</th></tr>
+<tr><td><strong>Google</strong></td><td><span class="tag r">❌ Block</span></td><td>擋 curl/bot，要 browser</td></tr>
+<tr><td><strong>DuckDuckGo</strong></td><td><span class="tag y">⚠️ Rate limit</span></td><td>~10 req/min，等幾分鐘 reset</td></tr>
+<tr><td><strong>Bing</strong></td><td><span class="tag y">⚠️ 有時 block</span></td><td>要較好嘅 User-Agent</td></tr>
+<tr><td><strong>Wikipedia API</strong></td><td><span class="tag g">✅ 無限</span></td><td>永久免費，最 reliable</td></tr>
+<tr><td><strong>Mojeek</strong></td><td><span class="tag r">❌ Block</span></td><td>403 forbidden</td></tr>
+<tr><td><strong>SearXNG</strong></td><td><span class="tag g">✅ 可用</span></td><td>開源 meta search，有多個 instance</td></tr>
+<tr><td><strong>Brave Search</strong></td><td><span class="tag y">⚠️ Block</span></td><td>要 API key</td></tr>
+</table>
+
+<!-- ===== RECOMMENDATIONS ===== -->
+<h2>🎯 建議行動計劃</h2>
+
+<div class="rec">
+<strong>🟢 立即可以做（零成本、零安裝）：</strong><br>
+1️⃣ <strong>Chrome CDP</strong> — 用已安裝嘅 websockets library 直接控制 Chrome。唔使睇 screen 都可以 navigate router page 拎 DNS 設定<br>
+2️⃣ <strong>PIL ImageGrab</strong> — 已 work，可以 capture 全螢幕做證據<br>
+3️⃣ <strong>Windows OCR</strong> — 免安裝，抽畫面文字
+</div>
+
+<div class="rec">
+<strong>🟡 短期（要安裝，免費）：</strong><br>
+4️⃣ <strong>安裝 Qwen2-VL 7B 或 LLaVA</strong> — local vision model 分析畫面內容<br>
+5️⃣ <strong>pip install PyAutoGUI</strong> — bypass cua-driver 直接控制 mouse<br>
+6️⃣ <strong>改用 Gemini Vision Free API</strong> — 1500 req/day 免費做 vision analysis
+</div>
+
+<div class="rec">
+<strong>🔴 核心問題 fix：cua-driver zombie process</strong><br>
+cua-driver PID 21672 kill 唔死，阻住新 session。要 reboot 先解決到。<br>
+已確認：Windows API 可以見到 Chrome 窗口，只係 cua-driver 嘅 bug。
+</div>
+
+<div class="ft">
+由 mvmv 分析 · 2026-07-25<br>
+基於實測：PIL ✅ | CDP ✅ | Wi-Fi ✅ | GPU ✅ | cua-driver ❌
+</div>
+</body>
+</html>
