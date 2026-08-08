@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>波爾多酒區位置圖（完整版）— 含北面全部小鎮</title>
+<style>
+html { font-size: 32px; }
+@media (max-width: 600px) { html { font-size: 26px; } }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #f0e8d8;
+  color: #1a1a16;
+  font-family: "Noto Sans", system-ui, -apple-system, sans-serif;
+  line-height: 1.9;
+  padding: 1rem;
+}
+h1 { font-family: Georgia, serif; font-size: 1.4rem; color: #1a1a16; margin-bottom: 0.3rem; }
+h2 { font-family: Georgia, serif; font-size: 1.0rem; color: #4a7a4a; margin-top: 1.6rem; margin-bottom: 0.5rem; border-bottom: 2px solid #4a7a4a; padding-bottom: 0.2rem; }
+.subtitle { color: #4a4840; font-size: 0.6rem; margin-bottom: 1rem; }
+.card {
+  background: #f5efe0;
+  border: 1px solid #d8d0c0;
+  border-radius: 14px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.legend-item { font-size: 0.6rem; margin: 0.3rem 0; }
+.legend-dot { display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 50%; margin-right: 0.4rem; }
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.6rem; }
+th { background: #4a7a4a; color: #fff; padding: 0.5rem 0.6rem; text-align: left; }
+td { border: 1px solid #d8d0c0; padding: 0.5rem 0.6rem; vertical-align: top; }
+tr:nth-child(even) td { background: #faf5ea; }
+.note { background: #f0e8d8; border-left: 4px solid #c96442; padding: 0.6rem 1rem; margin: 1rem 0; font-size: 0.6rem; }
+.svg-wrap { text-align: center; margin: 1rem 0; }
+.svg-wrap svg { max-width: 100%; height: auto; }
+.dist { font-weight: 700; color: #c96442; }
+.highlight { background: #fff3d6; }
+.badge { display: inline-block; background: #c96442; color: #fff; border-radius: 6px; padding: 0.05rem 0.4rem; font-size: 0.5rem; font-weight: 700; }
+.footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #d8d0c0; font-size: 0.55rem; color: #4a4840; }
+</style>
+</head>
+<body>
+
+<h1>🗺️ 波爾多酒區位置圖（完整版）</h1>
+<div class="subtitle">市中心 × 酒區 × 北面全部小鎮（2 小時車程內）· 2026年8月</div>
+
+<div class="card">
+<div class="legend-item"><span class="legend-dot" style="background:#c96442;"></span><strong>波爾多市中心</strong>（住宿建議喺度）</div>
+<div class="legend-item"><span class="legend-dot" style="background:#4a7a4a;"></span><strong>紅酒莊園區</strong>（左岸 / 右岸 / 南面）</div>
+<div class="legend-item"><span class="legend-dot" style="background:#8a6d3b;"></span><strong>北面小鎮</strong>（啡色 = 小鎮 / 景點）</div>
+<div class="legend-item"><span class="legend-dot" style="background:#7a9ec9;"></span>加龍河 Garonne</div>
+</div>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 900 820" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="波爾多酒區與北面小鎮示意圖">
+  <!-- 背景 -->
+  <rect x="0" y="0" width="900" height="820" rx="16" fill="#f5efe0" stroke="#d8d0c0" stroke-width="2"/>
+
+  <!-- 加龍河 -->
+  <path d="M 360 760 Q 380 640 400 540 Q 420 460 400 380 Q 380 300 380 220" fill="none" stroke="#7a9ec9" stroke-width="28" stroke-linecap="round" opacity="0.5"/>
+  <text x="310" y="640" font-size="20" fill="#3a5a7a" font-family="sans-serif" transform="rotate(-75 310 640)">加龍河 Garonne</text>
+
+  <!-- 市中心 -->
+  <circle cx="400" cy="470" r="30" fill="#c96442" stroke="#fff" stroke-width="4"/>
+  <text x="400" y="478" font-size="24" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">市</text>
+  <text x="400" y="535" font-size="24" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">波爾多市中心</text>
+
+  <!-- 左岸 Médoc -->
+  <circle cx="180" cy="270" r="50" fill="#4a7a4a" opacity="0.25"/>
+  <circle cx="180" cy="270" r="20" fill="#4a7a4a"/>
+  <text x="180" y="277" font-size="22" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">左</text>
+  <text x="180" y="230" font-size="23" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Médoc</text>
+  <text x="180" y="345" font-size="17" fill="#4a4840" text-anchor="middle" font-family="sans-serif">Lafite/Mouton</text>
+
+  <!-- 右岸 Saint-Émilion -->
+  <circle cx="660" cy="260" r="50" fill="#4a7a4a" opacity="0.25"/>
+  <circle cx="660" cy="260" r="20" fill="#4a7a4a"/>
+  <text x="660" y="267" font-size="22" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">右</text>
+  <text x="660" y="220" font-size="23" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Saint-Émilion</text>
+  <text x="660" y="335" font-size="17" fill="#4a4840" text-anchor="middle" font-family="sans-serif">世界遺產小鎮</text>
+
+  <!-- 南面 Graves -->
+  <circle cx="190" cy="650" r="45" fill="#4a7a4a" opacity="0.25"/>
+  <circle cx="190" cy="650" r="18" fill="#4a7a4a"/>
+  <text x="190" y="657" font-size="20" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">南</text>
+  <text x="190" y="715" font-size="22" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Graves</text>
+  <text x="190" y="742" font-size="16" fill="#4a4840" text-anchor="middle" font-family="sans-serif">Haut-Brion</text>
+
+  <!-- 南面 Sauternes -->
+  <circle cx="700" cy="660" r="42" fill="#4a7a4a" opacity="0.25"/>
+  <circle cx="700" cy="660" r="17" fill="#4a7a4a"/>
+  <text x="700" y="667" font-size="20" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">南</text>
+  <text x="700" y="722" font-size="22" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Sauternes</text>
+  <text x="700" y="747" font-size="16" fill="#4a4840" text-anchor="middle" font-family="sans-serif">甜酒 Yquem</text>
+
+  <!-- ═══ 北面小鎮 ═══ -->
+
+  <!-- Blaye（近，40min） -->
+  <circle cx="130" cy="330" r="20" fill="#8a6d3b"/>
+  <text x="130" y="330" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">B</text>
+  <text x="130" y="375" font-size="18" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Blaye</text>
+  <text x="130" y="398" font-size="15" fill="#4a4840" text-anchor="middle" font-family="sans-serif">城堡·40min</text>
+
+  <!-- Marennes（生蠔） -->
+  <circle cx="255" cy="120" r="22" fill="#8a6d3b"/>
+  <text x="255" y="127" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">🦪</text>
+  <text x="255" y="165" font-size="19" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Maremes</text>
+  <text x="255" y="190" font-size="15" fill="#4a4840" text-anchor="middle" font-family="sans-serif">生蠔·1h15m</text>
+
+  <!-- Talmont（最美村莊） -->
+  <circle cx="420" cy="90" r="22" fill="#8a6d3b"/>
+  <text x="420" y="97" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">⭐</text>
+  <text x="420" y="55" font-size="19" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Talmont</text>
+  <text x="420" y="135" font-size="15" fill="#4a4840" text-anchor="middle" font-family="sans-serif">懸崖小鎮·1h20m</text>
+
+  <!-- Royan -->
+  <circle cx="320" cy="180" r="20" fill="#8a6d3b"/>
+  <text x="320" y="187" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">R</text>
+  <text x="320" y="225" font-size="18" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Royan</text>
+  <text x="320" y="248" font-size="15" fill="#4a4840" text-anchor="middle" font-family="sans-serif">海濱·1h45m</text>
+
+  <!-- Saintes -->
+  <circle cx="555" cy="130" r="22" fill="#8a6d3b"/>
+  <text x="555" y="137" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">S</text>
+  <text x="555" y="95" font-size="19" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Saintes</text>
+  <text x="555" y="175" font-size="15" fill="#4a4840" text-anchor="middle" font-family="sans-serif">古羅馬·1h40m</text>
+
+  <!-- Cognac（⭐ 最大） -->
+  <circle cx="700" cy="110" r="38" fill="#8a6d3b"/>
+  <circle cx="700" cy="110" r="16" fill="#fff" opacity="0.3"/>
+  <text x="700" y="118" font-size="22" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">酒</text>
+  <text x="700" y="60" font-size="24" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Cognac 干邑</text>
+  <text x="700" y="170" font-size="17" fill="#c96442" text-anchor="middle" font-weight="bold" font-family="sans-serif">白蘭地·1.5-2h ⭐</text>
+
+  <!-- Rochefort -->
+  <circle cx="575" cy="210" r="20" fill="#8a6d3b"/>
+  <text x="575" y="217" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">R</text>
+  <text x="575" y="255" font-size="18" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Rochefort</text>
+  <text x="575" y="278" font-size="15" fill="#4a4840" text-anchor="middle" font-family="sans-serif">海軍·1h50m</text>
+
+  <!-- Aubeterre（最美村莊） -->
+  <circle cx="815" cy="300" r="22" fill="#8a6d3b"/>
+  <text x="815" y="307" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">⭐</text>
+  <text x="815" y="345" font-size="17" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Aubeterre</text>
+  <text x="815" y="368" font-size="14" fill="#4a4840" text-anchor="middle" font-family="sans-serif">地下教堂·1h50m</text>
+
+  <!-- Verteuil -->
+  <circle cx="830" cy="200" r="20" fill="#8a6d3b"/>
+  <text x="830" y="207" font-size="15" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">V</text>
+  <text x="830" y="245" font-size="16" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Verteuil</text>
+  <text x="830" y="268" font-size="13" fill="#4a4840" text-anchor="middle" font-family="sans-serif">城堡·2h</text>
+
+  <!-- Angoulême -->
+  <circle cx="820" cy="450" r="22" fill="#8a6d3b"/>
+  <text x="820" y="457" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">A</text>
+  <text x="820" y="500" font-size="18" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">Angoulême</text>
+  <text x="820" y="523" font-size="14" fill="#4a4840" text-anchor="middle" font-family="sans-serif">漫畫城·2h</text>
+
+  <!-- La Rochelle -->
+  <circle cx="150" cy="80" r="26" fill="#8a6d3b"/>
+  <circle cx="150" cy="80" r="10" fill="#fff" opacity="0.3"/>
+  <text x="150" y="88" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold" font-family="sans-serif">港</text>
+  <text x="150" y="45" font-size="20" fill="#1a1a16" text-anchor="middle" font-weight="bold" font-family="sans-serif">La Rochelle</text>
+  <text x="150" y="130" font-size="15" fill="#4a4840" text-anchor="middle" font-family="sans-serif">海港·2h</text>
+
+  <!-- ═══ 市中心連接線 ═══ -->
+
+  <!-- 去 Cognac -->
+  <line x1="415" y1="445" x2="685" y2="140" stroke="#c96442" stroke-width="4" stroke-dasharray="10 6" opacity="0.85"/>
+  <text x="530" y="280" font-size="20" fill="#c96442" font-family="sans-serif" font-weight="bold" transform="rotate(58 530 280)">≈120km · 1.5-2h</text>
+
+  <!-- 去 Saintes -->
+  <line x1="420" y1="445" x2="545" y2="155" stroke="#c96442" stroke-width="3" stroke-dasharray="8 6" opacity="0.7"/>
+  <text x="505" y="330" font-size="18" fill="#c96442" font-family="sans-serif" transform="rotate(60 505 330)">125km</text>
+
+  <!-- 去 Marennes -->
+  <line x1="395" y1="450" x2="265" y2="145" stroke="#c96442" stroke-width="3" stroke-dasharray="8 6" opacity="0.7"/>
+  <text x="285" y="300" font-size="18" fill="#c96442" font-family="sans-serif" transform="rotate(-65 285 300)">80km</text>
+
+  <!-- 去 La Rochelle -->
+  <line x1="380" y1="440" x2="165" y2="105" stroke="#c96442" stroke-width="3" stroke-dasharray="8 6" opacity="0.7"/>
+  <text x="200" y="270" font-size="18" fill="#c96442" font-family="sans-serif" transform="rotate(-55 200 270)">≈190km · 2h</text>
+
+  <!-- 去 Médoc -->
+  <line x1="390" y1="455" x2="205" y2="295" stroke="#c96442" stroke-width="3" stroke-dasharray="8 6" opacity="0.75"/>
+  <text x="250" y="380" font-size="17" fill="#c96442" font-family="sans-serif" transform="rotate(-48 250 380)">≈35km·40min</text>
+
+  <!-- 去 Saint-Émilion -->
+  <line x1="425" y1="450" x2="635" y2="290" stroke="#c96442" stroke-width="3" stroke-dasharray="8 6" opacity="0.75"/>
+  <text x="560" y="390" font-size="17" fill="#c96442" font-family="sans-serif" transform="rotate(48 560 390)">≈40km·45min</text>
+
+  <!-- 去 Graves -->
+  <line x1="385" y1="495" x2="215" y2="625" stroke="#c96442" stroke-width="3" stroke-dasharray="8 6" opacity="0.75"/>
+  <text x="255" y="580" font-size="17" fill="#c96442" font-family="sans-serif" transform="rotate(-50 255 580)">≈10km·20min</text>
+
+  <!-- 去 Sauternes -->
+  <line x1="420" y1="495" x2="678" y2="638" stroke="#c96442" stroke-width="3" stroke-dasharray="8 6" opacity="0.75"/>
+  <text x="560" y="585" font-size="17" fill="#c96442" font-family="sans-serif" transform="rotate(52 560 585)">≈45km·60min</text>
+
+  <!-- 左/右岸標籤 -->
+  <text x="70" y="470" font-size="22" fill="#4a7a4a" font-family="sans-serif" font-weight="bold" transform="rotate(-90 70 470)">左岸（西面）</text>
+  <text x="835" y="470" font-size="22" fill="#4a7a4a" font-family="sans-serif" font-weight="bold" transform="rotate(90 835 470)">右岸（東面）</text>
+</svg>
+</div>
+
+<div class="card">
+<h2>📏 北面小鎮速覽表（由近到遠）</h2>
+<table>
+<tr><th>小鎮</th><th>車程</th><th>距離</th><th>特色</th><th>評分</th></tr>
+<tr><td><strong>Blaye 布萊</strong></td><td>40 分鐘</td><td>30 km</td><td>加龍河畔城堡（世界遺產堡壘）</td><td>順路</td></tr>
+<tr><td><strong>Maremes 馬雷訥</strong></td><td>1 小時 15 分</td><td>80 km</td><td>🦪 法國生蠔之都</td><td>海鮮控</td></tr>
+<tr><td><strong>Talmont-sur-Gironde</strong></td><td>1 小時 20 分</td><td>85 km</td><td>⭐ 懸崖石屋小鎮</td><td class="dist">必去</td></tr>
+<tr><td><strong>Royan 魯瓦揚</strong></td><td>1 小時 45 分</td><td>110 km</td><td>大西洋海濱度假鎮</td><td>夏天啱</td></tr>
+<tr><td><strong>Saintes 桑特</strong></td><td>1 小時 40 分</td><td>125 km</td><td>古羅馬圓形劇場</td><td>歷史迷</td></tr>
+<tr class="highlight"><td><strong>Cognac 干邑</strong></td><td>1.5-2 小時</td><td>120 km</td><td>🍾 白蘭地聖地</td><td class="dist">最推薦</td></tr>
+<tr><td><strong>Rochefort 羅什福爾</strong></td><td>1 小時 50 分</td><td>130 km</td><td>海軍歷史小鎮</td><td>一般</td></tr>
+<tr><td><strong>Aubeterre-sur-Dronne</strong></td><td>1 小時 50 分</td><td>135 km</td><td>⭐ 法國最美村莊 + 地下教堂</td><td class="dist">必去</td></tr>
+<tr><td><strong>Verteuil-sur-Charente</strong></td><td>2 小時</td><td>140 km</td><td>⭐ 法國最美村莊 + 河畔城堡</td><td>靚</td></tr>
+<tr><td><strong>Angoulême 昂古萊姆</strong></td><td>2 小時</td><td>145 km</td><td>漫畫之城 + 舊城</td><td>文青</td></tr>
+<tr class="highlight"><td><strong>La Rochelle 拉羅謝爾</strong></td><td>2 小時</td><td>190 km</td><td>⭐ 大西洋明珠海港</td><td>過夜</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🏆 Top 5 推薦（如果只去幾個）</h2>
+<table>
+<tr><th>排名</th><th>小鎮</th><th>點解</th></tr>
+<tr><td>1</td><td><strong>Cognac 干邑</strong></td><td>白蘭地酒莊 — 最符合你「酒莊之旅」主題</td></tr>
+<tr><td>2</td><td><strong>Talmont-sur-Gironde</strong></td><td>懸崖石屋小鎮，行入去好似時光倒流</td></tr>
+<tr><td>3</td><td><strong>Aubeterre-sur-Dronne</strong></td><td>「最美村莊」+ 12 世紀地下教堂</td></tr>
+<tr><td>4</td><td><strong>Maremes 馬雷訥</strong></td><td>法國生蠔之都，海鮮控必去</td></tr>
+<tr><td>5</td><td><strong>La Rochelle 拉羅謝爾</strong></td><td>海港城市，悠閒過夜好選擇</td></tr>
+</table>
+</div>
+
+<div class="note">
+<strong>💡 建議路線組合（視乎喜好）：</strong>
+<ul>
+<li>🍷 <strong>酒莊控：</strong>Cognac（白蘭地）+ 順路 Saintes → 一日遊</li>
+<li>🦪 <strong>海鮮控：</strong>Maremes（生蠔）+ Talmont（靚小鎮）→ 一日遊</li>
+<li>🏰 <strong>歷史迷：</strong>Aubeterre + Verteuil（兩個最美村莊）→ 一日遊</li>
+<li>🌊 <strong>悠閒派：</strong>La Rochelle 過夜（海港漫步）</li>
+</ul>
+</div>
+
+<div class="footer">
+<p>本圖為示意圖（非實際比例），只顯示大約相對位置。由 無虛 (mo mo) 生成 — 2026年8月7日</p>
+</div>
+
+</body>
+</html>
