@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歐洲之旅終極方案 — mvmv Fact Check 後合併版</title>
+<style>
+html { font-size: 32px; }
+@media (max-width: 600px) { html { font-size: 26px; } }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #f0e8d8;
+  color: #1a1a16;
+  font-family: "Noto Sans", system-ui, -apple-system, sans-serif;
+  line-height: 1.9;
+  padding: 1rem;
+}
+h1 { font-family: Georgia, serif; font-size: 1.4rem; color: #1a1a16; margin-bottom: 0.3rem; }
+h2 { font-family: Georgia, serif; font-size: 1.05rem; color: #4a7a4a; margin-top: 1.8rem; margin-bottom: 0.5rem; border-bottom: 3px solid #4a7a4a; padding-bottom: 0.2rem; }
+h3 { font-size: 0.8rem; color: #1a1a16; margin-top: 0.8rem; }
+.subtitle { color: #4a4840; font-size: 0.6rem; margin-bottom: 1rem; }
+.card { background: #f5efe0; border: 1px solid #d8d0c0; border-radius: 14px; padding: 1rem; margin: 1rem 0; }
+table { width: 100%; border-collapse: collapse; margin: 0.6rem 0; font-size: 0.6rem; }
+th { background: #4a7a4a; color: #fff; padding: 0.4rem 0.6rem; text-align: left; }
+td { border: 1px solid #d8d0c0; padding: 0.4rem 0.6rem; vertical-align: top; }
+tr:nth-child(even) td { background: #faf5ea; }
+.price { font-weight: 700; color: #c96442; }
+.ok { color: #2e7d32; font-weight: 700; }
+.no { color: #c62828; font-weight: 700; }
+.warn { color: #e65100; font-weight: 700; }
+.badge { display: inline-block; background: #c96442; color: #fff; border-radius: 6px; padding: 0.05rem 0.4rem; font-size: 0.5rem; font-weight: 700; }
+.badge-green { background: #4a7a4a; }
+.badge-blue { background: #1565c0; }
+.note { background: #f0e8d8; border-left: 4px solid #c96442; padding: 0.6rem 1rem; margin: 1rem 0; font-size: 0.6rem; }
+.flow { background: #2a2a22; color: #e8e0d0; border-radius: 14px; padding: 1rem; font-size: 0.62rem; line-height: 2.1; margin: 1rem 0; }
+.flow .hl { color: #7ac97a; font-weight: 700; }
+.flow .tr { color: #e8c47a; font-weight: 700; }
+.footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #d8d0c0; font-size: 0.55rem; color: #4a4840; }
+</style>
+</head>
+<body>
+
+<h1>✈️ 歐洲之旅終極方案（mvmv Fact Check 合併版）</h1>
+<div class="subtitle">香港出發 → 法國（CDG/BOD）→ 柏林 → 倫敦回港 · 2026-08-08 實測 · 全部 HKD</div>
+
+<!-- ══════════ FACT CHECK ══════════ -->
+<h2>一、Fact Check 結果（Gemini Spark vs mvmv vs 官方）</h2>
+
+<div class="card">
+<h3>✅ 一致（兩邊都啱）</h3>
+<table>
+<tr><th>項目</th><th>結論</th></tr>
+<tr><td>Etihad 冇直飛波爾多 BOD</td><td class="ok">✅ 一致（官網 404 + Google Flights 冇選項）</td></tr>
+<tr><td>Etihad 免費 2 晚酒店</td><td class="ok">✅ 一致（24-96 小時轉機）</td></tr>
+<tr><td>easyJet 波爾多→柏林</td><td class="ok">✅ 一致（直飛 2h15m，mvmv 實測 HK$720）</td></tr>
+<tr><td>薩克森豪森集中營 + 自然博物館</td><td class="ok">✅ Gemini 細節好（mvmv 冇查柏林，採納 Gemini）</td></tr>
+<tr><td>特區護照/BNO 阿聯酋免簽 30 日</td><td class="ok">✅ 一致</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>❌ Gemini 有錯（mvmv 修正）</h3>
+<table>
+<tr><th>項目</th><th>Gemini 講</th><th>官方/mvmv 實測</th><th>結論</th></tr>
+<tr><td><strong>TGV 巴黎→波爾多</strong></td><td>3 小時 30 分</td><td><strong>2 小時 03-16 分</strong>（2017 新線，SNCF 官網實測）</td><td class="no">❌ Gemini 用舊資料</td></tr>
+<tr><td><strong>Etihad 票種</strong></td><td>Value/Choice/Flex</td><td><strong>Basic/Value/Comfort/Deluxe</strong>（官網 2026-06-18 後出票）</td><td class="no">❌ Gemini 用第三方舊名</td></tr>
+<tr><td><strong>免費酒店星級</strong></td><td>3-4 星</td><td><strong>有 5 星</strong>（Crowne Plaza、Al Ain Rotana 官網列出）</td><td class="no">❌ Gemini 低估</td></tr>
+<tr><td><strong>法航估價</strong></td><td>HK$7,200-9,200</td><td><strong>HK$12,206</strong>（Google Flights 9月2日實測）</td><td class="no">❌ 低估</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>⚠️ Gemini 補充得好（mvmv 採納）</h3>
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td>政府旅遊稅</td><td>AED 15/晚 ≈ HK$32（Stopover 酒店現場俾）</td></tr>
+<tr><td>薩克森豪森交通</td><td>S-Bahn S1 / RE5 去 Oranienburg → 804 巴士/步行 20 分；免費入場</td></tr>
+<tr><td>自然博物館</td><td>U6 Naturkundemuseum 站；€11；長頸巨龍 13.27m + 暴龍 Tristan Otto</td></tr>
+<tr><td>酒莊預約</td><td>9月採收期 Vendanges 全預約制，提前 1-2 個月（mvmv 之前話 2-4 星期太鬆）</td></tr>
+<tr><td>Discover Qatar</td><td>卡塔爾 Stopover 五星酒店 $14 起/晚（競品參考）</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>🎁 mvmv 獨家發現（Gemini 冇）</h3>
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td>Etihad 經哥本哈根飛波爾多</td><td>9月2日 EY871+EY177+SK 北歐航空，HK$9,867，停阿布扎比 25h50m，9月4日 6:40 到波爾多 ✅</td></tr>
+<tr><td>9月3日 vs 9月7日差價</td><td>Etihad 官網 9月3日 HK$8,475 vs 9月7日 HK$5,505（差 HK$2,970）</td></tr>
+<tr><td>回程平價選擇</td><td>瑞航 HK$6,939 / 南航 HK$6,794 / 國泰直航 HK$7,983</td></tr>
+<tr><td>Etihad Basic 冇行李</td><td>Basic 票 checked bag 要俾錢（官網行李表）</td></tr>
+</table>
+</div>
+
+<!-- ══════════ Etihad 票種 ══════════ -->
+<h2>二、Etihad 官網票種（Fact Check 後正確版）</h2>
+<div class="card">
+<table>
+<tr><th>項目</th><th>Basic</th><th>Value</th><th>Comfort</th><th>Deluxe</th></tr>
+<tr><td><strong>改期</strong></td><td class="no">✗ 唔得</td><td>俾錢</td><td>俾錢</td><td class="ok">免費</td></tr>
+<tr><td><strong>取消</strong></td><td class="no">✗ 唔得</td><td class="no">✗ 唔得</td><td>俾錢</td><td class="ok">免費</td></tr>
+<tr><td><strong>行李</strong></td><td class="no">冇（要俾錢）</td><td>25kg</td><td>30kg</td><td>40kg</td></tr>
+<tr><td><strong>揀位</strong></td><td>俾錢</td><td>俾錢</td><td class="ok">免費標準位</td><td class="ok">免費優選位</td></tr>
+<tr><td><strong>哩數</strong></td><td>15%</td><td>35%</td><td>75%</td><td>125%</td></tr>
+<tr><td><strong>Wi-Fi</strong></td><td>俾錢</td><td>俾錢</td><td>俾錢</td><td class="ok">免費</td></tr>
+</table>
+<div class="note">💡 <strong>Ming 你要求「回程可改期」→ 建議揀 Value 或以上</strong>（Basic 完全唔可以改）。要「免費改期」就要 Deluxe（貴）。折衷：Value 改期俾少少錢都得。<br>
+Gemini 講嘅「Choice（低改費）」「Flex（免費）」係第三方舊資料 — 官方而家係 Basic/Value/Comfort/Deluxe。</div>
+</div>
+
+<!-- ══════════ 方案 ══════════ -->
+<h2>三、可接受方案分析（以香港出發、倫敦回程為基礎）</h2>
+
+<div class="card">
+<h3>方案 1：Etihad 飛巴黎 CDG + TGV 去波爾多 ⭐（最符合你要求）</h3>
+<table>
+<tr><th>航段</th><th>詳情</th><th>票價</th></tr>
+<tr><td>香港 → 巴黎 CDG</td><td>Etihad 官網（經阿布扎比轉機）</td><td class="price">HK$5,505（9月7日）<br>HK$7,447（9月2日）<br>HK$8,475（9月3日）</td></tr>
+<tr><td>巴黎 → 波爾多</td><td>TGV 高鐵 2 小時（Montparnasse 出發）</td><td class="price">€12-41 早買<br>（約 HK$100-350）</td></tr>
+<tr><td>柏林 → 倫敦</td><td>火車 / Eurowings 直航</td><td class="price">HK$1,288（飛機）</td></tr>
+<tr><td>倫敦 → 香港</td><td>Etihad 官網（經阿布扎比）</td><td class="price">≈HK$5,581（GBP528）</td></tr>
+<tr><td><strong>長途機票</strong></td><td></td><td class="price"><strong>≈HK$11,086（9月7日版）</strong></td></tr>
+</table>
+<div class="note">🎁 <strong>優勢：</strong>包 2 晚免費阿布扎比酒店（去程或回程）＋ 免費改期一次（2027年3月31日前）<br>
+⚠️ <strong>限制：</strong>9月2/3日出發要 HK$7,447-8,475（貴）；9月7日先平但要 9月7日先到<br>
+✅ <strong>符合「中間日子戴高樂 CDG stopover」</strong></div>
+</div>
+
+<div class="card">
+<h3>方案 2：Etihad 經哥本哈根直飛波爾多 🎁（9月4日到）</h3>
+<table>
+<tr><th>航段</th><th>詳情</th><th>票價</th></tr>
+<tr><td>香港 → 波爾多</td><td>EY871 HKG→AUH（停 25h50m = 2 晚）→ EY177 AUH→CPH → SK 北歐 CPH→BOD</td><td class="price">HK$9,867（來回）</td></tr>
+<tr><td>到達時間</td><td>9月4日 6:40 PM</td><td class="ok">✅ 啱 9月4日前到</td></tr>
+<tr><td>倫敦 → 香港</td><td>Etihad 官網（分開 book）</td><td class="price">≈HK$5,581</td></tr>
+</table>
+<div class="note">🎁 <strong>優勢：</strong>停阿布扎比 2 晚 = 用免費酒店 + 玩埋中東；9月4日到波爾多<br>
+⚠️ <strong>限制：</strong>Google Flights 顯示組合票（Etihad+北歐），要官網確認係咪同一張票；52 小時總時長好長<br>
+✅ <strong>符合「波爾多機場 BOD stopover」</strong></div>
+</div>
+
+<div class="card">
+<h3>方案 3：土耳其航空直飛波爾多 ✅（9月3日到，最直接）</h3>
+<table>
+<tr><th>航段</th><th>詳情</th><th>票價</th></tr>
+<tr><td>香港 → 波爾多</td><td>土航 9月2日 8:55AM 出發，經伊斯坦堡，9月3日 10:10AM 到</td><td class="price">HK$9,749（來回）</td></tr>
+<tr><td>倫敦 → 香港</td><td>瑞航 / 國泰 / Etihad</td><td class="price">HK$5,581-7,983</td></tr>
+</table>
+<div class="note">✅ <strong>優勢：</strong>9月3日就到波爾多（最快）；1 次轉機<br>
+⚠️ <strong>限制：</strong>冇免費中東酒店；伊斯坦堡停 16 小時<br>
+✅ <strong>符合「波爾多機場 BOD stopover」</strong></div>
+</div>
+
+<div class="card">
+<h3>方案 4：國泰 + 英航（寰宇一家）🛬（回程直飛最舒服）</h3>
+<table>
+<tr><th>航段</th><th>詳情</th><th>票價</th></tr>
+<tr><td>香港 → 波爾多</td><td>國泰/法航 經巴黎（Google Flights 實測）</td><td class="price">HK$15,183-16,462</td></tr>
+<tr><td>倫敦 → 香港</td><td><strong>國泰直航 12h40m</strong></td><td class="price">HK$7,983</td></tr>
+</table>
+<div class="note">✅ <strong>優勢：</strong>回程直航最舒服；Asia Miles 累積<br>
+⚠️ <strong>限制：</strong>最貴；去程冇免費酒店；<br>
+✅ <strong>符合「回程直飛」需求</strong></div>
+</div>
+
+<!-- ══════════ 終極建議 ══════════ -->
+<h2>四、終極方案建議（mvmv 推薦）</h2>
+
+<div class="card">
+<h3>🏆 首選：方案 1 + 方案 2 混合（最抵 + 9月4日前到）</h3>
+<div class="flow">
+📅 9月2日 香港出發 → ✈️ <span class="hl">Etihad EY871 香港→阿布扎比</span>（8:20PM）
+→ 🏨 <span class="hl">阿布扎比 2 晚免費酒店</span>（Crowne Plaza 5★ 等）
+→ ✈️ <span class="hl">EY31 阿布扎比→巴黎 CDG</span>
+→ <span class="tr">🚄 TGV 高鐵 2 小時 → 波爾多</span>（9月4日到 ✅）
+→ 玩波爾多酒莊（9月4-7日，朋友喺度）
+→ <span class="tr">🚄 火車/easyJet</span> → 柏林（集中營 + 化石博物館）
+→ <span class="tr">🚄 火車/Eurowings</span> → 倫敦
+→ ✈️ <span class="hl">Etihad 倫敦→香港</span>（10月25日，經阿布扎比）
+</div>
+
+<table>
+<tr><th>項目</th><th>選擇</th><th>票價</th></tr>
+<tr><td>香港→巴黎（9月2日，Etihad 官網）</td><td>Etihad（經阿布扎比）</td><td class="price">HK$7,447</td></tr>
+<tr><td>巴黎→波爾多</td><td>TGV（早買）</td><td class="price">~HK$350</td></tr>
+<tr><td>波爾多→柏林</td><td>easyJet 直航</td><td class="price">HK$720</td></tr>
+<tr><td>柏林→倫敦</td><td>Eurowings 直航</td><td class="price">HK$1,288</td></tr>
+<tr><td>倫敦→香港（10月尾，Etihad 官網）</td><td>Etihad（經阿布扎比）</td><td class="price">≈HK$5,581</td></tr>
+<tr><td><strong>機票總計</strong></td><td></td><td class="price"><strong>≈HK$15,386</strong></td></tr>
+<tr><td>阿布扎比酒店 2 晚</td><td><strong>免費</strong> 🎁</td><td class="price">HK$0</td></tr>
+</table>
+
+<div class="note">
+✅ <strong>點解咁揀：</strong>
+<ol>
+<li>9月2日出發 → 9月4日到波爾多（朋友 9月7日前都喺度，時間啱）</li>
+<li>去程停阿布扎比 2 晚 = <strong>免費 5 星酒店</strong> + 順便玩中東</li>
+<li>Etihad 官網 book 先有免費酒店 + 2027年3月31日前免費改期一次</li>
+<li>回程 10月25日左右，可以改期（Value 票俾少少錢改 / 免費改期一次）</li>
+<li>歐洲內陸用火車/廉航，靈活</li>
+</ol>
+</div>
+</div>
+
+<div class="card">
+<h3>💡 慳錢版本（如果接受 9月7日先到）</h3>
+<table>
+<tr><th>項目</th><th>票價</th></tr>
+<tr><td>香港→巴黎（9月7日，Etihad 官網最平）</td><td class="price">HK$5,505</td></tr>
+<tr><td>倫敦→香港（Etihad）</td><td class="price">≈HK$5,581</td></tr>
+<tr><td><strong>長途機票</strong></td><td class="price"><strong>≈HK$11,086</strong>（慳 HK$4,300！）</td></tr>
+</table>
+<div class="note">⚠️ 但係 9月7日先到波爾多 = 見唔到朋友（朋友 9月7日前走）<br>
+→ 除非朋友可以延遲，否則唔建議</div>
+</div>
+
+<!-- ══════════ 最後選擇 ══════════ -->
+<h2>五、最後選擇：香港→法國、倫敦→返港（改機票形式）</h2>
+<div class="card">
+<p><strong>呢個正正就係 Open-Jaw（開口程）</strong>：去程香港→法國，回程倫敦→香港，兩程分開 book 或 Multi-city 一齊 book。</p>
+<table>
+<tr><th>項目</th><th>做法</th></tr>
+<tr><td>Etihad Multi-city</td><td>官網揀「Multi-city」：HKG→CDG（9月2日）+ LHR→HKG（10月25日），一齊出票 → 免費酒店適用</td></tr>
+<tr><td>分開 book</td><td>兩張單程（HKG→CDG + LHR→HKG）→ 靈活但通常貴啲</td></tr>
+<tr><td>混合</td><td>去程 Etihad（慳錢+酒店）、回程國泰直航（舒服）</td></tr>
+</table>
+<div class="note">💡 <strong>mvmv 建議：</strong>去程 9月2日 Etihad（HK$7,447）用免費酒店 + 回程 10月25日 Etihad（HK$5,581）— 全程 Etihad 管理最簡單，一個 booking reference，改期方便。</div>
+</div>
+
+<div class="footer">
+<p>由 無虛 (mo mo) 生成 — 2026年8月8日 · mvmv Fact Check 合併版 · 資料來源：Etihad 官網 + SNCF 官網 + Google Flights 實測（2026-08-08，HKD）</p>
+</div>
+
+</body>
+</html>
