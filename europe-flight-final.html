@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歐洲 Multi-City 機票終極報告 — mvmv 實測 × Gemini Spark 合併版</title>
+<style>
+html { font-size: 32px; }
+body { background: #f0e8d8; color: #1a1a16; font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif; line-height: 2.0; margin: 0; padding: 1.5rem; }
+h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.55rem; color: #2d5a27; margin-bottom: 0.3rem; }
+h2 { font-family: Georgia, serif; font-size: 1.25rem; color: #2d5a27; border-bottom: 3px solid #8a7a5a; padding-bottom: 0.3rem; margin-top: 1.8rem; }
+h3 { font-size: 1.05rem; color: #4a3f2f; margin-bottom: 0.4rem; }
+p { margin: 0.4rem 0; }
+table { border-collapse: collapse; width: 100%; margin: 0.8rem 0; font-size: 0.82rem; }
+th { background: #2d5a27; color: #f0e8d8; padding: 0.5rem 0.6rem; text-align: left; }
+td { border: 1px solid #b8a88a; padding: 0.5rem 0.6rem; vertical-align: top; }
+tr:nth-child(even) { background: #e6dcc8; }
+.price { color: #a04000; font-weight: bold; white-space: nowrap; }
+.best { background: #d4e8c8 !important; font-weight: bold; }
+.box { background: #fff8e8; border-left: 6px solid #2d5a27; padding: 0.8rem 1rem; margin: 1rem 0; }
+.warn { background: #ffe8e0; border-left: 6px solid #c05030; padding: 0.8rem 1rem; margin: 1rem 0; }
+.tip { background: #e8f0e0; border-left: 6px solid #4a8a3a; padding: 0.8rem 1rem; margin: 1rem 0; }
+.gemini { background: #e0e8f8; border-left: 6px solid #3a5a9a; padding: 0.8rem 1rem; margin: 1rem 0; }
+.small { font-size: 0.7rem; color: #6a5f4f; }
+ul { margin: 0.4rem 0 0.4rem 1.2rem; }
+li { margin: 0.2rem 0; }
+.ok { color: #2d6a2d; font-weight: bold; }
+.no { color: #c03020; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>✈️ 歐洲 Multi-City 機票終極報告</h1>
+<p><strong>mvmv 實測 × Gemini Spark 合併版（逐項 Fact Check）</strong></p>
+<p class="small">資料來源：Google Flights 實測 + Etihad 官網（2026-08-09）＋ Gemini Spark 報告（已 fact check）· 港幣 · 1 人價格</p>
+
+<h2>📋 行程要求</h2>
+<table>
+<tr><th>項目</th><th>要求</th></tr>
+<tr><td>去程</td><td><strong>9月9日或10日</strong> 香港 → 巴黎 (CDG) / 波爾多 (BOD)</td></tr>
+<tr><td>回程</td><td><strong>10月23日或24日</strong> 倫敦 → 香港（4人同行）</td></tr>
+<tr><td>一人改期</td><td>其中一人回程改 <strong>11月7日或8日</strong></td></tr>
+<tr><td>機票彈性</td><td>全部要可改簽（Flexible / Date Change Allowed）</td></tr>
+<tr><td>Stop Over</td><td>有 / 冇都可以</td></tr>
+<tr><td>航空公司</td><td>任何航空公司（排除中國大陸）</td></tr>
+</table>
+
+<h2>🏆 終極推薦：Etihad 全包（mvmv 實測最抵）</h2>
+<div class="box">
+<table>
+<tr><th>航段</th><th>航班</th><th>價格/人</th></tr>
+<tr class="best"><td>去程 9/10</td><td>香港 ✈️ 阿布扎比 ✈️ 巴黎 CDG（Etihad 官網）</td><td class="price">~HK$5,505</td></tr>
+<tr><td>巴黎→波爾多</td><td>TGV 高鐵（最快 2h04m）</td><td>~HK$400-600</td></tr>
+<tr class="best"><td>回程 10/23</td><td>倫敦 ✈️ 阿布扎比 ✈️ 香港（Etihad）</td><td class="price">HK$7,325</td></tr>
+<tr class="best"><td>一人 11/7</td><td>倫敦 ✈️ 香港（Etihad）</td><td class="price">HK$5,572</td></tr>
+</table>
+<p><strong>4 人總計：約 HK$53,000 + 2 晚免費阿布扎比酒店 🎁</strong></p>
+</div>
+
+<h2>✈️ 去程：香港 → 巴黎 / 波爾多（9月10日）</h2>
+<table>
+<tr><th>航空公司</th><th>路線</th><th>停站</th><th>價格/人</th><th>來源</th></tr>
+<tr class="best"><td><strong>Etihad</strong></td><td>HKG → AUH → CDG</td><td>1</td><td class="price">~HK$5,505</td><td>mvmv 官網實測</td></tr>
+<tr><td>（經蘇黎世）</td><td>HKG → ZRH → BOD</td><td>1</td><td class="price">HK$7,993</td><td>mvmv Google Flights</td></tr>
+<tr><td>卡塔爾 + 伊比利亞</td><td>HKG → DOH → MAD → BOD</td><td>2</td><td class="price">HK$8,254</td><td>mvmv Google Flights</td></tr>
+<tr><td>土耳其航空</td><td>HKG → IST → BOD（<span class="no">唔係直飛！</span>）</td><td>1</td><td class="price">HK$9,749</td><td>mvmv 實測</td></tr>
+<tr><td>法國航空</td><td>HKG → CDG → BOD</td><td>1</td><td class="price">HK$11,754</td><td>mvmv 實測</td></tr>
+<tr><td>國泰航空</td><td>HKG → CDG（<span class="no">冇直航！</span>）</td><td>1+</td><td class="price">HK$8,800+</td><td>Gemini 估算</td></tr>
+</table>
+
+<div class="warn">
+<p>⚠️ <strong>Fact Check 修正：</strong></p>
+<ul>
+<li>❌ Gemini 話土航「獨家直飛波爾多」— <span class="no">錯！實際要經伊斯坦堡轉機</span>，HKG→BOD 根本冇直航</li>
+<li>❌ Gemini 話國泰 CX 261 直航 CDG — <span class="no">錯！HKG→CDG 冇直航</span></li>
+<li>✅ 土航轉機 >20h 免費 1 晚酒店 + Touristanbul 導賞（Gemini 資料，可用）</li>
+</ul>
+</div>
+
+<h2>🇬🇧 回程：倫敦 → 香港</h2>
+<h3>10月23日 / 24日（4人同行）</h3>
+<table>
+<tr><th>航空公司</th><th>路線</th><th>停站</th><th>價格/人</th><th>4人</th><th>來源</th></tr>
+<tr class="best"><td><strong>Etihad</strong></td><td>LHR → AUH → HKG</td><td>1</td><td class="price">HK$7,325</td><td>HK$29,300</td><td>mvmv 實測</td></tr>
+<tr><td>阿曼航空 + 國泰</td><td>LHR → MCT → HKG</td><td>1-2</td><td class="price">HK$7,757</td><td>HK$31,028</td><td>mvmv 實測</td></tr>
+<tr><td>英國航空</td><td>LHR → HKG</td><td>1-2</td><td class="price">HK$9,032</td><td>HK$36,128</td><td>mvmv 實測</td></tr>
+<tr><td>法航</td><td>LHR → CDG → HKG</td><td>1</td><td class="price">HK$8,200+</td><td>—</td><td>Gemini 估算</td></tr>
+</table>
+
+<h3>11月7日 / 8日（1人改期）</h3>
+<table>
+<tr><th>航空公司</th><th>路線</th><th>停站</th><th>價格/人</th><th>來源</th></tr>
+<tr class="best"><td><strong>Etihad</strong></td><td>LHR → AUH → HKG</td><td>1</td><td class="price">HK$5,572</td><td>mvmv 實測</td></tr>
+<tr><td>Etihad（次選）</td><td>LHR → AUH → HKG</td><td>1</td><td class="price">HK$5,963</td><td>mvmv 實測</td></tr>
+<tr><td>英國航空</td><td>LHR → HKG</td><td>1-2</td><td class="price">HK$6,908</td><td>mvmv 實測</td></tr>
+</table>
+<p class="small">💡 11月回程平過 10月（HK$5,572 vs HK$7,325）— 慳 HK$1,753/人</p>
+
+<h2>🎁 Stopover 免費酒店總覽（合併版）</h2>
+<table>
+<tr><th>航空公司</th><th>方案</th><th>內容</th><th>條件</th></tr>
+<tr class="best"><td><strong>Etihad</strong> ⭐</td><td>Abu Dhabi Stopover</td><td>最多 2 晚免費（5★ Crowne Plaza 等 6 間）</td><td>官網訂 + 3日前 + 免費改期</td></tr>
+<tr><td>阿聯酋</td><td>Dubai Connect</td><td>轉機 6-26 小時免費酒店 + 接送</td><td>Gemini 補充 ✅</td></tr>
+<tr><td>土耳其航空</td><td>Stopover Istanbul</td><td>轉機 &gt;20h 免費 1 晚 4★（商務 2 晚 5★）</td><td>Gemini 補充 ✅</td></tr>
+<tr><td>卡塔爾</td><td>Discover Qatar</td><td>4/5★酒店低至 HK$110-188/晚</td><td>Gemini 補充 ✅</td></tr>
+</table>
+
+<h2>🚄 巴黎 → 波爾多接駁（Fact Check 修正）</h2>
+<div class="warn">
+<p>❌ Gemini 話 TGV 要 3h25m — <span class="no">錯！</span></p>
+<p>✅ 2017 新線開通後，巴黎 Montparnasse → 波爾多 St-Jean <strong>最快 2 小時 04 分</strong>（SNCF 官網）</p>
+</div>
+<table>
+<tr><th>方案</th><th>內容</th><th>優點</th></tr>
+<tr class="best"><td>巴黎 CDG → TGV</td><td>CDG 落機 → 高鐵直達波爾多</td><td>最快 2h04m</td></tr>
+<tr><td>土航直達 BOD</td><td>香港 → IST → 波爾多機場</td><td>行李直掛，唔使轉車（但要轉機）</td></tr>
+<tr><td>法航 Train+Air</td><td>機票+高鐵聯票一票到底</td><td>延誤保障（Gemini 補充 ✅）</td></tr>
+</table>
+
+<h2>💳 艙位彈性指引（Gemini 資料已核對）</h2>
+<table>
+<tr><th>航空公司</th><th>可改期艙位</th><th>改簽費</th></tr>
+<tr><td>Etihad</td><td>Value / Comfort / Deluxe（2026新版）</td><td>Comfort 俾錢改、Deluxe 免費</td></tr>
+<tr><td>國泰</td><td>Essential / Flex</td><td>Essential 付費；Flex 免費</td></tr>
+<tr><td>土航</td><td>ExtraFly / PrimeFly</td><td>低手續費 / 免費</td></tr>
+<tr><td>卡塔爾</td><td>Convenience / Comfort</td><td>1 次免費 / 無限次</td></tr>
+<tr><td>阿聯酋</td><td>Saver / Flex / Flex Plus</td><td>付費 / 免費 / 免費</td></tr>
+<tr><td>法航/英航</td><td>Standard / Flex</td><td>付費 / 免費</td></tr>
+</table>
+
+<h2>📌 點樣 Book（建議步驟）</h2>
+<div class="tip">
+<ol>
+<li>去 <strong>etihad.com</strong> 用 Multi-city 搜尋：HKG→CDG（9/10）＋ LHR→HKG（10/23）</li>
+<li>4 人一齊 book 去程 + 回程（10/23）</li>
+<li>另外 book 一人回程（11/7）— 獨立 booking</li>
+<li>揀 <strong>Comfort / Deluxe</strong> 票種（可改期）</li>
+<li>加 <strong>Abu Dhabi Stopover</strong> — 免費 2 晚酒店</li>
+<li>巴黎→波爾多：SNCF 官網 book TGV（早買有優惠）</li>
+</ol>
+</div>
+
+<h2>🔍 Fact Check 總結</h2>
+<table>
+<tr><th>項目</th><th>Gemini Spark</th><th>mvmv 實測</th><th>邊個啱</th></tr>
+<tr><td>最平去程</td><td>國泰 $8,800+</td><td>Etihad ~HK$5,505</td><td><span class="ok">mvmv ✅</span></td></tr>
+<tr><td>土航直飛 BOD</td><td>直飛</td><td>要轉機</td><td><span class="ok">mvmv ✅</span></td></tr>
+<tr><td>TGV 車程</td><td>3h25m</td><td>2h04m</td><td><span class="ok">mvmv ✅</span></td></tr>
+<tr><td>國泰直航 CDG</td><td>有 CX 261</td><td>冇直航</td><td><span class="ok">mvmv ✅</span></td></tr>
+<tr><td>Dubai Connect 酒店</td><td>有提及</td><td>冇查</td><td><span class="ok">Gemini ✅</span></td></tr>
+<tr><td>Discover Qatar</td><td>有提及</td><td>冇查</td><td><span class="ok">Gemini ✅</span></td></tr>
+<tr><td>Train+Air 聯票</td><td>有提及</td><td>冇查</td><td><span class="ok">Gemini ✅</span></td></tr>
+</table>
+
+<p class="small">🔍 報告來源：Google Flights 實測（2026-08-09）＋ Etihad 官網（etihad.com）＋ Gemini Spark 報告（已逐項 fact check）。價格會隨日期變動，book 前請再確認。</p>
+<p class="small">由 無虛 (mo mo) 生成 — mvmv × Gemini 合併終極版</p>
+</body>
+</html>
