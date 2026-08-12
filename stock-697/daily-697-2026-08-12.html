@@ -1,172 +1,81 @@
 <!DOCTYPE html>
 <html lang="zh-HK">
-<head>
-<meta charset="UTF-8">
+<head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>697 首程控股 每日朝早報告 — 2026-08-12</title>
+<title>697 首程控股 - 午盤報表</title>
 <style>
-  html { font-size: 32px; }
-  @media (max-width: 600px) { html { font-size: 26px; } }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    background: #14161f;
-    color: #e8eaf0;
-    font-family: "Noto Sans HK", "Microsoft JhengHei", system-ui, sans-serif;
-    line-height: 2.0;
-    padding: 24px 20px 60px;
-    max-width: 900px;
-    margin: 0 auto;
+    font-family: 'Segoe UI', 'Microsoft JhengHei', Arial, sans-serif;
+    background: #1a1a2e;
+    color: #e0d5c1;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    padding: 30px;
   }
-  .header { text-align: center; padding: 28px 0 20px; border-bottom: 2px solid #2a2e3d; margin-bottom: 28px; }
-  h1 { font-size: 1.6rem; color: #ffd700; letter-spacing: 1px; }
-  .ticker { font-size: 0.85rem; color: #8a93ab; background: #232838; padding: 4px 14px; border-radius: 8px; display: inline-block; margin-top: 10px; }
-  .subtitle { font-size: 0.9rem; color: #9aa3bd; margin-top: 14px; }
-  .badge { display: inline-block; padding: 6px 18px; border-radius: 10px; font-size: 0.75rem; margin-top: 12px; background: #2a2e3d; color: #ffd700; border: 1px solid #3a4055; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin: 28px 0; }
-  .card { background: #1e2231; border: 1px solid #2f3448; border-radius: 14px; padding: 22px 20px; text-align: center; }
-  .card .label { font-size: 0.68rem; color: #8a93ab; }
-  .card .value { font-size: 1.35rem; font-weight: 700; color: #ffffff; margin-top: 6px; }
-  .card .value.up { color: #4cd97b; }
-  .card .value.down { color: #ff6b6b; }
-  .card .value.flat { color: #ffd700; }
-  .card .sub { font-size: 0.6rem; color: #6b748d; margin-top: 4px; }
-  h2 { font-size: 1.05rem; color: #ffd700; margin: 34px 0 14px; padding-left: 12px; border-left: 6px solid #ffd700; }
-  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.72rem; }
-  th { background: #232838; color: #ffd700; padding: 12px 10px; text-align: left; font-size: 0.68rem; }
-  td { padding: 12px 10px; border-bottom: 1px solid #2a2e3d; }
-  tr:nth-child(even) td { background: #1a1e2c; }
-  .alert-box { background: #2a2018; border: 1px solid #6b4a1f; border-radius: 12px; padding: 18px 20px; margin: 14px 0; }
-  .alert-box.red { background: #2a1418; border-color: #6b1f2a; }
-  .alert-box.green { background: #14281a; border-color: #1f6b3a; }
-  .warn-box { background: #2a2418; border: 1px solid #6b5a1f; border-radius: 12px; padding: 18px 20px; margin: 14px 0; font-size: 0.72rem; }
-  .info-box { background: #18202e; border: 1px solid #2a3d6b; border-radius: 12px; padding: 18px 20px; margin: 14px 0; font-size: 0.72rem; }
-  .up-text { color: #4cd97b; }
-  .down-text { color: #ff6b6b; }
-  .gold { color: #ffd700; }
-  .footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid #2a2e3d; font-size: 0.6rem; color: #6b748d; text-align: center; }
-  .seg { font-family: "Consolas", monospace; font-size: 0.68rem; }
-</style>
-</head>
-<body>
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 2.8rem; color: #d4af6d; margin-bottom: 4px; letter-spacing: 1px; }
+  .subtitle { font-size: 1.1rem; color: #8a8070; margin-bottom: 20px; }
+  h2 { font-size: 2.0rem; color: #c9a96e; margin: 30px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #8b6914; display: inline-block; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+  .stat-card { background: #242424; border: 1px solid #3d3525; border-radius: 12px; padding: 22px; text-align: center; }
+  .stat-card .num { font-size: 2.4rem; font-weight: bold; color: #d4af6d; }
+  .stat-card .label { font-size: 1.0rem; color: #8a8070; margin-top: 4px; }
+  .up { color: #5a8f4a !important; }
+  .down { color: #b85450 !important; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 1.0rem; }
+  th { background: #2a2416; color: #c9a96e; padding: 14px 16px; text-align: left; font-size: 1.1rem; white-space: nowrap; }
+  td { padding: 12px 16px; border-bottom: 1px solid #3d3525; }
+  tr:hover td { background: rgba(201,169,110,0.08); }
+  .badge { display: inline-block; background: #332b1a; color: #c9a96e; border-radius: 20px; padding: 6px 18px; font-size: 0.9rem; border: 1px solid #3d3525; }
+  .badge-share { background: #1a2a1a; color: #7dbf7d; border-color: #3a5a3a; }
+  .empty-state { text-align: center; color: #8a8070; padding: 40px; font-size: 1.2rem; }
+  footer { margin-top: 40px; text-align: center; color: #8a8070; font-size: 0.9rem; border-top: 1px solid #2a2a2a; padding-top: 20px; }
+</style></head><body>
+<div class="container">
+  <h1>697 首程控股</h1>
+  <div class="subtitle">Capital Assets &amp; Management (0697.HK)</div>
+  <span class="badge">🌐 分享版 · 午盤報表</span>
+  <span style="margin-left:10px;color:#8a8070;">📅 2026-08-12 13:02</span>
+  <h2>📊 波動統計</h2>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num">0</div><div class="label">±$0.05 波動總次數</div></div>
+    <div class="stat-card"><div class="num up">0</div><div class="label">⬆ 上升波動</div></div>
+    <div class="stat-card"><div class="num down">0</div><div class="label">⬇ 下跌波動</div></div>
+    <div class="stat-card"><div class="num" style="font-size:1.6rem;">N/A</div><div class="label">價格區間</div></div>
+    <div class="stat-card"><div class="num" style="font-size:1.6rem;">$1.76 / $1.695</div><div class="label">全日振幅: $0.065</div></div>
+  </div>
+  <h2>📈 累計上落捕捉 (±$0.05 瞬間變化)</h2>
+  <table><thead><tr><th>起點時間</th><th>起點價</th><th>觸發時間</th><th>觸發價</th><th>累計變幅</th><th>方向</th></tr></thead><tbody><tr><td colspan='6' class='empty-state'>今日暫無 ±$0.05 累計上落 — 價格未有單邊趨勢</td></tr></tbody></table>  <h2>🏦 CCASS 券商持倉分析</h2>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num" style="font-size:1.6rem;">7,223,047,253</div><div class="label">CCASS 總持股</div></div>
+    <div class="stat-card"><div class="num" style="font-size:1.6rem;">282</div><div class="label">參與券商數</div></div>
+    <div class="stat-card"><div class="num" style="font-size:1.6rem;">2026/08/11</div><div class="label">數據日期 (T-1)</div></div>
+  </div>
+  <table>
+    <thead><tr><th>排名</th><th>券商</th><th>持股量</th><th>佔比</th></tr></thead>
+    <tbody>
+<tr><td>1</td><td>中國証券登記結算有限責任公司</td><td>882,370,533</td><td>12.22%</td></tr>
+<tr><td>2</td><td>華泰金融控股(香港)有限公司</td><td>881,499,584</td><td>12.20%</td></tr>
+<tr><td>3</td><td>中國証券登記結算有限責任公司</td><td>772,110,469</td><td>10.69%</td></tr>
+<tr><td>4</td><td>中國銀行(香港)有限公司</td><td>606,249,859</td><td>8.39%</td></tr>
+<tr><td>5</td><td>UBS SECURITIES HONG KONG LTD</td><td>601,249,428</td><td>8.32%</td></tr>
+<tr><td>6</td><td>中信証券經紀(香港)有限公司</td><td>412,826,210</td><td>5.72%</td></tr>
+<tr><td>7</td><td>香港上海匯豐銀行有限公司</td><td>355,690,300</td><td>4.92%</td></tr>
+<tr><td>8</td><td>中銀國際證券有限公司</td><td>338,897,757</td><td>4.69%</td></tr>
+<tr><td>9</td><td>中信建投(國際)証券有限公司</td><td>329,493,520</td><td>4.56%</td></tr>
+<tr><td>10</td><td>渣打銀行(香港)有限公司</td><td>317,888,763</td><td>4.40%</td></tr>
+<tr><td>11</td><td>創興證券有限公司</td><td>225,102,799</td><td>3.12%</td></tr>
+<tr><td>12</td><td>中國國際金融香港證券有限公司</td><td>188,827,691</td><td>2.61%</td></tr>
+  </tbody>
+  </table>
+  <p style="font-size:0.85rem;color:#8a8070;">📌 券商持股變化反映資金流向：中國結算（北水）增減持 = 內地資金動向；外資券商（UBS/花旗/匯豐）增減持 = 國際資金動向。數據來源：HKEX CCASS。</p>
 
-<div class="header">
-  <h1>📊 697 首程控股 每日朝早報告</h1>
-  <div class="ticker">0697.HK · 首程控股</div>
-  <div class="subtitle">📅 報告日期：08月12日（星期三）· 分析交易日：08月11日（星期二）</div>
-  <div class="badge">🔒 私人版 · 數據驅動分析</div>
-</div>
-
-<!-- ========== 最新狀況 ========== -->
-<h2>📌 最新狀況</h2>
-<div class="cards">
-  <div class="card"><div class="label">昨日收市</div><div class="value down">$1.760</div><div class="sub">▼ 微跌</div></div>
-  <div class="card"><div class="label">全日升跌</div><div class="value down">-0.030</div><div class="sub">vs 前收 -1.68%</div></div>
-  <div class="card"><div class="label">全日最高</div><div class="value">$1.810</div><div class="sub">09:50 觸及</div></div>
-  <div class="card"><div class="label">全日最低</div><div class="value">$1.745</div><div class="sub">10:20 起觸及</div></div>
-  <div class="card"><div class="label">全日波幅</div><div class="value flat">$0.065</div><div class="sub">最高 - 最低</div></div>
-  <div class="card"><div class="label">成交量</div><div class="value">約103萬股</div><div class="sub">yfinance 分鐘bar（去重後）</div></div>
-</div>
-
-<!-- ========== 全日分析 ========== -->
-<h2>📈 08月11日 全日分析</h2>
-<table>
-  <tr><th>項目</th><th>數值</th><th>備註</th></tr>
-  <tr><td>開市價</td><td>$1.790</td><td>低開（前收 $1.790）</td></tr>
-  <tr><td>收市價</td><td>$1.760</td><td>尾段收市</td></tr>
-  <tr><td>全日最高</td><td>$1.810</td><td>09:50 觸及</td></tr>
-  <tr><td>全日最低</td><td>$1.745</td><td>10:20 起觸及</td></tr>
-  <tr><td>全日波幅</td><td>$0.065</td><td>約 3.6% 波幅</td></tr>
-  <tr><td>收市 vs 開市</td><td class="down">-0.030 (-1.68%)</td><td>—</td></tr>
-  <tr><td>收市 vs 前收</td><td class="down">-0.030 (-1.68%)</td><td>08月10日 收市 $1.790</td></tr>
-</table>
-<div class="info-box">
-  💡 <b>解讀：</b>開市 $1.790，全日高低 $1.810/$1.745，
-  波幅 $0.065，08月11日 屬窄幅悶市。
-  詳細走勢見下方分段表。
-</div>
-
-<!-- ========== 走勢分段 ========== -->
-<h2>⏱️ 走勢分段</h2>
-<table>
-  <tr><th>時間</th><th>價格</th><th>觀察</th></tr>
-  <tr><td class="seg">09:00</td><td class="seg">$1.790</td><td>開市</td></tr>
-  <tr><td class="seg">10:00</td><td class="seg">$1.765</td><td>上午主段</td></tr>
-  <tr><td class="seg">10:10</td><td class="seg">$1.770</td><td>上午主段</td></tr>
-  <tr><td class="seg">10:20</td><td class="seg">$1.750</td><td>上午主段</td></tr>
-  <tr><td class="seg">10:40</td><td class="seg">$1.760</td><td>上午主段</td></tr>
-  <tr><td class="seg">13:40</td><td class="seg">$1.780</td><td>午後</td></tr>
-  <tr><td class="seg">13:50</td><td class="seg">$1.770</td><td>午後</td></tr>
-  <tr><td class="seg">14:50</td><td class="seg">$1.765</td><td>尾段</td></tr>
-  <tr><td class="seg">15:00</td><td class="seg">$1.770</td><td>收市前</td></tr>
-  <tr><td class="seg">15:10</td><td class="seg">$1.760</td><td>收市前</td></tr>
-  <tr><td class="seg">15:20</td><td class="seg">$1.770</td><td>收市前</td></tr>
-  <tr><td class="seg">15:30</td><td class="seg">$1.765</td><td>收市前</td></tr>
-</table>
-<p style="font-size:0.62rem; color:#6b748d;">⚠️ 數據截至 15:50（最後 10 分鐘交易可能未有分鐘記錄，已知限制）。</p>
-
-<!-- ========== 警報 ========== -->
-<h2>🚨 ±$0.05 波動警報</h2>
-<div class="alert-box green">
-  ✅ <b>08月11日：全日無 ±$0.05 單筆跳動警報</b><br>  股價喺 $1.745–$1.810 窄幅上落，全日波幅僅 $0.065，未觸發任何門檻。
-</div>
-<table>
-  <tr><th>日期</th><th>時間</th><th>價格</th><th>變幅</th><th>方向</th></tr>
-  <tr><td>2026-08-07</td><td>10:00</td><td>$1.86</td><td>0.055</td><td class="up-text">⬆ 升</td></tr>
-  <tr><td>2026-08-05</td><td>10:00</td><td>$1.81</td><td>-0.06</td><td class="down-text">⬇ 跌</td></tr>
-  <tr><td>2026-08-04</td><td>10:40</td><td>$1.85</td><td>0.05</td><td class="up-text">⬆ 升</td></tr>
-  <tr><td>2026-07-31</td><td>15:00</td><td>$1.75</td><td>0.05</td><td class="up-text">⬆ 升</td></tr>
-  <tr><td>2026-07-24</td><td>11:40</td><td>$1.65</td><td>-0.05</td><td class="down-text">⬇ 跌</td></tr>
-  <tr><td>2026-07-21</td><td>15:31</td><td>$1.67</td><td>0.06</td><td class="up-text">⬆ 升</td></tr>
-</table>
-<p style="font-size:0.62rem; color:#6b748d;">以上為 price_alerts.csv 完整歷史（最近 6 次警報）。</p>
-
-<!-- ========== 累計上落捕捉 ========== -->
-<h2>📐 累計上落捕捉（ZigZag 式，基準 = 開市價）</h2>
-<div class="alert-box green">
-  ✅ <b>08月11日：全日無累計上落捕捉</b><br>  開市 $1.790 起，全日高低 $1.810/$1.745 對基準未夠 ±$0.05 門檻，無任何方向觸發。
-</div>
-<div class="info-box">
-  💡 累計捕捉規則（Ming 2026-08-05 釐清）：由開市基準價累計升/跌夠 ±$0.05 先記 1 次，然後重置。
-  08月11日 開市 $1.790，全日零捕捉（高低未夠 ±$0.05 門檻）。
-</div>
-
-<!-- ========== 趨勢 ========== -->
-<h2>📉 最近 7 個交易日趨勢</h2>
-<table>
-  <tr><th>日期</th><th>開市</th><th>收市</th><th>升跌</th><th>狀態</th></tr>
-  <tr><td>08月03日</td><td>$1.760</td><td>$1.790</td><td class="up-text">+0.030</td><td>開市基準</td></tr>
-  <tr><td>08月04日</td><td>$1.800</td><td>$1.855</td><td class="up-text">+0.055</td><td>▲ 升</td></tr>
-  <tr><td>08月05日</td><td>$1.870</td><td>$1.820</td><td class="down-text">-0.050</td><td>▼ 跌</td></tr>
-  <tr><td>08月06日</td><td>$1.815</td><td>$1.795</td><td class="down-text">-0.020</td><td>▼ 跌</td></tr>
-  <tr><td>08月07日</td><td>$1.805</td><td>$1.830</td><td class="up-text">+0.025</td><td>▲ 升</td></tr>
-  <tr><td>08月10日</td><td>$1.830</td><td>$1.790</td><td class="down-text">-0.040</td><td>▼ 跌</td></tr>
-  <tr><td>08月11日</td><td>$1.790</td><td>$1.760</td><td class="down-text">-0.030</td><td>▼ 跌</td></tr>
-</table>
-<div class="info-box">
-  💡 <b>觀察：</b>趨勢表顯示最近 7 個交易日嘅開市→收市走勢，留意連升/連跌 pattern 同支持位。
-</div>
-
-<!-- ========== 系統狀態 ========== -->
-<h2>🩺 系統狀態</h2>
-<div class="warn-box">
-  ⚠️ <b>price_state.json 狀態檔 drift（已知系統性問題，2 欄唔 match）</b><br><table style="margin-top:8px;">
-  <tr><th>欄位</th><th>state 檔</th><th>CSV 實際</th><th>狀態</th></tr>
-  <tr><td>prev_close</td><td>1.5</td><td>$1.790</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>today</td><td>2026-07-14</td><td>2026-08-11</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>today_date</td><td>2026-08-11</td><td>2026-08-11</td><td class="up-text">✅ match</td></tr>
-  <tr><td>last_price</td><td>1.76</td><td>$1.760</td><td class="up-text">✅ match</td></tr>
-  <tr><td>day_high</td><td>1.81</td><td>$1.810</td><td class="up-text">✅ match</td></tr>
-  <tr><td>day_low</td><td>1.745</td><td>$1.745</td><td class="up-text">✅ match</td></tr>
-  <tr><td>open_price</td><td>1.79</td><td>$1.790</td><td class="up-text">✅ match</td></tr>
-</table>
-  <p style="margin-top:10px;">✅ 今次分析以 CSV 實際數據為準。prev_close 同 today 欄位 drift 唔影響價格分析，但建議下次例行維護時修正狀態檔。</p>
-</div>
-
-<div class="footer">
-  📊 數據來源：price_detail.csv（price_alert.py v6 每10分鐘記錄）+ price_alerts.csv + price_state.json<br>
-  由 無虛 (mo mo) 自動生成 · 08月12日 早上<br>
-  ⚠️ 本報告僅供參考，不構成投資建議
-</div>
-
-</body>
-</html>
+  <h2>📋 波動紀錄（單筆跳動 ≥$0.05）</h2>
+  <table><thead><tr><th>時間</th><th>價格</th><th>變幅</th><th>方向</th><th>成交量</th></tr></thead><tbody><tr><td colspan='5' class='empty-state'>今日暫無 ±$0.05 波動紀錄 — 股價走勢平穩</td></tr></tbody></table>
+  <footer>
+    由 <strong>無虛 (mo mo)</strong> 生成 · 697 首程控股監控<br>
+    數據來源：Yahoo Finance · 即市分鐘級數據<br>
+    報告時間：2026-08-12 13:02
+  <br>由 無虛 (mo mo) 生成 · 分享版本</footer>
+</div></body></html>
