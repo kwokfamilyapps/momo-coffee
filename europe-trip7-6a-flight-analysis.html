@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026歐洲之旅 Multi-City 機票分析 — Etihad（私人版）</title>
+<title>2026歐洲之旅 Multi-City 機票分析 — Etihad vs 阿聯酋（私人版）</title>
 <style>
   html { font-size: 32px; }
   @media (max-width: 600px) { html { font-size: 26px; } }
@@ -36,9 +36,11 @@
     padding: 0.8rem 0.7rem; margin: 0.6rem 0;
   }
   table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.66rem; line-height: 1.7; }
-  th, td { border: 1px solid #d8d0c0; padding: 0.3rem 0.4rem; text-align: left; vertical-align: top; }
+  th, td { border: 1px solid #d8d0c0; padding: 0.3rem 0.4rem; text-align: left; vertical-align: middle; }
   th { background: #f0e8d8; color: #1a1a16; font-weight: 700; }
   tr:nth-child(even) td { background: #faf6ee; }
+  .lbl { width: 22%; background: #f0e8d8 !important; font-weight: 700; white-space: nowrap; }
+  .arrow { text-align: center; font-size: 1rem; color: #4a7a4a; }
   .win { background: #e8f0e4 !important; color: #2e7d32; font-weight: 700; }
   .warn { color: #9a4a20; font-weight: 700; }
   .note { font-size: 0.6rem; color: #4a4840; }
@@ -62,7 +64,7 @@
 
 <div class="hero">
   <h1>2026 歐洲之旅 · Multi-City 機票分析</h1>
-  <div class="sub">Etihad 航空 ｜ 9月8日香港出發 ｜ 巴黎戴高樂機場（CDG）入・倫敦希斯路機場（LHR）出 ｜ 4人行程</div>
+  <div class="sub">Etihad vs 阿聯酋航空 ｜ 9月8日香港出發 ｜ 巴黎戴高樂機場（CDG）入・倫敦希斯路機場（LHR）出 ｜ 4人行程</div>
   <div class="badge">🔒 私人版本</div>
 </div>
 
@@ -73,74 +75,252 @@
 第三方搜尋引擎（Kayak／Momondo）顯示之價錢會隨供應及時間變動，且票種（Basic／Value／Eco Saver／Eco Flex）直接影響行李及改期權利——請於官網登入後確認最終票價及票種條款先購買。
 </div>
 
-<h2>✈️ 去程 9/8 HKG → 巴黎 CDG（單程）</h2>
-
-<h3>1️⃣ Etihad Airways（EY833 + EY31）🏆 推薦</h3>
+<h2>✈️ 去程 9/8 香港（HKG）→ 巴黎（CDG）</h2>
 <div class="card">
 <table>
-  <tr><th>項目</th><th>資料</th></tr>
-  <tr><td>香港起飛</td><td>9月8日 20:20（當地時間）</td></tr>
-  <tr><td>航班①</td><td>EY833（HKG→阿布扎比 AUH）</td></tr>
-  <tr><td>到達阿布扎比</td><td>9月9日 約01:55（當地 +04）</td></tr>
-  <tr><td>停留</td><td><b>2小時00分</b>（唔住宿）</td></tr>
-  <tr><td>轉機起飛</td><td>9月9日 約03:55（EY31）</td></tr>
-  <tr><td>到達巴黎</td><td>9月9日 <b>07:55</b>（巴黎當地）</td></tr>
-  <tr><td>總時長</td><td>17小時35分</td></tr>
-  <tr><td class="win">價錢</td><td class="win">Basic HK$3,236 ／ <b>Value ≈HK$4,036</b>（⚠️ 估算）</td></tr>
-  <tr><td>包23kg</td><td>✅ Value fare 包含</td></tr>
-  <tr><td>可改期</td><td>✅ Value 可改（俾差價）</td></tr>
-  <tr><td>附加費</td><td>✅ 已包含</td></tr>
+  <tr>
+    <th class="lbl"></th>
+    <th>✈️ Etihad</th>
+    <th>✈️ 阿聯酋</th>
+  </tr>
+  <tr>
+    <td class="lbl">香港起飛</td>
+    <td>9月8日 20:20</td>
+    <td>9月8日 19:10</td>
+  </tr>
+  <tr>
+    <td class="lbl">第一程航班</td>
+    <td>EY833（9h15m）</td>
+    <td>EK383（7h50m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達中轉站</td>
+    <td>阿布扎比 AUH 01:55</td>
+    <td>杜拜 DXB 23:00</td>
+  </tr>
+  <tr>
+    <td class="lbl">停留時間</td>
+    <td>2h00m</td>
+    <td>4h05m</td>
+  </tr>
+  <tr>
+    <td class="lbl">第二程航班</td>
+    <td>EY31（7h20m）</td>
+    <td>EK71（7h25m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達巴黎</td>
+    <td>9月9日 07:55</td>
+    <td>9月9日 08:25</td>
+  </tr>
+  <tr>
+    <td class="lbl">總時長</td>
+    <td>17h35m</td>
+    <td>19h15m</td>
+  </tr>
+  <tr>
+    <td class="lbl">票價</td>
+    <td class="win">≈HK$4,036（Value）</td>
+    <td>HK$4,412（Eco Saver ⚠️）</td>
+  </tr>
+  <tr>
+    <td class="lbl">包 1×23kg</td>
+    <td class="win">✅ Value 包含</td>
+    <td>⚠️ 要揀包行李 fare</td>
+  </tr>
+  <tr>
+    <td class="lbl">可改期</td>
+    <td class="win">✅ Value 可改</td>
+    <td>⚠️ Eco Saver 唔改得</td>
+  </tr>
 </table>
+<p class="note">⏳ 航程流程：香港 → 阿布扎比/杜拜（轉機）→ 巴黎 ｜ Etihad 轉機較短（2h vs 4h05m）、總時長快 1h40m、價錢平 HK$376</p>
 </div>
 
-<h3>2️⃣ 阿聯酋（EK383 + EK71）傍晚班</h3>
+<h2>🔙 回程 10/19 倫敦（LHR）→ 香港（HKG）— Vikki</h2>
 <div class="card">
 <table>
-  <tr><th>項目</th><th>資料</th></tr>
-  <tr><td>香港起飛</td><td>9月8日 19:10（當地時間）</td></tr>
-  <tr><td>航班①</td><td>EK383（HKG→杜拜 DXB）</td></tr>
-  <tr><td>到達杜拜</td><td>9月8日 23:00（當地 +04）</td></tr>
-  <tr><td>停留</td><td>約4小時05分</td></tr>
-  <tr><td>轉機起飛</td><td>9月9日 約03:05-04:00（EK71）</td></tr>
-  <tr><td>到達巴黎</td><td>9月9日 約08:25-09:20（⚠️ 兩個來源有出入，以官網為準）</td></tr>
-  <tr><td>總時長</td><td>19小時15分</td></tr>
-  <tr><td>價錢</td><td>HK$4,412（Eco Saver 顯示價 ⚠️ 包行李版本需確認）</td></tr>
-  <tr><td>包23kg</td><td>⚠️ 要揀包行李 fare</td></tr>
-  <tr><td>可改期</td><td>⚠️ Eco Saver 唔改得</td></tr>
-  <tr><td>附加費</td><td>✅ 已包含</td></tr>
+  <tr>
+    <th class="lbl"></th>
+    <th>✈️ Etihad</th>
+    <th>✈️ 阿聯酋</th>
+  </tr>
+  <tr>
+    <td class="lbl">倫敦起飛</td>
+    <td>10月19日 09:30</td>
+    <td>10月19日 22:15</td>
+  </tr>
+  <tr>
+    <td class="lbl">第一程航班</td>
+    <td>EY（6h35m）</td>
+    <td>EK（6h50m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達中轉站</td>
+    <td>阿布扎比 AUH 19:00</td>
+    <td>杜拜 DXB 05:20+1</td>
+  </tr>
+  <tr>
+    <td class="lbl">停留時間</td>
+    <td>1h35m</td>
+    <td>1h55m</td>
+  </tr>
+  <tr>
+    <td class="lbl">第二程航班</td>
+    <td>EY（7h25m）</td>
+    <td>EK（7h40m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達香港</td>
+    <td>10月20日 09:00</td>
+    <td>10月20日 22:05</td>
+  </tr>
+  <tr>
+    <td class="lbl">總時長</td>
+    <td>16h30m</td>
+    <td>16h50m</td>
+  </tr>
+  <tr>
+    <td class="lbl">票價</td>
+    <td class="win">HK$4,236 ✅</td>
+    <td>HK$5,680</td>
+  </tr>
+  <tr>
+    <td class="lbl">包 1×23kg</td>
+    <td class="win">✅</td>
+    <td>✅ Cabin</td>
+  </tr>
+  <tr>
+    <td class="lbl">可改期</td>
+    <td class="win">✅ Value</td>
+    <td>⚠️</td>
+  </tr>
 </table>
+<p class="note">🏆 Etihad 慳 HK$1,444，朝早 09:00 到港（阿聯酋要夜晚 22:05 先到）</p>
 </div>
 
-<h2>🔙 回程 LHR → HKG（單程，分3組）</h2>
-
-<h3>Vikki — 10月19日</h3>
+<h2>🔙 回程 10/23 倫敦（LHR）→ 香港（HKG）— Florence + Ming（×2人）</h2>
 <div class="card">
 <table>
-  <tr><th>航空公司</th><th>航班</th><th>轉機</th><th>總時長</th><th>價錢</th><th>包23kg</th><th>可改期</th></tr>
-  <tr class="win"><td><b>Etihad</b></td><td>09:30 → 10/20 09:00 到</td><td>AUH 1h35m</td><td>16h30m</td><td><b>HK$4,236</b></td><td>✅</td><td>✅ Value</td></tr>
-  <tr><td>阿聯酋</td><td>22:15 → 10/20 22:05 到</td><td>DXB 1h55m</td><td>16h50m</td><td>HK$5,680</td><td>✅ Cabin</td><td>⚠️</td></tr>
+  <tr>
+    <th class="lbl"></th>
+    <th>✈️ Etihad</th>
+    <th>✈️ 阿聯酋</th>
+  </tr>
+  <tr>
+    <td class="lbl">倫敦起飛</td>
+    <td>10月23日 09:30</td>
+    <td>10月23日 22:15</td>
+  </tr>
+  <tr>
+    <td class="lbl">第一程航班</td>
+    <td>EY（6h35m）</td>
+    <td>EK（6h50m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達中轉站</td>
+    <td>阿布扎比 AUH 19:00</td>
+    <td>杜拜 DXB 05:20+1</td>
+  </tr>
+  <tr>
+    <td class="lbl">停留時間</td>
+    <td>1h35m</td>
+    <td>1h55m</td>
+  </tr>
+  <tr>
+    <td class="lbl">第二程航班</td>
+    <td>EY（7h25m）</td>
+    <td>EK（7h40m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達香港</td>
+    <td>10月24日 09:00</td>
+    <td>10月24日 22:05</td>
+  </tr>
+  <tr>
+    <td class="lbl">總時長</td>
+    <td>16h30m</td>
+    <td>16h50m</td>
+  </tr>
+  <tr>
+    <td class="lbl">票價</td>
+    <td class="win">HK$6,050 ✅</td>
+    <td>HK$6,855（Eco Flex）</td>
+  </tr>
+  <tr>
+    <td class="lbl">包 1×23kg</td>
+    <td class="win">✅</td>
+    <td>✅ Eco Flex</td>
+  </tr>
+  <tr>
+    <td class="lbl">可改期</td>
+    <td class="win">✅ Value</td>
+    <td>✅ Eco Flex</td>
+  </tr>
 </table>
-<p class="note">Etihad 慳 HK$1,444，朝早到港</p>
+<p class="note">🏆 Etihad 慳 HK$805/人，朝早 09:00 到港（阿聯酋要夜晚 22:05 先到）</p>
 </div>
 
-<h3>Florence + Ming — 10月23日（×2人）</h3>
+<h2>🔙 回程 11/8 倫敦（LHR）→ 香港（HKG）— Peace</h2>
 <div class="card">
 <table>
-  <tr><th>航空公司</th><th>航班</th><th>轉機</th><th>總時長</th><th>價錢</th><th>包23kg</th><th>可改期</th></tr>
-  <tr class="win"><td><b>Etihad</b></td><td>09:30 → 10/24 09:00 到</td><td>AUH 1h35m</td><td>16h30m</td><td><b>HK$6,050</b></td><td>✅</td><td>✅ Value</td></tr>
-  <tr><td>阿聯酋</td><td>22:15 → 10/24 22:05 到</td><td>DXB 1h55m</td><td>16h50m</td><td>HK$6,855</td><td>✅ Eco Flex</td><td>✅</td></tr>
+  <tr>
+    <th class="lbl"></th>
+    <th>✈️ Etihad</th>
+    <th>✈️ 阿聯酋</th>
+  </tr>
+  <tr>
+    <td class="lbl">倫敦起飛</td>
+    <td>11月8日 08:50</td>
+    <td>11月8日 22:00</td>
+  </tr>
+  <tr>
+    <td class="lbl">第一程航班</td>
+    <td>EY（6h30m）</td>
+    <td>EK（6h50m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達中轉站</td>
+    <td>阿布扎比 AUH 17:40</td>
+    <td>杜拜 DXB 05:10+1</td>
+  </tr>
+  <tr>
+    <td class="lbl">停留時間</td>
+    <td>1h30m</td>
+    <td>1h55m</td>
+  </tr>
+  <tr>
+    <td class="lbl">第二程航班</td>
+    <td>EY（7h20m）</td>
+    <td>EK（7h40m）</td>
+  </tr>
+  <tr>
+    <td class="lbl">到達香港</td>
+    <td>11月9日 08:30</td>
+    <td>11月9日 21:50</td>
+  </tr>
+  <tr>
+    <td class="lbl">總時長</td>
+    <td>15h40m</td>
+    <td>15h50m</td>
+  </tr>
+  <tr>
+    <td class="lbl">票價</td>
+    <td class="win">≈HK$4,794 ⚠️</td>
+    <td>≈HK$5,772 ⚠️</td>
+  </tr>
+  <tr>
+    <td class="lbl">包 1×23kg</td>
+    <td class="win">✅ Value</td>
+    <td>✅ 1/1</td>
+  </tr>
+  <tr>
+    <td class="lbl">可改期</td>
+    <td class="win">✅ Value</td>
+    <td>⚠️</td>
+  </tr>
 </table>
-<p class="note">Etihad 慳 HK$805/人，朝早到港</p>
-</div>
-
-<h3>Peace — 11月8日</h3>
-<div class="card">
-<table>
-  <tr><th>航空公司</th><th>航班</th><th>轉機</th><th>總時長</th><th>價錢</th><th>包23kg</th><th>可改期</th></tr>
-  <tr class="win"><td><b>Etihad</b></td><td>08:50 → 11/9 08:30 到</td><td>AUH 1h30m</td><td>15h40m</td><td><b>≈HK$4,794</b> ⚠️</td><td>✅ Value</td><td>✅</td></tr>
-  <tr><td>阿聯酋</td><td>22:00 → 11/9 21:50 到</td><td>DXB 1h55m</td><td>15h50m</td><td>≈HK$5,772 ⚠️</td><td>✅ 1/1</td><td>⚠️</td></tr>
-</table>
-<p class="note">Etihad 慳 HK$978，朝早到港</p>
+<p class="note">🏆 Etihad 慳 HK$978，朝早 08:30 到港（阿聯酋夜晚 21:50 先到）</p>
 </div>
 
 <h2>💰 4 人總帳比較</h2>
@@ -158,7 +338,7 @@
 <table>
   <tr><th>項目</th><th>Etihad</th><th>阿聯酋</th></tr>
   <tr><td><b>價錢</b></td><td class="win">🏆 全程慳 HK$5,536（12.9%）</td><td>貴</td></tr>
-  <tr><td><b>去程轉機</b></td><td>AUH 2h（較短）</td><td>DXB 3h40m–4h05m（較長）</td></tr>
+  <tr><td><b>去程轉機</b></td><td>AUH 2h（較短）</td><td>DXB 4h05m（較長）</td></tr>
   <tr><td><b>回程時間</b></td><td>日間起飛，朝早到港</td><td>晚間起飛，夜晚到港</td></tr>
   <tr><td><b>行李政策</b></td><td>Value = 包23kg＋可改期（官方確認）</td><td>Eco Flex 先包；Eco Saver 唔改得</td></tr>
   <tr><td><b>到達香港</b></td><td class="win">朝早 08:30–09:00（唔嘥一日）</td><td>夜晚 21:50–22:05（成日冇咗）</td></tr>
