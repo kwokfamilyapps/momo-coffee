@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 歐洲之旅 · 城市路線地圖</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+<style>
+  html { font-size: 32px; }
+  @media (max-width: 600px) { html { font-size: 26px; } }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #f0e8d8;
+    color: #1a1a16;
+    font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.8;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 { font-family: Georgia, serif; font-weight: 500; font-size: 1.35rem; margin: 0.5rem 0; line-height: 1.4; }
+  .meta { color: #4a4840; font-size: 0.7rem; margin-bottom: 0.8rem; }
+  .flightbar {
+    background: #2a2a22; color: #f5efe0; border-radius: 12px;
+    padding: 0.7rem 1rem; margin: 0.8rem 0; font-size: 0.72rem;
+  }
+  .flightbar b { color: #e8c87a; }
+  .cityrow {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.8rem 0;
+  }
+  .citychip {
+    background: #f5efe0; border: 2px solid #4a7a4a; border-radius: 999px;
+    padding: 0.3rem 0.9rem; font-size: 0.7rem; cursor: pointer;
+    transition: background 0.2s;
+    color: #1a1a16; text-decoration: none;
+  }
+  .citychip:hover { background: #e8f0e4; }
+  .citychip .n { display: inline-block; background: #4a7a4a; color: #fff; border-radius: 50%; width: 1.2em; height: 1.2em; text-align: center; line-height: 1.2em; font-size: 0.85em; margin-right: 0.3em; }
+  #map { height: 65vh; min-height: 420px; border-radius: 14px; border: 2px solid #d8d0c0; z-index: 1; }
+  .legend {
+    background: #f5efe0; border: 1px solid #d8d0c0; border-radius: 10px;
+    padding: 0.5rem 0.9rem; margin: 0.8rem 0; font-size: 0.68rem;
+  }
+  .legend b { color: #4a7a4a; }
+  .footer { margin-top: 1.5rem; padding-top: 0.8rem; border-top: 1px solid #d8d0c0; font-size: 0.62rem; color: #4a4840; }
+  /* Leaflet custom */
+  .city-marker {
+    background: #4a7a4a; border: 3px solid #fff; border-radius: 50%;
+    width: 36px !important; height: 36px !important;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 18px; font-family: Georgia, serif;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.45);
+  }
+  .city-marker.hk { background: #c96442; }
+  .leaflet-popup-content-wrapper { background: #f5efe0; border-radius: 12px; color: #1a1a16; font-size: 0.75rem; }
+  .leaflet-popup-content { line-height: 1.7; margin: 12px 16px; }
+  .leaflet-popup-content h3 { font-family: Georgia, serif; color: #4a7a4a; font-size: 1rem; margin-bottom: 0.3rem; }
+  .leaflet-popup-content .d { font-weight: 700; }
+  .leaflet-container { font-family: 'Noto Sans', system-ui, sans-serif; }
+  .leaflet-control-zoom a { font-size: 22px !important; }
+  .leaflet-tooltip { background: #2a2a22; color: #f5efe0; border: none; border-radius: 8px; font-size: 0.65rem; padding: 0.2rem 0.6rem; }
+</style>
+</head>
+<body>
+
+<h1>🗺️ 2026 歐洲之旅 · 城市路線地圖</h1>
+<p class="meta">8 城市 ｜ 9月9日 – 10月26日（Peace 留至 11月8日）｜ 4 人同行（2 對夫婦）</p>
+
+<div class="flightbar">
+✈️ <b>去程：</b>9月8日 阿聯酋 EK383 香港 19:10 → 杜拜 → 9月9日 EK071 03:05 → 巴黎 CDG 08:25 到達<br>
+🔙 <b>回程：</b>倫敦返港 —— 10月19日 Vikki ｜ 10月26日 Florence＋Ming ｜ 11月8日 Peace
+</div>
+
+<div class="cityrow">
+  <a class="citychip" data-lat="48.8566" data-lng="2.3522" data-zoom="11"><span class="n">1</span>巴黎</a>
+  <a class="citychip" data-lat="44.8378" data-lng="-0.5792" data-zoom="11"><span class="n">2</span>波爾多</a>
+  <a class="citychip" data-lat="53.5511" data-lng="9.9937" data-zoom="11"><span class="n">3</span>漢堡</a>
+  <a class="citychip" data-lat="52.5200" data-lng="13.4050" data-zoom="11"><span class="n">4</span>柏林</a>
+  <a class="citychip" data-lat="50.0755" data-lng="14.4378" data-zoom="11"><span class="n">5</span>布拉格</a>
+  <a class="citychip" data-lat="55.9533" data-lng="-3.1883" data-zoom="11"><span class="n">6</span>愛丁堡</a>
+  <a class="citychip" data-lat="53.9590" data-lng="-1.0815" data-zoom="11"><span class="n">7</span>約克</a>
+  <a class="citychip" data-lat="51.5074" data-lng="-0.1278" data-zoom="12"><span class="n">8</span>倫敦</a>
+</div>
+
+<div class="legend">
+📍 撳城市圓點睇日期／日數／交通 ｜ 撳上方城市名快速飛到該城 ｜ 手指／滑鼠滾輪放大縮細 ｜ 右下角 ⛶ 全螢幕
+</div>
+
+<div id="map"></div>
+
+<div class="footer">
+<p><strong>路線交通：</strong>巴黎→波爾多 TGV 約 2 小時 ｜ 波爾多→漢堡 ✈️ 轉機（9月22日）｜ 漢堡→柏林 ICE 約 1 小時 40 分 ｜ 柏林→布拉格 EC 約 4 小時 ｜ 布拉格→愛丁堡 ✈️ 直航（10月8日）｜ 愛丁堡→約克 LNER 約 2 小時 20 分 ｜ 約克→倫敦 LNER 約 2 小時</p>
+<p>本路線地圖由 無虛 (mo mo) 生成，資料以行程確認版（2026年08月16日）為準。地圖底圖 © OpenStreetMap 貢獻者（開放授權）。</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+<script>
+(function () {
+  var cities = [
+    { n: 1, name: '巴黎', sub: 'Paris', lat: 48.8566, lng: 2.3522, dates: '9月9日 – 14日', days: '6日5夜', arrive: '✈️ 9月9日 08:25 到 CDG（阿聯酋 EK071）', next: 'TGV 約 2 小時 03 分 → 波爾多' },
+    { n: 2, name: '波爾多', sub: 'Bordeaux（Talmont 及附近小鎮）', lat: 44.8378, lng: -0.5792, dates: '9月14日 – 22日', days: '9日8夜', arrive: '🚄 TGV 由巴黎（Ronald 15–16/9 喺 Talmont）', next: '✈️ 9月22日 → 漢堡（要轉機，漢莎 4 小時）' },
+    { n: 3, name: '漢堡', sub: 'Hamburg（探 Ronald 家人）', lat: 53.5511, lng: 9.9937, dates: '9月22日 – 24日', days: '2日', arrive: '✈️ 由波爾多', next: '🚄 ICE 約 1 小時 40 分 → 柏林' },
+    { n: 4, name: '柏林', sub: 'Berlin', lat: 52.5200, lng: 13.4050, dates: '9月24日 – 30日', days: '7日6夜', arrive: '🚄 ICE 由漢堡', next: '🚄 EC 約 3 小時 57 分 → 布拉格' },
+    { n: 5, name: '布拉格', sub: 'Prague', lat: 50.0755, lng: 14.4378, dates: '9月30日 – 10月8日', days: '9日8夜', arrive: '🚄 EC 由柏林（9月30日星期三有班）', next: '✈️ 10月8日 → 愛丁堡（Ryanair／easyJet 直航）' },
+    { n: 6, name: '愛丁堡', sub: 'Edinburgh', lat: 55.9533, lng: -3.1883, dates: '10月8日 – 12日', days: '5日4夜', arrive: '✈️ 由布拉格', next: '🚄 LNER 約 2 小時 24 分 → 約克' },
+    { n: 7, name: '約克', sub: 'York', lat: 53.9590, lng: -1.0815, dates: '10月12日 – 16日', days: '5日4夜', arrive: '🚄 LNER 由愛丁堡', next: '🚄 LNER 約 2 小時 → 倫敦' },
+    { n: 8, name: '倫敦', sub: 'London', lat: 51.5074, lng: -0.1278, dates: '10月16日 – 26日', days: '9日8夜', arrive: '🚄 LNER 由約克', next: '🔙 10月19日 Vikki、10月26日 F＋M、11月8日 Peace 返港' }
+  ];
+
+  var map = L.map('map', { zoomControl: true, scrollWheelZoom: true }).setView([50.5, 8.5], 5);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  var route = cities.map(function (c) { return [c.lat, c.lng]; });
+  L.polyline(route, { color: '#4a7a4a', weight: 5, opacity: 0.7, dashArray: '1, 10' }).addTo(map);
+
+  cities.forEach(function (c) {
+    var icon = L.divIcon({
+      className: '',
+      html: '<div class="city-marker">' + c.n + '</div>',
+      iconSize: [36, 36],
+      iconAnchor: [18, 18],
+      popupAnchor: [0, -18]
+    });
+    var html = '<h3>' + c.n + '. ' + c.name + '（' + c.sub + '）</h3>'
+      + '<div class="d">📅 ' + c.dates + '（' + c.days + '）</div>'
+      + '<div>🚗 到達：' + c.arrive + '</div>'
+      + '<div>➡️ 離開：' + c.next + '</div>';
+    L.marker([c.lat, c.lng], { icon: icon }).addTo(map).bindPopup(html);
+  });
+
+  document.querySelectorAll('.citychip').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      map.flyTo([parseFloat(el.dataset.lat), parseFloat(el.dataset.lng)], parseInt(el.dataset.zoom, 10), { duration: 1.2 });
+    });
+  });
+
+  // Fullscreen button
+  L.Control.FullscreenCustom = L.Control.extend({
+    onAdd: function () {
+      var btn = L.DomUtil.create('button', 'leaflet-bar');
+      btn.innerHTML = '⛶';
+      btn.style.cssText = 'width:34px;height:34px;font-size:22px;background:#f5efe0;color:#4a7a4a;border:2px solid #d8d0c0;border-radius:4px;cursor:pointer;line-height:1;';
+      btn.title = '全螢幕';
+      btn.onclick = function () {
+        var m = document.getElementById('map');
+        if (document.fullscreenElement) { document.exitFullscreen(); }
+        else if (m.requestFullscreen) { m.requestFullscreen(); }
+        else if (m.webkitRequestFullscreen) { m.webkitRequestFullscreen(); }
+      };
+      return btn;
+    }
+  });
+  new L.Control.FullscreenCustom({ position: 'topright' }).addTo(map);
+})();
+</script>
+</body>
+</html>
