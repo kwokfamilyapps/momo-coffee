@@ -119,8 +119,17 @@
   .vol-nav a:hover { background: #d4a373; color: #fff; }
   .vol-nav .active { background: #d4a373; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
 
-  .combo-box { margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.25); }
-  .combo-title { font-size: 0.78rem; opacity: .85; margin-bottom: 8px; letter-spacing: 1px; }
+  .combo-box { margin-top: 14px; text-align: center; }
+  .combo-box summary {
+    cursor: pointer; display: inline-block; user-select: none;
+    color: #fff; background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.35);
+    padding: 8px 22px; border-radius: 24px;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: .5px;
+    transition: background .2s;
+  }
+  .combo-box summary:hover { background: rgba(255,255,255,.28); }
+  .combo-box[open] summary { background: #d4a373; color: #3d2b1f; border-color: #d4a373; }
   .combo-list { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
   .combo-list a, .combo-list .active {
     color: #3d2b1f; background: #f0ebe4; text-decoration: none;
@@ -136,8 +145,8 @@
   <h1>☕ 香港手沖咖啡店推介</h1>
   <div class="sub">Vol.7 — Ming &amp; Friends 私心精選 — 2026年8月</div>
   <div class="date">始祖名店 x 新店巡禮 • 港島2間、九龍3間、新界1間</div>
-  <div class="combo-box">
-    <div class="combo-title">📚 全部期數</div>
+  <details class="combo-box">
+    <summary>📚 全部期數（7期）</summary>
     <div class="combo-list">
       <a href="https://kwokfamilyapps.github.io/momo-coffee/vol1.html">Vol.1 · 2026年7月</a>
       <a href="https://kwokfamilyapps.github.io/momo-coffee/vol2.html">Vol.2 · 2026年7月</a>
@@ -147,7 +156,7 @@
       <a href="https://kwokfamilyapps.github.io/momo-coffee/vol6.html">Vol.6 · 2026年8月</a>
       <span class="active">Vol.7 · 2026年8月</span>
     </div>
-  </div>
+  </details>
 </div>
 <div class="container">
 
