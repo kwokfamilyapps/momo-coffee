@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traversées sonores 聲音鞦韆地圖 — 諾曼第三個展出地點</title>
+<style>
+html { font-size: 32px; }
+@media (max-width: 600px) { html { font-size: 26px; } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f0e8d8; color: #1a1a16; font-family: 'Noto Sans', system-ui, -apple-system, sans-serif; line-height: 2.0; padding: 1rem; }
+h1 { font-family: Georgia, serif; font-size: 1.5rem; color: #2a2a22; margin-bottom: 0.3rem; }
+h2 { font-family: Georgia, serif; font-size: 1.1rem; color: #4a7a4a; margin: 1.2rem 0 0.5rem; }
+.subtitle { color: #4a4840; font-size: 0.68rem; margin-bottom: 0.6rem; }
+.warn { background: #f5efe0; border: 1px solid #c96442; border-radius: 12px; padding: 0.6rem 0.8rem; font-size: 0.6rem; color: #8a3a20; margin: 0.8rem 0; }
+#map { width: 100%; height: 480px; border-radius: 14px; border: 2px solid #d8d0c0; margin: 0.8rem 0; z-index: 1; }
+.card { background: #f5efe0; border: 1px solid #d8d0c0; border-radius: 14px; padding: 0.9rem; margin: 1rem 0; }
+.card h3 { font-family: Georgia, serif; font-size: 0.95rem; color: #2a2a22; margin-bottom: 0.3rem; }
+.card .tag { display: inline-block; background: #4a7a4a; color: #fff; border-radius: 20px; padding: 0.05rem 0.6rem; font-size: 0.5rem; margin-right: 0.3rem; }
+.card .tag.red { background: #c96442; }
+.card .tag.gold { background: #b8860b; }
+.info { font-size: 0.6rem; color: #4a4840; margin: 0.3rem 0; }
+.info b { color: #1a1a16; }
+.gallery { display: flex; gap: 0.5rem; margin: 0.6rem 0; flex-wrap: wrap; }
+.gallery img { width: 48%; border-radius: 10px; border: 1px solid #d8d0c0; object-fit: cover; }
+table { width: 100%; border-collapse: collapse; font-size: 0.55rem; margin: 0.5rem 0; }
+th, td { border: 1px solid #d8d0c0; padding: 0.3rem 0.4rem; text-align: left; }
+th { background: #e8dfcb; color: #2a2a22; }
+a { color: #4a7a4a; word-break: break-all; }
+.btn { display: inline-block; background: #4a7a4a; color: #fff; text-decoration: none; padding: 0.3rem 0.8rem; border-radius: 22px; font-size: 0.55rem; margin-top: 0.3rem; }
+.btn.gmaps { background: #4285F4; }
+.dist-label { font-size: 0.5rem; color: #fff; background: #c96442; padding: 0.15rem 0.5rem; border-radius: 12px; white-space: nowrap; }
+.footer { font-size: 0.45rem; color: #6a665c; margin-top: 1.2rem; border-top: 1px solid #d8d0c0; padding-top: 0.6rem; }
+.leaflet-popup-content { font-size: 0.7rem; line-height: 1.6; }
+.leaflet-popup-content b { color: #2a2a22; }
+.leaflet-control-zoom a { width: 34px; height: 34px; line-height: 34px; font-size: 20px; }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+
+<h1>🔔 «Traversées sonores» 聲音鞦韆地圖</h1>
+<div class="subtitle">Céleste Boursier-Mougenot — 諾曼第三個展出地點 × 距離 Talmont-sur-Gironde</div>
+
+<div class="warn">
+⚠️ <b>展期提醒（2026年08月29日查證）：</b> Caen 主裝置 08月30日完結；Rouen 同 Saint-Germain-de-Livet 展到 09月27日——9月歐洲之旅仍有機會觀賞（Rouen 由巴黎只需約1.5小時火車）。
+</div>
+
+<div id="map"></div>
+
+<h2>📍 地圖說明</h2>
+<div class="info">
+紅點 = 三個展出地點 ｜ 黃點 = Talmont-sur-Gironde（旅程據點）｜ 紅色虛線 = 由 Talmont 自駕距離
+</div>
+
+<h2>📅 三個展出地點總覽</h2>
+
+<div class="card">
+<h3>1️⃣ Caen — Frac Normandie（主裝置 «envolée»）<span class="tag red">展期完結 08/30</span></h3>
+<div class="info"><b>地址：</b>7 bis rue Neuve-Bourg-l'Abbé, 14000 Caen, France</div>
+<div class="info"><b>展品：</b>12 個鞦韆 + 古董教堂鐘（圓形鋼架，前 17 世紀修道院迴廊）｜同場展出 «plage» 碎玻璃場 + «cameraobscura» 暗箱投影</div>
+<div class="info"><b>開放：</b>星期三至日 14:00–18:00 ｜ <b>費用：</b>免費 ｜ <b>電話：</b>+33 2 31 93 09 00</div>
+<div class="gallery">
+<img src="https://static.designboom.com/wp-content/uploads/2026/07/celeste-boursier-mougenot-music-ring-swings-bells-frac-normandie-caen-designboom-05.jpg" alt="Envolée 裝置全景">
+<img src="https://static.designboom.com/wp-content/uploads/2026/07/celeste-boursier-mougenot-music-ring-swings-bells-frac-normandie-caen-designboom-08.jpg" alt="鞦韆近景">
+</div>
+<table>
+<tr><th>由哪裡出發</th><th>自駕</th><th>火車／其他</th></tr>
+<tr><td>Talmont-sur-Gironde</td><td>526 km ／ 約 5.6 小時</td><td>太遠，建議唔好即日來回</td></tr>
+<tr><td>巴黎（Saint-Lazare 站）</td><td>235 km ／ 約 2.7 小時</td><td>火車約 2 小時 → Caen 站，行 10–15 分鐘</td></tr>
+</table>
+<a class="btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=49.18107,-0.37844" target="_blank">🗺️ 喺 Google Maps 開啟</a>
+</div>
+
+<div class="card">
+<h3>2️⃣ Rouen — Côte Sainte-Catherine（三聯畫鞦韆）<span class="tag gold">展至 09/27</span></h3>
+<div class="info"><b>地址：</b>Côte Sainte-Catherine, Route de la Corniche, 76240 Bonsecours, France</div>
+<div class="info"><b>展品：</b>獨特「三聯畫」3 個聲音鞦韆，每個配特製銅鐘——喺印象派畫家經典取景點，俯瞰塞納河同「百鐘之城」Rouen</div>
+<div class="info"><b>開放：</b>戶外 24 小時 ｜ <b>費用：</b>免費</div>
+<div class="gallery">
+<img src="https://api.cloudly.space/resize/cropratio/1200/1200/75/aHR0cHM6Ly9jZHQ3Ni5tZWRpYS50b3VyaW5zb2Z0LmV1L3VwbG9hZC90cmF2ZXJzZWVzLXNvbm9yZXMuanBn/image.webp" alt="Rouen 聲音鞦韆官方相">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ch%C3%A2teau_de_Saint-Germain-de-Livet_Caumont_Statistiquemonum05caum_0346.jpg/960px-Ch%C3%A2teau_de_Saint-Germain-de-Livet_Caumont_Statistiquemonum05caum_0346.jpg" alt="諾曼第建築參考（示意）">
+</div>
+<table>
+<tr><th>由哪裡出發</th><th>自駕</th><th>火車／其他</th></tr>
+<tr><td>Talmont-sur-Gironde</td><td>581 km ／ 約 6.2 小時</td><td>太遠，建議唔好即日來回</td></tr>
+<tr><td>巴黎（Saint-Lazare 站）</td><td>133 km ／ 約 1.8 小時</td><td>🚆 火車約 1 小時 15 分 → Rouen Rive Droite 站，再轉巴士/的士上 Côte Sainte-Catherine</td></tr>
+</table>
+<a class="btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=49.4321870,1.1135570" target="_blank">🗺️ 喺 Google Maps 開啟</a>
+</div>
+
+<div class="card">
+<h3>3️⃣ Saint-Germain-de-Livet 城堡（一對牛鈴鞦韆）<span class="tag gold">展至 09/27</span></h3>
+<div class="info"><b>地址：</b>D268, Château de Saint-Germain-de-Livet, 14100 Saint-Germain-de-Livet, France</div>
+<div class="info"><b>展品：</b>一對聲音鞦韆，頂部係牛鈴（cowbell）——喺城堡花園，Pays d'Auge 鄉郊風景，每日有 20 分鐘城堡歷史導覽</div>
+<div class="info"><b>開放：</b>每日（詳情致電 +33 2 31 62 07 70）｜ <b>費用：</b>免費</div>
+<div class="gallery">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ch%C3%A2teau_de_Saint-Germain-de-Livet_France.jpg/960px-Ch%C3%A2teau_de_Saint-Germain-de-Livet_France.jpg" alt="Saint-Germain-de-Livet 城堡">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Saint_germain_de_livet_chateau_2.jpg/960px-Saint_germain_de_livet_chateau_2.jpg" alt="城堡花園">
+</div>
+<table>
+<tr><th>由哪裡出發</th><th>自駕</th><th>火車／其他</th></tr>
+<tr><td>Talmont-sur-Gironde</td><td>507 km ／ 約 5.6 小時</td><td>太遠，建議唔好即日來回</td></tr>
+<tr><td>巴黎（Saint-Lazare 站）</td><td>207 km ／ 約 2.6 小時</td><td>火車約 1 小時 45 分 → Lisieux 站，再自駕/的士約 10 公里</td></tr>
+</table>
+<a class="btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=49.0890928,0.2143757" target="_blank">🗺️ 喺 Google Maps 開啟</a>
+</div>
+
+<h2>🚗 由 Talmont-sur-Gironde 自駕距離一覽</h2>
+<table>
+<tr><th>目的地</th><th>直線距離</th><th>實際駕駛</th><th>建議</th></tr>
+<tr><td>Caen（Frac Normandie）</td><td>約 407 km</td><td>526 km ／ 5.6 小時</td><td>⚠️ 單程已經半日，來回超過 11 小時</td></tr>
+<tr><td>Rouen（Côte Sainte-Catherine）</td><td>約 459 km</td><td>581 km ／ 6.2 小時</td><td>⚠️ 最遠，唔建議由 Talmont 出發</td></tr>
+<tr><td>Saint-Germain-de-Livet</td><td>約 404 km</td><td>507 km ／ 5.6 小時</td><td>⚠️ 同 Caen 相近距離</td></tr>
+</table>
+<div class="warn">💡 <b>建議：</b>呢三個地點全部喺諾曼第（巴黎西北），距離 Talmont（波爾多北面 Gironde 河口）超過 500 公里。最可行安排係：<b>由巴黎出發一日遊 Rouen</b>（火車 1 小時 15 分）或者自駕/火車去 Caen／Saint-Germain-de-Livet。如果要自駕，可以安排 2-3 日諾曼第之旅（Rouen → Caen → 城堡）一次過睇晒。</div>
+
+<h2>🔗 參考資料</h2>
+<div class="info">
+• Normandie Impressionniste 官方展覽頁（展期確認）— normandie-impressionniste.fr<br>
+• Frac Normandie 官方活動頁（展期確認）— fracnormandie.fr<br>
+• Seine-Maritime 旅遊局官方頁 — seine-maritime-tourisme.com<br>
+• 相片來源：designboom（© Adagp 2026）、Seine-Maritime 旅遊局、Wikimedia Commons（Creative Commons）<br>
+• 距離：OSRM 開源路由引擎（2026-08-29 計算）
+</div>
+
+<div class="footer">
+由 無虛 (mo mo) 生成 ｜ 2026年08月29日 ｜ 所有資料僅供參考，參觀前請以官方網站為準<br>
+相片版權歸原作者所有，本頁僅作資訊展示用途
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  var TALMONT = [45.5350413, -0.9072627];
+  var venues = [
+    { name: 'Caen · Frac Normandie', lat: 49.18107, lng: -0.37844, d: '407 km', tag: '展至 08/30' },
+    { name: 'Rouen · Côte Sainte-Catherine', lat: 49.4321870, lng: 1.1135570, d: '459 km', tag: '展至 09/27' },
+    { name: 'Saint-Germain-de-Livet 城堡', lat: 49.0890928, lng: 0.2143757, d: '404 km', tag: '展至 09/27' }
+  ];
+  var map = L.map('map', { zoomControl: true }).setView([48.2, 0.5], 6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  var talIcon = L.divIcon({ className: 'dist-label', html: '🏠 Talmont', iconSize: [110, 26], iconAnchor: [55, 13] });
+  L.marker(TALMONT, { icon: talIcon }).addTo(map).bindPopup('<b>Talmont-sur-Gironde</b><br>旅程據點');
+
+  venues.forEach(function (v) {
+    L.marker([v.lat, v.lng])
+      .addTo(map)
+      .bindPopup('<b>' + v.name + '</b><br>展期：' + v.tag + '<br>距 Talmont：' + v.d + '（直線）');
+    L.polyline([TALMONT, [v.lat, v.lng]], {
+      color: '#c96442', weight: 3, dashArray: '8 10', opacity: 0.8
+    }).addTo(map);
+  });
+
+  map.fitBounds([
+    [45.0, -1.3],
+    [49.9, 1.6]
+  ]);
+})();
+</script>
+</body>
+</html>
