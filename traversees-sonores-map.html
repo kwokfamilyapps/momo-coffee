@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Traversées sonores 聲音鞦韆地圖 — 諾曼第三個展出地點</title>
+<title>Traversées sonores 聲音鞦韆地圖 — 巴黎火車站出發</title>
 <style>
 html { font-size: 32px; }
 @media (max-width: 600px) { html { font-size: 26px; } }
@@ -30,30 +30,33 @@ a { color: #4a7a4a; word-break: break-all; }
 .btn { display: inline-block; background: #4a7a4a; color: #fff; text-decoration: none; padding: 0.3rem 0.8rem; border-radius: 22px; font-size: 0.55rem; margin-top: 0.3rem; }
 .btn.gmaps { background: #4285F4; }
 .dist-label { font-size: 0.5rem; color: #fff; background: #c96442; padding: 0.15rem 0.5rem; border-radius: 12px; white-space: nowrap; }
+.dist-label.paris { background: #4a7a4a; }
 .footer { font-size: 0.45rem; color: #6a665c; margin-top: 1.2rem; border-top: 1px solid #d8d0c0; padding-top: 0.6rem; }
 .leaflet-popup-content { font-size: 0.7rem; line-height: 1.6; }
 .leaflet-popup-content b { color: #2a2a22; }
 .leaflet-control-zoom a { width: 34px; height: 34px; line-height: 34px; font-size: 20px; }
+.train-table { margin-top: 0.4rem; }
+.train-table td:first-child { white-space: nowrap; }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
 <h1>🔔 «Traversées sonores» 聲音鞦韆地圖</h1>
-<div class="subtitle">Céleste Boursier-Mougenot — 諾曼第三個展出地點 × 距離 Talmont-sur-Gironde</div>
+<div class="subtitle">Céleste Boursier-Mougenot — 諾曼第三個展出地點 × 由巴黎火車站出發（Paris Saint-Lazare）</div>
 
 <div class="warn">
-⚠️ <b>展期提醒（2026年08月29日查證）：</b> Caen 主裝置 08月30日完結；Rouen 同 Saint-Germain-de-Livet 展到 09月27日——9月歐洲之旅仍有機會觀賞（Rouen 由巴黎只需約1.5小時火車）。
+⚠️ <b>展期提醒（2026年08月29日查證）：</b> Caen 主裝置 08月30日完結；Rouen 同 Saint-Germain-de-Livet 展到 09月27日——9月歐洲之旅仍有機會觀賞（全部由巴黎 Saint-Lazare 站出發）。
 </div>
 
 <div id="map"></div>
 
 <h2>📍 地圖說明</h2>
 <div class="info">
-紅點 = 三個展出地點 ｜ 黃點 = Talmont-sur-Gironde（旅程據點）｜ 紅色虛線 = 由 Talmont 自駕距離
+綠點 = 巴黎 Saint-Lazare 火車站（出發點）｜ 紅點 = 三個展出地點 ｜ 綠色虛線 = 火車路線方向（距離約數）
 </div>
 
-<h2>📅 三個展出地點總覽</h2>
+<h2>📅 三個展出地點總覽（由巴黎火車站出發）</h2>
 
 <div class="card">
 <h3>1️⃣ Caen — Frac Normandie（主裝置 «envolée»）<span class="tag red">展期完結 08/30</span></h3>
@@ -64,11 +67,20 @@ a { color: #4a7a4a; word-break: break-all; }
 <img src="https://static.designboom.com/wp-content/uploads/2026/07/celeste-boursier-mougenot-music-ring-swings-bells-frac-normandie-caen-designboom-05.jpg" alt="Envolée 裝置全景">
 <img src="https://static.designboom.com/wp-content/uploads/2026/07/celeste-boursier-mougenot-music-ring-swings-bells-frac-normandie-caen-designboom-08.jpg" alt="鞦韆近景">
 </div>
-<table>
-<tr><th>由哪裡出發</th><th>自駕</th><th>火車／其他</th></tr>
-<tr><td>Talmont-sur-Gironde</td><td>526 km ／ 約 5.6 小時</td><td>太遠，建議唔好即日來回</td></tr>
-<tr><td>巴黎（Saint-Lazare 站）</td><td>235 km ／ 約 2.7 小時</td><td>火車約 2 小時 → Caen 站，行 10–15 分鐘</td></tr>
+<div class="info"><b>🚆 火車（SNCF TER，官方時間表）：</b>每日 19 班，平均 2h02m，最快 1h54m，首班 07:59、尾班 22:30，全部由 Paris Saint-Lazare 直達 Caen</div>
+<table class="train-table">
+<tr><th>班次例子（直達）</th><th>出發</th><th>到達</th><th>車程</th></tr>
+<tr><td>TER 3331</td><td>07:59</td><td>09:53</td><td>1h54m</td></tr>
+<tr><td>TER 3311</td><td>10:59</td><td>12:53</td><td>1h54m</td></tr>
+<tr><td>TER 3313</td><td>12:59</td><td>14:53</td><td>1h54m</td></tr>
+<tr><td>TER 3319</td><td>16:58</td><td>18:53</td><td>1h55m</td></tr>
+<tr><td>TER 3361</td><td>22:30</td><td>00:35</td><td>2h05m</td></tr>
 </table>
+<table>
+<tr><th>由哪裡出發</th><th>火車</th><th>自駕</th></tr>
+<tr><td>巴黎 Saint-Lazare 站 → Caen 站</td><td>約 2 小時（19 班/日）</td><td>235 km ／ 約 2.7 小時</td></tr>
+</table>
+<div class="info">到 Caen 站後：步行約 10–15 分鐘到 Frac Normandie（沿 Rue de la Gare 行向市中心）</div>
 <a class="btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=49.18107,-0.37844" target="_blank">🗺️ 喺 Google Maps 開啟</a>
 </div>
 
@@ -79,13 +91,22 @@ a { color: #4a7a4a; word-break: break-all; }
 <div class="info"><b>開放：</b>戶外 24 小時 ｜ <b>費用：</b>免費</div>
 <div class="gallery">
 <img src="https://api.cloudly.space/resize/cropratio/1200/1200/75/aHR0cHM6Ly9jZHQ3Ni5tZWRpYS50b3VyaW5zb2Z0LmV1L3VwbG9hZC90cmF2ZXJzZWVzLXNvbm9yZXMuanBn/image.webp" alt="Rouen 聲音鞦韆官方相">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ch%C3%A2teau_de_Saint-Germain-de-Livet_Caumont_Statistiquemonum05caum_0346.jpg/960px-Ch%C3%A2teau_de_Saint-Germain-de-Livet_Caumont_Statistiquemonum05caum_0346.jpg" alt="諾曼第建築參考（示意）">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ch%C3%A2teau_de_Saint-Germain-de-Livet_France.jpg/960px-Ch%C3%A2teau_de_Saint-Germain-de-Livet_France.jpg" alt="諾曼第建築參考（示意）">
 </div>
-<table>
-<tr><th>由哪裡出發</th><th>自駕</th><th>火車／其他</th></tr>
-<tr><td>Talmont-sur-Gironde</td><td>581 km ／ 約 6.2 小時</td><td>太遠，建議唔好即日來回</td></tr>
-<tr><td>巴黎（Saint-Lazare 站）</td><td>133 km ／ 約 1.8 小時</td><td>🚆 火車約 1 小時 15 分 → Rouen Rive Droite 站，再轉巴士/的士上 Côte Sainte-Catherine</td></tr>
+<div class="info"><b>🚆 火車（SNCF TER，官方時間表）：</b>每日 25 班，平均 1h30m，最快 1h18m，首班 07:40、尾班 22:12，全部由 Paris Saint-Lazare 直達 Rouen Rive Droite</div>
+<table class="train-table">
+<tr><th>班次例子（直達）</th><th>出發</th><th>到達</th><th>車程</th></tr>
+<tr><td>TER 3103</td><td>07:40</td><td>08:58</td><td>1h18m ⚡最快</td></tr>
+<tr><td>TER 3107</td><td>09:40</td><td>11:04</td><td>1h24m</td></tr>
+<tr><td>TER 3115</td><td>13:40</td><td>15:01</td><td>1h21m</td></tr>
+<tr><td>TER 3127</td><td>17:40</td><td>19:00</td><td>1h20m</td></tr>
+<tr><td>TER 3135</td><td>21:40</td><td>23:01</td><td>1h21m</td></tr>
 </table>
+<table>
+<tr><th>由哪裡出發</th><th>火車</th><th>自駕</th></tr>
+<tr><td>巴黎 Saint-Lazare 站 → Rouen Rive Droite 站</td><td>約 1 小時 20 分（25 班/日）</td><td>133 km ／ 約 1.8 小時</td></tr>
+</table>
+<div class="info">到 Rouen 站後：轉巴士（T1/T2/T3 線）或的士上 Côte Sainte-Catherine（約 3 公里，喺 Bonsecours 山坡上）</div>
 <a class="btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=49.4321870,1.1135570" target="_blank">🗺️ 喺 Google Maps 開啟</a>
 </div>
 
@@ -98,66 +119,81 @@ a { color: #4a7a4a; word-break: break-all; }
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ch%C3%A2teau_de_Saint-Germain-de-Livet_France.jpg/960px-Ch%C3%A2teau_de_Saint-Germain-de-Livet_France.jpg" alt="Saint-Germain-de-Livet 城堡">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Saint_germain_de_livet_chateau_2.jpg/960px-Saint_germain_de_livet_chateau_2.jpg" alt="城堡花園">
 </div>
-<table>
-<tr><th>由哪裡出發</th><th>自駕</th><th>火車／其他</th></tr>
-<tr><td>Talmont-sur-Gironde</td><td>507 km ／ 約 5.6 小時</td><td>太遠，建議唔好即日來回</td></tr>
-<tr><td>巴黎（Saint-Lazare 站）</td><td>207 km ／ 約 2.6 小時</td><td>火車約 1 小時 45 分 → Lisieux 站，再自駕/的士約 10 公里</td></tr>
+<div class="info"><b>🚆 火車（SNCF TER，官方時間表）：</b>每日 13 班到最近站 Lisieux，平均 1h58m，最快 1h41m，首班 08:28、尾班 22:30</div>
+<table class="train-table">
+<tr><th>班次例子（直達 Lisieux）</th><th>出發</th><th>到達</th><th>車程</th></tr>
+<tr><td>TER 3373</td><td>08:28</td><td>10:10</td><td>1h42m</td></tr>
+<tr><td>TER 3379</td><td>12:30</td><td>14:12</td><td>1h42m</td></tr>
+<tr><td>TER 3343</td><td>14:28</td><td>16:10</td><td>1h42m</td></tr>
+<tr><td>TER 3383</td><td>16:28</td><td>18:10</td><td>1h42m</td></tr>
+<tr><td>TER 3361</td><td>22:30</td><td>00:12</td><td>1h42m</td></tr>
 </table>
+<table>
+<tr><th>由哪裡出發</th><th>火車</th><th>自駕</th></tr>
+<tr><td>巴黎 Saint-Lazare 站 → Lisieux 站</td><td>約 1 小時 42 分（13 班/日）</td><td>207 km ／ 約 2.6 小時</td></tr>
+</table>
+<div class="info">到 Lisieux 站後：再自駕/的士約 10 公里（15 分鐘）到城堡。建議 Lisieux 租車或 call 的士，城堡喺鄉郊</div>
 <a class="btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=49.0890928,0.2143757" target="_blank">🗺️ 喺 Google Maps 開啟</a>
 </div>
 
-<h2>🚗 由 Talmont-sur-Gironde 自駕距離一覽</h2>
+<h2>🚆 由巴黎 Saint-Lazare 火車站出發 — 比較一覽</h2>
 <table>
-<tr><th>目的地</th><th>直線距離</th><th>實際駕駛</th><th>建議</th></tr>
-<tr><td>Caen（Frac Normandie）</td><td>約 407 km</td><td>526 km ／ 5.6 小時</td><td>⚠️ 單程已經半日，來回超過 11 小時</td></tr>
-<tr><td>Rouen（Côte Sainte-Catherine）</td><td>約 459 km</td><td>581 km ／ 6.2 小時</td><td>⚠️ 最遠，唔建議由 Talmont 出發</td></tr>
-<tr><td>Saint-Germain-de-Livet</td><td>約 404 km</td><td>507 km ／ 5.6 小時</td><td>⚠️ 同 Caen 相近距離</td></tr>
+<tr><th>目的地</th><th>火車站</th><th>每日班次</th><th>車程</th><th>到達後交通</th><th>自駕</th></tr>
+<tr><td>Caen（Frac Normandie）</td><td>Caen 站</td><td>19 班</td><td>1h54m–2h18m</td><td>步行 10–15 分鐘</td><td>235 km ／ 2.7h</td></tr>
+<tr><td>Rouen（Côte Sainte-Catherine）</td><td>Rouen Rive Droite 站</td><td>25 班</td><td>1h18m–1h42m ⚡最快</td><td>巴士/的士 3 公里</td><td>133 km ／ 1.8h</td></tr>
+<tr><td>Saint-Germain-de-Livet</td><td>Lisieux 站</td><td>13 班</td><td>1h41m–1h49m</td><td>的士/自駕 10 公里</td><td>207 km ／ 2.6h</td></tr>
 </table>
-<div class="warn">💡 <b>建議：</b>呢三個地點全部喺諾曼第（巴黎西北），距離 Talmont（波爾多北面 Gironde 河口）超過 500 公里。最可行安排係：<b>由巴黎出發一日遊 Rouen</b>（火車 1 小時 15 分）或者自駕/火車去 Caen／Saint-Germain-de-Livet。如果要自駕，可以安排 2-3 日諾曼第之旅（Rouen → Caen → 城堡）一次過睇晒。</div>
+
+<div class="warn">
+💡 <b>建議行程：</b>三個地點都可以由巴黎 Saint-Lazare 站一日遊。<br>
+• <b>Rouen 最方便</b>——火車 1 小時 20 分，班次最密（25 班/日），仲可以順便睇 Rouen 大教堂（莫內畫嗰座）同舊城區<br>
+• <b>Caen 一日遊</b>——火車 2 小時，睇完裝置可以行埋威廉征服者城堡同諾曼第登陸紀念館<br>
+• <b>Saint-Germain-de-Livet</b>——火車 1 小時 42 分到 Lisieux 再轉的士，適合想睇鄉郊城堡花園
+</div>
 
 <h2>🔗 參考資料</h2>
 <div class="info">
 • Normandie Impressionniste 官方展覽頁（展期確認）— normandie-impressionniste.fr<br>
 • Frac Normandie 官方活動頁（展期確認）— fracnormandie.fr<br>
-• Seine-Maritime 旅遊局官方頁 — seine-maritime-tourisme.com<br>
+• SNCF Connect 官方時間表（2026-08-29 查證）— sncf-connect.com<br>
 • 相片來源：designboom（© Adagp 2026）、Seine-Maritime 旅遊局、Wikimedia Commons（Creative Commons）<br>
 • 距離：OSRM 開源路由引擎（2026-08-29 計算）
 </div>
 
 <div class="footer">
-由 無虛 (mo mo) 生成 ｜ 2026年08月29日 ｜ 所有資料僅供參考，參觀前請以官方網站為準<br>
+由 無虛 (mo mo) 生成 ｜ 2026年08月29日 ｜ 所有資料僅供參考，火車班次同票價以 SNCF 官網為準<br>
 相片版權歸原作者所有，本頁僅作資訊展示用途
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function () {
-  var TALMONT = [45.5350413, -0.9072627];
+  var PARIS = [48.8767, 2.3255]; // Paris Saint-Lazare
   var venues = [
-    { name: 'Caen · Frac Normandie', lat: 49.18107, lng: -0.37844, d: '407 km', tag: '展至 08/30' },
-    { name: 'Rouen · Côte Sainte-Catherine', lat: 49.4321870, lng: 1.1135570, d: '459 km', tag: '展至 09/27' },
-    { name: 'Saint-Germain-de-Livet 城堡', lat: 49.0890928, lng: 0.2143757, d: '404 km', tag: '展至 09/27' }
+    { name: 'Caen · Frac Normandie', lat: 49.18107, lng: -0.37844, d: '火車 ~2h', tag: '展至 08/30' },
+    { name: 'Rouen · Côte Sainte-Catherine', lat: 49.4321870, lng: 1.1135570, d: '火車 ~1h20m', tag: '展至 09/27' },
+    { name: 'Saint-Germain-de-Livet 城堡', lat: 49.0890928, lng: 0.2143757, d: '火車 ~1h42m', tag: '展至 09/27' }
   ];
-  var map = L.map('map', { zoomControl: true }).setView([48.2, 0.5], 6);
+  var map = L.map('map', { zoomControl: true }).setView([48.6, 0.8], 7);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  var talIcon = L.divIcon({ className: 'dist-label', html: '🏠 Talmont', iconSize: [110, 26], iconAnchor: [55, 13] });
-  L.marker(TALMONT, { icon: talIcon }).addTo(map).bindPopup('<b>Talmont-sur-Gironde</b><br>旅程據點');
+  var parisIcon = L.divIcon({ className: 'dist-label paris', html: '🚉 巴黎 Saint-Lazare', iconSize: [150, 26], iconAnchor: [75, 13] });
+  L.marker(PARIS, { icon: parisIcon }).addTo(map).bindPopup('<b>Paris Saint-Lazare 站</b><br>出發點');
 
   venues.forEach(function (v) {
     L.marker([v.lat, v.lng])
       .addTo(map)
-      .bindPopup('<b>' + v.name + '</b><br>展期：' + v.tag + '<br>距 Talmont：' + v.d + '（直線）');
-    L.polyline([TALMONT, [v.lat, v.lng]], {
-      color: '#c96442', weight: 3, dashArray: '8 10', opacity: 0.8
+      .bindPopup('<b>' + v.name + '</b><br>展期：' + v.tag + '<br>由巴黎：' + v.d);
+    L.polyline([PARIS, [v.lat, v.lng]], {
+      color: '#4a7a4a', weight: 3, dashArray: '8 10', opacity: 0.85
     }).addTo(map);
   });
 
   map.fitBounds([
-    [45.0, -1.3],
+    [48.3, -0.9],
     [49.9, 1.6]
   ]);
 })();
