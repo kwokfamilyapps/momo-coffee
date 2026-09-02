@@ -76,7 +76,7 @@
 </div>
 
 <div class="footer">
-<p><strong>路線交通：</strong>9/14 巴黎→波爾多（TGV 火車）・ 9/21 波爾多→漢堡（Iberia 經巴塞隆拿）・ 柏林→布拉格（火車）・ 10/8 布拉格→愛丁堡（Ryanair 直飛）・ 愛丁堡→約克→倫敦（LNER 火車）。漢堡→柏林（9/24）交通待確認。</p>
+<p><strong>路線交通：</strong>9/14 巴黎→波爾多（TGV 火車）・ 9/21 波爾多→漢堡（Iberia 經巴塞隆拿）・ 9/24 漢堡→柏林（火車，班次未定）・ 9/30 柏林→布拉格（火車，班次未定）・ 10/8 布拉格→愛丁堡（Ryanair 直飛）・ 10/12 愛丁堡→約克（火車，班次未定）・ 10/16 約克→倫敦（LNER 火車）。</p>
 <p>本路線地圖由 無虛 (mo mo) 生成。地圖底圖 © OpenStreetMap 貢獻者（開放授權）。</p>
 </div>
 
@@ -95,22 +95,22 @@
     { n: 3, name: '漢堡 Hamburg', sub: '德', lat: 53.5511, lng: 9.9937, dates: '9月21日 – 24日', days: '3日3夜',
       hotel: 'Ronald 屋（Schwarze Strasse 12, 20535 Hamburg）',
       arrive: '✈️ 9/21 21:00 到（Iberia 經巴塞隆拿）',
-      next: '9/24 前往柏林（交通待確認）' },
+      next: '🚄 9/24 火車前往柏林（班次未定）' },
     { n: 4, name: '柏林 Berlin', sub: '德', lat: 52.5200, lng: 13.4050, dates: '9月24日 – 30日', days: '7日6夜',
       hotel: 'Hostel（Lückstraße 17）9/24-28 ＋ Ocak Aparthotel（Jülicher Str 15）9/28-30',
-      arrive: '9/24 由漢堡到達',
-      next: '🚄 9/30 火車前往布拉格' },
+      arrive: '🚄 9/24 火車由漢堡到達（班次未定）',
+      next: '🚄 9/30 火車前往布拉格（班次未定）' },
     { n: 5, name: '布拉格 Prague', sub: '捷', lat: 50.0755, lng: 14.4378, dates: '9月30日 – 10月8日', days: '9日8夜',
       hotel: 'Smíchov Apartment（U Santošky 955/22, Praha 5）',
-      arrive: '🚄 9/30 火車由柏林到達',
+      arrive: '🚄 9/30 火車由柏林到達（班次未定）',
       next: '✈️ 10/8 Ryanair FR1053 15:15 → 愛丁堡 16:35' },
     { n: 6, name: '愛丁堡 Edinburgh', sub: '蘇', lat: 55.9533, lng: -3.1883, dates: '10月8日 – 12日', days: '5日4夜',
       hotel: 'The McEwan（2 McEwan Walk, Fountainbridge）',
       arrive: '✈️ 10/8 16:35 到（Ryanair FR1053）',
-      next: '🚄 10/12 LNER 火車前往約克' },
+      next: '🚄 10/12 火車前往約克（班次未定）' },
     { n: 7, name: '約克 York', sub: '英', lat: 53.9600, lng: -1.0873, dates: '10月12日 – 16日', days: '5日4夜',
       hotel: 'Riverside House（11 Earlsborough Terrace, YO30 7BQ）',
-      arrive: '🚄 10/12 LNER 由愛丁堡到達',
+      arrive: '🚄 10/12 火車由愛丁堡到達（班次未定）',
       next: '🚄 10/16 LNER 火車前往倫敦' },
     { n: 8, name: '倫敦 London', sub: '英', lat: 51.5074, lng: -0.1278, dates: '10月16日 – 26日', days: '9日8夜',
       hotel: 'Hidden Gem（98 Warwick Rd, Ealing）',
@@ -130,7 +130,7 @@
   var segs = [
     { pts: [pt(0), pt(1)], color: '#4a7a4a', dash: '' },       // 巴黎→波爾多 火車
     { pts: [pt(1), pt(2)], color: '#2f6db3', dash: '8 10' },   // 波爾多→漢堡 飛機
-    { pts: [pt(2), pt(3)], color: '#8a8a80', dash: '3 8' },    // 漢堡→柏林 待定
+    { pts: [pt(2), pt(3)], color: '#4a7a4a', dash: '' },       // 漢堡→柏林 火車
     { pts: [pt(3), pt(4)], color: '#4a7a4a', dash: '' },       // 柏林→布拉格 火車
     { pts: [pt(4), pt(5)], color: '#2f6db3', dash: '8 10' },   // 布拉格→愛丁堡 飛機
     { pts: [pt(5), pt(6)], color: '#4a7a4a', dash: '' },       // 愛丁堡→約克 火車
