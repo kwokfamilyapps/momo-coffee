@@ -49,17 +49,17 @@
 </div>
 
 <div class="cityrow">
-  <a class="citychip" data-lat="48.8566" data-lng="2.3522" data-zoom="11"><span class="n">1</span>巴黎</a>
-  <a class="citychip" data-lat="44.8378" data-lng="-0.5792" data-zoom="9"><span class="n">2</span>波爾多/Talmont</a>
-  <a class="citychip" data-lat="53.5511" data-lng="9.9937" data-zoom="11"><span class="n">3</span>漢堡</a>
-  <a class="citychip" data-lat="52.5200" data-lng="13.4050" data-zoom="11"><span class="n">4</span>柏林</a>
-  <a class="citychip" data-lat="50.0755" data-lng="14.4378" data-zoom="12"><span class="n">5</span>布拉格</a>
-  <a class="citychip" data-lat="55.9533" data-lng="-3.1883" data-zoom="11"><span class="n">6</span>愛丁堡</a>
-  <a class="citychip" data-lat="53.9600" data-lng="-1.0873" data-zoom="12"><span class="n">7</span>約克</a>
-  <a class="citychip" data-lat="51.5074" data-lng="-0.1278" data-zoom="10"><span class="n">8</span>倫敦</a>
+  <a class="citychip" data-lat="48.7954" data-lng="2.4239" data-zoom="13"><span class="n">1</span>巴黎·Alfortville</a>
+  <a class="citychip" data-lat="45.5347" data-lng="-0.9020" data-zoom="12"><span class="n">2</span>Talmont</a>
+  <a class="citychip" data-lat="53.5578" data-lng="10.0437" data-zoom="13"><span class="n">3</span>漢堡·Hamm</a>
+  <a class="citychip" data-lat="52.5013" data-lng="13.4908" data-zoom="13"><span class="n">4</span>柏林·Rummelsburg</a>
+  <a class="citychip" data-lat="50.0680" data-lng="14.3995" data-zoom="14"><span class="n">5</span>布拉格·Smíchov</a>
+  <a class="citychip" data-lat="55.9434" data-lng="-3.2145" data-zoom="14"><span class="n">6</span>愛丁堡·Fountainbridge</a>
+  <a class="citychip" data-lat="53.9616" data-lng="-1.0918" data-zoom="14"><span class="n">7</span>約克</a>
+  <a class="citychip" data-lat="51.5063" data-lng="-0.3042" data-zoom="14"><span class="n">8</span>倫敦·Ealing</a>
 </div>
 
-<div class="legend">📍 撳城市圓點睇日期／住宿／交通 ｜ 撳上方城市名飛到該城 ｜ 滾輪放大縮細 ｜ 綠色實線＝火車 ｜ 藍色虛線＝飛機 ｜ 灰色虛線＝待定交通</div>
+<div class="legend">📍 撳城市圓點睇日期／住宿／交通（marker＝住宿實際位置）｜ 撳上方城市名飛到該處 ｜ 滾輪放大縮細 ｜ 綠色實線＝火車 ｜ 藍色虛線＝飛機</div>
 
 <div id="map"></div>
 
@@ -84,37 +84,37 @@
 <script>
 (function () {
   var cities = [
-    { n: 1, name: '巴黎 Paris', sub: '法', lat: 48.8566, lng: 2.3522, dates: '9月9日 – 14日', days: '6日5夜',
+    { n: 1, name: '巴黎 Paris（Alfortville）', sub: '法', lat: 48.795424, lng: 2.423854, dates: '9月9日 – 14日', days: '6日5夜',
       hotel: 'Airbnb「Apartment neuf」Alfortville（2 bis Boulevard Carnot, 94140）',
       arrive: '✈️ 9/9 08:25 到（EK71，香港 9/8 19:10 EK383 出發）',
       next: '🚄 9/14 TGV 由 Gare Montparnasse → Bordeaux Saint-Jean' },
-    { n: 2, name: '波爾多 / Talmont', sub: '法', lat: 44.8378, lng: -0.5792, dates: '9月14日 – 21日', days: '8日7夜',
+    { n: 2, name: 'Talmont 小鎮', sub: '法', lat: 45.534711, lng: -0.901963, dates: '9月14日 – 21日', days: '8日7夜',
       hotel: 'Ronald 屋（3 Avenue de L’Estuaire, 17120 Talmont-sur-Gironde）',
-      arrive: '🚄 9/14 TGV 到 Bordeaux Saint-Jean（巴黎蒙帕納斯站上車）',
+      arrive: '🚄 9/14 TGV 到 Bordeaux Saint-Jean（巴黎蒙帕納斯站上車）→ 轉車到 Talmont',
       next: '✈️ 9/21 Iberia IB5438 16:10 → BCN 17:20 → IB5378 18:20 → 漢堡 21:00' },
-    { n: 3, name: '漢堡 Hamburg', sub: '德', lat: 53.5511, lng: 9.9937, dates: '9月21日 – 24日', days: '3日3夜',
+    { n: 3, name: '漢堡 Hamburg（Hamm）', sub: '德', lat: 53.557808, lng: 10.043699, dates: '9月21日 – 24日', days: '3日3夜',
       hotel: 'Ronald 屋（Schwarze Strasse 12, 20535 Hamburg）',
       arrive: '✈️ 9/21 21:00 到（Iberia 經巴塞隆拿）',
       next: '🚄 9/24 火車前往柏林（班次未定）' },
-    { n: 4, name: '柏林 Berlin', sub: '德', lat: 52.5200, lng: 13.4050, dates: '9月24日 – 30日', days: '7日6夜',
+    { n: 4, name: '柏林 Berlin（Rummelsburg）', sub: '德', lat: 52.501309, lng: 13.490769, dates: '9月24日 – 30日', days: '7日6夜',
       hotel: 'Hostel（Lückstraße 17）9/24-28 ＋ Ocak Aparthotel（Jülicher Str 15）9/28-30',
       arrive: '🚄 9/24 火車由漢堡到達（班次未定）',
       next: '🚄 9/30 火車前往布拉格（班次未定）' },
-    { n: 5, name: '布拉格 Prague', sub: '捷', lat: 50.0755, lng: 14.4378, dates: '9月30日 – 10月8日', days: '9日8夜',
+    { n: 5, name: '布拉格 Prague（Smíchov）', sub: '捷', lat: 50.068049, lng: 14.399526, dates: '9月30日 – 10月8日', days: '9日8夜',
       hotel: 'Smíchov Apartment（U Santošky 955/22, Praha 5）',
       arrive: '🚄 9/30 火車由柏林到達（班次未定）',
       next: '✈️ 10/8 Ryanair FR1053 15:15 → 愛丁堡 16:35' },
-    { n: 6, name: '愛丁堡 Edinburgh', sub: '蘇', lat: 55.9533, lng: -3.1883, dates: '10月8日 – 12日', days: '5日4夜',
-      hotel: 'The McEwan（2 McEwan Walk, Fountainbridge）',
+    { n: 6, name: '愛丁堡 Edinburgh（Fountainbridge）', sub: '蘇', lat: 55.943383, lng: -3.214530, dates: '10月8日 – 12日', days: '5日4夜',
+      hotel: 'The McEwan（2 McEwan Walk, Fountainbridge, EH3 8FS）',
       arrive: '✈️ 10/8 16:35 到（Ryanair FR1053）',
       next: '🚄 10/12 火車前往約克（班次未定）' },
-    { n: 7, name: '約克 York', sub: '英', lat: 53.9600, lng: -1.0873, dates: '10月12日 – 16日', days: '5日4夜',
+    { n: 7, name: '約克 York（Bootham）', sub: '英', lat: 53.961605, lng: -1.091777, dates: '10月12日 – 16日', days: '5日4夜',
       hotel: 'Riverside House（11 Earlsborough Terrace, YO30 7BQ）',
       arrive: '🚄 10/12 火車由愛丁堡到達（班次未定）',
-      next: '🚄 10/16 LNER 火車前往倫敦' },
-    { n: 8, name: '倫敦 London', sub: '英', lat: 51.5074, lng: -0.1278, dates: '10月16日 – 26日', days: '9日8夜',
-      hotel: 'Hidden Gem（98 Warwick Rd, Ealing）',
-      arrive: '🚄 10/16 LNER 由約克到達',
+      next: '🚄 10/16 火車前往倫敦' },
+    { n: 8, name: '倫敦 London（Ealing）', sub: '英', lat: 51.506326, lng: -0.304237, dates: '10月16日 – 26日', days: '9日8夜',
+      hotel: 'Hidden Gem（98 Warwick Rd, Ealing, W5 5PT）',
+      arrive: '🚄 10/16 火車由約克到達',
       next: '🔙 回程：10/19 Vikki ・ 10/26 Florence＋Ming；Peace 留倫敦至 11/8' }
   ];
 
