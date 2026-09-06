@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☕ 香港手沖咖啡店推介 Vol.9</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 32px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #faf7f2;
+    color: #2c2c2c;
+    line-height: 1.8;
+    padding: 0 0 60px 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #3d2b1f, #6b4226);
+    color: #fff;
+    padding: 36px 20px 28px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: 1px; }
+  .header .sub { font-size: 0.92rem; opacity: .8; margin-top: 6px; }
+  .header .date { font-size: 0.85rem; opacity: .65; margin-top: 4px; line-height: 1.5; }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px; }
+  .intro {
+    background: #fff3e0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    font-size: 0.9rem;
+    border-left: 4px solid #a6633c;
+    color: #5a3e2b;
+  }
+  .badge-new {
+    display: inline-block;
+    font-size: 0.7rem;
+    background: #e74c3c;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #3d2b1f;
+    margin: 28px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #d4a373;
+  }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    border-left: 4px solid #d4a373;
+    position: relative;
+  }
+  .card h3 { font-size: 1.1rem; font-weight: 700; color: #3d2b1f; margin-bottom: 4px; }
+  .card h3 .new-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    background: #e74c3c;
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .card .location { font-size: 0.85rem; color: #888; margin-bottom: 8px; }
+  .card .location span { color: #a6633c; }
+  .card .desc { font-size: 0.88rem; color: #555; line-height: 1.7; }
+  .card .tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .card .tags span {
+    font-size: 0.85rem;
+    background: #f5ede3;
+    color: #6b4226;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .tip-box {
+    background: #f0ebe4;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-size: 0.88rem;
+    color: #5a3e2b;
+    border-left: 4px solid #2d5a3d;
+    line-height: 1.7;
+  }
+  .legend {
+    display: flex;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: #888;
+    margin: 12px 0;
+  }
+
+  .combo-box { margin-top: 14px; text-align: center; }
+  .combo-box summary {
+    cursor: pointer; display: inline-block; user-select: none;
+    color: #fff; background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.35);
+    padding: 8px 22px; border-radius: 24px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: .5px;
+    transition: background .2s;
+  }
+  .combo-box summary:hover { background: rgba(255,255,255,.28); }
+  .combo-box[open] summary { background: #d4a373; color: #3d2b1f; border-color: #d4a373; }
+  .combo-hint { font-size: 0.68rem; color: rgba(255,255,255,.8); margin: 8px 0 4px; letter-spacing: .5px; }
+  .combo-list { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .combo-list a, .combo-list .active {
+    color: #3d2b1f; background: #f0ebe4; text-decoration: none;
+    padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    display: inline-block;
+  }
+  .combo-list a:hover { background: #d4a373; color: #fff; }
+  .combo-list .active { background: #d4a373; color: #fff; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>☕ 香港手沖咖啡店推介</h1>
+  <div class="sub">Vol.9 — Ming &amp; Friends 私心精選 — 2026年9月</div>
+  <div class="date">九月升級名單 • 兩間「待查證」終極確認 + 油麻地新島嶼 + 過江龍登陸太古廣場</div>
+  <details class="combo-box">
+    <summary>📚 全部期數（9期）<br>點擊可重溫</summary>
+    <div class="combo-hint">👆 點擊可重溫 Vol.1-9</div>
+    <div class="combo-list">
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol1.html">Vol.1 · 2026年7月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol2.html">Vol.2 · 2026年7月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol3.html">Vol.3 · 2026年7月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol4.html">Vol.4 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol5.html">Vol.5 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol6.html">Vol.6 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol7.html">Vol.7 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol8.html">Vol.8 · 2026年8月</a>
+      <span class="active">Vol.9 · 2026年9月</span>
+    </div>
+  </details>
+</div>
+<div class="container">
+
+<div class="intro">
+  <strong>☕ 編者的話：</strong><br>
+  今期主打 <strong>「九月升級名單」</strong> 🎉 — 之前一直喺「待查證」list 嘅 <strong>Knockbox（石門）</strong>同 <strong>Black Sugar（尖沙咀）</strong>，今期終於搵到足夠證據 confirm 到！<br><br>
+  ☕ <strong>Knockbox（石門）</strong>：亞洲50大咖啡店，Threads 啡友實測手沖 + Trip.com 確認手沖附風味卡；<br>
+  🐕 <strong>Black Sugar（尖沙咀）</strong>：官方 IG 明示手沖 menu 更新，柴犬店長坐鎮；<br>
+  🏝️ 油麻地新島嶼 <strong>Islet Coffee Lab</strong> 7月25日先 soft open，賣一杯手沖捐 HK$10 撐哥倫比亞；<br>
+  🇯🇵 東京表參道過江龍 <strong>Omotesando Koffee</strong> 登陸太古廣場，招牌手沖咖啡手藝；<br>
+  🔥 中環 <strong>OneThird</strong> 元朗回流 + 銅鑼灣立飲始祖 <strong>Project C</strong> — 兩間都係「理由就係手沖」嘅店；<br><br>
+  <strong>📌 每期 6 間，逐間 fact check，唔會估估吓 😊</strong>
+</div>
+
+<!-- ===== SECTION: 新界 ===== -->
+<div class="section-title">☕ 新界區 — 亞洲50大嘅石門分店</div>
+
+<div class="card">
+  <h3>Knockbox Coffee Company（石門店）<span class="new-badge">待查證→確認</span></h3>
+  <div class="location">📍 <span>沙田·石門</span> 安麗街18號達利廣場地下4號舖（石門站C出口步行約3分鐘）</div>
+  <div class="desc">
+    <strong>亞洲 Top 50 精品咖啡店 Knockbox</strong> — 旺角始祖店 2011 年開業，呢間係低調藏身石門工業區嘅分店（Vol.7 介紹過旺角店，今次輪到石門店！）。<br><br>
+    啡友 Threads 實測（@cafepilgrimm）：<strong>「Filter Supply - Peru 手沖：聞到溫柔嘅木瓜＋青瓜味，飲落好柔和帶木質調，凍咗之後檸檬草味更突出」</strong> — 仲大讚前半係標誌性復古墨綠外帶窗、極簡日系座位區，位置唔多建議平日下晝到訪。<br><br>
+    Trip.com 啡友補充：<strong>手沖咖啡會附上產地、處理法與風味音符卡（Tasting Note）</strong>，奶啡仲可以揀 Fruity 或 Nutty 豆 — 對新手嚟講好貼心。<br><br>
+    2025 年香港咖啡師大賽冠軍 <strong>Laughing Wong 就係 Knockbox 嘅 barista</strong>，佢嘅比賽咖啡仲有 45 分鐘 tasting 可以喺舖頭試！<br><br>
+    ☕ 營業時間建議 check IG @knockbox。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>沙田石門</span><span>亞洲50大</span><span>風味卡</span><span>自家烘焙</span>
+  </div>
+</div>
+
+<!-- ===== SECTION: 九龍 ===== -->
+<div class="section-title">🌆 九龍區 — 柴犬咖啡店 x 油麻地新島嶼</div>
+
+<div class="card">
+  <h3>Black Sugar Coffee &amp; Lifestyle<span class="new-badge">待查證→確認</span></h3>
+  <div class="location">📍 <span>尖沙咀</span> 麼地道68號帝國中心地下G34號舖（尖東站P1出口步行約數分鐘）</div>
+  <div class="desc">
+    官方 IG 最近出 post：<strong>「最近到店的朋友，或許已發現我們的手沖咖啡 menu 更新了」</strong> — 大部分豆喺門市同網店同步發售，唯獨一款特別批次只留喺店內供應，由 Black Sugar 親自沖 — 擺明車馬主打手沖！<br><br>
+    Tripadvisor 啡友：「<strong>喝到層次分明的手沖咖啡，是手沖咖啡迷的小確幸。盛咖啡的盛器和小杯很像喝清酒</strong>」— 儀式感滿分！<br><br>
+    店名 Black Sugar 其實嚟自店長柴犬 <strong>「黑糖」</strong> 🐕 — 店內吉祥物坐鎮，咖啡店＋生活選物店二合一。尖沙咀店以外仲有何文田同大角咀分店。<br><br>
+    位置喺帝國中心地舖，行完海港城／K11 Musea 過嚟好方便。<br><br>
+    ☕ 營業時間：星期一至五 08:00-20:00（週末建議 check IG @blacksugar_coffee_hk）。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>尖沙咀</span><span>帝國中心</span><span>柴犬黑糖</span><span>自家烘焙</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Islet Coffee Lab（油麻地店）<span class="new-badge">7月新店</span></h3>
+  <div class="location">📍 <span>油麻地</span> 新填地街102-104號地舖（近廟街／裕輝 Residence）</div>
+  <div class="desc">
+    <strong>2026年7月25日 Soft Opening 嘅油麻地新店</strong> — 「喺油麻地，迎來一座新的島嶼」🏝️ 品牌落戶以大學生生活為核心嘅裕輝 Residence，想喺城市入面聚集唔同背景嘅人。<br><br>
+    官方 Facebook 公布：<strong>「8月份，每售出一杯手沖咖啡，將捐出 HK$10 支援哥倫比亞當地的救援工作」</strong> — 飲啡之餘仲可以做善事，滿滿社會關懷！<br><br>
+    品牌本身以咖啡科學見稱 — 官網有 <strong>「Golden Ratio 金杯萃取」</strong>教學文章，中環安蘭街9號店仲係 Art Gallery 概念（牆上有展覽、吧台後有黑膠）。油麻地店營業時間 10:00-18:00。<br><br>
+    中環店啡友實測：「嗌咗杯手沖外賣，Kenya Kiambu Washed，確切 flavor」— 手沖係佢哋強項！<br><br>
+    ☕ 營業時間：每日 10:00-18:00。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>油麻地</span><span>7月新店</span><span>買啡捐獻</span><span>咖啡科學</span>
+  </div>
+</div>
+
+<!-- ===== SECTION: 港島 ===== -->
+<div class="section-title">🏙️ 港島區 — 元朗回流 x 立飲始祖 x 過江龍</div>
+
+<div class="card">
+  <h3>OneThird Coffee Roasters<span class="new-badge">中環重開</span></h3>
+  <div class="location">📍 <span>中環</span> 嘉咸街32號地舖</div>
+  <div class="desc">
+    啡遊記（fei.yau.kee）：「<strong>元朗店闊別兩年，剛剛在中環嘉咸街重開</strong>」— 冠軍級精品咖啡品牌 OneThird 返嚟喇！<br><br>
+    國際咖啡媒體 FLTR Magazine 2026年8月推薦文直接話：<strong>「The reason to visit is the pour-over」</strong>（嚟呢度嘅理由就係手沖）— 仲話佢哋連覺得唔啱嘅一杯都會成杯倒咗再沖過，執著程度可見一斑！<br><br>
+    官方 Threads 日常 post：「雪好咗嘅老冰全部 be water，<strong>今日有部分手沖做唔到凍，敬請見諒</strong>」— 證明手沖係每日恆常供應嘅主力。<br><br>
+    啡友 IG 實測：「喜歡當天選的 floral 手沖！」＋「手沖以外一杯『疑似可樂』的咖啡相當有驚喜」— 除咗認真手沖，仲有咖啡溝可樂／檸檬茶嘅實驗特飲。<br><br>
+    ☕ 營業時間：星期一至五 08:30-18:00；星期六日 10:30-18:00（官網資料）。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>中環</span><span>嘉咸街</span><span>自家烘焙</span><span>元朗回流</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Project C</h3>
+  <div class="location">📍 <span>銅鑼灣</span> 希慎道29號地舖（銅鑼灣站F1出口步行約4分鐘）</div>
+  <div class="desc">
+    被國際媒體譽為 <strong>「銅鑼灣必去咖啡吧」</strong>嘅立飲小店 — 店名個「C」代表 Coffee and Concentration，門口得一個圓窗，似潛水艇咁低調，行過好易 miss！<br><br>
+    <strong>每日精選 9 款咖啡豆</strong>，只賣咖啡冇嘢食 — 決定好之後企喺吧台前「立飲」享用，銅鑼灣鬧市中嘅純粹咖啡體驗。<br><br>
+    Threads 啡友（@coffeewishlist）：<strong>「4.5⭐ 咖啡高質，手沖單品有層次，店員親切又專業會細心介紹」</strong>；另有啡友 IG 實測：「手沖都用外賣杯上，一路行一路聞到好香嘅味道」— 外帶一流。<br><br>
+    想近距離睇咖啡師沖煮、同佢傾咖啡經，呢度係銅鑼灣首選！<br><br>
+    ☕ 營業時間：每日 08:00-18:00。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>銅鑼灣</span><span>立飲</span><span>每日9款豆</span><span>外帶</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Omotesando Koffee（太古廣場店）<span class="new-badge">過江龍</span></h3>
+  <div class="location">📍 <span>金鐘</span> 金鐘道88號太古廣場L2樓2J號舖（金鐘站F出口）</div>
+  <div class="desc">
+    東京表參道嘅人氣過江龍 <strong>Omotesando Koffee</strong> — 被譽為東京最佳咖啡店之一，2025年尾正式登陸太古廣場，係繼 K11 Musea、海港城、IFC 之後嘅香港第 4 間分店（醞釀接近一年先開到！）。<br><br>
+    <strong>招牌就係日式手沖咖啡手藝</strong> — 專業咖啡師駐場介紹咖啡豆，按照客人飲咖啡嘅習慣調配沖泡，啱晒講究咖啡嘅你。<br><br>
+    除咗手沖，仲有招牌 <strong>泡泡 Iced Cappuccino</strong>（凍 Cappuccino 上面一層綿密奶泡）同厚玉子三文治 — 啡遊記形容新店「位於金鐘廊連繫嘅 L2 樓層，吸引又方便返工嘅人」。<br><br>
+    喺香港都可以體驗東京古宅咖啡店嘅氛圍，金鐘上班族同過海啡友都值得一試！<br><br>
+    ☕ 營業時間建議 check 官方 IG @omotesando.koffee。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>金鐘</span><span>太古廣場</span><span>過江龍</span><span>日式</span>
+  </div>
+</div>
+
+<!-- ===== TIP BOX ===== -->
+<div class="tip-box">
+  💡 <strong>溫馨提示：</strong> 以上資料已逐間查證（2026年9月6日），地址及有手沖咖啡均已確認（每間最少 2 個來源 cross-check，包括官方 IG/Threads、OpenRice、啡友實測）。營業時間可能有變，去之前建議 check 社交媒體。<br><br>
+  <strong>📝 今期確認升級：</strong> Knockbox（石門）同 Black Sugar（尖沙咀）由「待查證」正式升格為已確認 — 可以放心去！<br><br>
+  🔍 <strong>待查證：</strong> Espresso Alchemy（尖沙咀）— 全球百大咖啡店，但手沖未直接確認；SOS Roastery（將軍澳寶琳）— 自家烘焙小店，手沖未確認；Relax B&amp;M（大埔大尾督）— 精品咖啡+按摩，手沖未確認<br><br>
+  ⚰️ <strong>已結業記錄：</strong> Filters Lane（上環堅道）— 已結業；Elixir（中環美輪街）— 原址已由 Nook Coffee 接手，唔好摸門釘！<br><br>
+  ☕ 如果你試到正嘅手沖咖啡店，記得話俾我知！😊
+</div>
+
+</div><!-- /container -->
+
+<div class="footer" style="text-align:center; color:#888; font-size:0.78rem; margin-top:20px;">
+  🏔️ 由 無虛 (mo mo) 為 Ming 每週整理 — 全部逐間 fact check 確認<br>
+  <span style="font-size:0.68rem;">香港手沖咖啡店推介 Vol.9 — 2026年9月6日 — 分享版本</span>
+</div>
+
+</body>
+</html>
