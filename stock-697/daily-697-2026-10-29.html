@@ -66,11 +66,12 @@
   <span class="badge">momo v6 · 數據驅動分析</span>
 
   <div class="warn">
-    <b>⚠️ 先講數據：price_detail.csv 有 7 星期缺口</b><br>
-    CSV 最後一條記錄係 <b>2026-09-08 11:58:08</b> 嗰個時間。之後因為 cron 全部暫停（長途旅行），
-    <b>34 個交易日</b>（2026-09-09 至 2026-10-28）嘅逐筆記錄完全冇寫入。
-    所以今次報告唔係讀 CSV，而係直接由 <b>Yahoo Finance 分鐘／日線 API</b> 重新拉返真實數據，
-    再用 <b>新浪財經實時報價</b> 交叉核對（兩個來源吻合）。冇一個數字係估出嚟嘅。
+    <b>⚠️ 先講數據：price_detail.csv 有 7 星期缺口（今日已恢復寫入）</b><br>
+    CSV 嘅歷史記錄喺 <b>2026-09-08 11:58:08</b> 之後就斷咗。之後因為 cron 全部暫停（長途旅行），
+    <b>34 個交易日</b>（2026-09-09 至 2026-10-28）嘅逐筆記錄完全冇寫入。<br>
+    今日 13:27 起三個數據檔（price_detail / tick_prices / 1min_data）已經恢復寫入（最後一條：2026-10-29 13:28:50），
+    但缺口就補唔返。所以今次報告唔係讀 CSV，而係直接由 <b>Yahoo Finance 分鐘／日線 API</b> 重新拉返真實數據，
+    再用 <b>新浪財經實時報價</b> 交叉核對。冇一個數字係估出嚟嘅。
   </div>
 
   <h2>① 昨日全日（2026年10月28日 · 星期三）</h2>
@@ -98,21 +99,23 @@
   <h3>📈 昨日逐小時走勢（每小時開／高／低／收＋成交量）</h3>
 <table><thead><tr><th>時段</th><th>開</th><th>高</th><th>低</th><th>收</th><th>成交量</th></tr></thead><tbody><tr><td>09:00–09:59</td><td>$1.240</td><td>$1.255</td><td>$1.235</td><td>$1.240</td><td class='num'>1,146,000</td></tr><tr><td>10:00–10:59</td><td>$1.245</td><td>$1.250</td><td>$1.235</td><td>$1.240</td><td class='num'>1,379,600</td></tr><tr><td>11:00–11:59</td><td>$1.240</td><td>$1.265</td><td>$1.240</td><td>$1.260</td><td class='num'>1,986,000</td></tr><tr><td>13:00–13:59</td><td>$1.260</td><td>$1.270</td><td>$1.250</td><td>$1.250</td><td class='num'>1,458,000</td></tr><tr><td>14:00–14:59</td><td>$1.250</td><td>$1.255</td><td>$1.245</td><td>$1.245</td><td class='num'>1,088,000</td></tr><tr><td>15:00–15:59</td><td>$1.245</td><td>$1.255</td><td>$1.240</td><td>$1.250</td><td class='num'>2,086,000</td></tr><tr><td>16:00–16:59</td><td>$1.250</td><td>$1.250</td><td>$1.250</td><td>$1.250</td><td class='num'>664,000</td></tr></tbody></table>
 
-  <h2>② 今日即時（截至 2026-10-29 13:26）</h2>
+  <h2>② 今日即時（2026年10月29日 · 午後）</h2>
   <div class="now">
-    <div class="price down">$1.200 &nbsp;<span style="font-size:.9rem">▼ $0.050（-4.00%）</span></div>
+    <div class="price down">$1.210 &nbsp;<span style="font-size:.9rem">▼ $0.040（-3.20%）</span></div>
     <div class="kpi">
+      <span>現價 @13:29（Yahoo）</span>
+      <span>新浪快照 @13:00 <b>$1.200</b></span>
       <span>開市 <b>$1.250</b></span>
       <span>最高 <b>$1.250</b></span>
       <span>最低 <b>$1.190</b></span>
       <span>前收 <b>$1.250</b></span>
-      <span>成交 <b>14,263,260</b> 股</span>
+      <span>成交 <b>1,214 萬</b>（Yahoo 13:29）／<b>1,426 萬</b>（新浪 13:00）</span>
       <span>恒指 <b>23,088.14</b>（+0.05%）</span>
     </div>
     <p style="font-size:.7rem;margin:.7rem 0 0">
-      🔔 <b>今日已經出現一個 −$0.050（−4.00%）嘅下跌</b>，即係話如果threshold 計「距前收市」，
-      今日已經觸發一次跌市警報。跌到 1.190 係 10:17 前後嘅事，之後喺 1.20 附近企穩。
-      成交 1,426 萬股，已經超過昨日全日 974 萬股 <b>46%</b>，係典型「放量下跌」——
+      🔔 <b>今日已經出現一個 −$0.050（−4.00%）嘅下跌</b>，即係話如果門檻計「距前收市」，
+      今日已經觸發一次跌市警報。跌到 1.190 係 10:17 前後嘅事，之後喺 1.20–1.21 企穩（13:29 報 1.210）。
+      成交 1,214–1,426 萬股，已經超過昨日全日 974 萬股 <b>25–46%</b>，係典型「放量下跌」——
       而且恒指今日幾乎平（+0.05%），即係呢個跌幅係<b>個股本身</b>嘅事，唔係大市拖累。
     </p>
   </div>
@@ -135,18 +138,22 @@
     <li>上方阻力：1.27（10月26–28日三次都喺 1.27 前後失敗）→ 再上係 1.30</li>
   </ul>
 
-  <h2>⑤ 系統狀態（要跟進嘅事）</h2>
+  <h2>⑤ 系統狀態（已即場修復）</h2>
   <ul>
     <li>✅ cron 全部已恢復運作（今日 13:25 一次過 catch-up 咗 28–51 日前 missed 嘅 jobs）</li>
-    <li>❌ <b>697_tick_tracker.py（逐筆價格記錄，每分鐘）執行失敗</b> — cron 用嘅 Python 環境冇 <code>yfinance</code> 模組（<code>ModuleNotFoundError</code>）。所以逐筆數據由 9月8日起一直冇再寫入</li>
-    <li>⚠️ price_detail.csv / 697_tick_prices.csv / 697_1min_data.csv 三個檔案最新時間都停在 9月8日</li>
-    <li>📌 我今日會用「純標準庫」方法重寫數據抓取（唔需要安裝任何套件），避免再因為 interpreter 缺 yfinance 而斷數據</li>
+    <li>🔧 <b>697_tick_tracker.py 失敗已修好</b>：根因係 cron 用嘅 Hermes runtime venv（Python 3.14）冇 <code>yfinance</code>／<code>numpy</code>／<code>pandas</code>，
+        所以每分鐘記錄由 9月8日起靜靜地 fail（<code>ModuleNotFoundError</code>）。
+        修法：喺 script 開頭加「re-exec shim」——一旦 import 唔到 yfinance，就自動轉去有 yfinance 嘅 uv Python 3.11.15 執行，<b>唔需要安裝任何新套件</b></li>
+    <li>✅ 同一修法已套用到 <code>collect_697_1min.py</code>（每分鐘 K 線）同 <code>price_alert_wrapper.py</code>（±$0.05 通知）</li>
+    <li>✅ <b>實測已恢復寫入</b>（13:27–13:29）：<code>price_detail.csv</code>、<code>697_tick_prices.csv</code>、<code>697_1min_data.csv</code> 三個檔案都重新有新記錄，價格 $1.210、日高 1.240、日低 1.190</li>
+    <li>⚠️ 今日 CSV 只覆蓋 13:27 之後（之前嘅時段冇記錄），所以今晚 20:00 嘅收盤報表如果想睇全日，要用 Yahoo API 補（我會照做）</li>
+    <li>⚠️ <code>price_state.json</code> 有狀態漂移：<code>today</code> 仍寫住 2026-08-31、<code>prev_close</code> 仍係 1.45（實際前收 1.25）。唔影響今日讀數（因為 alarm 用 Yahoo 2日日線自己算前收），但屬已知 bug，遲啲要修</li>
   </ul>
 
   <div class="foot">
-    數據來源：Yahoo Finance 1分鐘／日線 API（昨日＋缺口期間歷史）＋ 新浪財經實時報價 hq.sinajs.cn（今日即時交叉核對）。
-    兩個來源今日報價一致（開 1.250、低 1.190、現價 1.200）。<br>
-    成交量的差異：Yahoo 分鐘 bar 累計 vs 新浪交易所實時（今日 12.14M vs 14.26M，差 ~15%），報告即時數字採用新浪實時值，昨日數字採用 Yahoo 日線值。<br>
+    數據來源：Yahoo Finance 分鐘／日線 API（昨日全日＋缺口期間全部交易日）＋ 新浪財經實時報價 hq.sinajs.cn（今日交叉核對）。<br>
+    交叉核對結果：<b>開市 1.250、最低 1.190、前收 1.250 三個數字兩個來源完全一致</b>；即時價 Yahoo 13:29 報 1.210、新浪 13:00 快照報 1.200（新浪快照時間較舊，以 Yahoo 較新為準）。<br>
+    成交量差異：Yahoo 分鐘 bar 累計 12.14M vs 新浪交易所實時 14.26M（差約 17%），報告兩個數都列明來源，冇混淆。<br>
     由 無虛 (mo mo) 生成 · 2026-10-29 · 私人版
   </div>
 </div>
