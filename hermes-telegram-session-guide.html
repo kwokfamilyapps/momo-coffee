@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telegram 多 Session 重溫指南</title>
+<style>
+html { font-size: 32px; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0;
+  background: #f0e8d8;
+  color: #1a1a16;
+  font-family: "Noto Sans HK", "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.72rem;
+  line-height: 2.0;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 1.1rem 3rem; }
+.hero {
+  background: #2a2a22; color: #f0e8d8;
+  padding: 2.2rem 1.1rem 1.9rem;
+  border-bottom: 6px solid #4a7a4a;
+}
+.hero .inner { max-width: 1180px; margin: 0 auto; }
+.kicker {
+  font-size: 0.5rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: #a8bfa8; margin-bottom: 0.7rem; line-height: 1.6;
+}
+h1 {
+  font-family: Georgia, "Noto Serif TC", serif; font-weight: 500;
+  font-size: 1.55rem; line-height: 1.45; margin: 0 0 0.6rem;
+  color: #f7f1e3;
+}
+.hero .sub { font-size: 0.78rem; color: #ddd5c3; margin: 0 0 1rem; line-height: 1.8; }
+.hero .meta { font-size: 0.48rem; color: #9aa894; letter-spacing: 0.04em; }
+h2 {
+  font-family: Georgia, "Noto Serif TC", serif; font-weight: 500;
+  font-size: 1.15rem; line-height: 1.5;
+  margin: 2.4rem 0 0.9rem; padding-bottom: 0.45rem;
+  border-bottom: 3px solid #d8d0c0;
+  color: #2f442f;
+}
+h3 {
+  font-family: Georgia, "Noto Serif TC", serif; font-weight: 500;
+  font-size: 0.85rem; line-height: 1.6; margin: 1.6rem 0 0.6rem; color: #3a4a33;
+}
+p { margin: 0 0 0.9rem; }
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: 0.5rem; }
+strong { color: #2f442f; }
+em { color: #c96442; font-style: normal; font-weight: 600; }
+
+.card {
+  background: #f5efe0; border: 1px solid #d8d0c0; border-radius: 14px;
+  padding: 1.1rem 1.2rem; margin: 0 0 1.1rem;
+  box-shadow: 0px 0px 0px 1px rgba(42,42,34,0.03);
+}
+.card.green { border-left: 6px solid #4a7a4a; }
+.card.orange { border-left: 6px solid #c96442; }
+.card.dark { background: #2a2a22; color: #ece6d8; border-color: #3a3a30; }
+.card.dark strong { color: #b9d0b9; }
+.card h3 { margin-top: 0; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+@media (max-width: 760px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+.stat {
+  background: #f5efe0; border: 1px solid #d8d0c0; border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+.stat .label { font-size: 0.44rem; letter-spacing: 0.09em; text-transform: uppercase; color: #6b6659; line-height: 1.7; }
+.stat .value { font-family: Georgia, serif; font-size: 0.95rem; line-height: 1.5; margin-top: 0.25rem; color: #1a1a16; word-break: break-word; }
+.stat.ok .value { color: #3f6b3f; }
+.stat.no .value { color: #b4472c; }
+
+.tblwrap { overflow-x: auto; margin: 0 0 1.2rem; border-radius: 12px; border: 1px solid #d8d0c0; }
+table { border-collapse: collapse; width: 100%; background: #f5efe0; font-size: 0.58rem; line-height: 1.7; }
+th, td { padding: 0.65rem 0.7rem; text-align: left; vertical-align: top; border-bottom: 1px solid #e0d8c8; }
+th { background: #e8dfcc; font-weight: 600; color: #2f442f; font-size: 0.54rem; letter-spacing: 0.02em; }
+td { overflow-wrap: anywhere; }
+tr:last-child td { border-bottom: none; }
+td.k { font-weight: 600; color: #2f442f; white-space: nowrap; }
+
+.step {
+  display: flex; gap: 0.9rem; align-items: flex-start;
+  background: #f5efe0; border: 1px solid #d8d0c0; border-radius: 14px;
+  padding: 1rem 1.1rem; margin-bottom: 0.9rem;
+}
+.step .num {
+  flex: 0 0 auto; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  background: #4a7a4a; color: #fff; font-family: Georgia, serif;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; line-height: 1;
+}
+.step .body { flex: 1 1 auto; min-width: 0; }
+.step .body p:last-child { margin-bottom: 0; }
+
+code, .cmd {
+  font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+  background: #e8dfcc; color: #1a1a16;
+  padding: 0.06rem 0.32rem; border-radius: 6px;
+  font-size: 0.62rem; overflow-wrap: anywhere;
+}
+.card.dark code { background: #3d3d33; color: #f0e8d8; }
+pre {
+  background: #2a2a22; color: #ece6d8; padding: 0.9rem 1rem; border-radius: 12px;
+  overflow-x: auto; font-size: 0.56rem; line-height: 1.75; margin: 0 0 1rem;
+}
+pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+
+.callout {
+  border-left: 6px solid #c96442; background: #f7ece4;
+  padding: 0.9rem 1.1rem; border-radius: 10px; margin: 0 0 1.1rem;
+}
+.callout.warn { border-left-color: #b4472c; background: #f8e8e2; }
+.callout.ok { border-left-color: #4a7a4a; background: #eaf0e4; }
+
+.src { font-size: 0.5rem; line-height: 1.9; color: #4a4840; }
+.src li { margin-bottom: 0.35rem; }
+
+footer {
+  margin-top: 2.6rem; padding-top: 1.2rem; border-top: 3px solid #d8d0c0;
+  font-size: 0.46rem; color: #6b6659; line-height: 1.9;
+}
+
+@media (max-width: 600px) {
+  html { font-size: 26px; }
+  h1 { font-size: 1.5rem; }
+  .hero { padding: 1.7rem 1rem 1.5rem; }
+  table { font-size: 0.55rem; }
+  th { font-size: 0.52rem; }
+  td.k { white-space: normal; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="inner">
+    <div class="kicker">無虛 mo mo · Hermes 操作指南</div>
+    <h1>Telegram 多 Session 重溫指南</h1>
+    <p class="sub">一個問題一個 session &middot; 每個都有標題 &middot; 一撳就返到去</p>
+    <div class="meta">2026年10月29日 &middot; 香港 &middot; 私人版本</div>
+  </div>
+</header>
+<div class="wrap">
+<h2 id="goal">1 &middot; 你想做到嘅事</h2>
+<div class="grid2">
+<div class="card orange"><h3>而家嘅情況</h3><p>所有對話焗住喺同一條 DM 訊息流入面。雖然每個 session 都已經有自動標題，但畫面上冇分隔，向上 scroll 就會撞到其他話題嘅訊息，好難搵返舊嘢。</p></div>
+<div class="card green"><h3>想做到嘅效果</h3><p>每個查詢係一個獨立 session，喺 Telegram 側邊（topic 列）各自一格，topic 名 = session 標題，一撳就入返去，context 完全唔會撞。</p></div>
+</div>
+<h2 id="status">2 &middot; 實測現狀（唔係估）</h2>
+<p>以下數字係直接查你部機同 Telegram Bot API 得出，唔係憑印象寫。</p>
+<div class="grid3">
+<div class="stat ok"><div class="label">Bot Username</div><div class="value">VernonaiagentBot</div></div>
+<div class="stat "><div class="label">Bot ID</div><div class="value">8786243260</div></div>
+<div class="stat ok"><div class="label">Hermes 版本</div><div class="value">v0.22.5+2628</div></div>
+<div class="stat no"><div class="label">Threaded Mode<br>has_topics_enabled</div><div class="value">false &nbsp;❌</div></div>
+<div class="stat no"><div class="label">允許用戶建 topic<br>allows_users_to_create_topics</div><div class="value">false &nbsp;❌</div></div>
+<div class="stat ok"><div class="label">/topic 命令</div><div class="value">已註冊 &nbsp;✅</div></div>
+<div class="stat ok"><div class="label">現有 Telegram session</div><div class="value">18 個<br>全部已有自動標題</div></div>
+<div class="stat ok"><div class="label">Cron job 總數</div><div class="value">30 個<br>全部 enabled</div></div>
+<div class="stat "><div class="label">Topic 隔離 key</div><div class="value">agent:main:telegram:dm:<br>{chat}:{thread}</div></div>
+</div>
+<div class="callout warn"><strong>關鍵卡點：</strong>你嘅 bot 而家 <code>has_topics_enabled = false</code>，即係 BotFather 嘅 <strong>Threaded Mode 未開</strong>。所以 <code>/topic</code> 命令存在但用唔到 — 呢個係開 topic 功能前必須先解決嘅一步，而呢一步只有 bot owner（你）喺 BotFather 入面做得到。</div>
+<h2 id="options">3 &middot; 四個可行選項</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>選項</th><th>操作者</th><th>上線時間</th><th>隔離程度</th><th>副作用</th><th>Rollback</th></tr></thead><tbody>
+<tr><td class="k">A. 純命令<br>/new &middot; /title &middot; /sessions</td><td>你（打命令）</td><td>即刻，零設定</td><td>session 層面隔離，但畫面仍然同一條流</td><td>無</td><td>唔需要</td></tr>
+<tr><td class="k">B. /topic<br>Multi-session DM Mode</td><td>你（BotFather 開 Threaded Mode）</td><td>BotFather 做完即刻</td><td>完全隔離 — topic = 獨立 session</td><td>root DM 變 lobby</td><td>/topic off</td></tr>
+<tr><td class="k">C. config 固定 topic<br>extra.dm_topics</td><td>無虛（改 config）</td><td>改完 restart gateway</td><td>完全隔離，topic 名固定</td><td>Gateway 斷線 10–20 秒</td><td>刪 config 段 + restart</td></tr>
+<tr><td class="k">D. dm_topic_auto_transfer</td><td>無虛（改 config）</td><td>改完 restart gateway</td><td>完全隔離，每句開一個新 topic</td><td>會爆幾十個 topic</td><td>設回 false + restart</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>注意：</strong>C 同 D 都一樣需要 Threaded Mode，所以無論揀邊個方案，BotFather 呢一步都避唔開。</div>
+<h2 id="option-a">4 &middot; 選項 A：即刻可用（零設定）</h2>
+<p>呢個唔需要改任何設定、唔需要 BotFather、唔需要 restart。你而家喺 Telegram 打得出嘅命令：</p>
+<div class="tblwrap"><table>
+<thead><tr><th>命令</th><th>作用</th></tr></thead><tbody>
+<tr><td class="k">/new 咖啡研究</td><td>開新 session，並即時命名為「咖啡研究」</td></tr>
+<tr><td class="k">/new --yes 股票分析</td><td>同上，但跳過確認對話框</td></tr>
+<tr><td class="k">/title 手沖筆記</td><td>改當前 session 嘅標題（隨時改都得）</td></tr>
+<tr><td class="k">/sessions</td><td>列出所有 session，當前嗰個標 <code>(current)</code></td></tr>
+<tr><td class="k">/sessions search 咖啡</td><td>按標題或 session ID 過濾（alias：/sessions find）</td></tr>
+<tr><td class="k">/sessions 咖啡研究</td><td>直接返去該 session（等於 /resume）</td></tr>
+<tr><td class="k">/resume 咖啡研究</td><td>完整寫法，效果一樣</td></tr>
+<tr><td class="k">/status</td><td>睇當前 session 資訊（ID、model、token 用量）</td></tr>
+</tbody></table></div>
+<div class="card"><h3>實測驗證</h3><p>我 run <code>hermes sessions list --source telegram</code> 見到你已經有舊 session 帶正常標題，例如「製作柏林博物館島資料列表、PDF 與地圖」、「9/30 柏林到布拉格火車班次及交通分析」。即係命名機制一直 work — 只係你冇用 <code>/new</code> 主動開新 session，所以舊對話混埋一齊。</p></div>
+<div class="callout ok"><strong>建議習慣：</strong>每次開新話題前打一句 <code>/new 主題名</code>。之後任何時候 <code>/sessions</code> 就見到清清楚楚一個清單。</div>
+<h2 id="option-b">5 &middot; 選項 B：<code>/topic</code> 多 Session 模式（主方案）</h2>
+<p>Telegram Bot API 9.4（2026 年 2 月）新增 Private Chat Topics — bot 可以直接喺 1 對 1 DM 開 forum 式 topic，唔需要開 supergroup。每個 topic = 一個完全獨立嘅 Hermes session：對話歷史、model 狀態、context window、session ID 全部獨立。</p>
+<h3>設定三步</h3>
+<div class="step"><div class="num">1</div><div class="body"><p><strong>開 BotFather Mini App</strong><br>Telegram 搜尋 <code>@BotFather</code>，然後 <em>tap 搜尋結果嗰一行開 Mini App</em>。唔好用傳統 <code>/mybots</code> 文字選單 — 裡面冇 Threads Settings 呢個選項。</p></div></div>
+<div class="step"><div class="num">2</div><div class="body"><p><strong>開 Threaded Mode</strong><br>My bots → <code>VernonaiagentBot</code> → <strong>Bot Settings</strong> → <strong>Threads Settings</strong> → 開 <strong>Threaded Mode</strong>。同時保持「允許用戶建立 topic」開啟 （對應 <code>allows_users_to_create_topics</code>）。</p></div></div>
+<div class="step"><div class="num">3</div><div class="body"><p><strong>返 DM 打 <code>/topic</code></strong><br>Hermes 會即時 call <code>getMe</code> 驗證兩個 flag。兩個都 true 就會開啟多 session 模式，並建立一個釘頂嘅 <strong>System</strong> topic 用嚟放狀態同命令。</p></div></div>
+<h3>開啟之後點用</h3>
+<div class="card green"><ul><li><strong>開新 session：</strong>DM 頂部 tap <strong>All Messages</strong> → 打任何一句 → Telegram 自動開一個新 topic，Hermes 喺裡面回覆。呢個 topic 就係一個獨立 session。</li><li><strong>Topic 自動改名：</strong>第一次對話之後，Hermes 會生成 session 標題，並將 Telegram topic 名改成一樣（例如「New Topic」→「咖啡店比較」）。</li><li><strong>改名：</strong>覺得自動名唔靚，喺該 topic 內打 <code>/title 好啲嘅名</code> 覆蓋。</li><li><strong>重溫舊 session：</strong>直接 tap 返個 topic；或者喺 root DM 打 <code>/sessions</code>。</li><li><strong>舊 session 拉入 topic：</strong>喺 topic 內打 <code>/topic &lt;session-id&gt;</code>，前提係該 session 屬於你、而且未綁去其他 topic。</li><li><strong>睇當前綁定：</strong>喺 topic 內打 <code>/topic</code>（無參數）會顯示 session 標題同 ID。</li><li><strong>該 topic 重開新局：</strong>喺 topic 內打 <code>/new</code>，只影響呢個 topic。</li><li><strong>關閉整個模式：</strong>root DM 打 <code>/topic off</code>，root DM 回復正常，topic 唔會被刪。</li></ul></div>
+<h3>開啟後嘅行為改變（要預先知道）</h3>
+<div class="callout warn"><p><strong>1. Root DM 變成 Lobby。</strong>開 topic 模式之後，直接喺 root DM 打普通訊息會被拒絕，Hermes 會提示你去 <strong>All Messages</strong> 或者開新 topic。系統命令（<code>/status</code>、<code>/sessions</code>、<code>/usage</code>、<code>/help</code>）喺 root 仍然 work。</p><p><strong>2. Cron 報告嘅落點。</strong>你嘅 cron job delivery target 係 chat <code>8967498595</code> 而冇 thread_id，所以報告會繼續送去 root DM（即 All Messages / General）。我查過源碼，lobby 嘅攔截只針對<strong>你打入嚟嘅訊息</strong>，bot 主動推送唔受影響 — 但實際擺位建議開啟後即刻留意一次（例如等一份 697 或者定存報告）確認見到。</p></div>
+<h2 id="option-c">6 &middot; 選項 C 同 D（需要我改 config）</h2>
+<h3>選項 C：config 固定 topic 清單</h3>
+<p>喺 <code>config.yaml</code> 預先寫死幾個 topic，每個可以綁定一個 skill 自動載入。適合長期工作區，例如：</p>
+<pre><code>telegram:
+  extra:
+    dm_topics:
+      - chat_id: 8967498595
+        topics:
+          - name: 股票697
+          - name: 咖啡搜尋
+            skill: hong-kong-coffee-shops
+          - name: 旅行研究
+            skill: travel-research</code></pre>
+<p><strong>好處：</strong>topic 名固定唔會被自動改、可以自動載入對應 skill（入「咖啡搜尋」topic 就自動識咖啡 workflow）。<strong>壞處：</strong>清單寫死，加 topic 要改 config + restart gateway（斷線 10–20 秒）。同 <code>/topic</code> 模式可以並存。</p>
+<h3>選項 D：dm_topic_auto_transfer</h3>
+<p>設 <code>true</code> 之後，root DM 打任何一句話會自動開一個新 topic + 新 session，完全唔需要記住打命令。</p>
+<div class="callout warn"><strong>唔建議一開始就開：</strong>你隨手問一句「今日幾號」都會變成一個獨立 topic，好快就爆幾十個。建議先用熟 B 方案，覺得手動開 topic 麻煩先再考慮。</div>
+<h2 id="compare">7 &middot; A vs B 實際體驗對比</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>場景</th><th>選項 A（純命令）</th><th>選項 B（/topic）</th></tr></thead><tbody>
+<tr><td class="k">開新話題</td><td>打 <code>/new 主題名</code></td><td>All Messages → 打一句</td></tr>
+<tr><td class="k">視覺上有幾清</td><td>一條長流，靠 scroll</td><td>側邊一格一格，一撳即入</td></tr>
+<tr><td class="k">同時做幾件事</td><td>可以，但畫面上會混</td><td>可以，每個 topic 完全獨立（連 model 狀態都獨立）</td></tr>
+<tr><td class="k">搵舊對話</td><td><code>/sessions search 關鍵字</code></td><td>tap topic 直接入，唔使搜</td></tr>
+<tr><td class="k">睇舊 session 歷史</td><td>要 resume 之後向上 scroll</td><td>topic 內就係嗰個 session 嘅全部訊息</td></tr>
+<tr><td class="k">設定成本</td><td>零</td><td>BotFather 三個撳</td></tr>
+<tr><td class="k">風險</td><td>無</td><td>root DM 變 lobby；cron 報告要喺 All Messages 睇</td></tr>
+</tbody></table></div>
+<h2 id="recommend">8 &middot; 建議路線</h2>
+<div class="card dark">
+<h3 style="color:#f7f1e3">行 A + B 組合</h3>
+<p><strong>第一步（今日）：</strong>用選項 A。每次開新話題打 <code>/new 主題名</code>，想搵返就 <code>/sessions search 關鍵字</code>。零風險、零設定，即刻見效。</p>
+<p><strong>第二步（有時間）：</strong>去 BotFather 開 Threaded Mode（三個撳，約一分鐘），返 DM 打 <code>/topic</code>。呢個就係你原本想要嘅效果 — 一個一個分開、每個有標題、一撳返到去。</p>
+<p><strong>第三步（可選）：</strong>如果發現某幾個主題（股票、咖啡、旅行）長期重複，話我知，我可以幫你寫選項 C 嘅 config，將佢哋變成常駐工作區連 skill 自動載入。<em>改 config 之前我會先問你准，唔會自己動手。</em></p>
+</div>
+<h2 id="sources">9 &middot; 資料來源</h2>
+<div class="card"><ul class="src">
+<li>Hermes Agent 官方文檔 — Telegram（Private Chat Topics / Multi-session DM mode）：hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram</li>
+<li>Hermes Agent 官方文檔 — Messaging Gateway（Chat Commands / Session Management）：hermes-agent.nousresearch.com/docs/user-guide/messaging</li>
+<li>Hermes Agent Slash Commands Reference：hermes-agent.nousresearch.com/docs/reference/slash-commands</li>
+<li>本機實測 — Telegram Bot API <code>getMe</code>：<code>has_topics_enabled</code> / <code>allows_users_to_create_topics</code> 兩個 flag 實際值</li>
+<li>本機實測 — <code>hermes sessions list --source telegram</code>：現有 session 數目同標題</li>
+<li>本機實測 — <code>cron/jobs.json</code>：cron job 總數同啟用狀態</li>
+<li>本機源碼 — <code>hermes_cli/commands.py</code>：確認 <code>/topic</code> 已註冊（Hermes v0.22.5+2628）</li>
+</ul></div>
+  <footer>
+
+    <p><strong>無虛（mo mo）</strong> &middot; 為 Ming 製作 &middot; 2026年10月29日</p>
+    <p>本文件為私人版本，包含本機實測嘅帳戶識別資料（bot username / bot ID / chat ID），
+    只供自己參考，唔好公開轉發。</p>
+    <p>技術資料以 Hermes Agent 官方文檔為準；實際行為可能隨版本更新而改變。實測版本：v0.22.5+2628。</p>
+
+  </footer>
+</div>
+</body>
+</html>
