@@ -76,8 +76,17 @@
 <h2>⚠️ ±$0.05 警報記錄</h2>
 <div class="info">
   <strong>本地逐筆警報：0 次（單筆跳動未夠 $0.05）。</strong><br>
-  但昨日 <strong>收市價對比前收市價剛好 −$0.050（−4.00%）</strong>，即係全日累計已觸及 $0.05 門檻，只係分散在多筆成交逐步跌，冇一筆跳足 $0.05。<br>
-  price_alerts.csv 最後一條記錄仍係 <strong>2026-09-03</strong> — 因為警報腳本 9 月停機期間狀態檔 stale（prev_close $1.45），昨日下午復工後未重新觸發寫入。屬系統記錄缺口，唔代表昨日冇波動。
+  但昨日 <strong>收市價對比前收市價係 −$0.050（−4.00%）</strong> — 全日累計其實已觸及 $0.05 門檻，只係分散在多筆成交逐步下跌，冇一筆跳足 $0.05。<br>
+  <strong>🔧 已查出漏報 root cause（今日已修）：</strong>警報腳本 <code>price_alert.py</code> 每日第一筆只做 INIT（設定當日基準價）就 <code>return</code>，<strong>冇用前收市價做跨日跳空檢查</strong>。所以 10/29 13:27 復工第一筆見到 $1.21（前收 $1.25，跌 4%）完全冇發警報；之後每筆只同 $1.21 比，差距 0.01，亦唔會觸發。即係「隔夜跳空 ≥$0.05」由設計上永遠唔會通知。
+</div>
+
+<h2>🔧 今日已修嘅系統問題</h2>
+<div class="warn">
+  <strong>Bug：隔夜跳空 ≥$0.05 永遠靜默</strong>（<code>price_alert.py</code> INIT 分支提早 return）<br>
+  <strong>修法：</strong>INIT 分支加跨日跳空檢查 — 第一筆就同前收市價比，夠 $0.05 立即發 ALERT 並寫入 <code>price_alerts.csv</code>（註明「隔夜跳空」）。<br>
+  <strong>驗證：</strong>已用 uv Python <code>py_compile</code> 通過，並實跑一次 <code>price_alert.py check</code> — 即時重現昨日漏報：<br>
+  <code>ALERT|$1.20|-0.05|⬇ 跌|距前收市$1.25 (-0.050, -4.0%)｜隔夜跳空</code> ✅<br>
+  <strong>副作用處理：</strong>驗證時寫入嘅測試 row 已刪除（<code>price_detail.csv</code> 1 行、<code>price_alerts.csv</code> 1 行），<code>price_state.json</code> 亦已修正（舊值 <code>prev_close 1.45</code> / <code>today 2026-08-31</code> 兩個 stale 欄位）。原腳本備份：<code>price_alert.py.bak_20261030</code>。
 </div>
 
 <h2>🕐 下午逐段走勢（本地 tick，13:27 起）</h2>
@@ -208,7 +217,7 @@
 <div class="warn">
   <strong>✅ 已修復：</strong>10/29 13:25 cron 全量 catch-up，逐筆收集鏈復工（10/29 共 106 條記錄，13:27–16:58 連續每 2 分鐘一筆）。<br>
   <strong>⚠️ 數據缺口：</strong>2026-09-09 至 2026-10-28（Ming 外遊期間 cron 全 paused），本地 CSV 完全無記錄，該段只有日線數據可查。<br>
-  <strong>⚠️ price_state.json 仍 stale：</strong><code>prev_close = 1.45</code>（實際前收 1.25）、<code>today = 2026-08-31</code> 但 <code>today_date = 2026-10-29</code>，兩個日期欄位唔一致 — 已用 CSV + yfinance 日線交叉修正今次分析數字，但狀態檔本身需另行修復。<br>
+  <strong>✅ price_state.json 已修正：</strong>舊值 <code>prev_close = 1.45</code>（實際前收 1.25）、<code>today = 2026-08-31</code> 但 <code>today_date = 2026-10-29</code>（兩欄唔一致）→ 今日已重設為 <code>prev_close 1.20 / today_date 2026-10-29</code>，下一個交易日 09:00 會自動重新 INIT。
   <strong>成交量交叉驗證：</strong>yfinance API 25,222,000 股 vs Yahoo Finance 報價頁 25,242,000 股（差 0.08%）→ 數字可信。
 </div>
 
