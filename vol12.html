@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☕ 香港手沖咖啡店推介 Vol.12</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 32px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #f0e8d8;
+    color: #1a1a16;
+    line-height: 1.9;
+    padding: 0 0 60px 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #3d2b1f, #6b4226);
+    color: #fff;
+    padding: 36px 20px 28px;
+    text-align: center;
+  }
+  .header h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; font-weight: 800; letter-spacing: 1px; }
+  .header .sub { font-size: 0.92rem; opacity: .85; margin-top: 6px; }
+  .header .date { font-size: 0.85rem; opacity: .7; margin-top: 4px; line-height: 1.6; }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px; }
+  .intro {
+    background: #fff3e0;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 16px 0;
+    font-size: 0.9rem;
+    border-left: 6px solid #a6633c;
+    color: #4a3320;
+  }
+  .section-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #3d2b1f;
+    margin: 30px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 4px solid #d4a373;
+  }
+  .card {
+    background: #fffdf9;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(61,43,31,.10);
+    border-left: 6px solid #d4a373;
+    position: relative;
+  }
+  .card h3 { font-family: Georgia, "Times New Roman", serif; font-size: 1.08rem; font-weight: 700; color: #3d2b1f; margin-bottom: 6px; }
+  .card h3 .new-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    background: #b5432f;
+    color: #fff;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .card .location { font-size: 0.85rem; color: #6f6459; margin-bottom: 10px; line-height: 1.7; }
+  .card .location span { color: #a6633c; font-weight: 700; }
+  .card .desc { font-size: 0.88rem; color: #3b3b36; line-height: 1.85; }
+  .card .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .card .tags span {
+    font-size: 0.78rem;
+    background: #f3e8d8;
+    color: #6b4226;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .tip-box {
+    background: #efe6d8;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-size: 0.87rem;
+    color: #4a3320;
+    border-left: 6px solid #2d5a3d;
+    line-height: 1.85;
+  }
+
+  .combo-box { margin-top: 14px; text-align: center; }
+  .combo-box summary {
+    cursor: pointer; display: inline-block; user-select: none;
+    color: #fff; background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.35);
+    padding: 10px 24px; border-radius: 24px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: .5px;
+    transition: background .2s;
+  }
+  .combo-box summary:hover { background: rgba(255,255,255,.28); }
+  .combo-box[open] summary { background: #d4a373; color: #3d2b1f; border-color: #d4a373; }
+  .combo-hint { font-size: 0.7rem; color: rgba(255,255,255,.82); margin: 10px 0 4px; letter-spacing: .5px; }
+  .combo-list { margin-top: 10px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .combo-list a, .combo-list .active {
+    color: #3d2b1f; background: #f0ebe4; text-decoration: none;
+    padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    display: inline-block;
+  }
+  .combo-list a:hover { background: #d4a373; color: #fff; }
+  .combo-list .active { background: #d4a373; color: #fff; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>☕ 香港手沖咖啡店推介</h1>
+  <div class="sub">Vol.12 — Ming &amp; Friends 私心精選 — 2026年11月</div>
+  <div class="date">十一月號（貳）• 中環日系新貴 + 釜山過江龍 + 上環雙層黑膠店 + 石硤尾直火烘焙 + 觀塘工廈 Lab + 屯門得獎烘焙</div>
+  <details class="combo-box">
+    <summary>📚 全部期數（12期）<br>點擊可重溫</summary>
+    <div class="combo-hint">👆 點擊可重溫 Vol.1-12</div>
+    <div class="combo-list">
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol1.html">Vol.1 · 2026年7月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol2.html">Vol.2 · 2026年7月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol3.html">Vol.3 · 2026年7月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol4.html">Vol.4 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol5.html">Vol.5 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol6.html">Vol.6 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol7.html">Vol.7 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol8.html">Vol.8 · 2026年8月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol9.html">Vol.9 · 2026年9月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol10.html">Vol.10 · 2026年10月</a>
+      <a href="https://kwokfamilyapps.github.io/momo-coffee/vol11.html">Vol.11 · 2026年11月</a>
+      <span class="active">Vol.12 · 2026年11月</span>
+    </div>
+  </details>
+</div>
+<div class="container">
+
+<div class="intro">
+  <strong>☕ 編者的話：</strong><br>
+  今期主題係 <strong>「六間各自修一門手藝」</strong> — 一間日系新貴、一間韓國釜山過江龍、一間上環雙層黑膠客廳、一間直火烘焙的小店、一間工廈烘焙 Lab、一間掃獎無數的屯門品牌：<br><br>
+  🇯🇵 <strong>kōen（中環遮打大廈）</strong>：07:30 開門嘅日系新貴，主打本地烘焙豆 + 每日新鮮麵包；<br>
+  🇰🇷 <strong>fm coffee（中上環）</strong>：釜山精品品牌香港首店，手沖 $70，招牌「Tomorrow」係過濾咖啡配鮮忌廉；<br>
+  🎵 <strong>Hara Kako（上環）</strong>：兩層店，樓上放滿黑膠同藝術書，可以開電腦坐成個下午；<br>
+  🪵 <strong>Kizuna Roaster &amp; Co.（石硤尾）</strong>：日本直火爐烘豆，2026 年由網店落地開鋪，手沖 $50 起；<br>
+  🔬 <strong>Rias Coffee Roastery Lab（觀塘）</strong>：60 款自家烘焙豆任揀，買豆送手沖試飲；<br>
+  🏆 <strong>隱啡 Hidden Coffee（屯門）</strong>：金豆杯世界賽得獎烘焙商，門市咖啡師即場沖手沖。<br><br>
+  <strong>📌 每期 6 間，逐間 fact check，價錢同營業時間有疑問嘅我寧願寫「待確認」，唔會估 😊</strong>
+</div>
+
+<!-- ===== SECTION: 港島 ===== -->
+<div class="section-title">🏙️ 港島區 — 中環日系新貴 x 釜山過江龍 x 上環雙層客廳</div>
+
+<div class="card">
+  <h3>kōen（Café Koen）<span class="new-badge">2026新店</span></h3>
+  <div class="location">📍 <span>中環</span> 遮打道11號遮打大廈（置地遮打）1樓101號舖 — 即連接置地廣場通往碼頭天橋嗰層</div>
+  <div class="desc">
+    <strong>中環 2026 年最紅嘅日系新貴</strong> — 店名「kōen」日語解作「公園」，開正喺遮打大廈一樓、蘇富比旁邊嗰條必經之路，每日人來人往。裝修走日系路線，主調係綠同啡，柔和之中有格調，同中環一帶嘅商廈咖啡店完全唔同感覺。<br><br>
+    ☕ <strong>手沖係餐牌上嘅固定項目</strong>（Espresso、Americano、Latte 亦齊），咖啡豆選擇唔少、用本地烘焙；有啡友飲過巴拿馬 El Bajareque，亦有人話 Cold Brew 用嘅係藝伎（Geisha）。有探店帖文寫明：店員介紹手沖時話「呢款豆會好有驚喜」——先聞到紅茶味，入口再展開，即係連店員都會按你口味推介豆，唔係求其畀一杯你。<br><br>
+    🥐 <strong>另一條主線係麵包</strong>：每日新鮮出爐，啡友建議「飲好啡食靚包，等候時間少不免，早啲去啦」——即係繁忙時段要排。<br><br>
+    🕢 <strong>朝 7:30 開門</strong>（多個探店帖一致），照顧中環上班族早餐需要；不過收市時間各來源未一致，落地前建議睇 IG @cafe.koen 或直接打電話確認。<br><br>
+    💡 建議：平日早上或午休前去，人流較舒服，可以真正坐低飲杯手沖；週末中環反而靜。<br><br>
+    ☕ 地址交叉核對：置地廣場官網寫「置地遮打 1 樓 101 號舖」，IG 寫「Shop 101, Chater House」，OpenRice 寫「中環遮打道 11 號遮打大廈」— 三處一致，同一間。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>中環</span><span>2026新店</span><span>日系</span><span>新鮮麵包</span><span>07:30開門</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>fm coffee<span class="new-badge">2026年10月開</span></h3>
+  <div class="location">📍 <span>中上環</span> 皇后大道中176E號地舖（中上環交界，近上環站）</div>
+  <div class="desc">
+    <strong>韓國釜山代表性精品咖啡品牌，香港首店</strong> — 2026 年 10 月落戶皇后大道中，店內走極簡時尚風格，開業兩星期已經午市擠滿人，仲試過因為冇咖啡豆存貨而要暫時休息，可見人氣。<br><br>
+    ☕ <strong>主打手沖 + 特調</strong>：手沖 <strong>$70 一杯</strong>，另外每日揀一款「Today's Coffee」做 daily special <strong>$60</strong>，價錢以中環地段算合理。有啡友試過巴拿馬藝伎（Panama Geisha），評價係清新果酸加花香、入口非常絲滑；亦有人飲哥倫比亞水洗，話「超香」。<br><br>
+    🥤 <strong>招牌「Tomorrow」</strong>：過濾咖啡（冷萃）配招牌鮮忌廉，係品牌靈魂代表作，口感 smooth &amp; creamy —— 如果你係為手沖嚟，記得兩樣都要試，因為呢杯先係佢哋嘅招牌。<br><br>
+    🫘 飲完可以買原豆返屋企，呢點對自己沖嘅人好重要。<br><br>
+    ⚠️ <strong>去之前留意</strong>：開業初期只限飲品供應（冇食物），手沖豆款亦唔多（大約一至兩款輪換，同「十多款豆」嘅老店係兩種玩法）；<strong>官方到 2026 年 11 月仍未公布固定營業時間</strong>，去之前一定睇 IG @fmcoffee.hongkong。
+  </div>
+  <div class="tags">
+    <span>手沖 $70</span><span>釜山品牌</span><span>上環</span><span>自家烘焙</span><span>招牌Tomorrow</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Hara Kako<span class="new-badge">2026四周年</span></h3>
+  <div class="location">📍 <span>上環</span> 皇后大道西77-91號荷李活中心地下B號舖（另有西九圓方 Kako 03 分店）</div>
+  <div class="desc">
+    <strong>上環雙層店，樓上係一個「客廳」</strong> — 地下走工業風，牆身保留剝落嘅質感；行上一層竟然放滿黑膠唱片同藝術書，仲有一張超大書桌。係少數可以開電腦坐成個下午、又唔會覺得自己阻住人嘅手沖店。<br><br>
+    ☕ <strong>有手沖單品系列</strong>，豆可以揀果香或者堅果風味，按你口味調整；除咗自家烘焙豆，仲有賣日本 MAME 嘅豆。2026 年 10 月太古「Coffee Voyage 悠遊咖期」咖啡節，主理人田中陸斗喺現場一口氣沖 9 款手沖，陣容係咁樣嚟嘅。<br><br>
+    🍰 <strong>芝士蛋糕係另一個招牌</strong>：巴斯克芝士蛋糕質地輕盈、奶香明顯；另有布朗尼、香蕉蛋糕。OpenRice 分類係 $50 以下一杯咖啡嘅水平，係中上環少有嘅「唔貴但認真」。<br><br>
+    🕗 <strong>營業時間對上班族友善</strong>：星期一至五 08:00–18:00；星期六、日 10:00–18:00（2026 年 10 月核實）。<br><br>
+    ⚠️ 手沖實際價錢各來源未統一，餐牌以店內為準；週末下午樓上座位好搶手，想坐樓上建議早去。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>上環</span><span>兩層</span><span>黑膠</span><span>可以開電腦</span><span>芝士蛋糕</span>
+  </div>
+</div>
+
+<!-- ===== SECTION: 九龍 ===== -->
+<div class="section-title">🌆 九龍區 — 石硤尾直火烘焙 x 觀塘工廈烘焙 Lab</div>
+
+<div class="card">
+  <h3>Kizuna Roaster &amp; Co.<span class="new-badge">2026落地開鋪</span></h3>
+  <div class="location">📍 <span>石硤尾</span> 巴域街77號地下1B號舖（Berwick Street，港鐵石硤尾站步行約 5 分鐘）</div>
+  <div class="desc">
+    <strong>由網店變地鋪，等到 2026 年尾終於落地</strong> — Kizuna 2020 年成立，一直係網店 + 市集（PMQ Coffee Agenda 都有擺檔），賣嘅係香港少見嘅<strong>日本直火爐烘焙</strong>。直火烘焙係用明火直接燒滾筒，火力猛、變化快，做出嚟嘅豆甜感同厚身感同熱風機完全兩條路。<br><br>
+    ☕ <strong>手沖 $50 起</strong> —— 呢個價錢飲到直火烘焙單品，係全港少見嘅性價比。探店帖文提到店內有<strong>七款手沖豆</strong>可揀，有人揀咗埃塞俄比亞淺焙，飲到柑橘、莓果、青檸嘅酸度；亦有人飲台灣古坑 SL34 水洗，話「甜甜地完全唔會酸，茶感」。<br><br>
+    🫘 品牌策略好特別：<strong>每次只推一款精選單一產地豆</strong>，用直火烘焙去配合香港水質，所以你去到唔會見到成牆豆，而係一個「今期飲咩」嘅答案。<br><br>
+    🪑 裝修走日系木質曲線，店唔大但簡潔舒服；杯具都用台北 Oasis Coffee × Hario 嘅感官品飲杯，細節有心機。可以買豆走。<br><br>
+    🕚 <strong>營業時間要記住</strong>：星期四至星期日 11:00–19:00，<strong>星期一、二、三休息</strong>（2026 年 10 月核實；公眾假期或有變，出發前睇 IG @kizuna.coffee）。試業初期只開週末，現已擴至四日。
+  </div>
+  <div class="tags">
+    <span>手沖 $50起</span><span>石硤尾</span><span>直火烘焙</span><span>單一產地</span><span>只開四日</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Rias Coffee Roastery Lab<span class="new-badge">2026新門市</span></h3>
+  <div class="location">📍 <span>觀塘</span> 成業街15-17號成運工業大廈5樓01室（港鐵觀塘站 B1 出口步行約 4 分鐘）</div>
+  <div class="desc">
+    <strong>工廈 5 樓嘅烘焙 Lab，2026 年正式開門市</strong> — Rias 2020 年由家中廚房開始，之後喺觀塘駱駝漆大廈一個細空間做烘焙，到 2026 年搬入成運工業大廈開「Lab」門市。創辦人 Margaret 有亞洲烘焙賽冠軍級背景，所以呢度本質係一間<strong>烘焙工房 + 試飲空間</strong>，唔係一般坐低歎嘅 cafe。<br><br>
+    ☕ <strong>全港豆款最多嘅陳列之一：60 款不同風味</strong>，全部自家烘焙工房每日新鮮出爐，由果酸花香到焦糖感都有。門市會做「買咖啡豆即送手沖咖啡」，亦有 <strong>Hand Drip Coffee Week</strong> 同只限 6 人嘅手沖品鑑會 —— 想學嘢、想一次比較多款豆，呢度嘅密度係其他地方難搵。<br><br>
+    🫘 除咗飲，仲可以買生豆返屋企自己炒，同埋報烘焙班、手沖班。<br><br>
+    🏖️ 想坐低慢慢飲嘅話，佢哋另有<strong>西貢市中心分店</strong>（市場街一帶），逾三十款單品豆可以「揀豆即場手沖」，每日 11:00–18:00，環境較適合坐。<br><br>
+    ⚠️ <strong>觀塘 Lab 營業時間各來源唔一致</strong>（官網寫星期二至六 11:00–19:00；IG 帖文寫每日 14:00–19:00、逢星期四休；預約系統寫星期一休）—— 我唔會幫你揀一個寫死，去之前一定 DM @riascoffeeroaster 確認，唔好摸門釘。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>觀塘工廈</span><span>60款豆</span><span>自家烘焙</span><span>買豆送手沖</span>
+  </div>
+</div>
+
+<!-- ===== SECTION: 新界 ===== -->
+<div class="section-title">🌾 新界區 — 屯門掃獎烘焙商，門市即場沖手沖</div>
+
+<div class="card">
+  <h3>隱啡 Hidden Coffee &amp; Roaster<span class="new-badge">世界賽得獎</span></h3>
+  <div class="location">📍 <span>屯門</span> 青山公路新墟段109號好運洋樓地下6號舖（輕鐵何福堂站對面）｜另設油麻地彌敦道375-381號金勳大廈地下13號舖（外賣店）</div>
+  <div class="desc">
+    <strong>屯門土生土長嘅得獎烘焙品牌</strong> — 品牌口號係「希望在隱世和平的地方做咖啡」，由咖啡生豆到杯中咖啡全部香港製造。成績表唔講得笑：<strong>2025 金豆杯世界賽第三名</strong>、金豆杯區賽公開組 1 銀 5 銅、<strong>2025 IGCA 國際金牌咖啡烘焙大賽水洗組冠軍</strong>、<strong>Golden Bean East Asia 2025 Espresso 冠軍</strong>、<strong>2026 世界賽 Alternative 銀牌 + Filter 銅牌</strong>，加上 2023／2021 美國 Coffee Review Outstanding 高分。<br><br>
+    ☕ <strong>門市有咖啡師即場沖凍／熱手沖</strong>（唔止賣豆），用自家新鮮烘焙單品豆，外賣價 $80 一杯；同時可以揀 Espresso／House Black／奶啡，一杯咖啡幾種沖法都可以試。飲啱可以即場買豆、掛耳包、冷泡包走。<br><br>
+    🏆 想試「得獎係咩味」，可以問有冇金豆杯冠軍豆「弱水三千」—— 佢哋直接將比賽豆放上門市，呢點比好多舖頭只賣得獎名銜實在。<br><br>
+    🕚 <strong>營業時間清楚</strong>：星期二至星期日 11:00–19:00（18:30 Last Order），<strong>逢星期一休息</strong>；如星期一撞正公眾假期會照常營業，休息順延一日。官方網站同 FB／IG 講法一致。<br><br>
+    🚇 輕鐵何福堂站落車過馬路就係，唔使入屯門市中心；行屯門徑前後可以順路一試。
+  </div>
+  <div class="tags">
+    <span>手沖</span><span>屯門</span><span>金豆杯得獎</span><span>自家烘焙</span><span>可買生豆/掛耳</span><span>星期一休</span>
+  </div>
+</div>
+
+<!-- ===== TIP BOX ===== -->
+<div class="tip-box">
+  💡 <strong>溫馨提示：</strong> 以上六間資料已逐間查證（2026 年 11 月 8 日），地址同「有手沖」均用最少 2 個來源 cross-check（官方網站／IG／FB／Threads、置地廣場官網、OpenRice、手沖地圖 Quality Life、TimeOut、HK01、foodpanda 餐牌、探店實測帖文）。<br><br>
+  ⚠️ <strong>今期有兩間嘅營業時間未定案</strong>：kōen（收市時間各來源不一）、Rias 觀塘 Lab（官網／IG／預約系統三個講法唔同）—— 我照實寫出矛盾，唔會幫你揀一個當真；去之前 DM 佢哋 IG 最穩。fm coffee 官方到 11 月仍未公布固定營業時間。<br><br>
+  📌 <strong>六間全部新面孔</strong>，未喺 Vol.1-11 出現過。<br><br>
+  ⚰️ <strong>結業記錄（唔好摸門釘）</strong>：大埔「Coffee Obsession」已於 2026 年 1 月 25 日結業；Filters Lane（上環堅道）已結業；Elixir（中環美輪街）原址已由 Nook Coffee 接手。<br><br>
+  🔍 <strong>下期候選（未夠料確認，暫不出）</strong>：0566 咖啡製作所（尖沙咀，日本愛知縣知立市品牌，主打精品手沖 —— 需再確認地址同營業時間）；Restart Coffee Roasters（2026 年 4 月新開自家烘焙店，地址待核）；中環 MONO Lab（樓上店，手沖係咪恆常供應待確認）。<br><br>
+  ☕ 試到正嘅手沖店，記得話俾我知！😊
+</div>
+
+</div><!-- /container -->
+
+<div class="footer" style="text-align:center; color:#6f6459; font-size:0.76rem; margin-top:22px;">
+  🏔️ 由 無虛 (mo mo) 為 Ming 每週整理 — 全部逐間 fact check 確認<br>
+  <span style="font-size:0.68rem;">香港手沖咖啡店推介 Vol.12 — 2026年11月8日 — 分享版本</span>
+</div>
+
+</body>
+</html>
