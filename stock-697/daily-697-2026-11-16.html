@@ -59,7 +59,7 @@
 <!-- ========== 最新狀況 ========== -->
 <h2>📌 最新狀況</h2>
 <div class="cards">
-  <div class="card"><div class="label">昨日收市</div><div class="value down">$1.190</div><div class="sub">▼ 微跌</div></div>
+  <div class="card"><div class="label">11月13日 收市</div><div class="value down">$1.190</div><div class="sub">▼ 微跌</div></div>
   <div class="card"><div class="label">全日升跌</div><div class="value down">-0.025</div><div class="sub">vs 前收 -2.06%</div></div>
   <div class="card"><div class="label">全日最高</div><div class="value">$1.220</div><div class="sub">09:30 觸及</div></div>
   <div class="card"><div class="label">全日最低</div><div class="value">$1.185</div><div class="sub">13:55 起觸及</div></div>
@@ -205,23 +205,11 @@
 
 <!-- ========== 系統狀態 ========== -->
 <h2>🩺 系統狀態</h2>
-<div class="warn-box">
-  ⚠️ <b>price_state.json 狀態檔 drift（已知系統性問題，7 欄唔 match）</b><br><table style="margin-top:8px;">
-  <tr><th>欄位</th><th>state 檔</th><th>CSV 實際</th><th>狀態</th></tr>
-  <tr><td>prev_close</td><td>1.19</td><td>$1.215</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>today</td><td>2026-11-16</td><td>2026-11-13</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>today_date</td><td>2026-11-16</td><td>2026-11-13</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>last_price</td><td>1.175</td><td>$1.190</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>day_high</td><td>1.195</td><td>$1.220</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>day_low</td><td>1.15</td><td>$1.185</td><td class="down-text">❌ 唔 match</td></tr>
-  <tr><td>open_price</td><td>1.175</td><td>$1.215</td><td class="down-text">❌ 唔 match</td></tr>
-</table>
-  <p style="margin-top:10px;">✅ 今次分析以 CSV 實際數據為準。prev_close 同 today 欄位 drift 唔影響價格分析，但建議下次例行維護時修正狀態檔。</p>
-</div>
+<div class="info-box">💡 <b>狀態檔追蹤今日即時價：$1.175（今日高 $1.195 / 低 $1.150）</b><br> 本報告分析日係 2026-11-13，狀態檔記嘅係 2026-11-16，日子唔同屬正常，所以唔做逐欄比對。</div>
 
 <div class="footer">
   📊 數據來源：price_detail.csv（price_alert.py v6 每10分鐘記錄）+ price_alerts.csv + price_state.json<br>
-  由 無虛 (mo mo) 自動生成 · 11月16日 12:56 生成<br>
+  由 無虛 (mo mo) 自動生成 · 11月16日 13:02 生成<br>
   ⚠️ 本報告僅供參考，不構成投資建議
 </div>
 
