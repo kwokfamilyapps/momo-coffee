@@ -122,7 +122,7 @@
   <tr><td class="seg">15:54</td><td class="seg">$1.120</td><td>收市前</td></tr>
 </table>
 <p style="font-size:0.62rem; color:#6b748d;">⚠️ 走勢來源：697_1min_data.csv 分鐘 bar（本地 poll 覆蓋不全，改用分鐘 bar 重建全日走勢）；數據截至 16:08（收市前最後幾分鐘可能未有分鐘記錄，已知限制）。<br>ℹ️ 第一行 09:30 嘅 $1.140 係 09:30 分鐘 bar 收市價；Yahoo 日線開市競價價為 $1.150（1 分鐘 bar 未必包含競價成交）。</p>
-<div class="warn-box">⚠️ <b>本地逐筆 poll 覆蓋不全：09:38 → 11:20（102 分鐘）</b><br>該時段 cron 冇記錄（Hermes gateway 停機 / 電腦睡眠），唔代表停市或除牌。全日高低位同走勢改用 697_1min_data.csv 分鐘 bar 重建（共 173 條，最後一條 16:08）。</div>
+<div class="warn-box">⚠️ <b>本地逐筆 poll 覆蓋不全：09:38 → 11:20（102 分鐘）</b><br>🔍 <b>已核實原因：Hermes gateway unclean exit — 09:38 停機 → 11:20 重啟；14:09 停機 → 14:23 重啟；21:25 停機 → 21:38 重啟</b>（唔代表停市或除牌；gateway 重啟後 poll 自動恢復）。<br>全日高低位同走勢改用 697_1min_data.csv 分鐘 bar 重建（共 173 條，最後一條 16:08）。</div>
 
 <!-- ========== 警報 ========== -->
 <h2>🚨 ±$0.05 波動警報</h2>
@@ -197,7 +197,7 @@
 
 <div class="footer">
   📊 數據來源：price_detail.csv（price_alert.py v6 每10分鐘記錄）+ price_alerts.csv + price_state.json<br>
-  由 無虛 (mo mo) 自動生成 · 11月18日 08:31 生成<br>
+  由 無虛 (mo mo) 自動生成 · 11月18日 08:35 生成<br>
   ⚠️ 本報告僅供參考，不構成投資建議
 </div>
 
