@@ -44,7 +44,7 @@ footer { margin-top:34px; font-size:.58rem; color:#6c7a70; text-align:center; }
 <div class="top">
   <span class="badge">🔒 私人版 · 午盤報表（12:00 排程延後至 22:01 執行）</span>
   <h1>📊 697 首程控股（0697.HK）</h1>
-  <div class="sub">2026年11月20日（星期五） 上午時段 09:30–12:00 · 數據截至 11:58 分鐘 bar · 報告生成 2026-11-20 22:04<br>
+  <div class="sub">2026年11月20日（星期五） 上午時段 09:30–12:00 · 數據截至 11:58 分鐘 bar · 報告生成 2026-11-20 22:06<br>
   今日 Hermes gateway 全日停機，12:00 排程由 22:01 catch-up 補跑；上午數據由 Yahoo 1 分鐘 bar 完整重建</div>
 </div>
 
@@ -90,7 +90,8 @@ footer { margin-top:34px; font-size:.58rem; color:#6c7a70; text-align:center; }
 </div>
 <div class="box warn">
 ⚠️ <b>即時通知／逐筆記錄斷流（要老實講）</b>：Hermes gateway 前一次心跳只到 <b>11/19 20:28 UTC（= 11/20 04:28 HKT）</b>，
-直到 <b>11/20 22:01 HKT</b> 才重啟。即係<b>整個交易日上午嘅逐筆 poll 同 ±$0.05 即時通知完全冇跑</b>
+Windows 統計顯示部機 <b>04:33:34</b> 重啟，之後一直未有人登入，直到 <b>22:00:49</b> 登入才觸發 gateway watchdog、
+<b>22:01</b> gateway 上線。即係<b>整個交易日上午嘅逐筆 poll 同 ±$0.05 即時通知完全冇跑</b>
 （今日 price_detail 只有 22:01 一條記錄；tick CSV 最後一筆係 11/19 15:59）。
 所以本報表「0 條警報」= <b>無即時數據</b>，唔代表股價平穩 — 股價其實由 $1.125 跌到最低 $1.085（−$0.040）。
 上午 85 條分鐘 bar 係重啟後由 yfinance 一次過補抓（全日 bar 累計 = 日線 100.0%，數據可信）。
