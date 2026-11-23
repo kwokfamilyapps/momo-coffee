@@ -44,7 +44,7 @@ footer { margin-top:34px; font-size:.6rem; color:#6c7a70; text-align:center; }
 <div class="top">
   <span class="badge">🔒 私人版 · 午盤報表</span>
   <h1>📊 697 首程控股（0697.HK）</h1>
-  <div class="sub">2026年11月23日（星期一） 上午收市（12:00）· 分鐘 bar 覆蓋 09:30–11:59 · 報告生成 13:06
+  <div class="sub">2026年11月23日（星期一） 上午收市（12:00）· 分鐘 bar 覆蓋 09:30–11:59 · 報告生成 13:07
   （12:00 排程因 gateway 停機延後執行，上午時段已完整收市，數據不缺）</div>
 </div>
 
@@ -88,16 +88,23 @@ footer { margin-top:34px; font-size:.6rem; color:#6c7a70; text-align:center; }
 <h2>🔍 數據完整性核實</h2>
 <div class="box">
 ✅ 分鐘 bar：上午 <b>84</b> 條（09:30–11:59，逐分鐘去重排序）<br>
-✅ 逐筆 poll：今日 <b>42</b> 條（09:00–13:05；<b>09:06 → 11:51 斷流 164 分鐘</b>，之後恢復）<br>
+✅ 逐筆 poll：今日 <b>43</b> 條（09:00–13:06；<b>09:06 → 11:51 斷流 164 分鐘</b>，之後恢復）<br>
 ✅ 成交量三方核實：Yahoo 日線／官方 quote <b>11,174,000</b> 股｜本地分鐘 bar 累計 <b>11,174,000</b> 股（<b>100.0%</b>）｜逐筆 tick 累計 <b>11,174 千股</b>＝約 11,174,000 股<br>
 ✅ OHLC 交叉核對：開 $1.120／高 $1.120／低 $1.080／上午收 $1.115（日線 + 分鐘 bar 一致）
 </div>
 <div class="box warn">
-⚠️ <b>即時通知斷流（要老實講）</b>：Hermes gateway 今日 <b>09:07:57</b> unclean exit（電腦冇重啟，開機時間仍係 11/20 04:33），
-cron dispatch 由 <b>09:07:55</b> 停到 <b>11:50:58</b> 才恢復（gateway 11:50:36 上線）。
-即係<b>整個上午高峰 09:08–11:50 嘅逐筆 poll 同 ±$0.05 即時通知完全冇跑</b>。
-所以今日「0 條警報」＝<b>無即時數據</b>，唔代表股價平穩 — 實際上期內股價由約 $1.11 跌到低位 $1.080。
+⚠️ <b>即時通知斷流（要老實講）</b>：Hermes gateway 今日 <b>09:07:57</b> 突然死亡（生命週期記錄：<i>exited UNCLEANLY — no exit path ran</i>，
+日誌無 traceback，Windows 亦無睡眠／休眠事件，即係 process 被強殺或 OOM 類），cron dispatch 由 <b>09:07:55</b> 停到 <b>11:50:58</b>。
+即係<b>整個上午高峰 09:08–11:50 嘅逐筆 poll 同 ±$0.05 即時通知完全冇跑</b>。所以今日「0 條警報」＝<b>無即時數據</b>，
+唔代表股價平穩 — 期內股價由約 $1.11 跌到上午低位 $1.080（−$0.040）。
 上午 84 條分鐘 bar 係 11:50／12:00 兩次 yfinance 抓取補回，成交量同官方 quote 100.0% 對得上，可信。
+</div>
+<div class="box warn">
+🔧 <b>Root cause（已查實）</b>：排程工作 <code>Hermes_Gateway</code> 嘅唯一觸發器係「<b>在登入時</b>」（查 schtasks：上次執行 11:50:19、狀態「執行中」、無重複觸發），
+而 watchdog 本身亦只喺 logon 時被拉起（`gateway-watchdog.log`：11:50:19 才 Watchdog started → 11:50:22 spawn gateway）。
+所以 gateway 一旦喺無人登入嘅時段死掉，<b>就冇任何機制會自動救返</b>，要等到下次登入／解鎖才復活 — 呢個係斷流重複出現嘅結構原因。
+建議（<b>屬系統改動，要你批准我才做</b>）：為 `Hermes_Gateway` 加「每 5 分鐘重複觸發 + 已在執行就忽略新例（IgnoreNew）」，
+並先備份現有工作 XML，改壞可以還原。
 </div>
 <div class="box warn">
 ⚠️ <b>Yahoo 1 分鐘 bar 成交量會臨時失真（今日實測，已修 monitor.py）</b>：13:01 第一次抓取時，
