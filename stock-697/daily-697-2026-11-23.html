@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>697 首程控股 每日朝早報告 — 2026-11-23（分析交易日 11-20）</title>
+<style>
+html { font-size: 32px; }
+body { margin:0; padding:24px 18px 60px; background:#f0e8d8; color:#1a1a16;
+  font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans TC",sans-serif; line-height:2.0; }
+h1,h2 { font-family:Georgia,"Noto Serif TC",serif; line-height:1.4; }
+h1 { font-size:1.42rem; margin:0 0 8px; }
+h2 { font-size:1.1rem; margin:2.2rem 0 .7rem; padding-bottom:.3rem; border-bottom:3px solid #2e6b4f; }
+h3 { font-size:.85rem; margin:1.4rem 0 .5rem; }
+.wrap { max-width:1000px; margin:0 auto; }
+.top { background:linear-gradient(135deg,#2e6b4f,#1f4a37); color:#fff; border-radius:18px;
+  padding:26px 24px; box-shadow:0 6px 18px rgba(0,0,0,.12); }
+.top .sub { font-size:.68rem; opacity:.95; }
+.badge { display:inline-block; background:rgba(255,255,255,.2); border-radius:999px;
+  padding:5px 18px; font-size:.62rem; margin-bottom:10px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:18px; }
+.card { background:#fff; border-radius:14px; padding:16px 18px; box-shadow:0 3px 10px rgba(0,0,0,.07); }
+.card .lbl { font-size:.62rem; color:#5b6b5f; letter-spacing:.02em; word-break:break-word; }
+.card .val { font-size:1.18rem; font-weight:700; margin:2px 0; word-break:break-word; }
+.card .sub { font-size:.58rem; color:#7a857c; }
+.up { color:#1e8e4e; } .dn { color:#c0392b; } .ok { color:#1e8e4e; }
+.box { background:#fff; border-left:8px solid #2e6b4f; border-radius:12px;
+  padding:16px 20px; margin:16px 0; font-size:.76rem; }
+.warn { border-left-color:#d68910; background:#fff8e8; }
+.hot { border-left-color:#c0392b; background:#fdf1ef; }
+.info { border-left-color:#2e6b4f; background:#f2f7f3; }
+.tw { overflow-x:auto; -webkit-overflow-scrolling:touch; background:#fff; border-radius:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,.07); margin:14px 0; }
+table { border-collapse:collapse; width:100%; min-width:660px; font-size:.7rem; }
+th,td { padding:12px 10px; text-align:right; border-bottom:1px solid #e6e0d2; white-space:nowrap; }
+th:first-child, td:first-child { text-align:left; white-space:normal; }
+thead th { background:#eae2d1; font-size:.64rem; }
+small { font-size:.56rem; color:#6c7a70; }
+ul { padding-left:1.2rem; } li { margin:.5rem 0; font-size:.76rem; }
+footer { margin-top:36px; font-size:.58rem; color:#6c7a70; text-align:center; }
+@media (max-width:600px) {
+  html { font-size:27px; }
+  body { padding:14px 10px 44px; }
+  .box { font-size:.84rem; }
+  .card .val { font-size:1.05rem; }
+  .tw { overflow-x:visible; }
+  table { min-width:0; font-size:.8rem; }
+  thead { display:none; }
+  tbody tr { display:block; background:#fff; border-radius:12px; margin:0 0 12px;
+    padding:8px 16px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+  tbody td { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:6px 12px;
+    text-align:right; border-bottom:1px solid #efe9dc; padding:10px 0; white-space:normal;
+    font-size:.8rem; word-break:break-word; min-width:0; }
+  tbody td:last-child { border-bottom:0; }
+  tbody td:first-child { display:block; text-align:left; font-weight:700; color:#1f4a37;
+    font-size:.9rem; border-bottom:2px solid #e6e0d2; padding-bottom:6px; }
+  tbody td[data-label]:before { content:attr(data-label); font-weight:600; color:#5b6b5f;
+    font-size:.72rem; text-align:left; flex:0 0 auto; }
+}
+</style>
+</head>
+<body><div class="wrap">
+
+<div class="top">
+  <span class="badge">🔒 私人版 · 每日朝早報告</span>
+  <h1>📊 697 首程控股（0697.HK）</h1>
+  <div class="sub">📅 報告日期：11月23日（星期一）· 分析交易日：11月20日（星期五）<br>
+  生成時間 2026-11-23 08:4x（08:30 排程）· 數據源：Yahoo 日線（權威）＋ 1 分鐘 bar</div>
+</div>
+
+<h2>⚠️ 先講數據完整性（要老實講）</h2>
+<div class="box warn">
+本地 <code>price_detail.csv</code> 喺 11月20日 <b>只有 1 條記錄</b>（22:01:43 補寫）。
+原因：Hermes gateway 由 <b>11月20日 04:28 → 22:01（HKT）</b>停機，全日逐筆 tick 收集同 ±$0.05 通知都冇執行過。<br>
+所以今次報告嘅開市／最高／最低／收市／成交，<b>全部改用 Yahoo 日線 + Yahoo 1 分鐘 bar 重建</b>，
+並用本地已補抓嘅 <code>697_1min_data.csv</code> 做交叉核實（194 條 bar、累計 26,753,773 股，
+對比日線 26,747,773 股，差 6,000 股＝0.02%）。
+<span style="color:#c0392b"><b>呢個缺口已於 11月22日 修復</b>（gateway 現時 running，Telegram connected；今日 08:32 有 heartbeat）。</span>
+</div>
+
+<h2>📌 11月20日（星期五）全日核心數字</h2>
+<div class="cards">
+<div class='card'><div class='lbl'>開市價</div><div class='val'>$1.120</div><div class='sub'>低開 -0.005（前收 $1.125）</div></div>
+<div class='card'><div class='lbl'>全日最高</div><div class='val'>$1.125</div><div class='sub'>首見 15:47（尾市）· 之後多次觸及</div></div>
+<div class='card'><div class='lbl'>全日最低</div><div class='val dn'>$1.085</div><div class='sub'>09:55 · 刷新 52 週新低</div></div>
+<div class='card'><div class='lbl'>收市價</div><div class='val'>$1.125</div><div class='sub'>0.000（+0.00%）vs 前收</div></div>
+<div class='card'><div class='lbl'>全日波幅</div><div class='val'>$0.040</div><div class='sub'>3.57% · 未達 $0.05 門檻</div></div>
+<div class='card'><div class='lbl'>成交量</div><div class='val'>26,747,773</div><div class='sub'>股（日線）· 20 日均量 165%</div></div>
+</div>
+
+<h2>📈 全日分析</h2>
+<div class="tw"><table>
+<thead><tr><th>項目</th><th>數值</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td>前收（11/19）</td><td data-label="數值">$1.125</td><td data-label="備註">11月19日 收市（已是 52 週低位區）</td></tr>
+<tr><td>開市價</td><td data-label="數值">$1.120</td><td data-label="備註">低開 -0.005；首分鐘 bar 曾見 $1.110（Yahoo 日線為權威）</td></tr>
+<tr><td>全日最高</td><td data-label="數值">$1.125</td><td data-label="備註">15:47 首見，15:47–15:59 及收市競價多次觸及</td></tr>
+<tr><td>全日最低</td><td data-label="數值">$1.085</td><td data-label="備註">09:55 觸及＝<b>52 週新低</b>（2026 年最低）</td></tr>
+<tr><td>收市價</td><td data-label="數值">$1.125</td><td data-label="備註">收市競價 848,000 股 @ $1.125</td></tr>
+<tr><td>全日波幅</td><td data-label="數值">$0.040</td><td data-label="備註">約 3.57% 波幅</td></tr>
+<tr><td>收市 vs 開市</td><td data-label="數值">+0.005（+0.45%）</td><td data-label="備註">即日由開市位回升</td></tr>
+<tr><td>收市 vs 前收</td><td data-label="數值">0.000（+0.00%）</td><td data-label="備註">連續第 3 日平收 $1.125</td></tr>
+<tr><td>收市喺全日區間</td><td data-label="數值">100%</td><td data-label="備註">0%＝最低、100%＝最高</td></tr>
+<tr><td>成交量</td><td data-label="數值">26,747,773 股</td><td data-label="備註">比 20 日均量 16,187,366 高 165%；比上日 21,546,000 +24.1%</td></tr>
+</tbody></table></div>
+
+<div class="box">
+💡 <b>形態解讀：</b>11月20日 <b>低開 $1.120</b>，開市 25 分鐘內直插 <b>$1.085</b>（09:55，造出 52 週新低），
+之後一路爬返，11:00–12:00 一度上到 $1.125 區，午後再回一次 $1.085 附近，<b>尾市 15:47 起靠大成交推回 $1.125 收市</b>。<br>
+開 $1.120、收 $1.125、低 $1.085 → <b>長下影線、收喺全日最高位（區間 100%）</b>，
+即係「低位有人接」。不過要留意：<b>當日回購佔成交 33.5%</b>（8,958,000 股），
+扣除回購後真正市場成交只有約 17,789,773 股 — 承接力有幾多係公司自己買，要分清楚。
+<span style="color:#6c7a70">以上為客觀形態描述，<b>唔係買賣建議</b>。</span>
+</div>
+
+<h2>⏱️ 走勢分段（1 分鐘 bar 重建）</h2>
+<div class="tw"><table>
+<thead><tr><th>時段</th><th>開</th><th>高</th><th>低</th><th>收</th><th>段內變動</th><th>段內成交</th><th>bar 數</th></tr></thead>
+<tbody>
+<tr><td>早段（開市 30 分鐘）<br><small>09:30–10:00</small></td><td data-label='開'>$1.110</td><td data-label='高'>$1.110</td><td data-label='低'>$1.085</td><td data-label='收'>$1.090</td><td data-label='段內變動' class='dn'>-0.020</td><td data-label='段內成交'>2,595,500</td><td data-label='bar 數'>24</td></tr>
+<tr><td>上午中段<br><small>10:00–11:00</small></td><td data-label='開'>$1.090</td><td data-label='高'>$1.105</td><td data-label='低'>$1.085</td><td data-label='收'>$1.095</td><td data-label='段內變動' class='up'>+0.005</td><td data-label='段內成交'>2,814,273</td><td data-label='bar 數'>31</td></tr>
+<tr><td>上午末段<br><small>11:00–12:00</small></td><td data-label='開'>$1.095</td><td data-label='高'>$1.120</td><td data-label='低'>$1.090</td><td data-label='收'>$1.115</td><td data-label='段內變動' class='up'>+0.020</td><td data-label='段內成交'>4,108,000</td><td data-label='bar 數'>30</td></tr>
+<tr><td>午後初段<br><small>13:00–14:00</small></td><td data-label='開'>$1.120</td><td data-label='高'>$1.120</td><td data-label='低'>$1.095</td><td data-label='收'>$1.105</td><td data-label='段內變動' class='dn'>-0.015</td><td data-label='段內成交'>3,038,000</td><td data-label='bar 數'>25</td></tr>
+<tr><td>午後中段<br><small>14:00–15:00</small></td><td data-label='開'>$1.110</td><td data-label='高'>$1.115</td><td data-label='低'>$1.095</td><td data-label='收'>$1.095</td><td data-label='段內變動' class='dn'>-0.015</td><td data-label='段內成交'>1,726,000</td><td data-label='bar 數'>26</td></tr>
+<tr><td>尾段（收市前 1 小時）<br><small>15:00–16:00</small></td><td data-label='開'>$1.095</td><td data-label='高'>$1.125</td><td data-label='低'>$1.090</td><td data-label='收'>$1.115</td><td data-label='段內變動' class='up'>+0.020</td><td data-label='段內成交'>11,618,000</td><td data-label='bar 數'>57</td></tr>
+<tr><td>收市競價<br><small>16:00–17:00</small></td><td data-label='開'>$1.125</td><td data-label='高'>$1.125</td><td data-label='低'>$1.125</td><td data-label='收'>$1.125</td><td data-label='段內變動' class=''>0.000</td><td data-label='段內成交'>848,000</td><td data-label='bar 數'>1</td></tr>
+
+</tbody></table></div>
+<div class="box info">
+📊 分鐘 bar 共 <b>194</b> 條（09:30–16:08，含收市競價 bar）。
+最高收市價 <b>$1.125</b>、最低收市價 <b>$1.085</b>。<br>
+<b>尾段 15:00–16:00 成交 11,618,000 股</b>（佔全日 43%），係全日最活躍時段 —
+15:47 之後連續十幾分鐘喺 $1.125 成交，明顯有買盤喺收市前頂價。
+</div>
+
+<h2>🎯 ±$0.05 警報統計（三重核實）</h2>
+<div class="cards">
+<div class='card'><div class='lbl'>1️⃣ 單筆跳動</div><div class='val ok'>0 次</div><div class='sub'>相鄰分鐘收市價差 ≥ $0.05</div></div>
+<div class='card'><div class='lbl'>2️⃣ 累計捕捉（ZigZag）</div><div class='val ok'>0 次</div><div class='sub'>基準＝開市 $1.120：上偏 +0.005 / 下偏 -0.035</div></div>
+<div class='card'><div class='lbl'>3️⃣ 全日波幅</div><div class='val'>$0.040</div><div class='sub'>差 $0.010 就夠觸發門檻</div></div>
+<div class='card'><div class='lbl'>price_alerts 紀錄</div><div class='val'>0 條</div><div class='sub'>即時通知 CSV（當日 gate 停機，無寫入）</div></div>
+</div>
+<p class='ok'>✅ 11月20日 <b>冇任何警報</b>：相鄰分鐘收市價差全部 &lt; $0.05（最大單分鐘變動只有 <b>-0.015</b>，15:35 由 $1.120 → $1.105）。</p>
+<div class="tw"><table>
+<thead><tr><th>最大單分鐘變動 Top 5</th><th>由</th><th>到</th><th>變動</th><th>成交量</th></tr></thead>
+<tbody>
+<tr><td>15:35</td><td data-label='由'>$1.120</td><td data-label='到'>$1.105</td><td data-label='變動' class='dn'>-0.015</td><td data-label='成交量'>322,000</td></tr>
+<tr><td>16:08</td><td data-label='由'>$1.115</td><td data-label='到'>$1.125</td><td data-label='變動' class='up'>+0.010</td><td data-label='成交量'>848,000</td></tr>
+<tr><td>15:59</td><td data-label='由'>$1.125</td><td data-label='到'>$1.115</td><td data-label='變動' class='dn'>-0.010</td><td data-label='成交量'>256,000</td></tr>
+<tr><td>15:57</td><td data-label='由'>$1.115</td><td data-label='到'>$1.125</td><td data-label='變動' class='up'>+0.010</td><td data-label='成交量'>284,000</td></tr>
+<tr><td>15:55</td><td data-label='由'>$1.125</td><td data-label='到'>$1.115</td><td data-label='變動' class='dn'>-0.010</td><td data-label='成交量'>222,000</td></tr>
+
+</tbody></table></div>
+<div class="box warn">
+⚠️ <b>口徑：</b>全日 <b>0 次</b>警報＝<b>未夠 $0.05 門檻</b>，唔等於冇波動。11月20日 波幅 $0.040（3.57%），
+最大單分鐘變動只有 -0.015（15:35）。<br>
+<span style="color:#c0392b"><b>更重要嘅盲點：</b>由 11月9日 收市 $1.245 跌到 11月20日 低位 $1.085，
+9 個交易日累跌 <b>-12.9%</b>（-0.160），但因為每日／每分鐘都唔夠 $0.05，<b>±$0.05 警報一次都冇響過</b> —
+呢個機制對「慢陰跌」係完全盲。</span>
+</div>
+
+<h2>🧭 中長期位置（1 年日線）</h2>
+<div class="cards">
+<div class='card'><div class='lbl'>52 週最高</div><div class='val'>$2.430</div><div class='sub'>2026-02-23</div></div>
+<div class='card'><div class='lbl'>52 週最低</div><div class='val dn'>$1.085</div><div class='sub'>2026-11-20（11/20 造出）</div></div>
+<div class='card'><div class='lbl'>距 52 週高位</div><div class='val dn'>-53.70%</div><div class='sub'>收市 $1.125 計</div></div>
+<div class='card'><div class='lbl'>距 52 週低位</div><div class='val up'>+3.69%</div><div class='sub'>即市低位 $1.085 起計</div></div>
+</div>
+<div class="tw"><table>
+<thead><tr><th>均線</th><th>數值</th><th>vs 收市 $1.125</th><th>狀態</th></tr></thead>
+<tbody>
+<tr><td>MA5</td><td data-label="數值">$1.129</td><td data-label="vs 收市" class="dn">-0.004</td><td data-label="狀態">收市喺 5 日線下方</td></tr>
+<tr><td>MA10</td><td data-label="數值">$1.180</td><td data-label="vs 收市" class="dn">-0.055</td><td data-label="狀態">短期仍偏弱</td></tr>
+<tr><td>MA20</td><td data-label="數值">$1.213</td><td data-label="vs 收市" class="dn">-0.088</td><td data-label="狀態">中期下行</td></tr>
+<tr><td>MA50</td><td data-label="數值">$1.260</td><td data-label="vs 收市" class="dn">-0.135</td><td data-label="狀態">趨勢向下</td></tr>
+<tr><td>MA250（年線）</td><td data-label="數值">$1.699</td><td data-label="vs 收市" class="dn">-0.574</td><td data-label="狀態">遠低於年線</td></tr>
+</tbody></table></div>
+<div class="box">
+📉 由 52 週高位 $2.430（2026-02-23）跌到 $1.125，<b>累跌 -53.70%</b>。
+均線全部向下排列（MA5 &lt; MA10 &lt; MA20 &lt; MA50 &lt; MA250）＝典型<b>空頭排列</b>，
+不過 MA5 $1.129 已經同收市 $1.125 好接近（差 -0.004），短線跌勢有放緩跡象。11/18–11/20 連續三日平收 $1.125 亦係同一訊號。
+</div>
+
+<h2>📊 近 10 個交易日（Yahoo 日線權威）</h2>
+<div class="tw"><table>
+<thead><tr><th>日期</th><th>開</th><th>高</th><th>低</th><th>收</th><th>變幅</th><th>波幅</th><th>成交</th></tr></thead>
+<tbody>
+<tr><td>11-09（一）</td><td data-label='開'>$1.245</td><td data-label='高'>$1.275</td><td data-label='低'>$1.240</td><td data-label='收'>$1.245</td><td data-label='變幅' class='up'>+0.005</td><td data-label='波幅'>$0.035</td><td data-label='成交'>14,910,000</td></tr>
+<tr><td>11-10（二）</td><td data-label='開'>$1.255</td><td data-label='高'>$1.270</td><td data-label='低'>$1.240</td><td data-label='收'>$1.260</td><td data-label='變幅' class='up'>+0.015</td><td data-label='波幅'>$0.030</td><td data-label='成交'>10,818,000</td></tr>
+<tr><td>11-11（三）</td><td data-label='開'>$1.260</td><td data-label='高'>$1.265</td><td data-label='低'>$1.235</td><td data-label='收'>$1.245</td><td data-label='變幅' class='dn'>-0.015</td><td data-label='波幅'>$0.030</td><td data-label='成交'>10,114,000</td></tr>
+<tr><td>11-12（四）</td><td data-label='開'>$1.245</td><td data-label='高'>$1.245</td><td data-label='低'>$1.210</td><td data-label='收'>$1.215</td><td data-label='變幅' class='dn'>-0.030</td><td data-label='波幅'>$0.035</td><td data-label='成交'>12,574,000</td></tr>
+<tr><td>11-13（五）</td><td data-label='開'>$1.215</td><td data-label='高'>$1.220</td><td data-label='低'>$1.185</td><td data-label='收'>$1.190</td><td data-label='變幅' class='dn'>-0.025</td><td data-label='波幅'>$0.035</td><td data-label='成交'>14,484,000</td></tr>
+<tr><td>11-16（一）</td><td data-label='開'>$1.200</td><td data-label='高'>$1.200</td><td data-label='低'>$1.140</td><td data-label='收'>$1.150</td><td data-label='變幅' class='dn'>-0.040</td><td data-label='波幅'>$0.060</td><td data-label='成交'>18,038,000</td></tr>
+<tr><td>11-17（二）</td><td data-label='開'>$1.150</td><td data-label='高'>$1.150</td><td data-label='低'>$1.115</td><td data-label='收'>$1.120</td><td data-label='變幅' class='dn'>-0.030</td><td data-label='波幅'>$0.035</td><td data-label='成交'>16,891,988</td></tr>
+<tr><td>11-18（三）</td><td data-label='開'>$1.120</td><td data-label='高'>$1.140</td><td data-label='低'>$1.110</td><td data-label='收'>$1.125</td><td data-label='變幅' class='up'>+0.005</td><td data-label='波幅'>$0.030</td><td data-label='成交'>16,274,000</td></tr>
+<tr><td>11-19（四）</td><td data-label='開'>$1.125</td><td data-label='高'>$1.125</td><td data-label='低'>$1.095</td><td data-label='收'>$1.125</td><td data-label='變幅' class=''>0.000</td><td data-label='波幅'>$0.030</td><td data-label='成交'>21,546,000</td></tr>
+<tr><td>11-20（五） <b>◀ 分析日</b></td><td data-label='開'>$1.120</td><td data-label='高'>$1.125</td><td data-label='低'>$1.085</td><td data-label='收'>$1.125</td><td data-label='變幅' class=''>0.000</td><td data-label='波幅'>$0.040</td><td data-label='成交'>26,747,773</td></tr>
+
+</tbody></table></div>
+
+<h2>🏢 公司回購（連續第 10 個交易日）</h2>
+<div class="tw"><table>
+<thead><tr><th>日期</th><th>回購股數</th><th>金額</th><th>價格區間</th></tr></thead>
+<tbody>
+<tr><td>11/09</td><td data-label='回購股數'>20 萬股</td><td data-label='金額'>HK$24.95 萬</td><td data-label='價格'>$1.245</td></tr>
+<tr><td>11/10</td><td data-label='回購股數'>40 萬股</td><td data-label='金額'>HK$50.20 萬</td><td data-label='價格'>$1.245–1.260</td></tr>
+<tr><td>11/11</td><td data-label='回購股數'>110 萬股</td><td data-label='金額'>HK$137.50 萬</td><td data-label='價格'>$1.245–1.260</td></tr>
+<tr><td>11/12</td><td data-label='回購股數'>60 萬股</td><td data-label='金額'>HK$74.10 萬</td><td data-label='價格'>$1.215–1.245</td></tr>
+<tr><td>11/13</td><td data-label='回購股數'>95 萬股</td><td data-label='金額'>HK$114.06 萬</td><td data-label='價格'>$1.190–1.215</td></tr>
+<tr><td>11/16</td><td data-label='回購股數'>130 萬股</td><td data-label='金額'>HK$150.77 萬</td><td data-label='價格'>$1.150–1.200</td></tr>
+<tr><td>11/17</td><td data-label='回購股數'>229 萬股</td><td data-label='金額'>HK$257.88 萬</td><td data-label='價格'>$1.120–1.150</td></tr>
+<tr><td>11/18</td><td data-label='回購股數'>165 萬股</td><td data-label='金額'>HK$185.51 萬</td><td data-label='價格'>$1.120–1.130</td></tr>
+<tr><td>11/19</td><td data-label='回購股數'>70 萬股</td><td data-label='金額'>HK$78.89 萬</td><td data-label='價格'>$1.125</td></tr>
+<tr><td>11/20</td><td data-label='回購股數'>895.8 萬股</td><td data-label='金額'>HK$1,002.77 萬</td><td data-label='價格'>$1.095–1.125</td></tr>
+
+<tr><td><b>10 日合計</b></td><td data-label="回購股數"><b>1,814.8 萬股</b></td><td data-label="金額"><b>HK$2,076.63 萬</b></td><td data-label="價格區間">$1.095–$1.260</td></tr>
+</tbody></table></div>
+<div class="box hot">
+🔥 <b>11月20日 回購突然放大 12.8 倍：</b>11/19 只買 70 萬股（佔當日成交 3.2%），
+11/20 一口氣回購 <b>895.8 萬股</b>、<b>HK$1,002.77 萬</b>，等於當日成交嘅 <b>33.5%</b>，
+回購價 <b>$1.095–$1.125 覆蓋全日低位到收市價整個區間</b>。<br>
+<b>解讀：</b>公司喺自己股價造 52 週新低當日加大回購＝明確托價動作。但要留意
+<b>回購托得起價、托唔起估值</b>：股價 3 日都卡死喺 $1.125，成交放大主要靠回購本身。
+</div>
+<div class="box">
+🔗 <b>資料來源：</b>11/20（895.8 萬股、$1.095–$1.125、HK$1,002.77 萬、累計回購 3.07 億股＝已發行 3.7492%）
+— 智通財經、AASTOCKS（Yahoo 財經轉載）、證券時報·數據寶 <b>三處一致</b>；
+11/09–11/19 逐日數字對過東方財富回購表 + 格隆匯／智通財經公告，全部吻合。<br>
+⚠️ <b>一處衝突：</b>格隆匯有一條標題寫「11月19日回購 89.58 萬股、1,002.77 萬」— 金額同股數同 11/20 公告一致，
+<b>判斷係該媒體日期誤植</b>（11/19 實際 70 萬股、HK$78.89 萬，智通財經／鳳凰網兩處一致）。
+最終數字一律以 <b>HKEXnews 翌日披露報表</b>為準。
+</div>
+
+<h2>🔭 今日（11月23日 星期一）開市前要睇嘅嘢</h2>
+<div class="box info">
+<ul>
+<li><b>前收 $1.125，連續 3 個交易日平收</b>（11/18、11/19、11/20）— 關鍵位：企穩 $1.125 之上 vs 再破 $1.085。</li>
+<li><b>上方阻力：</b>$1.125（11/20 高位）→ $1.180（MA10）→ $1.15（11/16–11/17 高位區）。</li>
+<li><b>下方支持：</b>$1.085（52 週新低，11/20 造出）。跌穿即再創年內新低。</li>
+<li><b>成交：</b>11/20 放量到 26,747,773 股（20 日均量 165%），但其中 33.5% 係回購。
+今日要睇<b>扣回購後嘅真實成交</b>有冇跟得上。</li>
+<li><b>回購：</b>已連續 10 個交易日，11/20 單日 895.8 萬股為期內最大手。留意今日有冇繼續（翌日披露報表大約 17:00 後刊出）。</li>
+<li><b>消息面：</b>11/21–11/22 週末<b>本次搜尋未見</b>公司新公告（搜尋範圍有限，唔等於官方確認冇）；公司近期新聞集中喺機械人／量子計算等前沿科技投資（旗下基金），同股價短期走勢未見直接掛鈎。</li>
+</ul>
+</div>
+
+<h2>🧾 核實聲明</h2>
+<div class="box">
+<ul>
+<li>OHLC 與成交量：<b>Yahoo Finance 日線</b>（0697.HK，Asia/Hong_Kong 時區），為本報告權威數字。</li>
+<li>分鐘走勢／警報：<b>Yahoo 1 分鐘 bar</b>（194 條，09:30–16:08）＋ 本地 <code>697_1min_data.csv</code>（194 條）交叉核對；
+兩邊成交量差 6,000 股（0.02%）→ 分鐘數據可信。</li>
+<li>本地 <code>price_detail.csv</code> 11/20 只有 1 條記錄（gateway 全日停機），<b>唔可以用嚟計全日數字</b>，已改用上述來源重建。</li>
+<li>回購數字：三個財經媒體一致 + 東方財富回購表逐日對照；官方以 HKEXnews 為準。</li>
+<li>52 週高／低：Yahoo 1 年日線（247 個交易日，2025-11-20 → 2026-11-20）。</li>
+<li>⚠️ 本報告為<b>數據紀錄</b>，唔構成任何投資建議。</li>
+</ul>
+</div>
+
+<footer>由 無虛 (mo mo) 生成 · 697 每日朝早報告 v6 · 2026-11-23 08:4x · 私人版（只供 Ming 參考）</footer>
+</div></body></html>
